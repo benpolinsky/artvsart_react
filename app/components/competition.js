@@ -14,8 +14,12 @@ class Competition extends React.Component {
 
   }
 
+  componentDidMount(){
+
+  }
+  
   getBattle(){
-    fetch('http://localhost:3000/api/v1/battle', {
+    fetch('http://localhost:3000/api/v1/competitions', {
       credentials: 'include',
       method: 'POST',
       headers: {
@@ -41,7 +45,7 @@ class Competition extends React.Component {
   }
   
   selectWinner(winner){
-    fetch('http://localhost:3000/api/v1/choose/', {
+    fetch('http://localhost:3000/api/v1/competitions/' + this.state.id, {
       credentials: 'include',
       method: 'PUT',
       headers: {
@@ -50,7 +54,6 @@ class Competition extends React.Component {
       },
       body: JSON.stringify({
         competition: {
-          id: this.state.id,
           winner_id: winner
         }
       })

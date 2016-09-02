@@ -25,6 +25,11 @@ class Art extends React.Component {
   }
 }
 
+Art.propTypes = {
+  name: React.PropTypes.string.isRequired,
+  description: React.PropTypes.string.isRequired
+}
+
 
 class VoteButton extends React.Component {
   render() {
