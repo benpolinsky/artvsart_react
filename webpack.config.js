@@ -1,9 +1,9 @@
 module.exports = {
-  entry: './app/main.js',
+  entry: ['whatwg-fetch', './app/main.js'],
   output: {
     path: './',
     filename: 'index.js'
-  },
+    },
   devServer: {
     inline: true,
     port: 3333,
