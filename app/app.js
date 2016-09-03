@@ -4,12 +4,6 @@ import Menu from './components/menu';
 class App extends React.Component {
   constructor(){
     super()
-
-    this.update = this.update.bind(this);
-  }
-  
-  update(e){
-
   }
   
   render(){

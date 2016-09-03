@@ -1,15 +1,14 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-class Menu extends React.Component {
-  render(){
-    return (
-      <ul>
-        <li><Link to="/competition">Competition</Link></li>
-        <li><Link to="/about">About</Link></li>
-      </ul>
-    )
-  }
-}
+const Menu = () => {
+  return (
+    <ul>
+      <li><Link to="/">Home</Link></li>
+      <li><Link to="/about">About</Link></li>
+      <li><Link to="/add_new_art">Add New Art</Link></li>
+    </ul>
+  )
+};
 
 export default Menu
