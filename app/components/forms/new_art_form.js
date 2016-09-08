@@ -1,6 +1,6 @@
 import React from 'react';
 
-class ArtForm extends React.Component{
+class NewArtForm extends React.Component{
   constructor(props){
     super(props)
     this.submit = this.submit.bind(this);
@@ -57,4 +57,4 @@ class ArtForm extends React.Component{
   }
 }
 
-export default ArtForm
+export default NewArtForm

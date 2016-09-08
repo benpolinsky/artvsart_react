@@ -1,6 +1,6 @@
 import React from 'react';
 import Competition from './competition.js'
-import WinnerModal from './winner_modal.js'
+import WinnerModal from '../winner_modal.js'
 
 class Home extends React.Component{
   constructor(){

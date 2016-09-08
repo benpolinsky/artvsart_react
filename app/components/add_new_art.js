@@ -1,6 +1,6 @@
 import React from 'react';
 import {Router} from 'react-router';
-import ArtForm from './art_form.js';
+import NewArtForm from './forms/new_art_form.js';
 import AjaxHelpers from '../utils/ajax_helpers.js';
 
 class AddNewArt extends React.Component {
@@ -31,7 +31,7 @@ class AddNewArt extends React.Component {
   render(){
     return (
       <div className='AddNewArt'>
-        <ArtForm submit={this.createNewArt} art={this.props.art} />
+        <NewArtForm submit={this.createNewArt} art={this.props.art} />
       </div>
     )
   }

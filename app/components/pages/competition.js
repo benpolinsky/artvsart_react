@@ -1,6 +1,6 @@
 import React from 'react';
-import Art from './art.js';
-import AjaxHelpers from '../utils/ajax_helpers.js';
+import Art from '../art.js';
+import AjaxHelpers from '../../utils/ajax_helpers.js';
 
 class Competition extends React.Component {
   constructor(){

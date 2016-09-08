@@ -1,7 +1,7 @@
 import React from 'react';
-import Art from './art.js';
+import Art from '../art.js';
 import { Router, Route, Link, browserHistory } from 'react-router';
-import AjaxHelpers from '../utils/ajax_helpers';
+import AjaxHelpers from '../../utils/ajax_helpers';
 
 
 class ShowArt extends React.Component{
