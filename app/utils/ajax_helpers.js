@@ -43,7 +43,33 @@ const ajax_helpers = {
       method: 'GET',
       headers: headers
     }).then(response => response.json());
+  },
+  
+  importArt(id, source){
+    return fetch(`${domain}/api/v1/art/import`, {
+      credentials: 'include',
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify({
+        id: id,
+        source: source
+      })
+    }).then(response => response.json());
+  },
+  
+  searchSource(data){
+    return fetch(`${domain}/api/v1/search_source?${to_params(data)}`, {
+      credentials: 'include',
+      method: "GET",
+      headers: headers
+    }).then(response => response.json());
   }
+}
+
+function to_params(data) {
+  return Object.keys(data).map(function(key) {
+    return key + '=' + data[key];
+  }).join('&');
 }
 
 export default ajax_helpers

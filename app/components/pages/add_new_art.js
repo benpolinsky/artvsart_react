@@ -1,7 +1,7 @@
 import React from 'react';
 import {Router} from 'react-router';
-import NewArtForm from './forms/new_art_form.js';
-import AjaxHelpers from '../utils/ajax_helpers.js';
+import NewArtForm from '../forms/new_art_form.js';
+import AjaxHelpers from '../../utils/ajax_helpers.js';
 
 class AddNewArt extends React.Component {
   constructor(){

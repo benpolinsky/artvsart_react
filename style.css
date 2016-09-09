@@ -1,3 +1,7 @@
+/* For now all css in here. */
+
+
+/* Competition */
 .art{
   float: left;
   width: 50%;
@@ -8,3 +12,13 @@
 .vote-btn{
   margin-top:10px;
 }
+
+
+/* Import Art Form */
+form.import-art .import-group{
+  display:block;
+}
+form.import-art .import-group.hidden{
+  display:none;
+}
+

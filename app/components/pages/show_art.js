@@ -26,8 +26,6 @@ class ShowArt extends React.Component{
   }
   
   render(){
-    console.log('rendering')
-    console.log(this.state);
     return <Art key={this.state.art.id} 
          id={this.state.art.id} 
          name={this.state.art.name}
