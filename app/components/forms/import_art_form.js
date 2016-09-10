@@ -7,8 +7,7 @@
 // So this is more of a SearchArtForm (kinda)
 
 import React from 'react';
-import $ from 'domtastic';
-import SearchSource from './search_source.js';
+import SearchFields from './search_fields.js';
 import SearchResult from './search_result.js'
 import AjaxHelpers from '../../utils/ajax_helpers.js';
 
@@ -19,20 +18,33 @@ class ImportArtForm extends React.Component{
     this.submitForm = this.submitForm.bind(this);
     this.displayResponse = this.displayResponse.bind(this);
     this.importArt = this.importArt.bind(this);
+    this.selected = this.selected.bind(this);
+    this.update = this.update.bind(this);
   }
   
   selected(e){
-    var selection = e.target.value.toLowerCase();
-    $('.import-group').addClass('hidden');
-    $(`#${selection}`).removeClass('hidden');
+    this.setState({
+      selected: e.target.value
+    })
   }
   
-  submitForm(data){
+  submitForm(e){
+    e.preventDefault();
+    let data = {
+      source: this.state.selected,
+      query: this.state.query
+    }
     AjaxHelpers.searchSource(data).then((response) => {this.displayResponse(response)});
   }
   
+  update(state){
+    this.setState({
+      query: state.query,
+      listing_id: state.listing_id
+    })
+  }
+  
   displayResponse(data){
-    console.log(data);
     this.setState({
       new_data: true,
       results: data.results
@@ -47,7 +59,10 @@ class ImportArtForm extends React.Component{
   componentWillMount(){
     this.state = {
       new_data: false,
-      results: []
+      results: [],
+      selected: 'Discogs',
+      query: "",
+      listing_id: ""
     }
   }
   
@@ -57,13 +72,26 @@ class ImportArtForm extends React.Component{
     return (
       <div id="searchArtContainer">
         <form onSubmit={this.submitForm} className='import-art col-xs-12'>
+    
           <div className="form-group">
-            <select name="import-source" ref="importSource" defaultValue="" onChange={this.selected} className='form-control'>
+            <select name="import-source" ref="importSource" defaultValue={this.state.selected} onChange={this.selected} className='form-control'>
               <option value=''>Please Select</option>
               {sources.map(source => <option key={source} value={source}>{source}</option>)}
             </select>
           </div>
-          {sources.map(source => <SearchSource key={source} searchForm={this.submitForm} source={source} />)}
+          
+          {sources.map(source => {
+            return <SearchFields active={this.state.selected == source} 
+                                 ref={source} 
+                                 key={source}
+                                 update={this.update}
+                                 source={source} />
+          })}
+          
+          <div className="form-group">
+            <input className="btn btn-primary" type="submit" value='Search'/>
+          </div>
+          
         </form>
           { 
             this.state.new_data == true &&

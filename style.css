@@ -18,7 +18,37 @@
 form.import-art .import-group{
   display:block;
 }
+
 form.import-art .import-group.hidden{
   display:none;
 }
 
+
+/* Search Result */
+
+.search-result{
+  position:relative;
+  text-align:center;
+  padding-bottom:50px;
+}
+
+.search-result button.import{
+/*  position:absolute;
+  bottom:10px;
+  left:0;
+  right:0;
+  width:100px;
+  margin:0 auto;*/
+}
+
+.search-result .image-container{
+  height:150px;
+}
+
+.search-result .image-container img{
+  max-height:150px;
+}
+
+.search-result h4{
+  height:60px;
+}

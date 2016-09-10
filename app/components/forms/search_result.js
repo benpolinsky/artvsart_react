@@ -7,13 +7,15 @@ class SearchResult extends React.Component{
   
   render(){
     return(
-      <div className='search-result'>
+      <div className='search-result col-xs-12 col-sm-4'>
+        <div className='image-container'>
+          <img src={this.props.result.image} />
+        </div>
+        
+        <p>{this.props.result.year}</p>
         <h4>{this.props.result.title}</h4>
-        <img src={this.props.result.thumb} />
-        <p>
-          {this.props.result.year}
-        </p>
-          <button className='btn btn-primary btn-sm' onClick={this.importArt.bind(this)}>Import</button>
+
+        <button className='import btn btn-primary btn-sm' onClick={this.importArt.bind(this)}>Import</button>
       </div>
     )
   }

@@ -4,7 +4,7 @@ import VoteButton from './forms/vote_button.js';
 const Art = (props) => {
   return (
     <div className='art'>
-      <img src='http://placehold.it/250x250' />
+      <img src={props.image} />
       <h2>{props.name}</h2>
       <div className="art-description">{props.description}</div>
       {!props.no_voting && 
@@ -17,7 +17,12 @@ Art.propTypes = {
   name: React.PropTypes.string.isRequired,
   description: React.PropTypes.string.isRequired,
   id: React.PropTypes.number,
-  selectWinner: React.PropTypes.func
+  selectWinner: React.PropTypes.func,
+  image: React.PropTypes.string.isRequired
+}
+
+Art.defaultProps = {
+  image: 'http://placehold.it/250x250'
 }
 
 export default Art
