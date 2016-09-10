@@ -68,7 +68,7 @@ class ImportArtForm extends React.Component{
   
   
   render(){
-    const sources = ['Discogs', 'Artsy', 'Gracenote'];
+    const sources = ['Discogs', 'Artsy', 'Gracenote', 'Philart', 'IMDB'];
     return (
       <div id="searchArtContainer">
         <form onSubmit={this.submitForm} className='import-art col-xs-12'>

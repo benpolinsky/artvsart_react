@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-//  bad name...
 class SearchFields extends React.Component{
   constructor(props){
     super(props);
