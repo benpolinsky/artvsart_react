@@ -15,7 +15,8 @@ class AddNewArt extends React.Component {
       art: {
         name: "",
         creator: "",
-        description: ""
+        description: "",
+        image: ""
       }
     }
   }

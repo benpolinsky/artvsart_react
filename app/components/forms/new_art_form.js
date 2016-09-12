@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import ReactS3Uploader from 'react-s3-uploader';
 
 class NewArtForm extends React.Component{
   constructor(props){
@@ -48,6 +49,18 @@ class NewArtForm extends React.Component{
           <textarea ref='description' name="art[description]" onChange={this.update} defaultValue="" className="form-control" rows='10' />
         </div>
     
+        <ReactS3Uploader
+            signingUrl="/s3/sign"
+            accept="image/*"
+            preprocess={this.onUploadStart}
+            onProgress={this.onUploadProgress}
+            onError={this.onUploadError}
+            onFinish={this.onUploadFinish}
+            signingUrlHeaders={{ additional: 'some_headers' }}
+            signingUrlQueryParams={{ additional: 'some_query_params' }}
+            uploadRequestHeaders={{ 'x-amz-acl': 'public-read' }}
+            contentDisposition="auto"
+            server="http://localhost:3000" />
         <input type="submit" value="Create!" className='btn btn-primary' />
       </form>
     )
