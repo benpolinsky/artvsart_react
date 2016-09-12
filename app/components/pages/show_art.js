@@ -15,7 +15,8 @@ class ShowArt extends React.Component{
         id: 0,
         name: "",
         creator: "",
-        description: ""
+        description: "",
+        image: ""
       }
     }
     AjaxHelpers.fetchArt(this.props.params.id).then(res => {
@@ -30,6 +31,7 @@ class ShowArt extends React.Component{
          id={this.state.art.id} 
          name={this.state.art.name}
          description={this.state.art.description}
+         image={this.state.art.image}
          no_voting={true}
           />
   }

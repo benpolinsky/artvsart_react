@@ -1,12 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactS3Uploader from 'react-s3-uploader';
+import AjaxHelpers from '../../utils/ajax_helpers.js';
 
 class NewArtForm extends React.Component{
   constructor(props){
     super(props)
     this.submit = this.submit.bind(this);
     this.update = this.update.bind(this);
+    this.onUploadFinish = this.onUploadFinish.bind(this);
 
     this.state = {
       art: props.art
@@ -25,10 +27,31 @@ class NewArtForm extends React.Component{
 
   submit(e){
     e.preventDefault();
+    // need proper validation of the things.
     if (this.state.art.name.length > 0 && this.state.art.creator.length > 0) {
       this.props.submit(this.state.art);      
     }
+  }
+  //
+  // onUploadStart(file){
+  //   console.log(file);
+  //   this.setState({
+  //     file_name: file.name
+  //   });
+  //   this.next(file);
+  // }
+  //
 
+  onUploadFinish(file){
+    console.log(file);
+    const signed_url = file.signedUrl.split('?X-Amz-Expires')[0];
+    var art = this.state.art;
+    art['image'] = signed_url;
+
+    this.setState({
+      art: art
+    });
+    
   }
   
   render(){
@@ -50,16 +73,12 @@ class NewArtForm extends React.Component{
         </div>
     
         <ReactS3Uploader
-            signingUrl="/s3/sign"
+            signingUrl="/api/v1/s3/sign"
             accept="image/*"
             preprocess={this.onUploadStart}
             onProgress={this.onUploadProgress}
             onError={this.onUploadError}
             onFinish={this.onUploadFinish}
-            signingUrlHeaders={{ additional: 'some_headers' }}
-            signingUrlQueryParams={{ additional: 'some_query_params' }}
-            uploadRequestHeaders={{ 'x-amz-acl': 'public-read' }}
-            contentDisposition="auto"
             server="http://localhost:3000" />
         <input type="submit" value="Create!" className='btn btn-primary' />
       </form>
