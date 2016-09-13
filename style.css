@@ -1,7 +1,6 @@
-/* For now all css in here. */
 
+/* ---- Competition ---- */
 
-/* Competition */
 .art{
   float: left;
   width: 50%;
@@ -9,12 +8,21 @@
   padding: 30px;
 }
 
+.art img{
+  width:100%;
+}
+
 .vote-btn{
   margin-top:10px;
 }
 
 
-/* Import Art Form */
+/* !---- End Competition ----! */
+
+
+
+/* ---- Import Art Form ---- */
+
 form.import-art .import-group{
   display:block;
 }
@@ -23,6 +31,9 @@ form.import-art .import-group.hidden{
   display:none;
 }
 
+/* !---- End Import Art Form ----! */
+
+
 
 /* Search Result */
 
@@ -30,15 +41,6 @@ form.import-art .import-group.hidden{
   position:relative;
   text-align:center;
   padding-bottom:50px;
-}
-
-.search-result button.import{
-/*  position:absolute;
-  bottom:10px;
-  left:0;
-  right:0;
-  width:100px;
-  margin:0 auto;*/
 }
 
 .search-result .image-container{
@@ -52,3 +54,15 @@ form.import-art .import-group.hidden{
 .search-result h4{
   height:60px;
 }
+
+/* !---- End Search Result ----! */
+
+
+
+/* Loader */
+
+.Loader{
+  overflow:hidden;
+}
+
+/* -- Loader ---*/

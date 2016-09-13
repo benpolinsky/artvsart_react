@@ -9,10 +9,16 @@ class NewArtForm extends React.Component{
     this.submit = this.submit.bind(this);
     this.update = this.update.bind(this);
     this.onUploadFinish = this.onUploadFinish.bind(this);
-
-    this.state = {
-      art: props.art
-    }
+    this.onUploadStart = this.onUploadStart.bind(this);
+    this.componentWillMount = this.componentWillMount.bind(this);
+  }
+  
+  
+  componentWillMount(){
+    console.log('about to mount');
+    this.setState({
+      art: this.props.art
+    })
   }
   
   update(e){
@@ -32,25 +38,26 @@ class NewArtForm extends React.Component{
       this.props.submit(this.state.art);      
     }
   }
-  //
-  // onUploadStart(file){
-  //   console.log(file);
-  //   this.setState({
-  //     file_name: file.name
-  //   });
-  //   this.next(file);
-  // }
-  //
+
+  onUploadStart(file, next){
+    this.props.triggerLoader(true);
+    next(file);
+  }
+
 
   onUploadFinish(file){
-    console.log(file);
-    const signed_url = file.signedUrl.split('?X-Amz-Expires')[0];
-    var art = this.state.art;
-    art['image'] = signed_url;
+    this.props.triggerLoader(false, () => {
+      const signed_url = file.signedUrl.split('?X-Amz-Expires')[0];
 
-    this.setState({
-      art: art
+      var art = this.state.art;
+
+      art['image'] = signed_url;
+      
+      this.setState({
+        art: art
+      });
     });
+    
     
   }
   

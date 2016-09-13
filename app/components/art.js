@@ -13,16 +13,17 @@ const Art = (props) => {
   )
 }
 
+Art.defaultProps = {
+  image: 'http://placehold.it/250x250',
+  description: "Description Would Go Here"
+}
+
 Art.propTypes = {
   name: React.PropTypes.string.isRequired,
   description: React.PropTypes.string.isRequired,
   id: React.PropTypes.number,
   selectWinner: React.PropTypes.func,
   image: React.PropTypes.string.isRequired
-}
-
-Art.defaultProps = {
-  image: 'http://placehold.it/250x250'
 }
 
 export default Art

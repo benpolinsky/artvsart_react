@@ -7,6 +7,7 @@
 // So this is more of a SearchArtForm (kinda)
 
 import React from 'react';
+import Loader from 'react-loader-advanced';
 import SearchFields from './search_fields.js';
 import SearchResult from './search_result.js'
 import AjaxHelpers from '../../utils/ajax_helpers.js';
@@ -20,6 +21,7 @@ class ImportArtForm extends React.Component{
     this.importArt = this.importArt.bind(this);
     this.selected = this.selected.bind(this);
     this.update = this.update.bind(this);
+    this.importFinished = this.importFinished.bind(this);
   }
   
   selected(e){
@@ -34,6 +36,7 @@ class ImportArtForm extends React.Component{
       source: this.state.selected,
       query: this.state.query
     }
+    this.setState({loading: true});
     AjaxHelpers.searchSource(data).then((response) => {this.displayResponse(response)});
   }
   
@@ -41,24 +44,33 @@ class ImportArtForm extends React.Component{
     this.setState({
       query: state.query,
       listing_id: state.listing_id
-    })
+    });
   }
   
   displayResponse(data){
     this.setState({
       new_data: true,
-      results: data.results
-    })
+      results: data.results,
+      loading: false
+    });
   }
   
   importArt(id){
-    console.log(id, this.refs.importSource.value);
-    AjaxHelpers.importArt(id, this.refs.importSource.value);
+    this.setState({loading: true});
+    AjaxHelpers.importArt(id, this.refs.importSource.value).then(response => {
+      this.importFinished(response);
+    });
+  }
+  
+  importFinished(response){
+    this.setState({loading: false});
+    console.log(response);
   }
   
   componentWillMount(){
     this.state = {
       new_data: false,
+      loading: false,
       results: [],
       selected: 'Discogs',
       query: "",
@@ -71,35 +83,36 @@ class ImportArtForm extends React.Component{
     const sources = ['Discogs', 'Artsy', 'Gracenote', 'Philart', 'IMDB'];
     return (
       <div id="searchArtContainer">
-        <form onSubmit={this.submitForm} className='import-art col-xs-12'>
+        <Loader show={this.state.loading}>
+          <form onSubmit={this.submitForm} className='import-art col-xs-12'>
     
-          <div className="form-group">
-            <select name="import-source" ref="importSource" defaultValue={this.state.selected} onChange={this.selected} className='form-control'>
-              <option value=''>Please Select</option>
-              {sources.map(source => <option key={source} value={source}>{source}</option>)}
-            </select>
-          </div>
+            <div className="form-group">
+              <select name="import-source" ref="importSource" defaultValue={this.state.selected} onChange={this.selected} className='form-control'>
+                <option value=''>Please Select</option>
+                {sources.map(source => <option key={source} value={source}>{source}</option>)}
+              </select>
+            </div>
           
-          {sources.map(source => {
-            return <SearchFields active={this.state.selected == source} 
-                                 ref={source} 
-                                 key={source}
-                                 update={this.update}
-                                 source={source} />
-          })}
+            {sources.map(source => {
+              return <SearchFields active={this.state.selected == source} 
+                                   ref={source} 
+                                   key={source}
+                                   update={this.update}
+                                   source={source} />
+            })}
           
-          <div className="form-group">
-            <input className="btn btn-primary" type="submit" value='Search'/>
-          </div>
+            <div className="form-group">
+              <input className="btn btn-primary" type="submit" value='Search'/>
+            </div>
           
-        </form>
-          { 
-            this.state.new_data == true &&
-            <div id="searchResults">
-              {this.state.results.map((result, index) => <SearchResult key={index} result={result} importArt={this.importArt}/>)}
-            </div>            
-          }
-
+          </form>
+            { 
+              this.state.new_data == true &&
+              <div id="searchResults">
+                {this.state.results.map((result, index) => <SearchResult key={index} result={result} importArt={this.importArt}/>)}
+              </div>            
+            }
+        </Loader>
       </div>
     )
   }

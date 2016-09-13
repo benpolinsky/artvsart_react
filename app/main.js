@@ -13,7 +13,7 @@ require('../style.css');
 ReactDOM.render(
   <Router history={browserHistory}>
     <Route path='/' component={App}>
-      <IndexRoute component={ImportArtForm} />
+      <IndexRoute component={AddNewArt} />
       <Route path='home' component={Home} />
       <Route path='add_new_art' component={AddNewArt} />
       <Route path='import_art' component={ImportArtForm} />
