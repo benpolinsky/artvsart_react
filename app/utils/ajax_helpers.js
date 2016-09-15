@@ -63,6 +63,14 @@ const ajax_helpers = {
       method: "GET",
       headers: headers
     }).then(response => response.json());
+  },
+  
+  fetchResults(){
+    return fetch(`${domain}/api/v1/results`, {
+      credentials: "include",
+      method: "GET",
+      headers: headers
+    }).then(response => response.json());
   }
 }
 

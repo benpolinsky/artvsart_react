@@ -1,7 +1,17 @@
 import React from 'react';
 import Loader from 'react-loader-advanced';
-import Art from '../art.js';
-import AjaxHelpers from '../../utils/ajax_helpers.js';
+import {ShareButtons, ShareCounts, generateShareIcon} from 'react-share';
+import Art from './art.js';
+import AjaxHelpers from '../utils/ajax_helpers.js';
+
+
+const {
+  FacebookShareButton,
+  TwitterShareButton,
+} = ShareButtons;
+
+const FacebookIcon = generateShareIcon('facebook');
+const TwitterIcon = generateShareIcon('twitter');
 
 
 class Competition extends React.Component {
@@ -14,13 +24,15 @@ class Competition extends React.Component {
     this.state = {
       art: {id: 1, name: "Rakim's Paid in Full", description: "The god Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."},
       challenger: {id: 2, name: "Michaelangelo's David", description: "A Legendary Sculpture"},
-      loading: false
+      loading: false,
+      share_title: ""
     }
-
+  }
+  
+  componentDidMount(){
     let competition = AjaxHelpers.getBattle().then(res => {
       this.stageCompetition(res);
     });
-
   }
 
   // now it feels as if the 
@@ -30,7 +42,8 @@ class Competition extends React.Component {
       id: competition.id,
       art: competition.art,
       challenger: competition.challenger,
-      loading: false
+      loading: false,
+      share_title: `Battling ${competition.art.name} Vs ${competition.challenger.name}`
     })
   }
   
@@ -65,7 +78,26 @@ class Competition extends React.Component {
                description={this.state.challenger.description}
                image={this.state.challenger.image} 
                />
-
+          <div className='share-buttons'>
+            <p>Share This Battle!</p>
+           <FacebookShareButton
+               url={'http://artvsart.com'}
+                 title={this.state.share_title}
+               className="Demo__some-network__share-button">
+               <FacebookIcon
+                 size={32}
+                 round />
+             </FacebookShareButton>
+            
+             <TwitterShareButton
+                 url='http://www.artvsart.com'
+                 title={this.state.share_title}
+                 className="Demo__some-network__share-button">
+                 <TwitterIcon
+                   size={32}
+                   round />
+              </TwitterShareButton>
+          </div>
         </Loader>
       </div>
     )

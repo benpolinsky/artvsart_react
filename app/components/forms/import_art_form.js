@@ -36,7 +36,7 @@ class ImportArtForm extends React.Component{
       source: this.state.selected,
       query: this.state.query
     }
-    this.setState({loading: true});
+    this.setState({loading: true, loading_message: `Searching ${data.source}`});
     AjaxHelpers.searchSource(data).then((response) => {this.displayResponse(response)});
   }
   
@@ -48,11 +48,24 @@ class ImportArtForm extends React.Component{
   }
   
   displayResponse(data){
-    this.setState({
-      new_data: true,
-      results: data.results,
-      loading: false
-    });
+    if (data.results.error != undefined) {
+      this.setState({
+        new_data: true,
+        results: [],
+        loading: false,
+        loading_message: 'loading',
+        errors: {
+          error: data.error
+        }
+      });
+    } else {    
+      this.setState({
+        new_data: true,
+        results: data.results,
+        loading: false,
+        loading_message: 'loading'
+      });
+    }
   }
   
   importArt(id){
@@ -71,6 +84,7 @@ class ImportArtForm extends React.Component{
     this.state = {
       new_data: false,
       loading: false,
+      loading_message: "loading",
       results: [],
       selected: 'Discogs',
       query: "",
@@ -83,10 +97,11 @@ class ImportArtForm extends React.Component{
     const sources = ['Discogs', 'Artsy', 'Gracenote', 'Philart', 'IMDB'];
     return (
       <div id="searchArtContainer">
-        <Loader show={this.state.loading}>
+        <Loader show={this.state.loading} message={this.state.loading_message} >
           <form onSubmit={this.submitForm} className='import-art col-xs-12'>
     
             <div className="form-group">
+              <label id="import-source">Select Source</label>
               <select name="import-source" ref="importSource" defaultValue={this.state.selected} onChange={this.selected} className='form-control'>
                 <option value=''>Please Select</option>
                 {sources.map(source => <option key={source} value={source}>{source}</option>)}

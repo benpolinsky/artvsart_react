@@ -8,7 +8,7 @@ class About extends React.Component {
   
   render(){
     return (
-      <div>
+      <div className='col-xs-12'>
         <h1>About Art Vs Art</h1>
         <div className="aboutArtVsArt">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, 

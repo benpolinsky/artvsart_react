@@ -17,10 +17,11 @@ class SearchFields extends React.Component{
     
   }
   
+  // as we'll add more than one field
+  // we'll update like this
   update(e){
     this.setState({
-      query: ReactDOM.findDOMNode(this.refs[this.source_label]).value,
-      listing_id: ReactDOM.findDOMNode(this.refs[this.id_label]).value
+      query: ReactDOM.findDOMNode(this.refs[this.source_label]).value
     }, () => {
       this.props.update(this.state);
     }) 
@@ -31,13 +32,8 @@ class SearchFields extends React.Component{
       <div id={this.props.source.toLowerCase()} className={`${this.props.active ? 'active' : 'hidden' + ' import-group form-group'}`}>
         <h3>{`Search ${this.source}`}</h3>
         <div className="form-group">
-          <label name={this.source_label}>Search</label>
-          <input ref={this.source_label} type='search' onKeyDown={this.update} name={this.source_label} className='form-control' />
-        </div>
-
-        <div className="form-group">
-          <label name={this.id_label}>Enter Record/Listing ID</label>
-          <input ref={this.id_label} type='text' onKeyDown={this.update} name={this.id_label} className='form-control' />
+          <label name={this.source_label}>Query: </label>
+          <input ref={this.source_label} type='search' onKeyUp={this.update} name={this.source_label} className='form-control' />
         </div>
       </div>
     )

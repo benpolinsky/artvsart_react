@@ -1,4 +1,7 @@
 
+
+
+
 /* ---- Competition ---- */
 
 .art{
@@ -10,6 +13,19 @@
 
 .art img{
   width:100%;
+}
+
+.competition .share-buttons{
+  float:left;
+  clear:both;
+  width:200px;
+  overflow:hidden;
+}
+
+.competition .share-buttons .SocialMediaShareButton{
+  float:left;
+  margin-right:4px;
+  cursor:pointer;
 }
 
 .vote-btn{
@@ -65,4 +81,7 @@ form.import-art .import-group.hidden{
   overflow:hidden;
 }
 
-/* -- Loader ---*/
+.Loader__foreground{
+  position:fixed;
+}
+/* -- End Loader ---*/
