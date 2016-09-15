@@ -63,8 +63,8 @@ class Competition extends React.Component {
     return (
       <div className='competition'>
         <Loader show={this.state.loading} message={'loading'}  >
-          <Art key={this.state.art.id} art={this.state.art} />
-          <Art key={this.state.challenger.id} art={this.state.challenger} />
+          <Art key={this.state.art.id} art={this.state.art} selectWinner={this.selectWinner}/>
+          <Art key={this.state.challenger.id} art={this.state.challenger} selectWinner={this.selectWinner}/>
 
           <div className='share-buttons'>
 

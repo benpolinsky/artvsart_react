@@ -33,27 +33,27 @@ export default class Results extends React.Component {
     const winner = this.state.top_winner;
     const loser = this.state.top_loser;
     return (
-      <div>
+      <div className="resultsPage col-xs-12">
     
-        <div className='resultsTopWinner'>
+        <div className='resultsTopWinner resultsTop'>
           <h2>Top Winner: </h2>
           <p>Number of Wins: {winner.winning_count}</p>
           <Art key={winner.id} art={winner} no_voting={true} />
         </div>
     
-        <div className='resultsTopLoser'> 
+        <div className='resultsTopLoser resultsTop'> 
           <h2>Top Loser: </h2>
           <p>Number of Losses: {loser.losing_count}</p>
-          <Art key={loser.id} art={winner} no_voting={true} />
+          <Art key={loser.id} art={loser} no_voting={true} />
         </div>
                
-         <div className="bestRecords">
+         <div className="bestRecords otherRecords">
           <h2>Most Wins</h2>
              {this.state.best_records.map(record => {
                return <Art key={record.id} art={record} no_voting={true} />
              })}
          </div>
-         <div className="worstRecords">
+         <div className="worstRecords otherRecords">
              <h2>Most Losses</h2>
              {this.state.worst_records.map(record => {
                return <Art key={record.id} art={record} no_voting={true} />

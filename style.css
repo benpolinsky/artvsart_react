@@ -74,8 +74,38 @@ form.import-art .import-group.hidden{
 /* !---- End Search Result ----! */
 
 
+/* Stats/Results page */
 
-/* Loader */
+.resultsPage .resultsTop{
+  width:50%;
+  float:left;
+
+}
+
+.resultsPage .resultsTop .art img{
+  width:200px;
+  height:200px;    
+}
+
+.resultsPage .otherRecords{
+  float:left;
+  clear:both;
+}
+.resultsPage .otherRecords .art{
+  width:33.33%;
+}
+
+.resultsPage .otherRecords .art img{
+  width:100px;
+  height:100px;
+}
+
+/* End Stats/Results page */
+
+
+
+
+/* --- Loader ---*/
 
 .Loader{
   overflow:hidden;
@@ -84,4 +114,5 @@ form.import-art .import-group.hidden{
 .Loader__foreground{
   position:fixed;
 }
-/* -- End Loader ---*/
+
+/* !--- End Loader ---! */
