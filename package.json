@@ -4,13 +4,14 @@
   "description": "Front End for Art vs Art",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server"
+    "start": "webpack-dev-server",
+    "test": "mocha './app/**/*.spec.js' --compilers js:babel-core/register  --timeout 15000"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "react": "^15.3.0",
-    "react-dom": "^15.3.0",
+    "react": "^15.3.1",
+    "react-dom": "^15.3.1",
     "react-loader-advanced": "^1.4.1",
     "react-router": "^2.6.1",
     "react-s3-uploader": "^3.3.0",
@@ -19,9 +20,19 @@
   },
   "devDependencies": {
     "css-loader": "^0.24.0",
+    "expect": "^1.20.2",
+    "fetch-mock": "^5.1.2",
     "file-loader": "^0.9.0",
+    "mocha": "^3.0.2",
+    "react-addons-test-utils": "^15.3.1",
+    "sinon": "^1.17.5",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^1.13.2"
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
   }
 }

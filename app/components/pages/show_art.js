@@ -27,13 +27,7 @@ class ShowArt extends React.Component{
   }
   
   render(){
-    return <Art key={this.state.art.id} 
-         id={this.state.art.id} 
-         name={this.state.art.name}
-         description={this.state.art.description}
-         image={this.state.art.image}
-         no_voting={true}
-          />
+    return <Art key={this.state.art.id} art={this.state.art} no_voting={true} />
   }
 }
 

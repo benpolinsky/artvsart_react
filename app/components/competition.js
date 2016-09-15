@@ -63,40 +63,27 @@ class Competition extends React.Component {
     return (
       <div className='competition'>
         <Loader show={this.state.loading} message={'loading'}  >
-          <Art key={this.state.art.id} 
-               id={this.state.art.id} 
-               selectWinner={this.selectWinner} 
-               name={this.state.art.name} 
-               description={this.state.art.description}
-               image={this.state.art.image} 
-               />
+          <Art key={this.state.art.id} art={this.state.art} />
+          <Art key={this.state.challenger.id} art={this.state.challenger} />
 
-          <Art key={this.state.challenger.id} 
-               id={this.state.challenger.id} 
-               selectWinner={this.selectWinner} 
-               name={this.state.challenger.name}
-               description={this.state.challenger.description}
-               image={this.state.challenger.image} 
-               />
           <div className='share-buttons'>
+
             <p>Share This Battle!</p>
-           <FacebookShareButton
-               url={'http://artvsart.com'}
-                 title={this.state.share_title}
-               className="Demo__some-network__share-button">
-               <FacebookIcon
-                 size={32}
-                 round />
-             </FacebookShareButton>
+
+            <FacebookShareButton
+              url={'http://artvsart.com'}
+              title={this.state.share_title}
+              className="Demo__some-network__share-button">
+              <FacebookIcon size={32} round />
+            </FacebookShareButton>
             
              <TwitterShareButton
-                 url='http://www.artvsart.com'
-                 title={this.state.share_title}
-                 className="Demo__some-network__share-button">
-                 <TwitterIcon
-                   size={32}
-                   round />
-              </TwitterShareButton>
+               url='http://www.artvsart.com'
+               title={this.state.share_title}
+               className="Demo__some-network__share-button">
+               <TwitterIcon size={32} round />
+             </TwitterShareButton>
+               
           </div>
         </Loader>
       </div>
