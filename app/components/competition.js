@@ -16,22 +16,34 @@ const TwitterIcon = generateShareIcon('twitter');
 
 class Competition extends React.Component {
   constructor(){
-      super();      
+      super();  
       this.selectWinner = this.selectWinner.bind(this);
   }
 
   componentWillMount(){
     this.state = {
-      art: {id: 1, name: "Rakim's Paid in Full", description: "The god Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam."},
-      challenger: {id: 2, name: "Michaelangelo's David", description: "A Legendary Sculpture"},
-      loading: false,
+      id: 0,
+      art: {
+        id: 1, 
+        name: "Rakim's Paid in Full", 
+        description: "The god Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
+        image: 'http://placehold.it/250x250'
+      },
+      challenger: {
+        id: 2, 
+        name: "Michaelangelo's David", 
+        description: "A Legendary Sculpture",
+        image: 'http://placehold.it/250x250'
+      },
+      loading: true,
       share_title: ""
     }
   }
   
   componentDidMount(){
+    this.setState({loading: false })
     let competition = AjaxHelpers.getBattle().then(res => {
-      this.stageCompetition(res);
+      res.competition && this.stageCompetition(res);
     });
   }
 

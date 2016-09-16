@@ -22,8 +22,12 @@ const Art = (props) => {
 // }
 
 Art.defaultProps = {
-  image: 'http://placehold.it/250x250',
-  description: "Description Would Go Here"
+  art: {
+    id: 0,
+    image: 'http://placehold.it/250x250',
+    description: "Description Would Go Here"
+  }
+
 }
 
 
