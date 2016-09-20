@@ -48,15 +48,13 @@ class ImportArtForm extends React.Component{
   }
   
   displayResponse(data){
-    if (data.results.error != undefined) {
+    if (data.error != undefined) {
       this.setState({
         new_data: true,
         results: [],
         loading: false,
         loading_message: 'loading',
-        errors: {
-          error: data.error
-        }
+        error: data.error
       });
     } else {    
       this.setState({
@@ -94,7 +92,7 @@ class ImportArtForm extends React.Component{
   
   
   render(){
-    const sources = ['Discogs', 'Artsy', 'Gracenote', 'Philart', 'IMDB'];
+    const sources = ['Discogs', 'Artsy', 'Gracenote', 'Philart', 'IMDB', 'HarvardArt'];
     return (
       <div id="searchArtContainer">
         <Loader show={this.state.loading} message={this.state.loading_message} >
@@ -124,6 +122,7 @@ class ImportArtForm extends React.Component{
             { 
               this.state.new_data == true &&
               <div id="searchResults">
+                {this.state.error}
                 {this.state.results.map((result, index) => <SearchResult key={index} result={result} importArt={this.importArt}/>)}
               </div>            
             }
