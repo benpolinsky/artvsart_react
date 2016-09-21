@@ -1,17 +1,9 @@
 import React from 'react';
 import Loader from 'react-loader-advanced';
-import {ShareButtons, ShareCounts, generateShareIcon} from 'react-share';
 import Art from './art.js';
+import ArtShareButtons from './art_share_buttons.js';
 import AjaxHelpers from '../utils/ajax_helpers.js';
 
-
-const {
-  FacebookShareButton,
-  TwitterShareButton,
-} = ShareButtons;
-
-const FacebookIcon = generateShareIcon('facebook');
-const TwitterIcon = generateShareIcon('twitter');
 
 
 class Competition extends React.Component {
@@ -81,20 +73,8 @@ class Competition extends React.Component {
           <div className='share-buttons'>
 
             <p>Share This Battle!</p>
-
-            <FacebookShareButton
-              url={'http://artvsart.com'}
-              title={this.state.share_title}
-              className="Demo__some-network__share-button">
-              <FacebookIcon size={32} round />
-            </FacebookShareButton>
-            
-             <TwitterShareButton
-               url='http://www.artvsart.com'
-               title={this.state.share_title}
-               className="Demo__some-network__share-button">
-               <TwitterIcon size={32} round />
-             </TwitterShareButton>
+          <ArtShareButtons share_title={this.state.share_title}/>
+           
                
           </div>
         </Loader>

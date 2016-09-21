@@ -1,16 +1,7 @@
 import React from 'react';
 import Modal from 'react-modal';
 import Competition from '../competition.js';
-import WinnerModal from '../winner_modal.js';
-import {ShareButtons, ShareCounts, generateShareIcon} from 'react-share';
-
-const {
-  FacebookShareButton,
-  TwitterShareButton,
-} = ShareButtons;
-
-const FacebookIcon = generateShareIcon('facebook');
-const TwitterIcon = generateShareIcon('twitter');
+import ArtShareButtons from '../art_share_buttons.js';
 
 class CompetitionPage extends React.Component{
   constructor(){
@@ -55,23 +46,13 @@ class CompetitionPage extends React.Component{
             <div className='share-buttons'>
 
               <p>Share This Result!</p>
-
-              <FacebookShareButton
-                url={'http://artvsart.com'}
-                title={this.state.share_title}
-                className="Demo__some-network__share-button">
-                <FacebookIcon size={32} round />
-              </FacebookShareButton>
-  
-               <TwitterShareButton
-                 url='http://www.artvsart.com'
-                 title={this.state.share_title}
-                 className="Demo__some-network__share-button">
-                 <TwitterIcon size={32} round />
-               </TwitterShareButton>
+              <ArtShareButtons share_title={this.state.share_title}/>
+              
      
             </div>
-          <button onClick={this.closeModal.bind(this)}>Close</button>
+          <button className="btn btn-primary" 
+            onClick={this.closeModal.bind(this)}> Close
+          </button>
         </Modal>
       </div>
     )
