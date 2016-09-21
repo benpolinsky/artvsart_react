@@ -15,6 +15,14 @@ const ajax_helpers = {
     }).then(response => response.json());
   },  
   
+  getArtInfo(){
+    return fetch(`${domain}/api/v1/art`, {
+      credentials: 'include',
+      method: "GET",
+      headers: headers
+    }).then(response => response.json());
+  },
+  
   selectWinner(competition, winner){
     return fetch(`${domain}/api/v1/competitions/${competition}`, {
       credentials: 'include',
