@@ -15,14 +15,14 @@
   width:100%;
 }
 
-.competition .share-buttons{
+.share-buttons{
   float:left;
   clear:both;
   width:200px;
   overflow:hidden;
 }
 
-.competition .share-buttons .SocialMediaShareButton{
+.share-buttons .SocialMediaShareButton{
   float:left;
   margin-right:4px;
   cursor:pointer;
@@ -31,6 +31,41 @@
 .vote-btn{
   margin-top:10px;
 }
+
+.close-modal-btn{
+  margin: 20px auto 0 auto;
+  float:none;
+  clear:both;
+  display:block;
+}
+
+.modal-contents{
+  width:300px;
+  margin:0 auto;
+}
+
+.modal-contents > * {
+  text-align:center;
+}
+
+.modal-contents .winner-name{
+  font-style:italic;
+}
+.modal-contents span.share-prompt{
+  display:block;
+}
+
+.modal-contents .winner-info span {
+  padding:0px 5px;
+}
+
+.modal-contents .share-buttons{
+  float: none;
+  clear: both;
+  margin: 5px auto 0 auto;
+  width: 72px;
+}
+
 
 
 /* !---- End Competition ----! */

@@ -9,7 +9,7 @@ const spinner = <span className="fa-spinner fa"></span>;
 class Competition extends React.Component {
   constructor(){
       super();  
-      this.selectWinner = this.selectWinner.bind(this);
+      this.select = this.select.bind(this);
   }
 
   componentWillMount(){
@@ -51,12 +51,10 @@ class Competition extends React.Component {
     })
   }
   
-  selectWinner(winner){
+  select(winner){
     this.setState({loading: true});
     AjaxHelpers.selectWinner(this.state.id, winner).then(res => {
-
-      let winningArt = res.competition.winning_art;
-      this.props.selectWinner(winningArt);
+      this.props.selectWinner(res.competition);
       AjaxHelpers.getBattle().then(res => {
         this.stageCompetition(res);
       });
@@ -67,13 +65,13 @@ class Competition extends React.Component {
     return (
       <div className='competition'>
         <Loader foregroundStyle={{foregroundColor: 'black'}} backgroundStyle={{backgroundColor: 'transparent'}} show={this.state.loading} message={spinner}  >
-          <Art key={this.state.art.id} art={this.state.art} selectWinner={this.selectWinner}/>
-          <Art key={this.state.challenger.id} art={this.state.challenger} selectWinner={this.selectWinner}/>
+          <Art key={this.state.art.id} art={this.state.art} selectWinner={this.select}/>
+          <Art key={this.state.challenger.id} art={this.state.challenger} selectWinner={this.select}/>
 
           <div className='share-buttons'>
 
             <p>Share This Battle!</p>
-          <ArtShareButtons share_title={this.state.share_title}/>
+            <ArtShareButtons className="competition-share" share_title={this.state.share_title}/>
            
                
           </div>

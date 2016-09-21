@@ -30,15 +30,21 @@ class CompetitionPage extends React.Component{
   componentWillMount(){
     this.state = {
       modalState: false,
-      share_title: ''
+      share_title: '',
+      competition: {
+        winning_art: {},
+        losing_art: {},
+        art_percentages: {}
+      }
     }
   }
   
-  openWinner(winningArt){
+  openWinner(competition){
+    console.log(competition);
     this.setState({
       modalState: true,
-      winnerName: winningArt.name,
-      share_title: `${winningArt.name} WON!!`
+      competition: competition,
+      share_title: `${competition.winning_art.name} by ${competition.winning_art.creator} WON!!`
     })
   }
   
@@ -49,7 +55,7 @@ class CompetitionPage extends React.Component{
   }
   
   bindEscape(){
-    document.addEventListener("keypress", (e) => {e.keyCode == 27 && this.closeModal() })
+    document.addEventListener("keyup", (e) => {e.keyCode == 27 && this.closeModal() })
   }
   
   render(){
@@ -58,17 +64,37 @@ class CompetitionPage extends React.Component{
         <h1>Battle</h1>
         <Competition selectWinner={this.openWinner}/>
         <Modal style={customStyles} isOpen={this.state.modalState}>
-          <h1>Winner is {this.state.winnerName}</h1>
-            <div className='share-buttons'>
+          <div className='modal-contents'>
+            <h2>Winner!</h2>
+            <h3 className="winner-info"> 
+              <span className="winner-name">
+                {this.state.competition.winning_art.name} 
+              </span> 
+               by
+              <span className="winner-creator"> 
+                {this.state.competition.winning_art.creator}
+                ({this.state.competition.art_percentages.winner_winning_percentage})
+              </span>  
+              against
+                
+              <span className="loser-name">
+                {this.state.competition.losing_art.name} 
+              </span> 
 
-              <p>Share This Result!</p>
-              <ArtShareButtons share_title={this.state.share_title}/>
-              
-     
+              <span className='loser-creator'>
+                {this.state.competition.losing_art.creator} 
+                ({this.state.competition.art_percentages.loser_winning_percentage}))
+              </span>
+              </h3>
+            <span className='share-prompt'>Share This Result!</span>
+            <div className='share-buttons'>
+              <ArtShareButtons className='competition-winner-share' share_title={this.state.share_title}/>
             </div>
-          <button className="btn btn-primary" 
-            onClick={this.closeModal.bind(this)}> Close
-          </button>
+    
+            <button className="btn close-modal-btn btn-lg btn-primary" 
+              onClick={this.closeModal.bind(this)}> Next Battle!
+            </button>
+          </div>
         </Modal>
       </div>
     )
