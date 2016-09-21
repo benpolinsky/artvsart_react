@@ -4,7 +4,7 @@ import Art from './art.js';
 import ArtShareButtons from './art_share_buttons.js';
 import AjaxHelpers from '../utils/ajax_helpers.js';
 
-
+const spinner = <span className="fa-spinner fa"></span>;
 
 class Competition extends React.Component {
   constructor(){
@@ -66,7 +66,7 @@ class Competition extends React.Component {
   render(){
     return (
       <div className='competition'>
-        <Loader show={this.state.loading} message={'loading'}  >
+        <Loader foregroundStyle={{foregroundColor: 'black'}} backgroundStyle={{backgroundColor: 'transparent'}} show={this.state.loading} message={spinner}  >
           <Art key={this.state.art.id} art={this.state.art} selectWinner={this.selectWinner}/>
           <Art key={this.state.challenger.id} art={this.state.challenger} selectWinner={this.selectWinner}/>
 

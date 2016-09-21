@@ -12,6 +12,7 @@ import SearchFields from './search_fields.js';
 import SearchResult from './search_result.js'
 import AjaxHelpers from '../../utils/ajax_helpers.js';
 
+const spinner = <span className="fa-spinner fa">SPNNNNNN</span>;
 
 class ImportArtForm extends React.Component{
   constructor(){
@@ -95,7 +96,7 @@ class ImportArtForm extends React.Component{
     const sources = ['Discogs', 'Artsy', 'Gracenote', 'Philart', 'IMDB', 'HarvardArt'];
     return (
       <div id="searchArtContainer">
-        <Loader show={this.state.loading} message={this.state.loading_message} >
+        <Loader show={this.state.loading} message={spinner}  >
           <form onSubmit={this.submitForm} className='import-art col-xs-12'>
     
             <div className="form-group">

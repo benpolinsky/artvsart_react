@@ -3,6 +3,22 @@ import Modal from 'react-modal';
 import Competition from '../competition.js';
 import ArtShareButtons from '../art_share_buttons.js';
 
+const customStyles = {
+  overlay: {
+    top     : 0,
+    left    : 0,
+    right   : 0,
+    bottom  : 0
+  },
+  content: {
+    top:          '100px',
+    left:         '100px',
+    right:        '100px',
+    bottom:       '100px',
+    borderRadius: '0px'        
+  }
+}
+    
 class CompetitionPage extends React.Component{
   constructor(){
     super();
@@ -41,7 +57,7 @@ class CompetitionPage extends React.Component{
       <div className='container'>
         <h1>Battle</h1>
         <Competition selectWinner={this.openWinner}/>
-        <Modal isOpen={this.state.modalState}>
+        <Modal style={customStyles} isOpen={this.state.modalState}>
           <h1>Winner is {this.state.winnerName}</h1>
             <div className='share-buttons'>
 
