@@ -5,7 +5,6 @@ import App from './app.js';
 import Home from './components/pages/home.js'
 import CompetitionPage from './components/pages/competition_page.js'
 import About from './components/pages/about.js'
-import Competition from './components/competition.js'
 import AddNewArt from './components/pages/add_new_art.js'
 import ShowArt from './components/pages/show_art.js'
 import ImportArtForm from './components/forms/import_art_form.js'

@@ -1,6 +1,9 @@
 import React from 'react';
 import Menu from './components/menu';
 import AjaxHelpers from './utils/ajax_helpers.js';
+import {observable} from 'mobx';
+import {observer} from 'mobx-react';
+import DevTools from 'mobx-react-devtools';
 
 class App extends React.Component {
   constructor(){
@@ -33,6 +36,7 @@ class App extends React.Component {
   render(){
     return (
       <div>
+        <DevTools />
         <Menu total_art={this.state.total_pieces_of_art_in_catalog} 
               total_art_judged={this.state.total_pieces_of_art_judged} 
               finished_competitions={this.state.total_competitions} />
