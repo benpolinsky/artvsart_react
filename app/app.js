@@ -5,6 +5,7 @@ import AjaxHelpers from './utils/ajax_helpers.js';
 class App extends React.Component {
   constructor(){
     super();
+    this.updateCount = this.updateCount.bind(this);
   }
   
   componentWillMount(){
@@ -16,10 +17,10 @@ class App extends React.Component {
   }
   
   componentDidMount(){
-    this.updateMenu();
+    this.updateCount();
   }
   
-  updateMenu(){
+  updateCount(){
     AjaxHelpers.getArtInfo().then(res => {
       this.setState({
         total_pieces_of_art_in_catalog: res.total_pieces_of_art_in_catalog,
@@ -35,7 +36,10 @@ class App extends React.Component {
         <Menu total_art={this.state.total_pieces_of_art_in_catalog} 
               total_art_judged={this.state.total_pieces_of_art_judged} 
               finished_competitions={this.state.total_competitions} />
-        {this.props.children}
+        <div>{
+          React.cloneElement(this.props.children, {updateCount: this.updateCount})
+        }</div>
+
       </div>
     )
   }

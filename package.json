@@ -20,6 +20,7 @@
     "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
+    "babel-preset-stage-2": "^6.13.0",
     "css-loader": "^0.24.0",
     "expect": "^1.20.2",
     "fetch-mock": "^5.1.2",
@@ -33,7 +34,8 @@
   },
   "babel": {
     "presets": [
-      "es2015"
+      "es2015",
+      "stage-2"
     ]
   }
 }
