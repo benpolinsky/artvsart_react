@@ -5,6 +5,13 @@ import {observable} from 'mobx';
 import {observer} from 'mobx-react';
 import DevTools from 'mobx-react-devtools';
 
+var appState = observable({
+  total_art: 0,
+  total_art_judged: 0,
+  finished_competitions: 0
+});
+
+
 class App extends React.Component {
   constructor(){
     super();
@@ -12,11 +19,7 @@ class App extends React.Component {
   }
   
   componentWillMount(){
-    this.state = {
-      total_pieces_of_art_in_catalog: 0,
-      total_pieces_of_art_judged: 0,
-      total_finished_competitions: 0
-    }
+    this.state = appState
   }
   
   componentDidMount(){
@@ -25,25 +28,20 @@ class App extends React.Component {
   
   updateCount(){
     AjaxHelpers.getArtInfo().then(res => {
-      this.setState({
-        total_pieces_of_art_in_catalog: res.total_pieces_of_art_in_catalog,
-        total_pieces_of_art_judged: res.total_pieces_of_art_judged,
-        total_competitions: res.total_competitions
-      });
+      appState.total_art = res.total_pieces_of_art_in_catalog;
+      appState.total_art_judged = res.total_pieces_of_art_judged;
+      appState.finished_competitions = res.total_competitions;
     });
   }
   
   render(){
     return (
       <div>
-        <DevTools />
-        <Menu total_art={this.state.total_pieces_of_art_in_catalog} 
-              total_art_judged={this.state.total_pieces_of_art_judged} 
-              finished_competitions={this.state.total_competitions} />
+        <Menu appState={appState} />
         <div>{
           React.cloneElement(this.props.children, {updateCount: this.updateCount})
         }</div>
-
+        <DevTools/>
       </div>
     )
   }

@@ -41,6 +41,7 @@ class CompetitionPage extends React.Component{
   
   openWinner(competition){
     this.props.updateCount();
+    // this.AppState
     this.setState({
       modalState: true,
       competition: competition,
