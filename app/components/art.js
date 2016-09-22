@@ -1,15 +1,15 @@
 import React from 'react';
 import VoteButton from './forms/vote_button.js';
 
-const Art = (props) => {
+const Art = ({art, no_voting, selectWinner}) => {
   return (
     <div className='art'>
-      <img src={props.art.image} />
-      <h2>{props.art.name}</h2>
-      <div className="art-description">{props.art.description}</div>
-      <p className='win-loss-record'>Record: {props.art.win_loss_record}</p>
-      {!props.no_voting && 
-        <VoteButton selected={() => {props.selectWinner(props.art.id)}}/> }
+      <img src={art.image} />
+      <h2>{art.name}</h2>
+      <div className="art-description">{art.description}</div>
+      <p className='win-loss-record'>Record: {art.win_loss_record}</p>
+      {!no_voting && 
+        <VoteButton selected={() => {selectWinner(art.id)}}/> }
     </div>
   )
 }

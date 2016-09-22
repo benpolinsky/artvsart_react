@@ -1,3 +1,5 @@
+// this is essentially a Container Component..
+
 import React from 'react';
 import Menu from './components/menu';
 import AjaxHelpers from './utils/ajax_helpers.js';
@@ -10,9 +12,11 @@ class App extends React.Component {
   
   componentWillMount(){
     this.state = {
-      total_pieces_of_art_in_catalog: 0,
-      total_pieces_of_art_judged: 0,
-      total_finished_competitions: 0
+      totals: {
+        total_art: 0,
+        total_art_judged: 0,
+        finished_competitions: 0
+      }
     }
   }
   
@@ -23,9 +27,11 @@ class App extends React.Component {
   updateCount(){
     AjaxHelpers.getArtInfo().then(res => {
       this.setState({
-        total_pieces_of_art_in_catalog: res.total_pieces_of_art_in_catalog,
-        total_pieces_of_art_judged: res.total_pieces_of_art_judged,
-        total_competitions: res.total_competitions
+        totals: {
+          total_art: res.total_pieces_of_art_in_catalog,
+          total_art_judged: res.total_pieces_of_art_judged,
+          finished_competitions: res.total_competitions
+        }
       });
     });
   }
@@ -33,12 +39,8 @@ class App extends React.Component {
   render(){
     return (
       <div>
-        <Menu total_art={this.state.total_pieces_of_art_in_catalog} 
-              total_art_judged={this.state.total_pieces_of_art_judged} 
-              finished_competitions={this.state.total_competitions} />
-        <div>{
-          React.cloneElement(this.props.children, {updateCount: this.updateCount})
-        }</div>
+        <Menu totals={this.state.totals} />
+        <div>{React.cloneElement(this.props.children, {updateCount: this.updateCount})}</div>
 
       </div>
     )

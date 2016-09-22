@@ -1,7 +1,8 @@
+// already a presentational component
 import React from 'react';
 
 
-class About extends React.Component {
+export default class AboutContainer extends React.Component {
   constructor(){
     super();
   }
@@ -20,5 +21,3 @@ class About extends React.Component {
   }
   
 }
-
-export default About

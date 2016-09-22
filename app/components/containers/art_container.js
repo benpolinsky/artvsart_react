@@ -4,7 +4,7 @@ import { Router, Route, Link, browserHistory } from 'react-router';
 import AjaxHelpers from '../../utils/ajax_helpers';
 
 
-class ShowArt extends React.Component{
+export default class ArtContainer extends React.Component{
   constructor(){
     super();
   }
@@ -30,5 +30,3 @@ class ShowArt extends React.Component{
     return <Art key={this.state.art.id} art={this.state.art} no_voting={true} />
   }
 }
-
-export default ShowArt

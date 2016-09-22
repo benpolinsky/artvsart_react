@@ -2,29 +2,21 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 class SearchFields extends React.Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      query: '',
-      listing_id: '',
-      source: this.props.source
-    }
-    
+  constructor(){
+    super();  
     this.update = this.update.bind(this);
-    this.source = this.props.source;
-    this.source_label = `search_${this.source.toLowerCase()}`;
-    this.id_label = `enter_${this.source.toLowerCase()}_id`;
     
   }
   
-  // as we'll add more than one field
-  // we'll update like this
+  componentWillMount(){
+    const source = this.props.source
+    this.source_label = `search_${source.toLowerCase()}`;
+    this.id_label = `enter_${source.toLowerCase()}_id`;
+  }
+  
+  
   update(e){
-    this.setState({
-      query: ReactDOM.findDOMNode(this.refs[this.source_label]).value
-    }, () => {
-      this.props.update(this.state);
-    }) 
+    this.props.update(ReactDOM.findDOMNode(this.refs[this.source_label]).value);
   }
   
   render(){

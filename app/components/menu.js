@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-const Menu = (props) => {
+const Menu = ({totals}) => {
   return (
     <nav className='navbar'>
       <Link className="navbar-brand" to="/">AVA</Link>
@@ -14,9 +14,9 @@ const Menu = (props) => {
       </ul>
       
       <ul className="pull-right nav navbar-nav">
-        <li className="navbar-brand">{props.total_art} Arts </li>
-        <li className="navbar-brand">{props.total_art_judged} Arts Judged </li>
-        <li className="navbar-brand">{props.finished_competitions} Battles</li>
+        <li className="navbar-brand">{totals.total_art} Arts </li>
+        <li className="navbar-brand">{totals.total_art_judged} Arts Judged </li>
+        <li className="navbar-brand">{totals.finished_competitions} Battles</li>
       </ul>
     </nav>
   )
