@@ -1,5 +1,4 @@
 import React from 'react';
-import store from '../../store.js';
 /*
 
   We still need to fit these parts of selecting a winner.
@@ -39,15 +38,23 @@ import store from '../../store.js';
 class VoteButtonContainer extends React.Component {
   render(){
     const props = this.props;
+    const {store} = this.context;
+    
     return(
-      <VoteButton onClick={() => 
-        store.dispatch({
-          type: "SELECT_COMPETITION_WINNER",
-          winner_id: props.art_id 
-        })
+      <VoteButton onClick={(e) => {
+          e.preventDefault(); 
+          store.dispatch({
+            type: "SELECT_COMPETITION_WINNER",
+            winner_id: props.art_id 
+          });
+        }
       } />
     )
   }
+}
+
+VoteButtonContainer.contextTypes = {
+  store: React.PropTypes.object
 }
 
 const VoteButton = ({onClick}) => {

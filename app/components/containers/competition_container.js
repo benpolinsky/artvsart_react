@@ -4,7 +4,6 @@ import Modal from 'react-modal';
 import {ModalContents} from '../modal_contents.js';
 import {Competition} from '../competition.js';
 import AjaxHelpers from '../../utils/ajax_helpers.js';
-import store from '../../store.js';
 
 const customStyles = {
   overlay: {
@@ -49,6 +48,8 @@ class CompetitionContainer extends React.Component{
   }
 
   stageCompetition(response){
+    const {store} = this.context;
+    
     store.dispatch({
       type: "STAGE_COMPETITION",
       competition: response.competition
@@ -82,6 +83,11 @@ class CompetitionContainer extends React.Component{
     )
   }
 }
+
+CompetitionContainer.contextTypes = {
+  store: React.PropTypes.object
+}
+
 const mapStateToProps = function (store) {
   return {competition: store.competitionState.competition}
 }
