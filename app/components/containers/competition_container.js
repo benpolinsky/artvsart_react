@@ -1,8 +1,10 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import Modal from 'react-modal';
 import {ModalContents} from '../modal_contents.js';
 import {Competition} from '../competition.js';
 import AjaxHelpers from '../../utils/ajax_helpers.js';
+import store from '../../store.js';
 
 const customStyles = {
   overlay: {
@@ -20,13 +22,14 @@ const customStyles = {
   }
 }
     
-export default class CompetitionContainer extends React.Component{
+class CompetitionContainer extends React.Component{
   constructor(){
     super();
     Modal.setAppElement('#app');    
     this.openWinner = this.openWinner.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.selectWinner = this.selectWinner.bind(this);
+
     this.bindEscape();
   }
   
@@ -34,31 +37,13 @@ export default class CompetitionContainer extends React.Component{
     this.state = {
       modalState: false,
       share_title: '',
-      competition: {
-        id: 0,
-        art: {
-          id: 1, 
-          name: "Rakim's Paid in Full", 
-          description: "The god Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
-          image: 'http://placehold.it/250x250'
-        },
-        challenger: {
-          id: 2, 
-          name: "Michaelangelo's David", 
-          description: "A Legendary Sculpture",
-          image: 'http://placehold.it/250x250'
-        },
-        share_title: ""
-      },
       winning_art: {
-        
       },
       losing_art: {
       },
       art_percentages: {},
       loading: true
     }
-   
   }
   
   componentDidMount(){
@@ -69,22 +54,19 @@ export default class CompetitionContainer extends React.Component{
 
   // now it feels as if the 
   stageCompetition(response){
-    let competition = response.competition;
+    store.dispatch({
+      type: "STAGE_COMPETITION",
+      competition: response.competition
+    });
+
     this.setState({
-      competition: {
-        ...this.state.competition,
-        id: competition.id,
-        art: competition.art,
-        challenger: competition.challenger,
-        share_title: `Battling ${competition.art.name} Vs ${competition.challenger.name}`
-      },
       loading: false
     })
   }
   
   selectWinner(winner){
     this.setState({loading: true});
-    AjaxHelpers.selectWinner(this.state.competition.id, winner).then(res => {
+    AjaxHelpers.selectWinner(this.props.competition.id, winner).then(res => {
       this.openWinner(res.competition);
       AjaxHelpers.getBattle().then(res => {
         this.stageCompetition(res);
@@ -94,12 +76,14 @@ export default class CompetitionContainer extends React.Component{
   
   openWinner(competition){
     this.props.updateCount();
+    
+    store.dispatch({
+      type: "COMPETITION_RESULTS",
+      competition: competition
+    })
+    
     this.setState({
       modalState: true,
-      winning_art: competition.winning_art,
-      losing_art: competition.losing_art,
-      art_percentages: competition.art_percentages,
-      share_title: `${competition.winning_art.name} by ${competition.winning_art.creator} WON!!`
     });
   }
   
@@ -117,14 +101,14 @@ export default class CompetitionContainer extends React.Component{
     return (
       <div className='container'>
         <h1>Battle</h1>
-        <Competition share_title={this.state.share_title} loading={this.state.loading} competition={this.state.competition} selectWinner={this.selectWinner}/>
+        <Competition share_title={this.state.share_title} loading={this.state.loading} competition={this.props.competition} selectWinner={this.selectWinner}/>
         <Modal style={customStyles} isOpen={this.state.modalState}>
           <ModalContents 
             loading={this.state.loading}
             share_title={this.state.share_title} 
-            winning_art={this.state.winning_art}
-            losing_art={this.state.losing_art}
-            percentages={this.state.art_percentages}
+            winning_art={this.props.competition.winning_art}
+            losing_art={this.props.competition.losing_art}
+            percentages={this.props.competition.art_percentages}
             closeModal={this.closeModal}
           />
         </Modal>
@@ -132,3 +116,7 @@ export default class CompetitionContainer extends React.Component{
     )
   }
 }
+const mapStateToProps = function (store) {
+  return {competition: store.competitionState.competition}
+}
+export default connect(mapStateToProps)(CompetitionContainer)

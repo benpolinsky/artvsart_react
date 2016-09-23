@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router, IndexRoute, Route, browserHistory} from 'react-router';
+import { Provider } from 'react-redux';
+import store from './store.js';
 import App from './app.js';
 import HomeContainer from './components/containers/home_container.js'
 import CompetitionContainer from './components/containers/competition_container.js'
@@ -12,6 +14,7 @@ import ResultsContainer from './components/containers/results_container.js'
 require('../style.css');
 
 ReactDOM.render(
+<Provider store={store}>
   <Router history={browserHistory}>
     <Route path='/' component={App}>
       <IndexRoute component={HomeContainer} />
@@ -22,6 +25,7 @@ ReactDOM.render(
       <Route path='art/:id' component={ArtContainer} />
       <Route path='results' component={ResultsContainer} />
     </Route>
-  </Router>,
+  </Router>
+</Provider>,
   document.getElementById('app')
 );
