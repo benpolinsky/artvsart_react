@@ -1,5 +1,7 @@
 // essentially the NewArtFormContainer
 import React from 'react';
+import {connect} from 'react-redux';
+import store from '../../store.js';
 import {Router} from 'react-router';
 import Loader from 'react-loader-advanced';
 import ReactS3Uploader from 'react-s3-uploader';
@@ -19,12 +21,6 @@ export default class NewArtFormContainer extends React.Component {
 
   componentWillMount(){
     this.state = {
-      art: {
-        name: "",
-        creator: "",
-        description: "",
-        image: ""
-      },
       loading: true
     }
     this.toggleLoader(false);
@@ -33,7 +29,7 @@ export default class NewArtFormContainer extends React.Component {
   createNewArt(e){
     e.preventDefault();
     this.toggleLoader(true);
-    AjaxHelpers.createNewArt(this.state.art).then((response) => {
+    AjaxHelpers.createNewArt(this.props.art).then((response) => {
       this.toggleLoader(false);
       return (this.handleResponse(response))
     })
@@ -50,14 +46,10 @@ export default class NewArtFormContainer extends React.Component {
   }
   
   updateArtValues(art){
-    this.setState({
-      art: {
-       ...this.state.art,
-       name: art.name,
-       creator: art.creator,
-       description: art.description
-      }
-    })
+    store.dispatch({
+      type: "UPDATE_ART_VALUES",
+      art: art
+    });
   }
   
   onUploadStart(file, next){
@@ -68,17 +60,18 @@ export default class NewArtFormContainer extends React.Component {
 
   onUploadFinish(file){
     this.toggleLoader(false, () => {
-      const signed_url = file.signedUrl.split('?X-Amz-Expires')[0];      
-      this.setState({
-        art: {...this.state.art, image: signed_url}
-      });
+      const signed_url = file.signedUrl.split('?X-Amz-Expires')[0];
+      store.dispatch({
+        type: "ADD_IMAGE_URL",
+        url: signed_url
+      })
     }); 
   }
   
   render(){
     return (
       <Loader show={this.state.loading} message={'loading'} foregroundStyle={{color: 'white'}} backgroundStyle={{backgroundColor: 'black'}} >
-        <NewArtForm update={this.updateArtValues} submit={this.createNewArt} art={this.state.art} triggerLoader={this.toggleLoader}>
+        <NewArtForm update={this.updateArtValues} submit={this.createNewArt} art={this.props.art} triggerLoader={this.toggleLoader}>
           <ReactS3Uploader
             signingUrl="/api/v1/s3/sign"
             accept="image/*"
@@ -97,3 +90,8 @@ NewArtFormContainer.contextTypes = {
   router: React.PropTypes.object
 }
   
+const mapStateToProps = function (store) {
+  return {art: store.artState.art}
+}
+
+export default connect(mapStateToProps)(NewArtFormContainer)

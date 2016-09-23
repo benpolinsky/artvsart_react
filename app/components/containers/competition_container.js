@@ -26,10 +26,6 @@ class CompetitionContainer extends React.Component{
   constructor(){
     super();
     Modal.setAppElement('#app');    
-    this.openWinner = this.openWinner.bind(this);
-    this.closeModal = this.closeModal.bind(this);
-    this.selectWinner = this.selectWinner.bind(this);
-
     this.bindEscape();
   }
   
@@ -52,7 +48,6 @@ class CompetitionContainer extends React.Component{
     });
   }
 
-  // now it feels as if the 
   stageCompetition(response){
     store.dispatch({
       type: "STAGE_COMPETITION",
@@ -64,35 +59,6 @@ class CompetitionContainer extends React.Component{
     })
   }
   
-  selectWinner(winner){
-    this.setState({loading: true});
-    AjaxHelpers.selectWinner(this.props.competition.id, winner).then(res => {
-      this.openWinner(res.competition);
-      AjaxHelpers.getBattle().then(res => {
-        this.stageCompetition(res);
-      });
-    });
-  }
-  
-  openWinner(competition){
-    this.props.updateCount();
-    
-    store.dispatch({
-      type: "COMPETITION_RESULTS",
-      competition: competition
-    })
-    
-    this.setState({
-      modalState: true,
-    });
-  }
-  
-  closeModal(){
-    this.setState({
-      modalState: false
-    })
-  }
-  
   bindEscape(){
     document.addEventListener("keyup", (e) => {e.keyCode == 27 && this.closeModal() })
   }
@@ -101,7 +67,7 @@ class CompetitionContainer extends React.Component{
     return (
       <div className='container'>
         <h1>Battle</h1>
-        <Competition share_title={this.state.share_title} loading={this.state.loading} competition={this.props.competition} selectWinner={this.selectWinner}/>
+        <Competition share_title={this.state.share_title} loading={this.state.loading} />
         <Modal style={customStyles} isOpen={this.state.modalState}>
           <ModalContents 
             loading={this.state.loading}

@@ -1,7 +1,7 @@
 import React from 'react';
-import VoteButton from './forms/vote_button.js';
+import VoteButtonContainer from './forms/vote_button.js';
 
-const Art = ({art, no_voting, selectWinner}) => {
+const Art = ({art, no_voting}) => {
   return (
     <div className='art'>
       <img src={art.image} />
@@ -9,7 +9,7 @@ const Art = ({art, no_voting, selectWinner}) => {
       <div className="art-description">{art.description}</div>
       <p className='win-loss-record'>Record: {art.win_loss_record}</p>
       {!no_voting && 
-        <VoteButton selected={() => {selectWinner(art.id)}}/> }
+        <VoteButtonContainer art_id={art.id} /> }
     </div>
   )
 }

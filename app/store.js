@@ -31,18 +31,44 @@ const initialCompetitionState = {
   }
 }
 
-
 const competitionReducer = (state=initialCompetitionState, action) => {
   switch (action.type) {
   case "STAGE_COMPETITION":
      return {...state, competition: action.competition}
-  case "COMPETITION_RESULTS":
-     return {...state, competition: {...state.competition, winning_art: action.competition.winning_art, losing_art: action.competition.losing_art}}
+  case "SELECT_COMPETITION_WINNER":
+    const winning_art_id = action.winner_id;
+    const art_pair = [state.competition.art, state.competition.challenger];
+    const winning_art = art_pair.find( (art) => art.id == winning_art_id );
+    const losing_art = art_pair.find( (art) => art.id != winning_art_id);
+  
+     return {
+       ...state, 
+       competition: {
+         ...state.competition, 
+         winning_art: winning_art, 
+         losing_art: losing_art
+       }
+     }
   }
   return state;
 }
 
-const artReducer = (state={}, action) => {
+const initialArtState = {
+  art: {
+    name: "",
+    creator: "",
+    description: "",
+    image: ""
+  }
+}
+
+const artReducer = (state=initialArtState, action) => {
+  switch (action.type) {
+  case "UPDATE_ART_VALUES":
+    return { ...state, art: action.art }
+  case "ADD_IMAGE_URL":
+    return { ...state, art: {...state.art, image: action.url} }
+  }
   return state
 }
 
