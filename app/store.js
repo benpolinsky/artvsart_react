@@ -40,8 +40,7 @@ const competitionReducer = (state=initialCompetitionState, action) => {
     const art_pair = [state.competition.art, state.competition.challenger];
     const winning_art = art_pair.find( (art) => art.id == winning_art_id );
     const losing_art = art_pair.find( (art) => art.id != winning_art_id);
-  
-     return {
+    const newState = {
        ...state, 
        competition: {
          ...state.competition, 
@@ -49,6 +48,8 @@ const competitionReducer = (state=initialCompetitionState, action) => {
          losing_art: losing_art
        }
      }
+      console.log(newState)
+     return newState
   }
   return state;
 }
@@ -63,12 +64,6 @@ const initialArtState = {
 }
 
 const artReducer = (state=initialArtState, action) => {
-  switch (action.type) {
-  case "UPDATE_ART_VALUES":
-    return { ...state, art: action.art }
-  case "ADD_IMAGE_URL":
-    return { ...state, art: {...state.art, image: action.url} }
-  }
   return state
 }
 

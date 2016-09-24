@@ -1,4 +1,7 @@
 import React from 'react';
+import {connect} from 'react-redux';
+import {selectCompetitionWinner} from '../../actions.js';
+
 /*
 
   We still need to fit these parts of selecting a winner.
@@ -35,34 +38,43 @@ import React from 'react';
   }
 
 */
-class VoteButtonContainer extends React.Component {
-  render(){
-    const props = this.props;
-    const {store} = this.context;
-    
-    return(
-      <VoteButton onClick={(e) => {
-          e.preventDefault(); 
-          store.dispatch({
-            type: "SELECT_COMPETITION_WINNER",
-            winner_id: props.art_id 
-          });
-        }
-      } />
-    )
-  }
-}
-
-VoteButtonContainer.contextTypes = {
-  store: React.PropTypes.object
-}
+// class VoteButtonContainer extends React.Component {
+//   render(){
+//     const props = this.props;
+//     const {store} = this.context;
+//
+//     return(
+//       <VoteButton onClick={(e) => {
+//           e.preventDefault();
+//           store.dispatch({
+//             type: "SELECT_COMPETITION_WINNER",
+//             winner_id: props.art_id
+//           });
+//         }
+//       } />
+//     )
+//   }
+// }
+//
+// VoteButtonContainer.contextTypes = {
+//   store: React.PropTypes.object
+// }
 
 const VoteButton = ({onClick}) => {
   return <a className="btn btn-primary vote-btn" href='#' onClick={onClick}>Vote</a>
+}
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+  return {
+    onClick: (e) => {
+      e.preventDefault();
+      dispatch(selectCompetitionWinner(ownProps.art_id));
+    }
+  }
 }
 
 VoteButton.propTypes = {
   onClick: React.PropTypes.func.isRequired
 }
 
-export default VoteButtonContainer
+export default connect(null, mapDispatchToProps)(VoteButton)
