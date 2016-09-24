@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Menu from './components/menu';
-import AjaxHelpers from './utils/ajax_helpers.js';
+import {getArtInfo} from './utils/ajax_helpers.js';
 
 class App extends React.Component {
   constructor(){
@@ -25,7 +25,7 @@ class App extends React.Component {
   }
   
   updateCount(){
-    AjaxHelpers.getArtInfo().then(res => {
+    getArtInfo().then(res => {
       this.setState({
         totals: {
           total_art: res.total_pieces_of_art_in_catalog,
@@ -41,7 +41,6 @@ class App extends React.Component {
       <div>
         <Menu totals={this.state.totals} />
         <div>{React.cloneElement(this.props.children, {updateCount: this.updateCount})}</div>
-
       </div>
     )
   }

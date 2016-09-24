@@ -1,6 +1,6 @@
 import React from 'react';
 import Art from '../art.js';
-import AjaxHelpers from '../../utils/ajax_helpers.js';
+import {fetchResults} from '../../utils/ajax_helpers.js';
 import {ResultsList} from '../results_list.js'
 export default class ResultsContainer extends React.Component {
   
@@ -21,7 +21,7 @@ export default class ResultsContainer extends React.Component {
   }
   
   componentDidMount(){
-    AjaxHelpers.fetchResults().then(results => {
+    fetchResults().then(results => {
       this.setState({
         results: {
           top_winner: results.art_results.overall_winner,

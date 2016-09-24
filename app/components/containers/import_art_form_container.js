@@ -2,7 +2,7 @@ import React from 'react';
 import Loader from 'react-loader-advanced';
 import SearchFields from '../forms/search_fields.js';
 import SearchResults from '../forms/search_results.js'
-import AjaxHelpers from '../../utils/ajax_helpers.js';
+import {importArt, searchSource} from '../../utils/ajax_helpers.js';
 import ImportArtForm from '../forms/import_art_form.js';
 
 const spinner = <span className="fa-spinner fa">SPNNNNNN</span>;
@@ -32,7 +32,7 @@ class ImportArtFormContainer extends React.Component{
       query: this.state.query
     }
     this.setState({loading: true, loading_message: `Searching ${data.source}`});
-    AjaxHelpers.searchSource(data).then((response) => {this.displayResponse(response)});
+    searchSource(data).then((response) => {this.displayResponse(response)});
   }
   
   update(query){
@@ -63,7 +63,7 @@ class ImportArtFormContainer extends React.Component{
   
   importArt(id){
     this.setState({loading: true});
-    AjaxHelpers.importArt(id, this.state.selected).then(response => {
+    importArt(id, this.state.selected).then(response => {
       this.importFinished(response);
     });
   }

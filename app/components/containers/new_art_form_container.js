@@ -5,7 +5,7 @@ import {Router} from 'react-router';
 import Loader from 'react-loader-advanced';
 import ReactS3Uploader from 'react-s3-uploader';
 import NewArtForm from '../forms/new_art_form.js';
-import AjaxHelpers from '../../utils/ajax_helpers.js';
+import {createNewArt} from '../../utils/ajax_helpers.js';
 
 
 class NewArtFormContainer extends React.Component {
@@ -29,7 +29,7 @@ class NewArtFormContainer extends React.Component {
     // we'll need to deal with this in the store
     e.preventDefault();
     this.toggleLoader(true);
-    AjaxHelpers.createNewArt(this.state.art).then((response) => {
+    createNewArt(this.state.art).then((response) => {
       this.toggleLoader(false);
       return (this.handleResponse(response));
     })
@@ -94,8 +94,8 @@ NewArtFormContainer.contextTypes = {
   store: React.PropTypes.object
 }
   
-const mapStateToProps = function (store) {
-  return {art: store.artState.art}
-}
+const mapStateToProps = (store) => ({
+  art: store.artState.art
+})
 
 export default connect(mapStateToProps)(NewArtFormContainer)

@@ -1,7 +1,7 @@
 import expect from 'expect';
 import sinon from 'sinon';
 import fetchMock from 'fetch-mock';
-import AjaxHelpers from '../utils/ajax_helpers.js';
+import {getBattle} from '../utils/ajax_helpers.js';
 
 
 
@@ -19,7 +19,7 @@ describe('Ajax Helpers', function(){
 
   
   it('can getBattle()', function(done){
-      AjaxHelpers.getBattle().then(function(response){
+      getBattle().then(function(response){
         expect(response).to_eql("");
         done();
 

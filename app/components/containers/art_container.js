@@ -1,7 +1,7 @@
 import React from 'react';
 import Art from '../art.js';
 import { Router, Route, Link, browserHistory } from 'react-router';
-import AjaxHelpers from '../../utils/ajax_helpers';
+import {fetchArt} from '../../utils/ajax_helpers';
 
 
 export default class ArtContainer extends React.Component{
@@ -19,7 +19,7 @@ export default class ArtContainer extends React.Component{
         image: ""
       }
     }
-    AjaxHelpers.fetchArt(this.props.params.id).then(res => {
+    fetchArt(this.props.params.id).then(res => {
       this.setState({
         art: res.art
       })

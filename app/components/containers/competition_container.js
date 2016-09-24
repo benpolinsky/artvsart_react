@@ -3,8 +3,8 @@ import {connect} from 'react-redux';
 import Modal from 'react-modal';
 import {ModalContents} from '../modal_contents.js';
 import {Competition} from '../competition.js';
-import AjaxHelpers from '../../utils/ajax_helpers.js';
-import {initiateCompetition} from '../../actions.js'
+import {getBattle} from '../../utils/ajax_helpers.js';
+import {getCompetitionData} from '../../actions.js'
 
 const customStyles = {
   overlay: {
@@ -43,19 +43,13 @@ class CompetitionContainer extends React.Component{
   }
   
   componentDidMount(){
-    let competition = AjaxHelpers.getBattle().then(res => {
-      res.competition && this.stageCompetition(res);
-    });
-  }
-
-  stageCompetition(response){
     const {store} = this.context;
-    
-    store.dispatch(initiateCompetition(response.competition));
+    store.dispatch(getCompetitionData());
+      // still need to move loading into store
+      // this.setState({
+      //   loading: false
+      // })
 
-    this.setState({
-      loading: false
-    })
   }
   
   bindEscape(){
@@ -86,7 +80,8 @@ CompetitionContainer.contextTypes = {
   store: React.PropTypes.object
 }
 
-const mapStateToProps = function (store) {
-  return {competition: store.competitionState.competition}
-}
+const mapStateToProps = (store) => ({
+  competition: store.competitionState.competition
+})
+
 export default connect(mapStateToProps)(CompetitionContainer)
