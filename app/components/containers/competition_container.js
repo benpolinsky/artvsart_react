@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 import {ModalContents} from '../modal_contents.js';
 import {Competition} from '../competition.js';
 import {getBattle} from '../../utils/ajax_helpers.js';
-import {getCompetitionData} from '../../actions.js'
+import {getCompetitionData, toggleLoader} from '../../actions.js'
 
 const customStyles = {
   overlay: {
@@ -27,49 +27,35 @@ class CompetitionContainer extends React.Component{
     super();
     Modal.setAppElement('#app');    
     this.bindEscape();
-  }
-  
-  componentWillMount(){
-    this.state = {
-      modalState: false,
-      share_title: '',
-      winning_art: {
-      },
-      losing_art: {
-      },
-      art_percentages: {},
-      loading: true
-    }
+    this.getCompetition = this.getCompetition.bind(this);
   }
   
   componentDidMount(){
+    this.getCompetition();
+  }
+  
+  getCompetition(){
     const {store} = this.context;
-    store.dispatch(getCompetitionData());
-      // still need to move loading into store
-      // this.setState({
-      //   loading: false
-      // })
-
+    store.dispatch(toggleLoader(false));
+    store.dispatch(getCompetitionData());  
   }
   
   bindEscape(){
-    document.addEventListener("keyup", (e) => {e.keyCode == 27 && this.closeModal() })
+    document.addEventListener("keyup", (e) => {
+      if (e.keyCode == 27 && this.props.competition.winnerSelected) {
+        this.getCompetition();
+      }
+    })
   }
   
   render(){
     return (
       <div className='container'>
         <h1>Battle</h1>
-        <Competition share_title={this.state.share_title} loading={this.state.loading} />
-        <Modal style={customStyles} isOpen={this.state.modalState}>
-          <ModalContents 
-            loading={this.state.loading}
-            share_title={this.state.share_title} 
-            winning_art={this.props.competition.winning_art}
-            losing_art={this.props.competition.losing_art}
-            percentages={this.props.competition.art_percentages}
-            closeModal={this.closeModal}
-          />
+        <Competition share_title={this.props.competition.share_title} 
+          loading={this.props.isFetching} />
+        <Modal style={customStyles} isOpen={this.props.competition.winnerSelected}>
+          <ModalContents competition={this.props.competition} closeModal={this.getCompetition} />
         </Modal>
       </div>
     )
@@ -81,7 +67,9 @@ CompetitionContainer.contextTypes = {
 }
 
 const mapStateToProps = (store) => ({
-  competition: store.competitionState.competition
+  competition: store.competitionState.competition,
+  ux: store.ux
 })
+
 
 export default connect(mapStateToProps)(CompetitionContainer)

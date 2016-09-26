@@ -70,7 +70,6 @@ class ImportArtFormContainer extends React.Component{
   
   importFinished(response){
     this.setState({loading: false});
-    console.log(response);
   }
   
   componentWillMount(){

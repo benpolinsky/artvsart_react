@@ -1,7 +1,8 @@
 import React from 'react';
 import ArtShareButtons from './art_share_buttons.js';
 
-export const ModalContents = ({winning_art, losing_art, percentages, share_title, closeModal}) => {
+export const ModalContents = ({competition, closeModal}) => {
+  const {winning_art, losing_art, art_percentages, share_title} = competition
   return(
     <div className='modal-contents'>
       <h2>Winner!</h2>
@@ -12,7 +13,7 @@ export const ModalContents = ({winning_art, losing_art, percentages, share_title
         by
         <span className="winner-creator"> 
           {winning_art.creator}
-          ({percentages.winner_winning_percentage})
+          ({art_percentages.winner_winning_percentage})
         </span>  
         against
 
@@ -22,7 +23,7 @@ export const ModalContents = ({winning_art, losing_art, percentages, share_title
 
         <span className='loser-creator'>
           {losing_art.creator} 
-          ({percentages.loser_winning_percentage}))
+          ({art_percentages.loser_winning_percentage}))
         </span>
       </h3>
           

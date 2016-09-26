@@ -1,45 +1,23 @@
-// this is essentially a Container Component..
-
 import React from 'react';
 import Menu from './components/menu';
-import {getArtInfo} from './utils/ajax_helpers.js';
+import {connect} from 'react-redux';
+import {getGeneralArtInfo} from './actions.js';
 
 class App extends React.Component {
   constructor(){
     super();
-    this.updateCount = this.updateCount.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this)
   }
   
-  componentWillMount(){
-    this.state = {
-      totals: {
-        total_art: 0,
-        total_art_judged: 0,
-        finished_competitions: 0
-      }
-    }
-  }
   
   componentDidMount(){
-    this.updateCount();
+    this.props.getArtInfo();
   }
-  
-  updateCount(){
-    getArtInfo().then(res => {
-      this.setState({
-        totals: {
-          total_art: res.total_pieces_of_art_in_catalog,
-          total_art_judged: res.total_pieces_of_art_judged,
-          finished_competitions: res.total_competitions
-        }
-      });
-    });
-  }
-  
+
   render(){
     return (
       <div>
-        <Menu totals={this.state.totals} />
+        <Menu totals={this.props.app.totals} />
         <div>{React.cloneElement(this.props.children, {updateCount: this.updateCount})}</div>
       </div>
     )
@@ -47,4 +25,18 @@ class App extends React.Component {
   
 }
 
-export default App
+const mapStateToProps = (store) => ({
+  app: store.appState
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  getArtInfo(){
+    dispatch(getGeneralArtInfo());
+  } 
+})
+
+App.propTypes = {
+  getArtInfo: React.PropTypes.func.isRequired
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App)
