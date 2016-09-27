@@ -10,12 +10,13 @@ const AppReducer = (state=initialAppState, action) => {
   switch (action.type) {
   case "GET_GENERAL_ART_INFO":
     return {...state, totals: {
-      total_art: action.totals.total_pieces_of_art_in_catalog,
-      total_art_judged: action.totals.total_pieces_of_art_judged,
-      finished_competitions: action.totals.total_competitions
+        total_art: action.totals.total_pieces_of_art_in_catalog,
+        total_art_judged: action.totals.total_pieces_of_art_judged,
+        finished_competitions: action.totals.total_competitions
+      }
     }
   }
-  }
+  
   return state
 }
 

@@ -9,24 +9,21 @@ const stageCompetition = (competition) => ({
   competition: competition
 });
 
-const getCompetitionData = () => {
-  return (dispatch) => {
-    dispatch(fetchCompetition);
-    api.getBattle().then(response => {
-      dispatch(stageCompetition(response.competition));
-    })
-  }
+const getCompetitionData = () => (dispatch) => {
+  dispatch(fetchCompetition());
+  return api.getBattle().then(response => {
+    dispatch(stageCompetition(response.competition));
+  })
+
 }
 
-const selectCompetitionWinner = (winner_id) => {
-  return (dispatch, getState) => {
-    const competition = getState().competitionState.competition.id;
-    dispatch(startSelectCompetitionWinner());
-    api.selectWinner(competition, winner_id).then(response => {
-      dispatch(receiveCompetitionWinner(response.competition, winner_id));
-      dispatch(getGeneralArtInfo());
-    });
-  }
+const selectCompetitionWinner = (winner_id) => (dispatch, getState) => {
+  dispatch(startSelectCompetitionWinner());
+  const competition = getState().competitionState.competition.id; 
+  return api.selectWinner(competition, winner_id).then(response => {
+    dispatch(receiveCompetitionWinner(response.competition, winner_id));
+    dispatch(getGeneralArtInfo());
+  });
 };
 
 const startSelectCompetitionWinner = () => ({
@@ -41,14 +38,17 @@ const receiveCompetitionWinner = (competition, winner_id) => ({
 
 
 
-const getGeneralArtInfo = () => {
-  return (dispatch) => {
-    api.getArtInfo().then(response => {
-      dispatch(receiveGeneralArtInfo(response));
-    })
-  }
+const getGeneralArtInfo = () => (dispatch) => {
+  dispatch(startGeneralArtInfo());
+  return api.getArtInfo().then(response => {
+    dispatch(receiveGeneralArtInfo(response));
+  });
 };
   
+
+const startGeneralArtInfo = () => ({
+  type: "START_GENERAL_ART_INFO"
+})
 
 const receiveGeneralArtInfo = (totals) => ({
   type: "GET_GENERAL_ART_INFO",
