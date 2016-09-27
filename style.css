@@ -151,7 +151,9 @@ form.import-art .import-group.hidden{
 }
 
 .Loader__foreground{
-  position:fixed;
+  position: fixed;
+  top: 50%;
+  margin-top: -100px;
 }
 
 /* !--- End Loader ---! */

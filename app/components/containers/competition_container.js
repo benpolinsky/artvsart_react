@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 import {ModalContents} from '../modal_contents.js';
 import {Competition} from '../competition.js';
 import {getBattle} from '../../utils/ajax_helpers.js';
-import {getCompetitionData, toggleLoader} from '../../actions.js'
+import {getCompetitionData} from '../../actions.js'
 
 const customStyles = {
   overlay: {
@@ -27,23 +27,17 @@ class CompetitionContainer extends React.Component{
     super();
     Modal.setAppElement('#app');    
     this.bindEscape();
-    this.getCompetition = this.getCompetition.bind(this);
+    this.componentDidMount = this.componentDidMount.bind(this);
   }
   
   componentDidMount(){
-    this.getCompetition();
-  }
-  
-  getCompetition(){
-    const {store} = this.context;
-    store.dispatch(toggleLoader(false));
-    store.dispatch(getCompetitionData());  
+    this.props.getCompetition();
   }
   
   bindEscape(){
     document.addEventListener("keyup", (e) => {
       if (e.keyCode == 27 && this.props.competition.winnerSelected) {
-        this.getCompetition();
+        this.props.getCompetition();
       }
     })
   }
@@ -52,10 +46,9 @@ class CompetitionContainer extends React.Component{
     return (
       <div className='container'>
         <h1>Battle</h1>
-        <Competition share_title={this.props.competition.share_title} 
-          loading={this.props.isFetching} />
+        <Competition competition={this.props.competition}/>
         <Modal style={customStyles} isOpen={this.props.competition.winnerSelected}>
-          <ModalContents competition={this.props.competition} closeModal={this.getCompetition} />
+          <ModalContents competition={this.props.competition} closeModal={this.props.getCompetition} />
         </Modal>
       </div>
     )
@@ -67,9 +60,14 @@ CompetitionContainer.contextTypes = {
 }
 
 const mapStateToProps = (store) => ({
-  competition: store.competitionState.competition,
-  ux: store.ux
+  competition: store.competitionState.competition
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  getCompetition(){
+    dispatch(getCompetitionData());
+  }
 })
 
 
-export default connect(mapStateToProps)(CompetitionContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(CompetitionContainer)

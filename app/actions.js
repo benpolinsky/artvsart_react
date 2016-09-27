@@ -21,11 +21,17 @@ const getCompetitionData = () => {
 const selectCompetitionWinner = (winner_id) => {
   return (dispatch, getState) => {
     const competition = getState().competitionState.competition.id;
+    dispatch(startSelectCompetitionWinner());
     api.selectWinner(competition, winner_id).then(response => {
       dispatch(receiveCompetitionWinner(response.competition, winner_id));
+      dispatch(getGeneralArtInfo());
     });
   }
 };
+
+const startSelectCompetitionWinner = () => ({
+  type: 'START_SELECT_COMPETITION_WINNER'
+})
 
 const receiveCompetitionWinner = (competition, winner_id) => ({
   type: 'SELECT_COMPETITION_WINNER',

@@ -18,7 +18,7 @@ class App extends React.Component {
     return (
       <div>
         <Menu totals={this.props.app.totals} />
-        <div>{React.cloneElement(this.props.children, {updateCount: this.updateCount})}</div>
+        <div>{this.props.children}</div>
       </div>
     )
   }

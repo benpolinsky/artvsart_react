@@ -26,7 +26,7 @@ const initialCompetitionState = {
       image: 'http://placehold.it/250x250'
     },
     share_title: "default share title",
-    isFetching: false,
+    isFetching: true,
     winnerSelected: false
   }
 }
@@ -65,9 +65,18 @@ const competitionReducer = (state=initialCompetitionState, action) => {
          losing_art: losing_art,
          share_title: `${winning_art.name} battled ${losing_art.name} AND WON! on artvsart`,
          winnerSelected: true,
-         art_percentages: action.competition.art_percentages
+         art_percentages: action.competition.art_percentages,
+         isFetching: false
        }
      }
+   case 'START_SELECT_COMPETITION_WINNER':
+   return {
+     ...state, 
+     competition: {
+       ...state.competition,
+       isFetching: true
+     }
+   } 
   }
   return state;
 }
