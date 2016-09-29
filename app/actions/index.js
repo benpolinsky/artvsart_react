@@ -1,18 +1,24 @@
-import * as api from './utils/ajax_helpers.js';
+import * as api from '../utils/ajax_helpers.js';
+
+export const loadCredentials = (next_action) => (dispatch) => {
+  return api.getToken().then(response => {
+    return response
+  })
+}
 
 const fetchCompetition = () => ({
   type: "REQUEST_COMPETITION"
 })
 
-const stageCompetition = (competition) => ({
+const stageCompetition = (response) => ({
   type: "RECEIVE_COMPETITION",
-  competition: competition
+  competition: response.competition
 });
 
 const getCompetitionData = () => (dispatch) => {
   dispatch(fetchCompetition());
   return api.getBattle().then(response => {
-    dispatch(stageCompetition(response.competition));
+    dispatch(stageCompetition(response));
   })
 
 }

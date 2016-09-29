@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {selectCompetitionWinner} from '../../actions.js'
+import {selectCompetitionWinner} from '../../actions/index.js'
 
 const VoteButton = ({onClick}) => {
   return <a className="btn btn-primary vote-btn" href='#' onClick={onClick}>Vote</a>

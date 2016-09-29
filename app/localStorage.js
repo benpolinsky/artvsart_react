@@ -17,3 +17,12 @@ export const storeToken = (token) => {
     // ignore    
   }
 }
+
+export const tokenObject = () => {
+  const token = loadToken();
+  if (token === null) {
+    return {}
+  } else{
+    return {'Authorization': loadToken()}
+  }
+}

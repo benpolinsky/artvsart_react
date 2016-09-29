@@ -1,7 +1,20 @@
+import {tokenObject} from '../localStorage.js';
+
 const domain = 'http://localhost:3000';
+const token = tokenObject();
+
 const headers = {
   'Accept': "application/json",
-  'Content-Type': 'application/json'
+  'Content-Type': 'application/json',
+  token
+}
+
+export const getToken = () => {
+  return fetch(`${domain}/api/v1/`, {
+    credentials: 'include',
+    method: 'GET',
+    headers: headers
+  }).then(response => response.json());
 }
 
 const getBattle = () => {
