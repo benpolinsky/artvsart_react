@@ -5,14 +5,14 @@
 // 5. We store it in our store/cookies/state
 
 import * as storage from '../localStorage.js'
-import {loadCredentials} from '../actions/index.js'
+import {loadCredentials, storeUserCredentials, getUserInfo} from '../actions/index.js'
 
 export const auth = store => next => action => {
   if (storage.loadToken() === undefined) {
+    let next_action = next(action);
     store.dispatch(loadCredentials(action)).then(response => {
-      storage.storeToken(response.user.auth_token);
-      console.log(response.user.auth_token);
-      return next(action);
+      store.dispatch(storeUserCredentials(response.user));
+      return next_action;
     })
   } else{
     return next(action);

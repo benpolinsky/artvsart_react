@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link} from 'react-router';
 
-const Menu = ({totals}) => {
+const Menu = ({totals, user}) => {
   return (
     <nav className='navbar'>
       <Link className="navbar-brand" to="/">AVA</Link>
@@ -11,12 +11,14 @@ const Menu = ({totals}) => {
         <li className="nav-item"><Link className="nav-link" to="/add_new_art">Add New Art</Link></li>
         <li className="nav-item"><Link className="nav-link" to="/import_art">Import Art</Link></li>
         <li className="nav-item"><Link className="nav-link" to="/results">Results</Link></li>
+        <li className="nav-item"><Link className="nav-link" to="/sign_up">Sign Up!</Link></li>
       </ul>
       
       <ul className="pull-right nav navbar-nav">
         <li className="navbar-brand">{totals.total_art} Arts </li>
         <li className="navbar-brand">{totals.total_art_judged} Arts Judged </li>
         <li className="navbar-brand">{totals.finished_competitions} Battles</li>
+        <li className='navbar-brand'>{`Signed in as ${user.email}`}</li>
       </ul>
     </nav>
   )

@@ -9,6 +9,18 @@ const headers = {
   ...token
 }
 
+export const registerUser = (user) => {
+  console.log('newuser',user);
+  return fetch(`${domain}/users/`, {
+    credentials: 'include',
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify({
+      user: user
+    })
+  }).then(response => response.json());
+}
+
 export const getToken = () => {
   return fetch(`${domain}/api/v1/`, {
     credentials: 'include',
@@ -17,8 +29,16 @@ export const getToken = () => {
   }).then(response => response.json());
 }
 
+export const userInfo = () => {
+
+  return fetch(`${domain}/api/v1/`, {
+    credentials: 'include',
+    method: 'GET',
+    headers: headers
+  }).then(response => response.json());
+}
+
 const getBattle = () => {
-  console.log(headers);
   return fetch(`${domain}/api/v1/competitions`, {
     credentials: 'include',
     method: 'POST',

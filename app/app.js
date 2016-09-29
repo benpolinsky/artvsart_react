@@ -1,7 +1,7 @@
 import React from 'react';
 import Menu from './components/menu';
 import {connect} from 'react-redux';
-import {getGeneralArtInfo} from './actions/index.js';
+import {getGeneralArtInfo, getUserInfo} from './actions/index.js';
 
 class App extends React.Component {
   constructor(){
@@ -17,7 +17,7 @@ class App extends React.Component {
   render(){
     return (
       <div>
-        <Menu totals={this.props.app.totals} />
+        <Menu totals={this.props.app.totals} user={this.props.user} />
         <div>{this.props.children}</div>
       </div>
     )
@@ -26,11 +26,13 @@ class App extends React.Component {
 }
 
 const mapStateToProps = (store) => ({
-  app: store.appState
+  app: store.appState,
+  user: store.userState.user
 })
 
 const mapDispatchToProps = (dispatch) => ({
   getArtInfo(){
+    dispatch(getUserInfo());
     dispatch(getGeneralArtInfo());
   } 
 })

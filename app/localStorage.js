@@ -20,7 +20,6 @@ export const storeToken = (token) => {
 
 export const tokenObject = () => {
   const token = loadToken();
-  console.log(token);
   if (token === null) {
     return {}
   } else{

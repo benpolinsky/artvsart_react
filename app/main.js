@@ -12,6 +12,7 @@ import NewArtFormContainer from './components/containers/new_art_form_container.
 import ArtContainer from './components/containers/art_container.js'
 import ImportArtFormContainer from './components/containers/import_art_form_container.js'
 import ResultsContainer from './components/containers/results_container.js'
+import SignUpForm from './components/forms/sign_up_form';
 require('../style.css');
 
 ReactDOM.render(
@@ -25,6 +26,7 @@ ReactDOM.render(
       <Route path='about' component={AboutContainer} />
       <Route path='art/:id' component={ArtContainer} />
       <Route path='results' component={ResultsContainer} />
+      <Route path='sign_up' component={SignUpForm} />
     </Route>
   </Router>
 </Provider>,

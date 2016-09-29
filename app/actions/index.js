@@ -1,4 +1,11 @@
 import * as api from '../utils/ajax_helpers.js';
+import * as storage from '../localStorage.js'
+
+export const registerUser = (user) => (dispatch) => {
+  return api.registerUser(user).then(response => {
+    dispatch(storeUserCredentials(response.user));
+  })
+}
 
 export const loadCredentials = (next_action) => (dispatch) => {
   return api.getToken().then(response => {
@@ -6,9 +13,25 @@ export const loadCredentials = (next_action) => (dispatch) => {
   })
 }
 
+export const storeUserCredentials = (user) => (dispatch) => {
+  storage.storeToken(user.auth_token);
+  dispatch(receiveUserInfo(user));
+}
+
+export const receiveUserInfo = (user) => ({
+  type: "RECEIVE_USER_INFO",
+  user: user
+});
+
+export const getUserInfo = () => (dispatch) => {
+  return api.userInfo().then(response => {
+    dispatch(receiveUserInfo(response.user));
+  })
+}
+
 const fetchCompetition = () => ({
   type: "REQUEST_COMPETITION"
-})
+});4
 
 const stageCompetition = (response) => ({
   type: "RECEIVE_COMPETITION",
