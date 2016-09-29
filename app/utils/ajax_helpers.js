@@ -6,7 +6,7 @@ const token = tokenObject();
 const headers = {
   'Accept': "application/json",
   'Content-Type': 'application/json',
-  token
+  ...token
 }
 
 export const getToken = () => {
@@ -18,6 +18,7 @@ export const getToken = () => {
 }
 
 const getBattle = () => {
+  console.log(headers);
   return fetch(`${domain}/api/v1/competitions`, {
     credentials: 'include',
     method: 'POST',
