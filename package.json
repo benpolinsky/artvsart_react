@@ -7,10 +7,12 @@
     "start": "webpack-dev-server",
     "test": "mocha './app/**/*.spec.js' --compilers js:babel-core/register  --timeout 15000"
   },
-  "author": "",
+  "author": "Ben Polinsky",
   "license": "ISC",
   "dependencies": {
     "babel-polyfill": "^6.13.0",
+    "font-awesome": "^4.6.3",
+    "material-ui": "^0.15.4",
     "react": "^15.3.1",
     "react-dom": "^15.3.1",
     "react-loader-advanced": "^1.4.1",
@@ -19,6 +21,7 @@
     "react-router": "^2.6.1",
     "react-s3-uploader": "^3.3.0",
     "react-share": "^1.9.3",
+    "react-tap-event-plugin": "^1.0.0",
     "redux": "^3.6.0",
     "redux-thunk": "^2.1.0",
     "whatwg-fetch": "^1.0.0"

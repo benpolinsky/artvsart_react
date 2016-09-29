@@ -3,7 +3,8 @@ const initialAppState = {
     total_art: 0,
     total_art_judged: 0,
     finished_competitions: 0
-  }
+  },
+  token: ''
 }
 
 const AppReducer = (state=initialAppState, action) => {

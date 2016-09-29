@@ -1,9 +1,10 @@
 import {createStore, applyMiddleware} from 'redux';
 import createLogger from 'redux-logger';
 import thunk from 'redux-thunk';
+import {auth} from './middlewares/auth.js';
 import reducer from './reducers/index.js';
 
-const middlewares = [thunk];
+const middlewares = [thunk, auth];
 if (process.env.NODE_ENV !== 'production') {
   middlewares.push(createLogger());
 }
