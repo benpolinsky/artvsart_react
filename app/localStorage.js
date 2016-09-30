@@ -1,7 +1,7 @@
 export const loadToken = () => {
   try {
     const token = localStorage.getItem('token');
-    if (token === null) {
+    if (token === null || token == "") {
       return undefined
     }
     return token
@@ -25,4 +25,8 @@ export const tokenObject = () => {
   } else{
     return {'Authorization': loadToken()}
   }
+}
+
+export const deleteToken = () => {
+  localStorage.removeItem('token');
 }

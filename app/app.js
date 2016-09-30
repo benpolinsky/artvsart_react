@@ -13,7 +13,7 @@ class App extends React.Component {
   componentDidMount(){
     this.props.getArtInfo();
   }
-
+  
   render(){
     return (
       <div>
@@ -32,7 +32,6 @@ const mapStateToProps = (store) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getArtInfo(){
-    dispatch(getUserInfo());
     dispatch(getGeneralArtInfo());
   } 
 })

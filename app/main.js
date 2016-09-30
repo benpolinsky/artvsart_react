@@ -1,4 +1,5 @@
 import 'babel-polyfill';
+import injectTapEventPlugin from 'react-tap-event-plugin';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Router, IndexRoute, Route, browserHistory} from 'react-router';
@@ -13,10 +14,17 @@ import ArtContainer from './components/containers/art_container.js'
 import ImportArtFormContainer from './components/containers/import_art_form_container.js'
 import ResultsContainer from './components/containers/results_container.js'
 import SignUpForm from './components/forms/sign_up_form';
+import ProfilePage from './components/containers/profile_page';
 require('../style.css');
+
+// Needed for onTouchTap
+// http://stackoverflow.com/a/34015469/988941
+injectTapEventPlugin();
+
 
 ReactDOM.render(
 <Provider store={store}>
+ 
   <Router history={browserHistory}>
     <Route path='/' component={App}>
       <IndexRoute component={HomeContainer} />
@@ -27,8 +35,10 @@ ReactDOM.render(
       <Route path='art/:id' component={ArtContainer} />
       <Route path='results' component={ResultsContainer} />
       <Route path='sign_up' component={SignUpForm} />
+      <Route path='profile' component={ProfilePage} />
     </Route>
   </Router>
+
 </Provider>,
   document.getElementById('app')
 );

@@ -1,4 +1,4 @@
-import {tokenObject} from '../localStorage.js';
+import {tokenObject, loadToken} from '../localStorage.js';
 
 const domain = 'http://localhost:3000';
 const token = tokenObject();
@@ -9,8 +9,17 @@ const headers = {
   ...token
 }
 
+export const signOut = () => {
+  return fetch(`${domain}/api/v1/users/sign_out`, {
+    credentials: 'include',
+    method: 'DELETE',
+    headers: headers,
+    body: {
+    }
+  }).then(response => response.json());
+}
+
 export const registerUser = (user) => {
-  console.log('newuser',user);
   return fetch(`${domain}/users/`, {
     credentials: 'include',
     method: 'POST',

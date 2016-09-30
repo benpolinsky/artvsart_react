@@ -3,16 +3,17 @@ import ReactDOM from 'react-dom'
 import * as api from '../../utils/ajax_helpers.js'
 import {registerUser} from '../../actions/index.js'
 import {connect} from 'react-redux'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import RaisedButton from 'material-ui/RaisedButton';
 
-
-export default class SignUpForm extends React.Component {
+export class SignUpForm extends React.Component {
   constructor(){
     super();
     this.update = this.update.bind(this);
     this.submitForm = this.submitForm.bind(this);
   }
   
-  componentWillMount(){
+  componentDidMount(){
     this.setState({
       newUser: {
         email: 'your@email',
@@ -32,15 +33,22 @@ export default class SignUpForm extends React.Component {
   
   submitForm(e){
     e.preventDefault();
-    this.props.registerUser(this.state.newUser);
+    const router = this.context.router;
+    const newUser = this.state.newUser;
+    if (newUser.email.length > 6 && newUser.password.length > 3) {
+      this.props.registerUser(this.state.newUser, router);      
+    }
   }
   
   
   render(){
     return (
-      <form onSubmit={this.submitForm} className='signUpForm form col-xs-12'>
+
+      <form className='signUpForm form col-xs-12'>
+
         <div className='form-group'>
           <label name='email'>Email Address</label>
+          <div className='errors'>{this.props.errors}</div>
           <input className='form-control' type='email' onKeyUp={this.update} ref='email' />
         </div>
         <div className='form-group'>
@@ -48,19 +56,30 @@ export default class SignUpForm extends React.Component {
           <input className='form-control' type='password' onKeyUp={this.update} ref='password' />
         </div>
         <div className='form-group'>
-          <input className='form-control btn btn-primary02' type='submit' defaultValue='Sign Up' />
+        <MuiThemeProvider>
+          <RaisedButton label="submit" type="submit" primary={true} onClick={this.submitForm}/>
+        </MuiThemeProvider>
+
         </div>
       </form>
+
     )
   }
 }
 
+SignUpForm.contextTypes = {
+  router: React.PropTypes.object
+}
+
+const mapStateToProps = (store) => ({
+  errors: store.userState.errors
+})
 
 const mapDispatchToProps = (dispatch) => ({
-  registerUser(user){
-    dispatch(registerUser(user))
+  registerUser(user, router){
+    dispatch(registerUser(user, router));
   }
 })
 
 
-export default connect(null, mapDispatchToProps)(SignUpForm)
+export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm)

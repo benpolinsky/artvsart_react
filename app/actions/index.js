@@ -1,11 +1,48 @@
 import * as api from '../utils/ajax_helpers.js';
 import * as storage from '../localStorage.js'
 
-export const registerUser = (user) => (dispatch) => {
-  return api.registerUser(user).then(response => {
-    dispatch(storeUserCredentials(response.user));
+export const signOutUser = (router) => (dispatch) => {
+  storage.deleteToken();
+  return api.signOut().then(response => {
+    dispatch(userSignedOut(response.guest_user));
+    router.push('/');
+
   })
 }
+
+const userSignedOut = (user) => ({
+  type: "USER_SIGNED_OUT",
+  user: user
+})
+
+export const registerUser = (user, router) => (dispatch) => {
+  dispatch(startRegisterUser(user));
+  return api.registerUser(user).then(response => {
+    if (response.errors != null) {
+      console.log(response)
+      dispatch(registerUserFailed(response.errors));
+    } else {
+      dispatch(registerUserSuccessful(response.user));
+      router.push(`/competition`);
+      dispatch(storeUserCredentials(response.user));
+    }
+  })
+}
+
+const startRegisterUser = (user) => ({
+  type: "START_REGISTER_USER",
+  user: user
+})
+
+const registerUserSuccessful = (user) => ({
+  type: "REGISTER_USER_SUCCESSFUL",
+  user: user
+})
+
+const registerUserFailed = (user) => ({
+  type: "REGISTER_USER_FAILED",
+  errors: user
+})
 
 export const loadCredentials = (next_action) => (dispatch) => {
   return api.getToken().then(response => {
@@ -31,7 +68,7 @@ export const getUserInfo = () => (dispatch) => {
 
 const fetchCompetition = () => ({
   type: "REQUEST_COMPETITION"
-});4
+});
 
 const stageCompetition = (response) => ({
   type: "RECEIVE_COMPETITION",
