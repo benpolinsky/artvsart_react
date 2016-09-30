@@ -57,7 +57,6 @@ class Menu extends React.Component{
           </DropDownMenu>
         </MuiThemeProvider>}
         </ul>
-      
   
         <ul className="pull-right nav navbar-nav">
           <li className="navbar-brand">{totals.total_art} Arts </li>

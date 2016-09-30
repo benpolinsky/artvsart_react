@@ -1,10 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+
+const textFieldStyles = {
+  float: 'left',
+  clear: 'both'
+}
 
 class NewArtForm extends React.Component{
   constructor(){
     super()
     this.update = this.update.bind(this);
+  }
+  
+  getChildContext(){
+    return { muiTheme: getMuiTheme() }
   }
   
   update(e){    
@@ -17,26 +29,22 @@ class NewArtForm extends React.Component{
 
   render(){
     return(
-      <form ref='form' onSubmit={this.props.submit} className='col-xs-12'>
-        <div className='form-group'>
-          <label>Art Name</label>
-          <input ref='name' type='text' name="art[name]" onChange={this.update} defaultValue="" className="form-control" />
+      <form ref='form' onSubmit={this.props.submit} className='createArtForm col-xs-12'>
+        <h2>Add New Art</h2>
+        <TextField style={textFieldStyles} ref='name' type='text' floatingLabelText="Name" onChange={this.update} defaultValue=""/>
+        <TextField style={textFieldStyles} ref='creator' type='text' floatingLabelText="Creator" onChange={this.update} defaultValue="" />
+        <TextField style={textFieldStyles} ref='description' floatingLabelText="Description" multiLine={true} onChange={this.update} defaultValue="" />
+        <div className="uploadToS3">
+          {this.props.children}
         </div>
-    
-        <div className='form-group'>
-          <label>Art Creator</label>
-          <input ref='creator' type='text' name="art[creator]" onChange={this.update} defaultValue="" className="form-control" />
-        </div>
-    
-        <div className='form-group'>
-          <label>Art Description</label>
-          <textarea ref='description' name="art[description]" onChange={this.update} defaultValue="" className="form-control" rows='10' />
-        </div>
-        {this.props.children}
-        <input type="submit" value="Create!" className='btn btn-primary' />
+        <RaisedButton primary={true} style={textFieldStyles} type="submit">Create!</RaisedButton>
       </form>
     )
   }
+}
+
+NewArtForm.childContextTypes = {
+  muiTheme: React.PropTypes.object.isRequired
 }
 
 export default NewArtForm

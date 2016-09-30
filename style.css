@@ -89,6 +89,15 @@ form.import-art .import-group.hidden{
 /* !---- End Import Art Form ----! */
 
 
+/*Create Art Form*/
+.uploadToS3{
+  float:left;
+  clear:both;
+  padding:20px 20px 20px 0;
+}
+
+/*End Create Art Form*/
+
 
 /* Search Result */
 
