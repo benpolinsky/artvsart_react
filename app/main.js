@@ -13,8 +13,9 @@ import NewArtFormContainer from './components/containers/new_art_form_container.
 import ArtContainer from './components/containers/art_container.js'
 import ImportArtFormContainer from './components/containers/import_art_form_container.js'
 import ResultsContainer from './components/containers/results_container.js'
-import SignUpForm from './components/forms/sign_up_form';
-import ProfilePage from './components/containers/profile_page';
+import SignUpForm from './components/forms/sign_up_form'
+import SignInForm from './components/forms/sign_in_form'
+import ProfilePage from './components/containers/profile_page'
 require('../style.css');
 
 // Needed for onTouchTap
@@ -35,6 +36,7 @@ ReactDOM.render(
       <Route path='art/:id' component={ArtContainer} />
       <Route path='results' component={ResultsContainer} />
       <Route path='sign_up' component={SignUpForm} />
+      <Route path='sign_in' component={SignInForm} />
       <Route path='profile' component={ProfilePage} />
     </Route>
   </Router>

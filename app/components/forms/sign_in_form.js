@@ -1,11 +1,11 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {registerUser} from '../../actions/index.js'
+import {signUserIn} from '../../actions/index.js'
 import {connect} from 'react-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 
-export class SignUpForm extends React.Component {
+export class SignInForm extends React.Component {
   constructor(){
     super();
     this.update = this.update.bind(this);
@@ -43,7 +43,7 @@ export class SignUpForm extends React.Component {
   render(){
     return (
       <form className='signUpForm form col-xs-12'>
-        <h2>Sign Up</h2>
+        <h2>Sign In</h2>
         <div className='form-group'>
           <label name='email'>Email Address</label>
           <div className='errors'>{this.props.errors}</div>
@@ -64,7 +64,7 @@ export class SignUpForm extends React.Component {
   }
 }
 
-SignUpForm.contextTypes = {
+SignInForm.contextTypes = {
   router: React.PropTypes.object
 }
 
@@ -74,9 +74,9 @@ const mapStateToProps = (store) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   registerUser(user, router){
-    dispatch(registerUser(user, router));
+    dispatch(signUserIn(user, router));
   }
 })
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(SignUpForm)
+export default connect(mapStateToProps, mapDispatchToProps)(SignInForm)

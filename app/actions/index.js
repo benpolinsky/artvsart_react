@@ -1,9 +1,40 @@
 import * as api from '../utils/ajax_helpers.js';
 import * as storage from '../localStorage.js'
 
+export const signUserIn = (user, router) => (dispatch) => {
+  dispatch(startSignUserIn(user));
+  return api.signIn(user).then(response => {
+    if (response.errors != null) {
+      console.log(response)
+      dispatch(signInUserFailed(response.errors)); 
+    } else {
+      dispatch(signInUserSuccessful(response.user));
+      router.push('/profile');
+      dispatch(storeUserCredentials(response.user));
+    }
+  })
+}
+
+
+const startSignUserIn = (user) => ({
+  type: "START_SIGN_USER_IN",
+  user: user
+})
+
+const signInUserFailed = (user) => ({
+  type: "SIGN_IN_USER_FAILED",
+  user: user
+})
+
+const signInUserSuccessful = (user) => ({
+  type: "SIGN_IN_USER_SUCCESSFUL",
+  user: user
+})
+
 export const signOutUser = (router) => (dispatch) => {
   storage.deleteToken();
   return api.signOut().then(response => {
+    console.log(response)
     dispatch(userSignedOut(response.guest_user));
     router.push('/');
 

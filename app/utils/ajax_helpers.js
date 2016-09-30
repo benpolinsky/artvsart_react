@@ -9,6 +9,18 @@ const headers = {
   ...token
 }
 
+export const signIn = (user) => {
+  return fetch(`${domain}/api/v1/users/sign_in`, {
+    credentials: 'include',
+    method: 'POST',
+    headers: headers,
+    body: JSON.stringify({
+      email: user.email,
+      password: user.password
+    })
+  }).then(response => response.json());
+}
+
 export const signOut = () => {
   return fetch(`${domain}/api/v1/users/sign_out`, {
     credentials: 'include',
@@ -16,7 +28,9 @@ export const signOut = () => {
     headers: headers,
     body: {
     }
-  }).then(response => response.json());
+  }).then(response => {
+    return response.json();
+  });
 }
 
 export const registerUser = (user) => {
