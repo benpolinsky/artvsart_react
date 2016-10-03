@@ -1,7 +1,7 @@
 import React from 'react';
 import Art from '../art.js';
 import { Router, Route, Link, browserHistory } from 'react-router';
-import {fetchArt} from '../../utils/ajax_helpers';
+import {fetchArt} from '../../utils/ajaxHelpers.js';
 
 
 export default class ArtContainer extends React.Component{

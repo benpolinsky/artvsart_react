@@ -2,7 +2,7 @@ import React from 'react';
 import Menu from './components/menu';
 import {connect} from 'react-redux';
 import {getGeneralArtInfo} from './actions/index.js';
-import {getUserInfo} from './actions/userAuth.js.js';
+import {getUserInfo} from './actions/userAuth.js';
 
 class App extends React.Component {
   constructor(){
