@@ -4,8 +4,8 @@ import {connect} from 'react-redux';
 import {Router} from 'react-router';
 import Loader from 'react-loader-advanced';
 import ReactS3Uploader from 'react-s3-uploader';
-import NewArtForm from '../forms/new_art_form.js';
-import {createNewArt} from '../../utils/ajax_helpers.js';
+import NewArtForm from '../forms/NewArtForm.js';
+import {createNewArt} from '../../utils/ajaxHelpers.js';
 
 
 class NewArtFormContainer extends React.Component {

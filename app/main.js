@@ -6,17 +6,17 @@ import {Router, IndexRoute, Route, browserHistory} from 'react-router';
 import { Provider } from 'react-redux';
 import store from './store.js';
 import App from './app.js';
-import HomeContainer from './components/containers/home_container.js'
-import CompetitionContainer from './components/containers/competition_container.js'
-import AboutContainer from './components/containers/about_container.js'
-import NewArtFormContainer from './components/containers/new_art_form_container.js'
-import ArtContainer from './components/containers/art_container.js'
-import ImportArtFormContainer from './components/containers/import_art_form_container.js'
-import ResultsContainer from './components/containers/results_container.js'
-import SignUpForm from './components/forms/sign_up_form'
-import SignInForm from './components/forms/sign_in_form'
-import ProfilePage from './components/containers/profile_page'
-import TopJudges from './components/containers/top_judges'
+import HomeContainer from './components/containers/homeContainer.js'
+import CompetitionContainer from './components/containers/competitionContainer.js'
+import AboutContainer from './components/containers/aboutContainer.js'
+import NewArtFormContainer from './components/containers/newArtFormContainer.js'
+import ArtContainer from './components/containers/artContainer.js'
+import ImportArtFormContainer from './components/containers/importArtFormContainer.js'
+import ResultsContainer from './components/containers/resultsContainer.js'
+import SignUpForm from './components/forms/signUpForm.js'
+import SignInForm from './components/forms/signInForm.js'
+import ProfilePage from './components/containers/profilePage.js'
+import TopJudges from './components/containers/topJudges.js'
 require('../style.css');
 
 // Needed for onTouchTap

@@ -1,7 +1,7 @@
 import React from 'react';
 import Art from '../art.js';
-import {fetchResults} from '../../utils/ajax_helpers.js';
-import {ResultsList} from '../results_list.js'
+import {fetchResults} from '../../utils/ajaxHelpers.js';
+import {ResultsList} from '../resultsList.js'
 export default class ResultsContainer extends React.Component {
   
   componentWillMount(){

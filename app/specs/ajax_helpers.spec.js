@@ -1,7 +1,7 @@
 import expect from 'expect';
 import sinon from 'sinon';
 import fetchMock from 'fetch-mock';
-import {getBattle} from '../utils/ajax_helpers.js';
+import {getBattle} from '../utils/ajaxHelpers.js';
 
 
 

@@ -1,5 +1,5 @@
 import * as storage from '../localStorage.js'
-import {loadCredentials, storeUserCredentials, getUserInfo} from '../actions/user_auth.js'
+import {loadCredentials, storeUserCredentials, getUserInfo} from '../actions/userAuth.js.js'
 
 let receivingUserInfo = false;
 

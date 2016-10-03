@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchFields from './search_fields.js';
+import SearchFields from './searchFields.js';
 
 class ImportArtForm extends React.Component{
   constructor(){

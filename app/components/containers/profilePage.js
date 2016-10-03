@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {fetchUserCompetitions} from '../../actions/user_competitions.js'
+import {fetchUserCompetitions} from '../../actions/userCompetitions.js'
 
 
 

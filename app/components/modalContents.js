@@ -1,5 +1,5 @@
 import React from 'react';
-import ArtShareButtons from './art_share_buttons.js';
+import ArtShareButtons from './ArtShareButtons.js';
 
 export const ModalContents = ({competition, closeModal}) => {
   const {winning_art, losing_art, art_percentages, share_title} = competition

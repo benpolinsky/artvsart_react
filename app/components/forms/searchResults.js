@@ -1,5 +1,5 @@
 import React from 'react';
-import SearchResult from './search_result.js';
+import SearchResult from './searchResult.js';
 
 const SearchResults = ({error, results, importArt}) => {
   return(

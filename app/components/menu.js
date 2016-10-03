@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
-import {signOutUser} from '../actions/user_auth.js'
+import {signOutUser} from '../actions/userAuth.js.js'
 
 class Menu extends React.Component{
   constructor(){

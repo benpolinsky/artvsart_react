@@ -1,9 +1,9 @@
 import React from 'react';
 import Loader from 'react-loader-advanced';
-import SearchFields from '../forms/search_fields.js';
-import SearchResults from '../forms/search_results.js'
-import {importArt, searchSource} from '../../utils/ajax_helpers.js';
-import ImportArtForm from '../forms/import_art_form.js';
+import SearchFields from '../forms/searchFields.js';
+import SearchResults from '../forms/searchResults.js'
+import {importArt, searchSource} from '../../utils/ajaxHelpers.js';
+import ImportArtForm from '../forms/ImportArtForm.js';
 
 const spinner = <span className="fa-spinner fa">SPNNNNNN</span>;
 const sources = ['Discogs', 'Artsy', 'Gracenote', 'Philart', 'IMDB', 'HarvardArt'];

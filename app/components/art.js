@@ -1,5 +1,5 @@
 import React from 'react';
-import VoteButtonContainer from './forms/vote_button.js';
+import VoteButtonContainer from './forms/VoteButton.js';
 
 const Art = ({art, no_voting}) => {
   return (

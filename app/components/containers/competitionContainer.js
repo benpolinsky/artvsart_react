@@ -1,9 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Modal from 'react-modal';
-import {ModalContents} from '../modal_contents.js';
+import {ModalContents} from '../modalContents.js';
 import {Competition} from '../competition.js';
-import {getBattle} from '../../utils/ajax_helpers.js';
+import {getBattle} from '../../utils/ajaxHelpers.js';
 import {getCompetitionData, handleCompetitionModal} from '../../actions/index.js'
 
 const customStyles = {

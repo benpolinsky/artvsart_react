@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {signUserIn} from '../../actions/user_auth.js';
+import {signUserIn} from '../../actions/userAuth.js.js';
 import {connect} from 'react-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
