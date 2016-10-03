@@ -12,7 +12,7 @@ import AboutContainer from './components/containers/aboutContainer.js'
 import NewArtFormContainer from './components/containers/newArtFormContainer.js'
 import ArtContainer from './components/containers/artContainer.js'
 import ImportArtFormContainer from './components/containers/importArtFormContainer.js'
-import ResultsContainer from './components/containers/resultsContainer.js'
+import ResultsList from './components/resultsList.js'
 import SignUpForm from './components/forms/signUpForm.js'
 import SignInForm from './components/forms/signInForm.js'
 import ProfilePage from './components/containers/profilePage.js'
@@ -35,7 +35,7 @@ ReactDOM.render(
       <Route path='import_art' component={ImportArtFormContainer} />
       <Route path='about' component={AboutContainer} />
       <Route path='art/:id' component={ArtContainer} />
-      <Route path='results' component={ResultsContainer} />
+      <Route path='results' component={ResultsList} />
       <Route path='sign_up' component={SignUpForm} />
       <Route path='sign_in' component={SignInForm} />
       <Route path='profile' component={ProfilePage} />

@@ -36,8 +36,13 @@ export const Competition = ({competition, handleClose}) => {
         foregroundStyle={spinnerStyles.foreground} 
         backgroundStyle={spinnerStyles.background} 
         show={competition.isFetching} message={spinner}  >
-        <Art key={competition.art.id} art={competition.art} />
-        <Art key={competition.challenger.id} art={competition.challenger} />
+        <div className='art'>
+          <Art key={competition.art.id} art={competition.art} />
+        </div>
+        <div className='art'>
+          <Art key={competition.challenger.id} art={competition.challenger} />
+        </div>
+        
         {competition.errors &&
           <div className='quick-errors'>
             <MuiThemeProvider>

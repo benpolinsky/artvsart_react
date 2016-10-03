@@ -105,7 +105,7 @@ const fetchArt = (id) => {
 }
 
 
-const fetchResults = () => {
+export const getResults = () => {
   return fetch(`${domain}/api/v1/results`, {
     credentials: "include",
     method: "GET",
@@ -162,6 +162,6 @@ function to_params(data) {
 }
 
 export {
-  getBattle, getArtInfo, fetchArt, fetchResults, 
+  getBattle, getArtInfo, fetchArt, 
   selectWinner, createNewArt, importArt, searchSource
 }

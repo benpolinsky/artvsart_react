@@ -1,36 +1,56 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import Art from './art.js';
-import {WinLossBar} from './winLossBar.js'
+import {WinLossBar} from './winLossBar.js';
+import {fetchResults} from '../actions/results.js';
+
+const newStyles = {
+  art: {
+    float: 'left',
+    clear: 'both',
+    width: '100%',
+    boxSizing: 'border-box',
+    padding: '30px' 
+  },
+  artImage: {
+    width: 100
+  }
+};
 
 
-export const ResultsList = ({results}) => {  
-  return(
-    <div className="resultsPage col-xs-12">        
-      <div className='resultsTopWinner resultsTop'>
-        <h2>Top Winner: </h2>
-        <p>Number of Wins: {results.top_winner.winning_count}</p>
-        <WinLossBar data={results.top_winner} />
-        <Art key={results.top_winner.id} art={results.top_winner} no_voting={true} />
+class ResultsList extends React.Component{
+  componentDidMount(){
+    this.props.getResults()
+  }
+  
+  render(){
+    return(
+      <div className="resultsPage col-xs-12">        
+         <div className="bestRecords otherRecords">
+          <h2>Most Wins</h2>
+             {this.props.results.map(record => {
+               return (
+                 <div key={record.id}>
+                   <Art art={record} styles={newStyles} no_voting={true} />
+                   <WinLossBar data={record} />
+                 </div>
+               )
+             })}
+         </div>
       </div>
-
-      <div className='resultsTopLoser resultsTop'> 
-        <h2>Top Loser: </h2>
-        <p>Number of Losses: {results.top_loser.losing_count}</p>
-        <Art key={results.top_loser.id} art={results.top_loser} no_voting={true} />
-      </div>
-         
-       <div className="bestRecords otherRecords">
-        <h2>Most Wins</h2>
-           {results.best_records.map(record => {
-             return <Art key={record.id} art={record} no_voting={true} />
-           })}
-       </div>
-       <div className="worstRecords otherRecords">
-           <h2>Most Losses</h2>
-           {results.worst_records.map(record => {
-             return <Art key={record.id} art={record} no_voting={true} />
-           })}
-       </div>
-    </div>
-  )
+    )
+  }
+  
 }
+
+const mapStateToProps = (store) => ({
+  results: store.resultsState.results
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getResults(){
+    dispatch(fetchResults());
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ResultsList);
