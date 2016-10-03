@@ -1,12 +1,15 @@
 import React from 'react';
 import Art from './art.js';
+import {WinLossBar} from './winLossBar.js'
 
-export const ResultsList = ({results}) => {
+
+export const ResultsList = ({results}) => {  
   return(
-    <div className="resultsPage col-xs-12">
+    <div className="resultsPage col-xs-12">        
       <div className='resultsTopWinner resultsTop'>
         <h2>Top Winner: </h2>
         <p>Number of Wins: {results.top_winner.winning_count}</p>
+        <WinLossBar data={results.top_winner} />
         <Art key={results.top_winner.id} art={results.top_winner} no_voting={true} />
       </div>
 
