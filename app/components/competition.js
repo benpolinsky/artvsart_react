@@ -6,6 +6,10 @@ import React from 'react';
 import Loader from 'react-loader-advanced';
 import Art from './art.js';
 import ArtShareButtons from './art_share_buttons.js';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 const spinner = <span className="fa fa-spinner fa-spin"></span>;
 const spinnerStyles = {
   foreground: {
@@ -21,7 +25,11 @@ const spinnerStyles = {
   }
 }
 
-export const Competition = ({competition}) => {
+export const Competition = ({competition, handleClose}) => {
+  const actions = [
+    <FlatButton primary={true} label={"Sign Up"} onTouchTap={handleClose}/>,
+    <FlatButton label={"No Thanks..."} onTouchTap={handleClose} />
+  ];
   return (
     <div className='competition'>
       <Loader 
@@ -30,7 +38,15 @@ export const Competition = ({competition}) => {
         show={competition.isFetching} message={spinner}  >
         <Art key={competition.art.id} art={competition.art} />
         <Art key={competition.challenger.id} art={competition.challenger} />
-
+        {competition.errors &&
+          <div className='quick-errors'>
+            <MuiThemeProvider>
+              <Dialog open={!competition.closeModal} actions={actions} title="YUU">{competition.errors}</Dialog>
+            </MuiThemeProvider>
+        
+          </div>
+        }
+        
         <div className='share-buttons'>
           <p>Share This Battle!</p>
           <ArtShareButtons className="competition-share" share_title={competition.share_title}/>

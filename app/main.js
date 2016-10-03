@@ -16,6 +16,7 @@ import ResultsContainer from './components/containers/results_container.js'
 import SignUpForm from './components/forms/sign_up_form'
 import SignInForm from './components/forms/sign_in_form'
 import ProfilePage from './components/containers/profile_page'
+import TopJudges from './components/containers/top_judges'
 require('../style.css');
 
 // Needed for onTouchTap
@@ -38,6 +39,7 @@ ReactDOM.render(
       <Route path='sign_up' component={SignUpForm} />
       <Route path='sign_in' component={SignInForm} />
       <Route path='profile' component={ProfilePage} />
+      <Route path='top_judges' component={TopJudges} />
     </Route>
   </Router>
 

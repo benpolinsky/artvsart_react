@@ -27,7 +27,8 @@ const initialCompetitionState = {
     },
     share_title: "default share title",
     isFetching: true,
-    winnerSelected: false
+    winnerSelected: false,
+    closeModal: true
   }
 }
 
@@ -48,9 +49,28 @@ const competitionReducer = (state=initialCompetitionState, action) => {
        competition: {
          ...action.competition, 
          share_title: 'ite',
-         isFetching: false
+         isFetching: false,
+         closeModal: true
        }
      }
+  case 'START_SELECT_COMPETITION_WINNER':
+   return {
+     ...state, 
+     competition: {
+       ...state.competition,
+       isFetching: true
+     }
+   }
+  case 'SELECT_COMPETITION_WINNER_FAILED':
+    return {
+      ...state, 
+      competition: {
+        ...state.competition,
+        isFetching: false,
+        errors: action.errors,
+        closeModal: false
+      }
+    } 
   case "SELECT_COMPETITION_WINNER":
     const winning_art_id = action.winner_id;
     const art_pair = [state.competition.art, state.competition.challenger];
@@ -66,17 +86,18 @@ const competitionReducer = (state=initialCompetitionState, action) => {
          share_title: `${winning_art.name} battled ${losing_art.name} AND WON! on artvsart`,
          winnerSelected: true,
          art_percentages: action.competition.art_percentages,
-         isFetching: false
+         isFetching: false,
+         closeModal: false
        }
      }
-   case 'START_SELECT_COMPETITION_WINNER':
-   return {
-     ...state, 
-     competition: {
-       ...state.competition,
-       isFetching: true
-     }
-   } 
+  case "CLOSE_COMPETITION_MODAL":
+    return {
+      ...state, 
+      competition: {
+        ...state.competition,
+        closeModal: true
+      }
+    } 
   }
   return state;
 }

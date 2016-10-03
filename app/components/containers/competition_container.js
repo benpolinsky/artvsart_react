@@ -4,7 +4,7 @@ import Modal from 'react-modal';
 import {ModalContents} from '../modal_contents.js';
 import {Competition} from '../competition.js';
 import {getBattle} from '../../utils/ajax_helpers.js';
-import {getCompetitionData} from '../../actions/index.js'
+import {getCompetitionData, handleCompetitionModal} from '../../actions/index.js'
 
 const customStyles = {
   overlay: {
@@ -28,11 +28,16 @@ class CompetitionContainer extends React.Component{
     Modal.setAppElement('#app');    
     this.bindEscape();
     this.componentDidMount = this.componentDidMount.bind(this);
+    this.signUp = this.signUp.bind(this);
+
   }
+  
   
   componentDidMount(){
     this.props.getCompetition();
+
   }
+  
   
   bindEscape(){
     document.addEventListener("keyup", (e) => {
@@ -42,11 +47,16 @@ class CompetitionContainer extends React.Component{
     })
   }
   
+  signUp(e){
+    const router = this.context.router;
+    this.props.handleClose(e.target.innerText, router);
+  }
+  
   render(){
     return (
       <div className='container'>
         <h1>Battle</h1>
-        <Competition competition={this.props.competition}/>
+        <Competition handleClose={this.signUp} competition={this.props.competition}/>
         <Modal style={customStyles} isOpen={this.props.competition.winnerSelected}>
           <ModalContents competition={this.props.competition} closeModal={this.props.getCompetition} />
         </Modal>
@@ -56,7 +66,8 @@ class CompetitionContainer extends React.Component{
 }
 
 CompetitionContainer.contextTypes = {
-  store: React.PropTypes.object
+  store: React.PropTypes.object,
+  router: React.PropTypes.object
 }
 
 const mapStateToProps = (store) => ({
@@ -66,6 +77,9 @@ const mapStateToProps = (store) => ({
 const mapDispatchToProps = (dispatch) => ({
   getCompetition(){
     dispatch(getCompetitionData());
+  },
+  handleClose(result, router){
+    dispatch(handleCompetitionModal(result, router));
   }
 })
 

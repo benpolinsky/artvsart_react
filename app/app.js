@@ -1,7 +1,8 @@
 import React from 'react';
 import Menu from './components/menu';
 import {connect} from 'react-redux';
-import {getGeneralArtInfo, getUserInfo} from './actions/index.js';
+import {getGeneralArtInfo} from './actions/index.js';
+import {getUserInfo} from './actions/user_auth.js';
 
 class App extends React.Component {
   constructor(){

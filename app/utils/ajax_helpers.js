@@ -9,6 +9,23 @@ const headers = {
   ...token
 }
 
+export const fetchTopJudges = () => {
+  return fetch(`${domain}/api/v1/top_judges`, {
+    credentials: 'include',
+    method: 'GET',
+    headers: headers
+  }).then(response => response.json());
+}
+
+
+export const fetchUserCompetitions = () => {
+  return fetch(`${domain}/api/v1/user/competitions`, {
+    credentials: 'include',
+    method: 'GET',
+    headers: headers
+  }).then(response => response.json());
+}
+
 export const signIn = (user) => {
   return fetch(`${domain}/api/v1/users/sign_in`, {
     credentials: 'include',

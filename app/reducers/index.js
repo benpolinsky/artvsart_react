@@ -3,11 +3,14 @@ import artReducer from './artReducer.js';
 import appReducer from './appReducer.js';
 import competitionReducer from './competitionReducer.js';
 import userReducer from './userReducer.js';
-
+import userCompetitionsReducer from './userCompetitionsReducer.js';
+import judgesReducer from './judgesReducer.js';
 
 export default combineReducers({
   competitionState: competitionReducer,
   artState: artReducer,
   appState: appReducer,
-  userState: userReducer
+  userState: userReducer,
+  userCompetitionsState: userCompetitionsReducer,
+  judgesState: judgesReducer
 })

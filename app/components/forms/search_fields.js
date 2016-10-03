@@ -22,7 +22,7 @@ class SearchFields extends React.Component{
   render(){
     return (
       <div id={this.props.source.toLowerCase()} className={`${this.props.active ? 'active' : 'hidden' + ' import-group form-group'}`}>
-        <h3>{`Search ${this.source}`}</h3>
+        <h3>{`Search ${this.props.source}`}</h3>
         <div className="form-group">
           <label name={this.source_label}>Query: </label>
           <input ref={this.source_label} type='search' onKeyUp={this.update} name={this.source_label} className='form-control' />

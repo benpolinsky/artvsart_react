@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
-import {signOutUser} from '../actions/index.js'
+import {signOutUser} from '../actions/user_auth.js'
 
 class Menu extends React.Component{
   constructor(){
@@ -49,6 +49,7 @@ class Menu extends React.Component{
           <li className="nav-item"><Link className="nav-link" to="/add_new_art">Add New Art</Link></li>
           <li className="nav-item"><Link className="nav-link" to="/import_art">Import Art</Link></li>
           <li className="nav-item"><Link className="nav-link" to="/results">Results</Link></li>
+          <li className="nav-item"><Link className="nav-link" to="/top_judges">Top Judges</Link></li>
           {this.props.user.type == "GuestUser" &&
            <ul className='nav navbar-nav'> 
             <li className="nav-item">
