@@ -4,7 +4,8 @@ import Modal from 'react-modal';
 import {ModalContents} from '../modalContents.js';
 import {Competition} from '../competition.js';
 import {getBattle} from '../../utils/ajaxHelpers.js';
-import {getCompetitionData, handleCompetitionModal} from '../../actions/index.js'
+import {getCompetitionData} from '../../actions/index.js';
+import {handleCompetitionModal} from '../../actions/userAuth.js'
 
 const customStyles = {
   overlay: {

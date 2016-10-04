@@ -6,6 +6,7 @@ import userReducer from './userReducer.js';
 import userCompetitionsReducer from './userCompetitionsReducer.js';
 import judgesReducer from './judgesReducer.js';
 import resultsReducer from './resultsReducer.js';
+import artImportsReducer from './artImportsReducer.js';
 
 export default combineReducers({
   competitionState: competitionReducer,
@@ -14,5 +15,6 @@ export default combineReducers({
   userState: userReducer,
   userCompetitionsState: userCompetitionsReducer,
   judgesState: judgesReducer,
-  resultsState: resultsReducer
+  resultsState: resultsReducer,
+  artImportState: artImportsReducer
 })

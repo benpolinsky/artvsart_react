@@ -13,7 +13,7 @@ export const fetchTopJudges = () => {
   return fetch(`${domain}/api/v1/top_judges`, {
     credentials: 'include',
     method: 'GET',
-    headers: headers
+    headers: {...headers, ...tokenObject()}
   }).then(response => response.json());
 }
 
@@ -22,7 +22,7 @@ export const fetchUserCompetitions = () => {
   return fetch(`${domain}/api/v1/user/competitions`, {
     credentials: 'include',
     method: 'GET',
-    headers: headers
+    headers: {...headers, ...tokenObject()}
   }).then(response => response.json());
 }
 
@@ -30,7 +30,7 @@ export const signIn = (user) => {
   return fetch(`${domain}/api/v1/users/sign_in`, {
     credentials: 'include',
     method: 'POST',
-    headers: headers,
+    headers: {...headers, ...tokenObject()},
     body: JSON.stringify({
       email: user.email,
       password: user.password
@@ -42,7 +42,7 @@ export const signOut = () => {
   return fetch(`${domain}/api/v1/users/sign_out`, {
     credentials: 'include',
     method: 'DELETE',
-    headers: headers,
+    headers: {...headers, ...tokenObject()},
     body: {
     }
   }).then(response => {
@@ -54,7 +54,7 @@ export const registerUser = (user) => {
   return fetch(`${domain}/users/`, {
     credentials: 'include',
     method: 'POST',
-    headers: headers,
+    headers: {...headers, ...tokenObject()},
     body: JSON.stringify({
       user: user
     })
@@ -65,16 +65,16 @@ export const getToken = () => {
   return fetch(`${domain}/api/v1/`, {
     credentials: 'include',
     method: 'GET',
-    headers: headers
+    headers: {...headers, ...tokenObject()}
   }).then(response => response.json());
 }
 
 export const userInfo = () => {
-
+  
   return fetch(`${domain}/api/v1/`, {
     credentials: 'include',
     method: 'GET',
-    headers: headers
+    headers: {...headers, ...tokenObject()}
   }).then(response => response.json());
 }
 
@@ -82,7 +82,7 @@ const getBattle = () => {
   return fetch(`${domain}/api/v1/competitions`, {
     credentials: 'include',
     method: 'POST',
-    headers: headers,
+    headers: {...headers, ...tokenObject()},
     body: {
     }
   }).then(response => response.json());
@@ -92,7 +92,7 @@ const getArtInfo = () => {
   return fetch(`${domain}/api/v1/art`, {
     credentials: 'include',
     method: "GET",
-    headers: headers
+    headers: {...headers, ...tokenObject()}
   }).then(response => response.json());
 }
 
@@ -100,7 +100,7 @@ const fetchArt = (id) => {
   return fetch(`${domain}/api/v1/art/${id}`, {
     credentials: 'include',
     method: 'GET',
-    headers: headers
+    headers: {...headers, ...tokenObject()}
   }).then(response => response.json());
 }
 
@@ -109,7 +109,7 @@ export const getResults = () => {
   return fetch(`${domain}/api/v1/results`, {
     credentials: "include",
     method: "GET",
-    headers: headers
+    headers: {...headers, ...tokenObject()}
   }).then(response => response.json());
 }
 
@@ -117,7 +117,7 @@ const selectWinner = (competition, winner) => {
   return fetch(`${domain}/api/v1/competitions/${competition}`, {
     credentials: 'include',
     method: 'PUT',
-    headers: headers,
+    headers: {...headers, ...tokenObject()},
     body: JSON.stringify({
       competition: {
         winner_id: winner
@@ -130,7 +130,7 @@ const createNewArt = (art) => {
   return fetch(`${domain}/api/v1/art`, {
     credentials: 'include',
     method: "POST",
-    headers: headers, 
+    headers: {...headers, ...tokenObject()},
     body: JSON.stringify({art: art})
   }).then(response => response.json());
 }
@@ -139,7 +139,7 @@ const importArt = (id, source) => {
   return fetch(`${domain}/api/v1/art/import`, {
     credentials: 'include',
     method: 'POST',
-    headers: headers,
+    headers: {...headers, ...tokenObject()},
     body: JSON.stringify({
       id: id,
       source: source
@@ -147,11 +147,11 @@ const importArt = (id, source) => {
   }).then(response => response.json());
 }
 
-const searchSource = (data) => {
+export const searchSource = (data) => {
   return fetch(`${domain}/api/v1/search_source?${to_params(data)}`, {
     credentials: 'include',
     method: "GET",
-    headers: headers
+    headers: {...headers, ...tokenObject()},
   }).then(response => response.json());
 }
 
@@ -163,5 +163,5 @@ function to_params(data) {
 
 export {
   getBattle, getArtInfo, fetchArt, 
-  selectWinner, createNewArt, importArt, searchSource
+  selectWinner, createNewArt, importArt
 }

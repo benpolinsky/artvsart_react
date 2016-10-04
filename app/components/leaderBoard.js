@@ -18,7 +18,7 @@ const newStyles = {
 };
 
 
-class ResultsList extends React.Component{
+class LeaderBoard extends React.Component{
   componentDidMount(){
     this.props.getResults()
   }
@@ -27,7 +27,7 @@ class ResultsList extends React.Component{
     return(
       <div className="resultsPage col-xs-12">        
          <div className="bestRecords otherRecords">
-          <h2>Most Wins</h2>
+          <h2>Leaderboard</h2>
              {this.props.results.map(record => {
                return (
                  <div key={record.id}>
@@ -53,4 +53,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ResultsList);
+export default connect(mapStateToProps, mapDispatchToProps)(LeaderBoard);

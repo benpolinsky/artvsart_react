@@ -3,7 +3,7 @@ import thunk from 'redux-thunk'
 import {auth} from './middlewares/auth.js'
 import reducer from './reducers/index.js';
 
-const middlewares = [thunk, auth];
+const middlewares = [thunk];
 
 
 const store = createStore(reducer, compose(

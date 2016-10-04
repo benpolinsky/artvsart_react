@@ -46,7 +46,7 @@ export const Competition = ({competition, handleClose}) => {
         {competition.errors &&
           <div className='quick-errors'>
             <MuiThemeProvider>
-              <Dialog open={!competition.closeModal} actions={actions} title="YUU">{competition.errors}</Dialog>
+              <Dialog open={!competition.closeModal} actions={actions} title="YUU">{competition.errors.base}</Dialog>
             </MuiThemeProvider>
         
           </div>

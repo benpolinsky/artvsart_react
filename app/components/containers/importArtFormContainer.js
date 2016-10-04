@@ -1,9 +1,10 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import Loader from 'react-loader-advanced';
 import SearchFields from '../forms/searchFields.js';
 import SearchResults from '../forms/searchResults.js'
-import {importArt, searchSource} from '../../utils/ajaxHelpers.js';
 import ImportArtForm from '../forms/ImportArtForm.js';
+import {searchSource} from '../../actions/artImports.js';
 
 const spinner = <span className="fa-spinner fa">SPNNNNNN</span>;
 const sources = ['Discogs', 'Artsy', 'Gracenote', 'Philart', 'IMDB', 'HarvardArt'];
@@ -21,18 +22,8 @@ class ImportArtFormContainer extends React.Component{
   
   selected(e){
     this.setState({
-      selected: e.target.value
+      source: e.target.value
     })
-  }
-  
-  submitForm(e){
-    e.preventDefault();
-    let data = {
-      source: this.state.selected,
-      query: this.state.query
-    }
-    this.setState({loading: true, loading_message: `Searching ${data.source}`});
-    searchSource(data).then((response) => {this.displayResponse(response)});
   }
   
   update(query){
@@ -41,6 +32,14 @@ class ImportArtFormContainer extends React.Component{
     });
   }
   
+  
+  submitForm(e){
+    e.preventDefault();
+    this.props.submitForm(this.state.source, this.state.query);
+  }
+  
+  
+  // move to results action
   displayResponse(data){
     if (data.results.error != undefined) {
       this.setState({
@@ -73,24 +72,19 @@ class ImportArtFormContainer extends React.Component{
   }
   
   componentWillMount(){
-    this.state = {
-      new_data: false,
-      loading: false,
-      loading_message: "loading",
-      results: [],
-      selected: 'Discogs',
-      query: "",
-      listing_id: ""
-    }
+   this.setState({
+     query: "",
+     source: "Discogs"
+   });
   }
   
   
   render(){
     return (
       <div id="searchArtContainer">
-        <Loader show={this.state.loading} message={spinner}  >
-          <ImportArtForm sources={sources} selected_source={this.state.selected} selected={this.selected} update={this.update} submitForm={this.submitForm}/>
-          <SearchResults results={this.state.results} error={this.state.error} importArt={this.importArt} new_data={this.state.new_data}/>
+        <Loader show={this.props.loading} message={spinner}  >
+          <ImportArtForm sources={sources} selected_source={this.state.source} selected={this.selected} update={this.update} submitForm={this.submitForm}/>
+          <SearchResults results={this.props.results} error={this.props.error} importArt={this.importArt} new_data={this.props.new_data}/>
 
         </Loader>
       </div>
@@ -98,5 +92,19 @@ class ImportArtFormContainer extends React.Component{
   }
 }
 
-export default ImportArtFormContainer
+const mapStateToProps = (store) => ({
+  new_data: store.artImportState.new_data,
+  loading: store.artImportState.loading,
+  loading_message: store.artImportState.loadingMessage,
+  results: store.artImportState.results,
+  listing_id: store.artImportState.listing_id
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  submitForm(source, query){
+    dispatch(searchSource(source, query))
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(ImportArtFormContainer)
 

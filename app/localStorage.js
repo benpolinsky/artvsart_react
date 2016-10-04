@@ -10,13 +10,22 @@ export const loadToken = () => {
   }
 }
 
-export const storeToken = (token) => {
+export const loadUser = () => {
   try {
-    localStorage.setItem('token', token)
+    const user = {
+      token: localStorage.getItem('token'),
+      email: localStorage.getItem('email'),
+      type: localStorage.getItem('type')
+    }
+    if (user.token === null || user.token == "") {
+      return undefined
+    }
+    return user
   } catch (e) {
-    // ignore    
+    return undefined
   }
 }
+
 
 export const tokenObject = () => {
   const token = loadToken();
@@ -27,6 +36,20 @@ export const tokenObject = () => {
   }
 }
 
+
+export const storeToken = (user) => {
+  try {
+    localStorage.setItem('token', user.auth_token);
+    localStorage.setItem('email', user.email);
+    localStorage.setItem('type', user.type);
+  } catch (e) {
+    // ignore    
+  }
+}
+
+
 export const deleteToken = () => {
   localStorage.removeItem('token');
+  localStorage.removeItem('email');
+  localStorage.removeItem('type');
 }

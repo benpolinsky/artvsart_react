@@ -39,7 +39,8 @@ class Menu extends React.Component{
 
   render(){
     const totals = this.props.totals;
-    const user = this.props.user;
+    const user_type = this.props.user.type;
+    const user_email = this.props.user.email
     return (
       <nav className='navbar'>
         <Link className="navbar-brand" to="/">AVA</Link>
@@ -48,9 +49,9 @@ class Menu extends React.Component{
           <li className="nav-item"><Link className="nav-link" to="/about">About</Link></li>
           <li className="nav-item"><Link className="nav-link" to="/add_new_art">Add New Art</Link></li>
           <li className="nav-item"><Link className="nav-link" to="/import_art">Import Art</Link></li>
-          <li className="nav-item"><Link className="nav-link" to="/results">Results</Link></li>
+          <li className="nav-item"><Link className="nav-link" to="/leader_board">Leader Board</Link></li>
           <li className="nav-item"><Link className="nav-link" to="/top_judges">Top Judges</Link></li>
-          {this.props.user.type == "GuestUser" &&
+          {user_type== "GuestUser" &&
            <ul className='nav navbar-nav'> 
             <li className="nav-item">
               <Link className="nav-link" to="/sign_up">Register</Link>
@@ -60,10 +61,10 @@ class Menu extends React.Component{
             </li>
            </ul>}
 
-          {this.props.user.type != "GuestUser" &&
+          {user_type != "GuestUser" &&
             <MuiThemeProvider>  
               <DropDownMenu onChange={this.selectMenuItem} value={this.state.menu}>
-                <MenuItem value='email' primaryText={`${user.email}`} />
+                <MenuItem value='email' primaryText={`${user_email}`} />
                 <MenuItem value='profile' primaryText="Your Profile" />
                 <MenuItem value='sign_out' primaryText="Sign Out" />
               </DropDownMenu>

@@ -3,6 +3,7 @@ import Menu from './components/menu';
 import {connect} from 'react-redux';
 import {getGeneralArtInfo} from './actions/index.js';
 import {getUserInfo} from './actions/userAuth.js';
+import * as storage from './localStorage.js'
 
 class App extends React.Component {
   constructor(){
@@ -10,9 +11,8 @@ class App extends React.Component {
     this.componentDidMount = this.componentDidMount.bind(this)
   }
   
-  
   componentDidMount(){
-    this.props.getArtInfo();
+    this.props.initializeApp();
   }
   
   render(){
@@ -32,13 +32,13 @@ const mapStateToProps = (store) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getArtInfo(){
+  initializeApp(){
     dispatch(getGeneralArtInfo());
   } 
 })
 
 App.propTypes = {
-  getArtInfo: React.PropTypes.func.isRequired
+  initializeApp: React.PropTypes.func.isRequired
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App)
