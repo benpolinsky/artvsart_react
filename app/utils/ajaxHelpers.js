@@ -135,7 +135,7 @@ const createNewArt = (art) => {
   }).then(response => response.json());
 }
 
-const importArt = (id, source) => {
+export const importArt = (id, source) => {
   return fetch(`${domain}/api/v1/art/import`, {
     credentials: 'include',
     method: 'POST',
@@ -163,5 +163,5 @@ function to_params(data) {
 
 export {
   getBattle, getArtInfo, fetchArt, 
-  selectWinner, createNewArt, importArt
+  selectWinner, createNewArt
 }

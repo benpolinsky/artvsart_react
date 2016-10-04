@@ -3,7 +3,8 @@ const initialArtState = {
   loading: false,
   loading_message: "loading",
   results: [],
-  listing_id: ""
+  listing_id: "",
+  error: ''
 }
 
 const artImportsReducer = (state=initialArtState, action) => {
@@ -24,7 +25,22 @@ const artImportsReducer = (state=initialArtState, action) => {
     return {
       ...state,
       loading: false,
-      errors: action.errors
+      error: action.errors
+    }
+  case "IMPORT_ART_REQUEST":
+    return {
+      ...state, 
+      loading: true
+    }
+  case "IMPORT_ART_RESPONSE":
+    return {
+      ...state, 
+      loading: false
+    }
+  case "IMPORT_ART_FAILED":
+    return {
+      ...state, 
+      loading: false
     }
   }
   return state
