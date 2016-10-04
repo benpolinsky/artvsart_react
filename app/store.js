@@ -1,6 +1,5 @@
 import {createStore, applyMiddleware, compose} from 'redux'
 import thunk from 'redux-thunk'
-import {auth} from './middlewares/auth.js'
 import reducer from './reducers/index.js';
 
 const middlewares = [thunk];
