@@ -65,7 +65,6 @@ const userReducer = (state=initialUserState, action) => {
     for (var key of Object.keys(action.errors)) {
       action.errors[key].forEach((item) => errors.push(item));
     }
-    console.log(action.errors)
     return {
       ...state,
       errors: errors

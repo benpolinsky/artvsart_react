@@ -16,7 +16,7 @@ const judgesReducer = (state=initialState, action) => {
       }
       
     case "TOP_JUDGES_RESPONSE":
-    console.log(action.judges)
+
       return {
         ...state, 
         topJudges: action.judges,

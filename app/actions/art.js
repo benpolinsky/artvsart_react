@@ -28,7 +28,6 @@ const fetchArtRequestFailed = (response) => ({
 export const createNewArt = (art, router) => (dispatch) => {
   dispatch(createNewArtRequest());
   api.createNewArt(art).then(response => {
-    console.log(response);
     if (response.errors == null) {
       dispatch(createNewArtResponse(response));
       router.push(`/art/${response.art.id}`)

@@ -9,6 +9,17 @@ const headers = {
   ...token
 }
 
+// export const authGithubRequest = () => {
+//   const data = {
+//     client_id: '72999c5c016b8e18a13e',
+//     redirect_url: 'http://localhost::3333/sign_up',
+//     scope: 'user:email',
+//     state: "w80dsadkjsadja"
+//   }
+//   window.open(`https://github.com/login/oauth/authorize?${to_params(data)}`);
+// }
+//
+
 export const facebookLogin = () => {
   return fetch(`${domain}/users/auth/facebook/callback`, {
     credentials: 'include',

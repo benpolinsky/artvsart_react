@@ -7,7 +7,7 @@ import {fetchArt} from '../../actions/art.js';
 
 class ArtContainer extends React.Component{
   componentDidMount(){
-    console.log('mounting');
+
     this.props.loadArt(this.props.params.id);
   }
   

@@ -3,6 +3,33 @@ import * as storage from '../localStorage.js'
 
 //  User Registration and Auth Actions
 
+// export const startAuthorizeGithub = () => (dispatch) => {
+//   dispatch(authGithubRequest());
+//   api.authGithubRequest()
+//   // then(response => {
+//  //    if (response.errors == null) {
+//  //      dispatch(authGithubResposne(response));
+//  //    } else {
+//  //      dispatch(authGithubFailed(response.errors));
+//  //    }
+//  //  })
+// }
+
+// const authGithubRequest = () => ({
+//   type: "BEGIN_GITHUB_AUTHORIZATION"
+// });
+//
+//
+// const authGithubResponse = (response) => ({
+//   type: "GITHUB_AUTHORIZATION_RESPONSE",
+//   response: resposne
+// });
+//
+// const authGithubFailed = (response) => ({
+//   type: "GITHUB_AUTHORIZATION_FAILED",
+//   erros: response.errors
+// });
+
 export const loginToFacebook = (response) => (dispatch) => {
   dispatch(facebookAuthRequest(response));
   api.facebookLogin(response).then(response => {
@@ -74,7 +101,7 @@ export const signOutUser = (router) => (dispatch) => {
   storage.deleteToken();
   dispatch(startUserSignedOut());
   return api.signOut().then(response => {
-    console.log(response);
+
     dispatch(storeUserCredentials(response.guest_user));
     dispatch(userSignedOut(response.guest_user));
     router.push('/');
@@ -96,7 +123,7 @@ export const registerUser = (user, router) => (dispatch) => {
   dispatch(startRegisterUser(user));
   return api.registerUser(user).then(response => {
     if (response.errors != null) {
-      console.log(response)
+
       dispatch(registerUserFailed(response.errors));
     } else {
       dispatch(registerUserSuccessful(response.user));

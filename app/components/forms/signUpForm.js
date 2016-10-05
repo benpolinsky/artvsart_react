@@ -3,11 +3,11 @@
 import React from 'react'
 import {registerUser} from '../../actions/userAuth.js';
 import {connect} from 'react-redux'
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 import FacebookLogin from 'react-facebook-login';
 import {loginToFacebook} from '../../actions/userAuth.js';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 export class SignUpForm extends React.Component {
   constructor(){
@@ -83,7 +83,6 @@ const mapDispatchToProps = (dispatch) => ({
   registerUser(user, router){
     dispatch(registerUser(user, router));
   },
-  
   responseFacebook(response){
     dispatch(loginToFacebook(response));
   }
