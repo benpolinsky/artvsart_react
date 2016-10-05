@@ -25,7 +25,7 @@ class LeaderBoard extends React.Component{
   
   render(){
     return(
-      <div className="resultsPage col-xs-12">        
+      <div className="resultsPage">        
          <div className="bestRecords otherRecords">
           <h2>Leaderboard</h2>
              {this.props.results.map(record => {

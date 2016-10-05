@@ -1,9 +1,11 @@
+// This needs to be combined iwth signInForm, 
+// they are the same except for the action they dispatch on submit
 import React from 'react'
-import ReactDOM from 'react-dom'
 import {registerUser} from '../../actions/userAuth.js';
 import {connect} from 'react-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
+import TextField from 'material-ui/TextField';
 
 export class SignUpForm extends React.Component {
   constructor(){
@@ -24,8 +26,8 @@ export class SignUpForm extends React.Component {
   update(e){
     this.setState({
       newUser: {
-        email: ReactDOM.findDOMNode(this.refs.email).value,
-        password: ReactDOM.findDOMNode(this.refs.password).value
+        email:this.refs.email.getValue(),
+        password: this.refs.password.getValue()
       }
     })
   }
@@ -42,23 +44,17 @@ export class SignUpForm extends React.Component {
   
   render(){
     return (
-      <form className='signUpForm form col-xs-12'>
-        <h2>Sign Up</h2>
-        <div className='form-group'>
-          <label name='email'>Email Address</label>
-          <div className='errors'>{this.props.errors}</div>
-          <input className='form-control' type='email' onKeyUp={this.update} ref='email' />
-        </div>
-        <div className='form-group'>
-          <label name='password'>Password</label>
-          <input className='form-control' type='password' onKeyUp={this.update} ref='password' />
-        </div>
-        <div className='form-group'>
-          <MuiThemeProvider>
+      <form className='signUpForm form'>
+        <h2>Register</h2>
+        <MuiThemeProvider>
+          <div>
+            <TextField type='email' onChange={this.update} ref='email' floatingLabelText="E-Mail" /> <br/>
+            <TextField type='password' onChange={this.update} ref='password' floatingLabelText="Password" /> <br/>
             <RaisedButton label="submit" type="submit" primary={true} onClick={this.submitForm}/>
-          </MuiThemeProvider>
-        </div>
+          </div>
+        </MuiThemeProvider>
       </form>
+     
 
     )
   }

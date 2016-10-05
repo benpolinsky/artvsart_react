@@ -1,9 +1,11 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {selectCompetitionWinner} from '../../actions/index.js'
+import RaisedButton from 'material-ui/RaisedButton';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const VoteButton = ({onClick}) => {
-  return <a className="btn btn-primary vote-btn" href='#' onClick={onClick}>Vote</a>
+  return <MuiThemeProvider><RaisedButton primary={true} onClick={onClick} label="Vote" /></MuiThemeProvider>
 }
 
 

@@ -1,5 +1,7 @@
 import React from 'react';
 import ArtShareButtons from './ArtShareButtons.js';
+import FlatButton from 'material-ui/FlatButton';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 export const ModalContents = ({competition, closeModal}) => {
   const {winning_art, losing_art, art_percentages, share_title} = competition
@@ -33,9 +35,7 @@ export const ModalContents = ({competition, closeModal}) => {
           <ArtShareButtons className='competition-winner-share' share_title={share_title}/>
       </div>
 
-      <button className="btn close-modal-btn btn-lg btn-primary" 
-          onClick={closeModal}> Next Battle!
-      </button>
+      <MuiThemeProvider><FlatButton primary={true} backgroundColor={'#dbe7f1'} onClick={closeModal} label="Next Battle!" /></MuiThemeProvider>
     </div>
   )
 }

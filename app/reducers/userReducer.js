@@ -4,7 +4,8 @@ const initialUserState = {
     type: "",
     token: "",
     authenticated: false,
-    fetching: false
+    fetching: false,
+    admin: false
   }
 }
 
@@ -28,7 +29,8 @@ const userReducer = (state=initialUserState, action) => {
         email: action.user.email,
         type: action.user.type,
         token: action.user.auth_token,
-        authenticated: true
+        authenticated: true,
+        fetching: false
       }
     }
   case "START_USER_SIGNED_OUT":

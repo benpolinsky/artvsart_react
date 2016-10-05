@@ -12,12 +12,9 @@ class ProfilePage extends React.Component{
 
   render(){
     return(
-      <div className='col-xs-12'>
-        <div className='col-xs-12 panel'>
-          <h2>Profile Page</h2>
-          <p>Number of Competitions Judged: {this.props.competitions.length}</p>
-        </div>
-        
+      <div>
+        <h2>Profile Page</h2>
+        <p>Number of Competitions Judged: {this.props.competitions.length}</p>
       </div>
     )
   }

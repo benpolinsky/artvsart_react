@@ -122,35 +122,6 @@ form.import-art .import-group.hidden{
 /* !---- End Search Result ----! */
 
 
-/* Stats/Results page */
-/*
-.resultsPage .resultsTop{
-  width:50%;
-  float:left;
-}
-
-.resultsPage .resultsTop .art img{
-  width:200px;
-  height:200px;
-}
-
-.resultsPage .otherRecords{
-  float:left;
-  clear:both;
-}
-.resultsPage .otherRecords .art-result{
-  width:33.33%;
-}
-
-.resultsPage .otherRecords .art img{
-  width:100px;
-  height:100px;
-}*/
-
-/* End Stats/Results page */
-
-
-
 
 /* --- Loader ---*/
 

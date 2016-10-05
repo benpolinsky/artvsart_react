@@ -35,8 +35,10 @@ class CompetitionContainer extends React.Component{
   
   
   componentDidMount(){
-    this.props.getCompetition();
-
+    // initial competition's id = 0
+    if (this.props.competition.id == 0) {
+      this.props.getCompetition();      
+    }
   }
   
   

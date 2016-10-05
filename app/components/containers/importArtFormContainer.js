@@ -6,7 +6,7 @@ import SearchResults from '../forms/searchResults.js'
 import ImportArtForm from '../forms/ImportArtForm.js';
 import {searchSource, importArt} from '../../actions/artImports.js';
 
-const spinner = <span className="fa-spinner fa">SPNNNNNN</span>;
+const spinner = <span style={{fontSize: 100, color: 'black'}} className="fa-spinner fa fa-spin"></span>;
 const sources = ['Discogs', 'Artsy', 'Gracenote', 'Philart', 'IMDB', 'HarvardArt'];
 
 class ImportArtFormContainer extends React.Component{
@@ -18,15 +18,15 @@ class ImportArtFormContainer extends React.Component{
     this.update = this.update.bind(this);
   }
   
-  selected(e){
+  selected(event, index, value){
     this.setState({
-      source: e.target.value
+      source: value
     })
   }
   
-  update(query){
+  update(event, value){
     this.setState({
-      query: query
+      query: value
     });
   }
   
@@ -51,7 +51,7 @@ class ImportArtFormContainer extends React.Component{
   render(){
     return (
       <div id="searchArtContainer">
-        <Loader show={this.props.loading} message={spinner}  >
+        <Loader backgroundStyle={{backgroundColor: 'white', opacity: 0.6}} show={this.props.loading}>
           <ImportArtForm sources={sources} selected_source={this.state.source} selected={this.selected} update={this.update} submitForm={this.submitForm}/>
           <SearchResults results={this.props.results} error={this.props.error} importArt={this.importArt} />
         </Loader>

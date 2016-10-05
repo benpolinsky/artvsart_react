@@ -9,7 +9,7 @@ export default class AboutContainer extends React.Component {
   
   render(){
     return (
-      <div className='col-xs-12'>
+      <div>
         <h1>About Art Vs Art</h1>
         <div className="aboutArtVsArt">
           Lorem ipsum dolor sit amet, consectetur adipisicing elit, 

@@ -10,15 +10,9 @@ import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-const spinner = <span className="fa fa-spinner fa-spin"></span>;
 const spinnerStyles = {
-  foreground: {
-    color: 'black',
-    fontSize: '100px',
-    height: '200px'
-  },
   background: {
-    backgroundColor: 'rgba(10,10,10,0.5)',
+    backgroundColor: 'rgba(255,255,255.0.8)',
     position: 'fixed',
     left: '0',
     top: '0'
@@ -32,10 +26,8 @@ export const Competition = ({competition, handleClose}) => {
   ];
   return (
     <div className='competition'>
-      <Loader 
-        foregroundStyle={spinnerStyles.foreground} 
-        backgroundStyle={spinnerStyles.background} 
-        show={competition.isFetching} message={spinner}  >
+      <Loader backgroundStyle={spinnerStyles.background} show={competition.isFetching}>
+        
         <div className='art'>
           <Art key={competition.art.id} art={competition.art} />
         </div>
@@ -46,7 +38,7 @@ export const Competition = ({competition, handleClose}) => {
         {competition.errors &&
           <div className='quick-errors'>
             <MuiThemeProvider>
-              <Dialog open={!competition.closeModal} actions={actions} title="YUU">{competition.errors.base}</Dialog>
+              <Dialog open={!competition.closeModal} actions={actions} title="Oh No!">{competition.errors.base}</Dialog>
             </MuiThemeProvider>
         
           </div>

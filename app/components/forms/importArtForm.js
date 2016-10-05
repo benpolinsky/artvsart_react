@@ -1,45 +1,28 @@
 import React from 'react';
 import SearchFields from './searchFields.js';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+import RaisedButton from 'material-ui/RaisedButton';
 
-class ImportArtForm extends React.Component{
-  constructor(){
-    super();
-    this.update = this.update.bind(this);
-  }
-  
-  update(data){
-   this.props.update(data);
-  }
-    
-  render(){
-    
-    return (
-      <form onSubmit={this.props.submitForm} className='import-art col-xs-12'>
-
-        <div className="form-group">
-          <label id="import-source">Select Source</label>
-          <select name="import-source" ref="importSource" defaultValue={this.props.selected_source} onChange={this.props.selected} className='form-control'>
-            <option value=''>Please Select</option>
-            {this.props.sources.map(source => <option key={source} value={source}>{source}</option>)}
-          </select>
-        </div>
-      
-        {this.props.sources.map(source => {
-          return <SearchFields active={this.props.selected_source == source} 
-                               ref={source} 
-                               key={source}
-                               update={this.update}
-                               source={source} />
-        })}
-      
-        <div className="form-group">
-          <input className="btn btn-primary" type="submit" value='Search'/>
-        </div>
-      
-      </form>
-
-    )
-  }
+const ImportArtForm = ({submitForm, selected_source, selected, sources, update}) => {
+  return (
+    <form onSubmit={submitForm} className='import-art'>
+      <h2>Import Art</h2>
+      <div>
+        <MuiThemeProvider>  
+          <SelectField name="import-source" value={selected_source} onChange={selected}>
+            {sources.map(source => <MenuItem key={source} primaryText={source} value={source}/>)}
+          </SelectField>
+        </MuiThemeProvider>  
+        
+        <SearchFields update={update} source={selected_source} />
+        <MuiThemeProvider>  
+          <RaisedButton primary={true} type="submit" label='Search'/>
+        </MuiThemeProvider>  
+      </div>
+    </form>
+  )
 }
 
 export default ImportArtForm

@@ -28,7 +28,7 @@ class NewArtForm extends React.Component{
 
   render(){
     return(
-      <form ref='form' onSubmit={this.props.submit} className='createArtForm col-xs-12'>
+      <form ref='form' onSubmit={this.props.submit} className='createArtForm'>
         <h2>Add New Art</h2>
         <TextField style={textFieldStyles} ref='name' type='text' floatingLabelText="Name" onChange={this.update} defaultValue=""/>
         <TextField style={textFieldStyles} ref='creator' type='text' floatingLabelText="Creator" onChange={this.update} defaultValue="" />
@@ -36,7 +36,7 @@ class NewArtForm extends React.Component{
         <div className="uploadToS3">
           {this.props.children}
         </div>
-        <RaisedButton primary={true} style={textFieldStyles} type="submit">Create!</RaisedButton>
+        <RaisedButton primary={true} style={textFieldStyles} type="submit" label="Create"></RaisedButton>
       </form>
     )
   }

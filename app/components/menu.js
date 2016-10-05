@@ -15,16 +15,12 @@ class Menu extends React.Component{
   
   componentWillMount(){
     this.state = {
-      menu: 'email'
+      menu: 'email',
+      admin: "addNewArt"
     }
   }
   
-  componentDidMount(){
-    this.setState({
-      menu: 'email'
-    })
-  }
-  
+
   selectMenuItem = (event, index, value) => {
     switch (value) {
     case 'profile':
@@ -34,6 +30,18 @@ class Menu extends React.Component{
       this.setState({menu: "Signing Out..."})
       this.props.signOutUser(this.context.router)
       break;      
+    case 'addNewArt':
+      this.context.router.push(`/add_new_art`);
+      break;
+    case 'importArt':
+      this.context.router.push(`/import_art`);
+      break;      
+    }
+  }
+  
+  selectAdminItem = (event, index, value) => {
+    switch (value) {
+    
     }
   }
 
@@ -47,11 +55,9 @@ class Menu extends React.Component{
         <ul className='nav navbar-nav'>
           <li className="nav-item"><Link className="nav-link" to="/competition">Competition</Link></li>
           <li className="nav-item"><Link className="nav-link" to="/about">About</Link></li>
-          <li className="nav-item"><Link className="nav-link" to="/add_new_art">Add New Art</Link></li>
-          <li className="nav-item"><Link className="nav-link" to="/import_art">Import Art</Link></li>
           <li className="nav-item"><Link className="nav-link" to="/leader_board">Leader Board</Link></li>
           <li className="nav-item"><Link className="nav-link" to="/top_judges">Top Judges</Link></li>
-          {user_type== "GuestUser" &&
+          {user_type == "GuestUser" &&
            <ul className='nav navbar-nav'> 
             <li className="nav-item">
               <Link className="nav-link" to="/sign_up">Register</Link>
@@ -60,8 +66,20 @@ class Menu extends React.Component{
               <Link className="nav-link" to="/sign_in">Sign In</Link>
             </li>
            </ul>}
+           
+           {user_type == "admin" &&
+             <MuiThemeProvider>  
+               <DropDownMenu onChange={this.selectMenuItem} value={this.state.menu}>
+                  <MenuItem value='email' primaryText={`${user_email}`} />
+                  <MenuItem value='profile' primaryText="Your Profile" />
+                  <MenuItem value='sign_out' primaryText="Sign Out" />
+                 <MenuItem value='addNewArt' primaryText='Add New Art' />
+                 <MenuItem value='importArt' primaryText="Import Art" />
+               </DropDownMenu>
+             </MuiThemeProvider>
+         }
 
-          {user_type != "GuestUser" &&
+          {user_type == null &&
             <MuiThemeProvider>  
               <DropDownMenu onChange={this.selectMenuItem} value={this.state.menu}>
                 <MenuItem value='email' primaryText={`${user_email}`} />
@@ -69,7 +87,8 @@ class Menu extends React.Component{
                 <MenuItem value='sign_out' primaryText="Sign Out" />
               </DropDownMenu>
             </MuiThemeProvider>}
-
+            
+        
         </ul>
   
         <ul className="pull-right nav navbar-nav">
