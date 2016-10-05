@@ -5,10 +5,10 @@ import * as storage from '../localStorage.js'
 export const searchSource = (source, query) => (dispatch) => {
   dispatch(searchSourceRequest());
   return api.searchSource({source: source, query: query}).then(response => {
-    if (response.errors == null) {
+    if (response.results.error == null) {
       dispatch(displayResultsSuccess(response));      
     } else {
-      dispatch(displayResultsErrors(response));
+      dispatch(displayResultsErrors(response.results.error));
     }
   })
 }
@@ -22,9 +22,9 @@ const displayResultsSuccess = (response) => ({
   results: response.results
 });
 
-const displayResultsErrors = (response) => ({
+const displayResultsErrors = (error) => ({
   type: "DISPLAY_RESULTS_ERRORS",
-  errors: response.errors
+  errors: error
 });
 
 export const importArt = (id, source) => (dispatch) => {

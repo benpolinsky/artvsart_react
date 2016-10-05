@@ -1,12 +1,11 @@
-// essentially the NewArtFormContainer
 import React from 'react';
 import {connect} from 'react-redux';
 import {Router} from 'react-router';
 import Loader from 'react-loader-advanced';
 import ReactS3Uploader from 'react-s3-uploader';
 import NewArtForm from '../forms/NewArtForm.js';
-import {createNewArt} from '../../utils/ajaxHelpers.js';
-
+import {createNewArt} from '../../actions/art.js';
+import * as storage from '../../localStorage.js';
 
 class NewArtFormContainer extends React.Component {
   constructor(){
@@ -24,15 +23,20 @@ class NewArtFormContainer extends React.Component {
     }
     this.toggleLoader(false);
   }
+  componentDidMount(){
+    this.setState({
+      art: {
+        name: "",
+        creator: "",
+        description: ""
+      }
+    })
+  }
   
   createNewArt(e){
-    // we'll need to deal with this in the store
     e.preventDefault();
-    this.toggleLoader(true);
-    createNewArt(this.state.art).then((response) => {
-      this.toggleLoader(false);
-      return (this.handleResponse(response));
-    })
+    const router = this.context.router
+    this.props.createNewArt(this.state.art, router);
   }
   
   handleResponse(response){
@@ -46,8 +50,6 @@ class NewArtFormContainer extends React.Component {
   }
   
   updateArtValues(art){
-    // let's keep this in local state.
-    // and we'll dispatch in CreateNewArt above.
     this.setState({
       art: art
     })
@@ -63,9 +65,11 @@ class NewArtFormContainer extends React.Component {
     // same with this, no need to call the store, we'll keep the state locally.
     this.toggleLoader(false, () => {
       const signed_url = file.signedUrl.split('?X-Amz-Expires')[0];
+      const old_art = this.state.art;
       this.setState({
         art: {
-          url: signed_url
+          ...old_art, 
+          image: signed_url
         }
       })
     }); 
@@ -82,6 +86,7 @@ class NewArtFormContainer extends React.Component {
             onProgress={this.onUploadProgress}
             onError={this.onUploadError}
             onFinish={this.onUploadFinish}
+            signingUrlHeaders={storage.tokenObject()}
             server="http://localhost:3000" />
         </NewArtForm>
       </Loader>
@@ -96,6 +101,13 @@ NewArtFormContainer.contextTypes = {
   
 const mapStateToProps = (store) => ({
   art: store.artState.art
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  createNewArt(art, router){
+    dispatch(createNewArt(art, router));
+  }
 })
 
-export default connect(mapStateToProps)(NewArtFormContainer)
+
+export default connect(mapStateToProps, mapDispatchToProps)(NewArtFormContainer)

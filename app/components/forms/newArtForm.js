@@ -1,5 +1,4 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -19,11 +18,11 @@ class NewArtForm extends React.Component{
     return { muiTheme: getMuiTheme() }
   }
   
-  update(e){    
+  update(e){
     this.props.update({
-     name: ReactDOM.findDOMNode(this.refs.name).value,
-     creator: ReactDOM.findDOMNode(this.refs.creator).value,
-     description: ReactDOM.findDOMNode(this.refs.description).value
+     name: this.refs.name.getValue(),
+     creator: this.refs.creator.getValue(),
+     description: this.refs.description.getValue()
     });
   }
 

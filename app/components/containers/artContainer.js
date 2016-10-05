@@ -1,32 +1,29 @@
 import React from 'react';
+import {connect} from 'react-redux'
 import Art from '../art.js';
 import { Router, Route, Link, browserHistory } from 'react-router';
-import {fetchArt} from '../../utils/ajaxHelpers.js';
+import {fetchArt} from '../../actions/art.js';
 
 
-export default class ArtContainer extends React.Component{
-  constructor(){
-    super();
-  }
-  
-  componentWillMount(){
-    this.state = {
-      art: {
-        id: 0,
-        name: "",
-        creator: "",
-        description: "",
-        image: ""
-      }
-    }
-    fetchArt(this.props.params.id).then(res => {
-      this.setState({
-        art: res.art
-      })
-    })
+class ArtContainer extends React.Component{
+  componentDidMount(){
+    console.log('mounting');
+    this.props.loadArt(this.props.params.id);
   }
   
   render(){
-    return <Art key={this.state.art.id} art={this.state.art} no_voting={true} />
+    return <Art key={this.props.art.id} art={this.props.art} no_voting={true} />
   }
 }
+
+const mapStateToProps = (state) => ({
+  art: state.artState.art
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  loadArt(id){
+    dispatch(fetchArt(id));
+  }
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ArtContainer)

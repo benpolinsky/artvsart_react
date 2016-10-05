@@ -12,13 +12,15 @@ const artImportsReducer = (state=initialArtState, action) => {
   case "SEARCH_SOURCE_REQUEST":
     return {
       ...state, 
-      loading: true
+      loading: true,
+      error: ''
     }
   case "DISPLAY_RESULTS_SUCCESS":
     return {
       ...state, 
       loading: false,
-      results: action.results
+      results: action.results,
+      error: ''
     }
     
   case "DISPLAY_RESULTS_ERRORS":
@@ -30,17 +32,20 @@ const artImportsReducer = (state=initialArtState, action) => {
   case "IMPORT_ART_REQUEST":
     return {
       ...state, 
-      loading: true
+      loading: true,
+      error: ''
     }
   case "IMPORT_ART_RESPONSE":
     return {
       ...state, 
-      loading: false
+      loading: false,
+      error: ''
     }
   case "IMPORT_ART_FAILED":
     return {
       ...state, 
-      loading: false
+      loading: false,
+      error: action.errors
     }
   }
   return state
