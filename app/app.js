@@ -4,6 +4,13 @@ import {connect} from 'react-redux';
 import {getGeneralArtInfo} from './actions/index.js';
 import {getUserInfo} from './actions/userAuth.js';
 import * as storage from './localStorage.js'
+import { StyleSheet, css } from 'aphrodite';
+
+const styles = StyleSheet.create({
+  container: {
+    paddingTop: 40
+  }
+});
 
 class App extends React.Component {
   constructor(){
@@ -19,7 +26,7 @@ class App extends React.Component {
     return (
       <div>
         <Menu totals={this.props.app.totals} user={this.props.user} />
-        <div>{this.props.children}</div>
+        <div className={css(styles.container)}>{this.props.children}</div>
       </div>
     )
   }

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import {Link} from 'react-router';
 import {Router} from 'react-router';
 import {connect} from 'react-redux';
@@ -7,7 +6,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import MenuItem from 'material-ui/MenuItem';
 import {signOutUser} from '../actions/userAuth.js'
-
 class Menu extends React.Component{
   constructor(){
     super();
@@ -50,13 +48,15 @@ class Menu extends React.Component{
     const user_type = this.props.user.type;
     const user_email = this.props.user.email
     return (
-      <nav className='navbar'>
-        <Link className="navbar-brand" to="/">AVA</Link>
-        <ul className='nav navbar-nav'>
-          <li className="nav-item"><Link className="nav-link" to="/competition">Competition</Link></li>
-          <li className="nav-item"><Link className="nav-link" to="/about">About</Link></li>
-          <li className="nav-item"><Link className="nav-link" to="/leader_board">Leader Board</Link></li>
-          <li className="nav-item"><Link className="nav-link" to="/top_judges">Top Judges</Link></li>
+      <nav className="mainMenu">
+        <ul>
+          <Link to="/">AVA</Link>
+    
+          <li><Link to="/competition">Competition</Link></li>
+          <li><Link to="/about">About</Link></li>
+          <li><Link to="/leader_board">Leader Board</Link></li>
+          <li><Link to="/top_judges">Top Judges</Link></li>
+    
           {user_type == "GuestUser" &&
            <ul className='nav navbar-nav'> 
             <li className="nav-item">
@@ -81,7 +81,7 @@ class Menu extends React.Component{
 
           {user_type == null &&
             <MuiThemeProvider>  
-              <DropDownMenu onChange={this.selectMenuItem} value={this.state.menu}>
+              <DropDownMenu onChange={this.selectMenuItem} value={this.state.menu} labelStyle={{color: 'white'}} >
                 <MenuItem value='email' primaryText={`${user_email}`} />
                 <MenuItem value='profile' primaryText="Your Profile" />
                 <MenuItem value='sign_out' primaryText="Sign Out" />

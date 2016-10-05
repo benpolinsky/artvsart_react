@@ -1,0 +1,26 @@
+nav.mainMenu{
+  position: 'fixed';
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 40px;
+  background-color: black;
+  margin-bottom: 50px;
+  padding:0;
+}
+
+nav.mainMenu ul{
+  list-style-type:none;
+  padding:0;
+  display:flex;
+}
+
+nav.mainMenu ul li{
+
+
+}
+
+nav.mainMenu ul li a{
+  color:white;
+  
+}

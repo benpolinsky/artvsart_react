@@ -17,8 +17,14 @@ import LeaderBoard from './components/leaderBoard.js'
 import SignUpForm from './components/forms/signUpForm.js'
 import SignInForm from './components/forms/signInForm.js'
 import ProfilePage from './components/containers/profilePage.js'
-import TopJudges from './components/containers/topJudges.js'
-require('../style.css');
+import TopJudges from './components/containers/topJudges.js';
+
+const styles = ['reset', 'style', 'navbar'];
+for (let style in styles) {
+  require(`../styles/${styles[style]}.css`);
+}
+
+
 
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
