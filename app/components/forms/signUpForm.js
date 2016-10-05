@@ -6,6 +6,8 @@ import {connect} from 'react-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import FacebookLogin from 'react-facebook-login';
+import {loginToFacebook} from '../../actions/userAuth.js';
 
 export class SignUpForm extends React.Component {
   constructor(){
@@ -40,22 +42,31 @@ export class SignUpForm extends React.Component {
       this.props.registerUser(this.state.newUser, router);      
     }
   }
-  
+
   
   render(){
     return (
-      <form className='signUpForm form'>
-        <h2>Register</h2>
-        <MuiThemeProvider>
-          <div>
-            <TextField type='email' onChange={this.update} ref='email' floatingLabelText="E-Mail" /> <br/>
-            <TextField type='password' onChange={this.update} ref='password' floatingLabelText="Password" /> <br/>
-            <RaisedButton label="submit" type="submit" primary={true} onClick={this.submitForm}/>
-          </div>
-        </MuiThemeProvider>
-      </form>
-     
-
+      <div>
+        <FacebookLogin
+          appId="1118634491523505"
+          autoLoad={false}
+          fields="name,email,picture"
+          callback={this.props.responseFacebook}
+          cssClass="my-facebook-button-class"
+          icon="fa-facebook"
+          cookie={true}
+        />
+        <form className='signUpForm form'>
+          <h2>Register</h2>
+          <MuiThemeProvider>
+            <div>
+              <TextField type='email' onChange={this.update} ref='email' floatingLabelText="E-Mail" /> <br/>
+              <TextField type='password' onChange={this.update} ref='password' floatingLabelText="Password" /> <br/>
+              <RaisedButton label="submit" type="submit" primary={true} onClick={this.submitForm}/>
+            </div>
+          </MuiThemeProvider>
+        </form>
+      </div>
     )
   }
 }
@@ -71,6 +82,10 @@ const mapStateToProps = (store) => ({
 const mapDispatchToProps = (dispatch) => ({
   registerUser(user, router){
     dispatch(registerUser(user, router));
+  },
+  
+  responseFacebook(response){
+    dispatch(loginToFacebook(response));
   }
 })
 

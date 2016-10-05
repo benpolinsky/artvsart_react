@@ -11,6 +11,12 @@ const initialUserState = {
 
 const userReducer = (state=initialUserState, action) => {
   switch (action.type) {
+  case "FACEBOOK_AUTH_REQUEST_START": 
+    return state
+  case "FACEBOOK_AUTH_SUCCESS": 
+    return state
+  case "FACEBOOK_AUTH_FAILED": 
+    return state
   case "START_RECEIVE_USER_INFO":
     return {
       ...state,

@@ -9,6 +9,16 @@ const headers = {
   ...token
 }
 
+export const facebookLogin = () => {
+  return fetch(`${domain}/users/auth/facebook/callback`, {
+    credentials: 'include',
+    method: 'GET',
+    headers: {...headers, ...tokenObject()}
+  }).then(response => response.json());
+
+}
+
+
 export const fetchTopJudges = () => {
   return fetch(`${domain}/api/v1/top_judges`, {
     credentials: 'include',

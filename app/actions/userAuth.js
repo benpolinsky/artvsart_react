@@ -2,6 +2,34 @@ import * as api from '../utils/ajaxHelpers.js';
 import * as storage from '../localStorage.js'
 
 //  User Registration and Auth Actions
+
+export const loginToFacebook = (response) => (dispatch) => {
+  dispatch(facebookAuthRequest(response));
+  api.facebookLogin(response).then(response => {
+    if (response.errors == null) {
+      dispatch(facebookAuthSuccess(response));
+      dispatch(storeUserCredentials(response.user));
+      dispatch(signInUserSuccessful(response.user));
+    } else {
+      dispatch(facebookAuthFailed(response.errors));
+    }
+  })
+}
+
+const facebookAuthFailed = (errors) => ({
+  type: "FACEBOOK_AUTH_FAILED"
+});
+
+const facebookAuthRequest = (errors) => ({
+  type: "FACEBOOK_AUTH_REQUEST_START",
+  errors: errors
+})
+
+const facebookAuthSuccess = (response) => ({
+  type: "FACEBOOK_AUTH_SUCCESS",
+  response: response
+})
+
 export const signUserIn = (user, router) => (dispatch) => {
   dispatch(startSignUserIn(user));
   return api.signIn(user).then(response => {
