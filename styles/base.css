@@ -24,3 +24,10 @@ h1.mainTitle{
   font-weight:700;
   padding:20px 0;
 }
+
+#mainContainer{
+  height:100%;
+  min-height:400px;
+  padding-bottom:250px;
+  position:relative;
+}

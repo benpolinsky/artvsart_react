@@ -26,7 +26,8 @@ const styles = [
   'navbar', 
   'navDrawer', 
   'competition', 
-  'importArt'
+  'importArt',
+  'footer'
 ];
 
 for (let style in styles) {

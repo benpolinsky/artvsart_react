@@ -1,10 +1,11 @@
 import React from 'react';
 import Menu from './components/menu';
+import Footer from './components/footer.js'
 import {connect} from 'react-redux';
 import {getGeneralArtInfo} from './actions/index.js';
 import {getUserInfo} from './actions/userAuth.js';
 import * as storage from './localStorage.js'
-import { StyleSheet, css } from 'aphrodite';
+import { StyleSheet, css } from 'aphrodite'
 
 
 class App extends React.Component {
@@ -20,8 +21,12 @@ class App extends React.Component {
   render(){
     return (
       <div>
-        <Menu totals={this.props.app.totals} user={this.props.user} />
-        <div>{this.props.children}</div>
+        <div id="mainContainer">
+          <Menu totals={this.props.app.totals} user={this.props.user} />
+          <div>{this.props.children}</div>
+           <Footer />
+        </div>
+       
       </div>
     )
   }
