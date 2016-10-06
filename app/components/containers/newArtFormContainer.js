@@ -19,7 +19,17 @@ class NewArtFormContainer extends React.Component {
 
   componentWillMount(){
     this.state = {
-      loading: true
+      loading: true,
+      art: {
+        name: "",
+        creator: "",
+        description: "",
+        errors: {
+          name: [],
+          creator: [],
+          description: []
+        }
+      }
     }
     this.toggleLoader(false);
   }
@@ -28,7 +38,13 @@ class NewArtFormContainer extends React.Component {
       art: {
         name: "",
         creator: "",
-        description: ""
+        description: "",
+        errors: { 
+          name: [],
+          creator: [],
+          description: []
+          
+        }
       }
     })
   }
@@ -36,7 +52,45 @@ class NewArtFormContainer extends React.Component {
   createNewArt(e){
     e.preventDefault();
     const router = this.context.router
-    this.props.createNewArt(this.state.art, router);
+    this.validateForm() && this.props.createNewArt(this.state.art, router);
+  }
+
+  // It'd be nice to find a library
+  // So many edge cases
+  validateForm(){
+    let errors = {
+      name: [],
+      creator: [],
+      description: []
+    }
+    if (this.state.art.name.length < 2) {
+      errors = {
+        ...errors,
+        name: ['please enter a minimum of 2 letters']
+      }
+    } 
+    if (this.state.art.creator.length < 2) {
+      errors = {
+        ...errors,
+        creator: ['please enter a minimum of 2 letters']
+      }
+    }
+    if (this.state.art.description.length < 10) {
+      errors = {
+        ...errors,
+        description: ['please enter a minimum of 10 letters']
+      }
+    }
+    
+    this.setState({
+      ...this.state,
+      art: {
+        ...this.state.art,
+        errors: errors
+      }
+    })
+    const errorCount = Object.values(errors);
+    return !errorCount.some((error) => { return error.length > 0})
   }
   
   handleResponse(response){
@@ -50,9 +104,14 @@ class NewArtFormContainer extends React.Component {
   }
   
   updateArtValues(art){
+    console.log(art);
     this.setState({
-      art: art
+      art: {
+        ...this.state.art,
+        ...art
+      }
     })
+    console.log(this.state)
   }
   
   onUploadStart(file, next){
@@ -78,7 +137,7 @@ class NewArtFormContainer extends React.Component {
   render(){
     return (
       <Loader show={this.state.loading} message={'loading'} foregroundStyle={{color: 'white'}} backgroundStyle={{backgroundColor: 'black'}} >
-        <NewArtForm update={this.updateArtValues} submit={this.createNewArt} triggerLoader={this.toggleLoader}>
+        <NewArtForm update={this.updateArtValues} errors={this.state.art.errors} submit={this.createNewArt} triggerLoader={this.toggleLoader}>
           <ReactS3Uploader
             signingUrl="/api/v1/s3/sign"
             accept="image/*"

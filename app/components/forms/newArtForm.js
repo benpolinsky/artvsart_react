@@ -30,9 +30,9 @@ class NewArtForm extends React.Component{
     return(
       <form ref='form' onSubmit={this.props.submit} className='createArtForm'>
         <h2>Add New Art</h2>
-        <TextField style={textFieldStyles} ref='name' type='text' floatingLabelText="Name" onChange={this.update} defaultValue=""/>
-        <TextField style={textFieldStyles} ref='creator' type='text' floatingLabelText="Creator" onChange={this.update} defaultValue="" />
-        <TextField style={textFieldStyles} ref='description' floatingLabelText="Description" multiLine={true} onChange={this.update} defaultValue="" />
+        <TextField style={textFieldStyles} errorText={this.props.errors.name.join(", ")} ref='name' type='text' floatingLabelText="Name" onChange={this.update} defaultValue=""/>
+        <TextField style={textFieldStyles} errorText={this.props.errors.creator.join(", ")} ref='creator' type='text' floatingLabelText="Creator" onChange={this.update} defaultValue="" />
+        <TextField style={textFieldStyles} errorText={this.props.errors.description.join(", ")} ref='description' floatingLabelText="Description" multiLine={true} onChange={this.update} defaultValue="" />
         <div className="uploadToS3">
           {this.props.children}
         </div>

@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Loader from 'react-loader-advanced';
-import SearchFields from '../forms/searchFields.js';
 import SearchResults from '../forms/searchResults.js'
 import ImportArtForm from '../forms/ImportArtForm.js';
 import {searchSource, importArt} from '../../actions/artImports.js';
@@ -16,7 +15,20 @@ class ImportArtFormContainer extends React.Component{
     this.importArt = this.importArt.bind(this);
     this.selected = this.selected.bind(this);
     this.update = this.update.bind(this);
+    this.validateForm = this.validateForm.bind(this);
   }
+  
+  componentWillMount(){
+   this.setState({
+     query: "",
+     source: "Discogs",
+     formErrors: {
+       query: [],
+       source: []
+     }
+   });
+  }
+  
   
   selected(event, index, value){
     this.setState({
@@ -33,26 +45,48 @@ class ImportArtFormContainer extends React.Component{
   
   submitForm(e){
     e.preventDefault();
-    this.props.submitForm(this.state.source, this.state.query);
+    
+    this.validateForm() && this.props.submitForm(this.state.source, this.state.query);
+  }
+  
+  validateForm(){
+    if (this.state.query.length < 2) {
+      this.setState({
+        formErrors: {
+          ...this.state.formErrors,
+          query: ['please enter a minimum of 2 letters']
+        }
+      })
+      return false
+    } else {
+      this.setState({
+        formErrors: {
+          source: [],
+          query: []
+        }
+      })
+      return true
+    }
   }
   
   importArt(id){
     this.props.importArt(id, this.state.source);
   }
   
-  componentWillMount(){
-   this.setState({
-     query: "",
-     source: "Discogs"
-   });
-  }
-  
+ 
   
   render(){
     return (
       <div id="searchArtContainer">
         <Loader backgroundStyle={{backgroundColor: 'white', opacity: 0.6}} show={this.props.loading}>
-          <ImportArtForm sources={sources} selected_source={this.state.source} selected={this.selected} update={this.update} submitForm={this.submitForm}/>
+          <ImportArtForm 
+            sources={sources} 
+            selected_source={this.state.source} 
+            selected={this.selected} 
+            update={this.update} 
+            submitForm={this.submitForm}
+            errors={this.state.formErrors}
+          />
           <SearchResults results={this.props.results} error={this.props.error} importArt={this.importArt} />
         </Loader>
       </div>

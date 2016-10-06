@@ -1,6 +1,9 @@
+#app{
+  overflow:hidden;
+}
 p, div {
   font-family: 'Roboto', sans-serif; 
-  font-weight:400 !important;
+  font-weight:400;
 }
 
 h1 {
@@ -8,3 +11,16 @@ h1 {
   font-weight:700 !important;
 }
 
+.container{
+  padding:10px;
+  box-sizing:border-box;
+  max-width:1500px;
+  margin:0 auto;
+}
+
+h1.mainTitle{
+  text-align:center;
+  font-size:40px;
+  font-weight:700;
+  padding:20px 0;
+}

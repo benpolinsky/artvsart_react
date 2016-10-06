@@ -148,6 +148,7 @@ const selectWinner = (competition, winner) => {
 }
 
 const createNewArt = (art) => {
+  console.log(art);
   return fetch(`${domain}/api/v1/art`, {
     credentials: 'include',
     method: "POST",

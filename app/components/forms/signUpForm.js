@@ -15,30 +15,70 @@ export class SignUpForm extends React.Component {
     this.update = this.update.bind(this);
     this.submitForm = this.submitForm.bind(this);
   }
-  
-  componentDidMount(){
+  componentWillMount(){
     this.setState({
       newUser: {
         email: 'your@email',
-        password: ''
+        password: '',
+        errors: {
+          password: [],
+          email: []
+        }
       }
     })
   }
   
+
+  
   update(e){
     this.setState({
       newUser: {
+        ...this.state.newUser,
         email:this.refs.email.getValue(),
         password: this.refs.password.getValue()
       }
     })
   }
   
+  validateForm(){
+    
+    let errors = {
+      email: [],
+      password: []
+    }
+    
+    if (this.state.newUser.email.length < 2) {
+      errors = {
+        ...errors,
+        email: ['please enter a minimum of 2 letters']
+      }
+    } 
+    if (this.state.newUser.password.length < 2) {
+      errors = {
+        ...errors,
+        password: ['please enter a minimum of 2 letters']
+      }
+    }
+    
+    
+    this.setState({
+      ...this.state,
+      newUser: {
+        ...this.state.newUser,
+        errors: errors
+      }
+    })
+    const errorCount = Object.values(errors);
+    return !errorCount.some((error) => { return error.length > 0})
+  }
+  
+  
   submitForm(e){
     e.preventDefault();
     const router = this.context.router;
     const newUser = this.state.newUser;
-    if (newUser.email.length > 6 && newUser.password.length > 3) {
+    delete newUser.errors
+    if (this.validateForm()) {
       this.props.registerUser(this.state.newUser, router);      
     }
   }
@@ -60,8 +100,8 @@ export class SignUpForm extends React.Component {
           <h2>Register</h2>
           <MuiThemeProvider>
             <div>
-              <TextField type='email' onChange={this.update} ref='email' floatingLabelText="E-Mail" /> <br/>
-              <TextField type='password' onChange={this.update} ref='password' floatingLabelText="Password" /> <br/>
+              <TextField type='email' errorText={this.state.newUser.errors.email.join(", ")} onChange={this.update} ref='email' floatingLabelText="E-Mail" /> <br/>
+              <TextField type='password' errorText={this.state.newUser.errors.email.join(", ")} onChange={this.update} ref='password' floatingLabelText="Password" /> <br/>
               <RaisedButton label="submit" type="submit" primary={true} onClick={this.submitForm}/>
             </div>
           </MuiThemeProvider>

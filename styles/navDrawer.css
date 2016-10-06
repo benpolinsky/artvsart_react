@@ -1,0 +1,30 @@
+.navDrawer a{
+  width: 100%;
+  padding: 23px;
+  display: block;
+  text-align: center;
+  box-sizing: border-box;
+  color:black;
+  height:60px;
+  text-decoration:none;
+  border-bottom:1px solid black;
+}
+
+.navDrawer a:visited{
+  text-decoration:none; 
+}
+
+.navDrawer a:hover{
+  background:black;
+  color:white;
+}
+
+.navDrawer h1{
+  font-size:24px;
+  font-weight:700;
+  height:64px;
+  line-height:64px;
+  width:100%;
+  text-align:center;
+  border-bottom:1px solid black;
+}

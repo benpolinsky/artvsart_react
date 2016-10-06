@@ -19,7 +19,16 @@ import SignInForm from './components/forms/signInForm.js'
 import ProfilePage from './components/containers/profilePage.js'
 import TopJudges from './components/containers/topJudges.js';
 
-const styles = ['reset', 'base', 'style', 'navbar'];
+const styles = [
+  'reset', 
+  'base', 
+  'style', 
+  'navbar', 
+  'navDrawer', 
+  'competition', 
+  'importArt'
+];
+
 for (let style in styles) {
   require(`../styles/${styles[style]}.css`);
 }

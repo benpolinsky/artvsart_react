@@ -27,12 +27,17 @@ export const Competition = ({competition, handleClose}) => {
   return (
     <div className='competition'>
       <Loader backgroundStyle={spinnerStyles.background} show={competition.isFetching}>
-        
-        <div className='art'>
-          <Art key={competition.art.id} art={competition.art} />
-        </div>
-        <div className='art'>
-          <Art key={competition.challenger.id} art={competition.challenger} />
+  
+        <div className="artPair">
+          <div className='art'>
+            <Art key={competition.art.id} art={competition.art} />
+          </div>
+  
+          <div className='versusSeparator'>VS</div>
+  
+          <div className='art'>
+            <Art key={competition.challenger.id} art={competition.challenger} />
+          </div>
         </div>
         
         {competition.errors &&
@@ -40,14 +45,14 @@ export const Competition = ({competition, handleClose}) => {
             <MuiThemeProvider>
               <Dialog open={!competition.closeModal} actions={actions} title="Oh No!">{competition.errors.base}</Dialog>
             </MuiThemeProvider>
-        
           </div>
         }
         
         <div className='share-buttons'>
-          <p>Share This Battle!</p>
+          <p>Share It!</p>
           <ArtShareButtons className="competition-share" share_title={competition.share_title}/>
         </div>
+        
       </Loader>
     </div>
   )

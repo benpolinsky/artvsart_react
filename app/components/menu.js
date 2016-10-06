@@ -8,11 +8,13 @@ import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import {signOutUser} from '../actions/userAuth.js'
+
 class Menu extends React.Component{
   constructor(){
     super();
     this.openMenu = this.openMenu.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
+    this.selectMenuItem = this.selectMenuItem.bind(this);
   }
   
   componentWillMount(){
@@ -61,13 +63,51 @@ class Menu extends React.Component{
     return (
     <MuiThemeProvider>
       <div>
-        <AppBar className="appBar" title="ART V ART" onLeftIconButtonTouchTap={this.openMenu}/>
-          <Drawer docked={false} open={this.state.navMenuOpen} onRequestChange={(open) => this.setState({navMenuOpen: open})}>
-            <Link onTouchTap={this.closeMenu} to="/competition">Competition</Link>
-            <Link onTouchTap={this.closeMenu} to="/about">About</Link>
-            <Link onTouchTap={this.closeMenu} to="/leader_board">Leader Board</Link>
-            <Link onTouchTap={this.closeMenu} to="/top_judges">Top Judges</Link>
-          </Drawer>
+        <AppBar 
+          className="appBar" 
+          title="ART V ART" 
+          onLeftIconButtonTouchTap={this.openMenu}
+          iconStyleRight={{marginTop: 0}}
+          iconElementRight={
+            user_type == "GuestUser" ?
+            
+            <ul className='authNav'>
+              <li className="nav-item">
+                <Link className="nav-link" to="/sign_up">Register</Link>
+              </li>
+              <li className="nav-item">
+              <span> | </span>
+              </li>
+              <li className="nav-item">
+                <Link className="nav-link" to="/sign_in">Sign In</Link>
+              </li>
+            </ul>
+            
+            : 
+            
+            <MuiThemeProvider>
+              <DropDownMenu className="userMenu" onChange={this.selectMenuItem} value={this.state.menu} labelStyle={{color: 'black', borderBottom: 0, fontSize: 14, overflow: 'hidden', textOverflow: 'ellipsis'}} >
+                <MenuItem value='email' primaryText={`${user_email}`} />
+                <MenuItem value='profile' primaryText="Your Profile" />
+                <MenuItem value='sign_out' primaryText="Sign Out" />
+
+              </DropDownMenu>
+            </MuiThemeProvider>
+          }
+        />
+        <Drawer className="navDrawer" docked={false} open={this.state.navMenuOpen} onRequestChange={(open) => this.setState({navMenuOpen: open})}>
+          <h1>ART V ART</h1>
+          <Link onTouchTap={this.closeMenu} to="/competition">Competition</Link>
+          <Link onTouchTap={this.closeMenu} to="/about">About</Link>
+          <Link onTouchTap={this.closeMenu} to="/leader_board">Leader Board</Link>
+          <Link onTouchTap={this.closeMenu} to="/top_judges">Top Judges</Link>
+           {user_type == "admin" &&
+              <div className='adminLinks'>
+                <Link onTouchTap={this.closeMenu} to="/add_new_art"> Add New Art</Link>
+                <Link onTouchTap={this.closeMenu} to='/import_art'>Import Art</Link>
+              </div>
+            }
+        </Drawer>
       </div>
     
     </MuiThemeProvider>
@@ -75,6 +115,9 @@ class Menu extends React.Component{
   }
   
 };
+
+
+
 
 Menu.contextTypes = {
   router: React.PropTypes.object
@@ -89,6 +132,7 @@ const mapDispatchToProps = (dispatch) => ({
 
 
 export default connect(null, mapDispatchToProps)(Menu);
+
 // <nav className="mainMenu">
 //
 //   <ul>
@@ -107,26 +151,10 @@ export default connect(null, mapDispatchToProps)(Menu);
 //       </li>
 //      </ul>}
 //
-//      {user_type == "admin" &&
-//        <MuiThemeProvider>
-//          <DropDownMenu className="userMenu" onChange={this.selectMenuItem} value={this.state.menu}>
-//             <MenuItem value='email' primaryText={`${user_email}`} />
-//             <MenuItem value='profile' primaryText="Your Profile" />
-//             <MenuItem value='sign_out' primaryText="Sign Out" />
-//            <MenuItem value='addNewArt' primaryText='Add New Art' />
-//            <MenuItem value='importArt' primaryText="Import Art" />
-//          </DropDownMenu>
-//        </MuiThemeProvider>
-//    }
+//     
 //
 //     {user_type == null &&
-//       <MuiThemeProvider>
-//         <DropDownMenu className="userMenu" onChange={this.selectMenuItem} value={this.state.menu} labelStyle={{color: 'white', top: -5, borderBottom: 0, fontSize: 12}} >
-//           <MenuItem value='email' primaryText={`${user_email}`} />
-//           <MenuItem value='profile' primaryText="Your Profile" />
-//           <MenuItem value='sign_out' primaryText="Sign Out" />
-//         </DropDownMenu>
-//       </MuiThemeProvider>}
+//       }
 //
 //
 //   </ul>

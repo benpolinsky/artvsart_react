@@ -12,18 +12,19 @@ const TwitterIcon = generateShareIcon('twitter');
 const ArtShareButtons = ({share_title}) => {
   return (
     <div>
+    <hr/>
     <FacebookShareButton
       url={'http://artvsart.com'}
       title={share_title}
       className="Demo__some-network__share-button">
-      <FacebookIcon size={32} round />
+      <FacebookIcon size={75} square />
     </FacebookShareButton>
 
      <TwitterShareButton
        url='http://www.artvsart.com'
        title={share_title}
        className="Demo__some-network__share-button">
-       <TwitterIcon size={32} round />
+       <TwitterIcon size={75} square />
      </TwitterShareButton>
     </div>
   )

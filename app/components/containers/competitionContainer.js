@@ -58,7 +58,7 @@ class CompetitionContainer extends React.Component{
   render(){
     return (
       <div className='container'>
-        <h1>Battle</h1>
+        <h1 className='mainTitle'>Battle!</h1>
         <Competition handleClose={this.signUp} competition={this.props.competition}/>
         <Modal style={customStyles} isOpen={this.props.competition.winnerSelected}>
           <ModalContents competition={this.props.competition} closeModal={this.props.getCompetition} />

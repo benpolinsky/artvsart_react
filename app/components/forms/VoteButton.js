@@ -4,8 +4,23 @@ import {selectCompetitionWinner} from '../../actions/index.js'
 import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+const buttonStyle = {
+  fontSize: 21,
+  fontWeight: 700
+}
+
 const VoteButton = ({onClick}) => {
-  return <MuiThemeProvider><RaisedButton primary={true} onClick={onClick} label="Vote" /></MuiThemeProvider>
+  return <MuiThemeProvider>
+            <RaisedButton 
+              backgroundColor="black" 
+              labelStyle={buttonStyle}
+              style={{height: 50}} 
+              labelColor="white" 
+              className='voteButton' 
+              onClick={onClick} 
+              label="Vote" 
+            />
+         </MuiThemeProvider>
 }
 
 

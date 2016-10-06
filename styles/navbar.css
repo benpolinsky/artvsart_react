@@ -18,9 +18,20 @@ nav.mainMenu ul{
 
 }
 
-nav.mainMenu ul li{
+div.appBar{
+  background-color:white !important;
+  box-shadow:none !important;
+  border-bottom:1px solid black !important;
+}
 
+div.appBar h1{
+  color:black !important;
+  overflow: visible !important;
 
+}
+div.appBar svg{
+  color:black !important;
+  fill:black !important;
 }
 
 nav.mainMenu ul li a{
@@ -30,16 +41,18 @@ nav.mainMenu ul li a{
   margin-left: auto;
 }
 
-div.appBar{
-  background-color:white !important;
-  box-shadow:none !important;
-  border-bottom:1px solid black !important;
+.authNav{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  height:100%;
+  width:140px;
 }
 
-div.appBar h1{
-  color:black !important;
+.authNav li{
+  padding:4px;
 }
-div.appBar svg{
-  color:black !important;
-  fill:black !important;
+
+.authNav li a{
+  color:black;
 }

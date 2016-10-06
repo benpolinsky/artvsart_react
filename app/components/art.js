@@ -2,33 +2,14 @@ import React from 'react';
 import VoteButtonContainer from './forms/VoteButton.js';
 import { StyleSheet, css } from 'aphrodite';
 
-const baseStyles = StyleSheet.create({
-  
-  art: {
-    float: 'left',
-    width: '50%',
-    boxSizing: 'border-box',
-    padding: '30px' 
-  },
-  
-  artImage: {
-    width: '100%'
-  }
-  
-})
 
 const Art = ({art, no_voting, styles}) => {
-  if (styles != null ) {
-    var injectedStyles = StyleSheet.create(styles);    
-  } 
-  const newStyles = {...baseStyles, ...injectedStyles};
 
   return (
-    <div className={css(newStyles.art)}>
-      <img className={css(newStyles.artImage)} src={art.image} />
+    <div>
+      <img src={art.image} />
       <h3>{art.name}</h3>
       <div className="art-description">{art.description}</div>
-      <p className='win-loss-record'>Record: {art.win_loss_record}</p>
       {!no_voting && 
         <VoteButtonContainer art_id={art.id} /> }
     </div>
@@ -54,3 +35,26 @@ Art.defaultProps = {
 
 
 export default Art
+
+// The idea of merging styles if you are going to use aphrodite: 
+
+// const baseStyles = StyleSheet.create({
+//
+//   art: {
+//     float: 'left',
+//     width: '50%',
+//     boxSizing: 'border-box',
+//     padding: '30px'
+//   },
+//
+//   artImage: {
+//     width: '100%'
+//   }
+//
+// })
+
+// inside of Art:
+// if (styles != null ) {
+//   var injectedStyles = StyleSheet.create(styles);
+// }
+// const newStyles = {...baseStyles, ...injectedStyles};

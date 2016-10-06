@@ -1,0 +1,150 @@
+/* ---- Competition ---- */
+
+.competition .art{
+  width: 100%;
+  box-sizing: border-box;
+  padding: 30px;
+}
+
+.competition .art img{
+  height:200px;
+  margin:0 auto 5px auto;
+  display:block;
+}
+
+.competition .art .art-description{
+  text-align:center;
+  font-size:12px;
+  line-height:16px;
+  margin: 10px auto;
+  max-width:500px;
+}
+
+.competition .art h3{
+  text-align:center;
+  margin-top:10px;
+}
+
+.competition .art .voteButton{
+  margin:0 auto;
+}
+.competition .versusSeparator{
+  font-size: 50px;
+  font-weight: 700;
+  text-align: center;
+  margin: 30px auto;
+
+  color: rgba(0, 140, 175, 0.5);
+  height: 50px;
+  display: block;
+  width: 100px;
+  padding: 10px;
+  border-left: 0;
+  border-right: 0;
+}
+
+.share-buttons{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+}
+.share-buttons p{
+  font-size:20px;
+  text-transform:uppercase;
+  font-weight:700;
+  margin-top:50px;
+}
+
+.share-buttons .SocialMediaShareButton{
+  text-align:center;
+  display:inline-block;
+  margin:5px;
+  cursor:pointer;
+}
+
+.voteButton{
+  margin: 30px auto 10px auto !important;
+  display: block !important;
+}
+
+.close-modal-btn{
+  margin: 20px auto 0 auto;
+  float:none;
+  clear:both;
+  display:block;
+}
+
+.modal-contents{
+  width:300px;
+  margin:0 auto;
+}
+
+.modal-contents > * {
+  text-align:center;
+}
+
+.modal-contents .winner-name{
+  font-style:italic;
+}
+.modal-contents span.share-prompt{
+  display:block;
+}
+
+.modal-contents .winner-info span {
+  padding:0px 5px;
+}
+
+.modal-contents .share-buttons{
+  float: none;
+  clear: both;
+  margin: 5px auto 0 auto;
+  width: 72px;
+}
+
+/* !---- End Competition ----! */
+
+
+/* ---- BEGIN COMPETITION BROWSER STYLES ---- */
+
+@media screen and (min-width: 600px){
+  .artPair{
+    display:flex;
+    flex-direction:row;
+  }
+  
+  .competition .art{
+    width:auto;
+    flex:1;
+    width:44%;
+    height:460px;
+    padding:10px;
+  }
+
+  .competition .versusSeparator{
+    align-self:center;
+    width:12%;
+    padding:5px;
+  }
+  
+  .competition .art h3{
+    height:40px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+  }
+  
+  .competition .art .art-description{
+    height:100px;
+    overflow-y:hidden;
+    text-overflow:ellipsis;
+    padding-top:5px;
+  }
+  .competition .art .voteButton{
+    margin:0 auto;
+    max-width:200px;
+  }
+}
+
+
+/* ----! END COMPETITION BROWSER STYLES !---- */
