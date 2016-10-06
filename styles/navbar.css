@@ -1,5 +1,6 @@
+
 nav.mainMenu{
-  position: 'fixed';
+  position: fixed;
   top: 0;
   left: 0;
   right: 0;
@@ -13,6 +14,8 @@ nav.mainMenu ul{
   list-style-type:none;
   padding:0;
   display:flex;
+  align-items:center;
+
 }
 
 nav.mainMenu ul li{
@@ -21,6 +24,22 @@ nav.mainMenu ul li{
 }
 
 nav.mainMenu ul li a{
-  color:white;
-  
+  color:white;  
+}
+.userMenu{
+  margin-left: auto;
+}
+
+div.appBar{
+  background-color:white !important;
+  box-shadow:none !important;
+  border-bottom:1px solid black !important;
+}
+
+div.appBar h1{
+  color:black !important;
+}
+div.appBar svg{
+  color:black !important;
+  fill:black !important;
 }
