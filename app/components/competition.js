@@ -19,26 +19,29 @@ const spinnerStyles = {
   }
 }
 
-export const Competition = ({competition, handleClose}) => {
+export const Competition = ({competition, handleClose, displayInfo}) => {
   const actions = [
     <FlatButton primary={true} label={"Sign Up"} onTouchTap={handleClose}/>,
     <FlatButton label={"No Thanks..."} onTouchTap={handleClose} />
   ];
+
   return (
     <div className='competition'>
       <Loader backgroundStyle={spinnerStyles.background} show={competition.isFetching}>
   
         <div className="artPair">
           <div className='art'>
-            <Art key={competition.art.id} art={competition.art} />
+            <Art selectInfo={displayInfo} key={competition.art.id} art={competition.art} />
           </div>
   
           <div className='versusSeparator'>VS</div>
   
           <div className='art'>
-            <Art key={competition.challenger.id} art={competition.challenger} />
+            <Art selectInfo={displayInfo} key={competition.challenger.id} art={competition.challenger} />
           </div>
         </div>
+        
+
         
         {competition.errors &&
           <div className='quick-errors'>

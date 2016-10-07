@@ -12,7 +12,7 @@ class ArtContainer extends React.Component{
   }
   
   render(){
-    return <Art key={this.props.art.id} art={this.props.art} no_voting={true} />
+    return <Art key={this.props.art.id} art={this.props.art} noVoting={true} />
   }
 }
 

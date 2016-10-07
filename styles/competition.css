@@ -10,19 +10,22 @@
   height:200px;
   margin:0 auto 5px auto;
   display:block;
+  cursor:pointer;
 }
 
-.competition .art .art-description{
+.competition .art .artDescription{
   text-align:center;
   font-size:12px;
   line-height:16px;
   margin: 10px auto;
-  max-width:500px;
 }
+
+
 
 .competition .art h3{
   text-align:center;
   margin-top:10px;
+  cursor:pointer;  
 }
 
 .competition .art .voteButton{
@@ -41,6 +44,25 @@
   padding: 10px;
   border-left: 0;
   border-right: 0;
+}
+
+.artInfo{
+  display:none;
+}
+
+.artInfo.visible{
+  display:block;
+  position:absolute;
+  background:rgba(0,0,0,0.2);
+  left:50px;
+  right:50px;
+  bottom:50px;
+  top:50px;
+  z-index:10099;
+}
+
+.artInfo.visible .close{
+  cursor:pointer;
 }
 
 .share-buttons{
@@ -103,6 +125,8 @@
   width: 72px;
 }
 
+
+
 /* !---- End Competition ----! */
 
 
@@ -134,10 +158,10 @@
     text-overflow:ellipsis;
   }
   
-  .competition .art .art-description{
+  .competition .art .artDescription{
     height:100px;
-    overflow-y:hidden;
-    text-overflow:ellipsis;
+
+
     padding-top:5px;
   }
   .competition .art .voteButton{

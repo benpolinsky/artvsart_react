@@ -31,7 +31,7 @@ class LeaderBoard extends React.Component{
              {this.props.results.map(record => {
                return (
                  <div key={record.id}>
-                   <Art art={record} styles={newStyles} no_voting={true} />
+                   <Art art={record} styles={newStyles} noVoting={true} />
                    <WinLossBar data={record} />
                  </div>
                )

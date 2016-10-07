@@ -1,27 +1,32 @@
 import React from 'react';
 import VoteButtonContainer from './forms/VoteButton.js';
 import { StyleSheet, css } from 'aphrodite';
+import { Scrollbars } from 'react-custom-scrollbars';
 
 
-const Art = ({art, no_voting, styles}) => {
+const Art = ({art, noVoting, styles, selectInfo}) => {
 
   return (
     <div>
-      <img src={art.image} />
-      <h3>{art.name}</h3>
-      <div className="art-description">{art.description}</div>
-      {!no_voting && 
+        <img onClick={() => {selectInfo(art.id)}} src={art.image} />
+        <h3 onClick={() => {selectInfo(art.id)}}>{art.name}</h3>
+
+        <div className="artDescription">
+         <Scrollbars style={{ width: 500, height: 100 }}>
+          {art.description}
+         </Scrollbars>
+        </div>
+      {!noVoting && 
         <VoteButtonContainer art_id={art.id} /> }
     </div>
   )
 }
 
-// Art.propTypes = {
-//   name: React.PropTypes.string.isRequired,
-//   id: React.PropTypes.number,
-//   selectWinner: React.PropTypes.func,
-//   image: React.PropTypes.string.isRequired
-// }
+Art.propTypes = {
+  art: React.PropTypes.object.isRequired,
+  selectInfo: React.PropTypes.func,
+  noVoting: React.PropTypes.bool
+}
 
 Art.defaultProps = {
   art: {
