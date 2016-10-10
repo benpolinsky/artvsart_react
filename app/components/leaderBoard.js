@@ -1,8 +1,10 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import Art from './art.js';
 import {WinLossBar} from './winLossBar.js';
 import {fetchResults} from '../actions/results.js';
+import {List, ListItem} from 'material-ui/List';
+import Subheader from 'material-ui/Subheader';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const newStyles = {
   art: {
@@ -27,15 +29,22 @@ class LeaderBoard extends React.Component{
     return(
       <div className="resultsPage">        
          <div className="bestRecords otherRecords">
-          <h2>Leaderboard</h2>
+          <MuiThemeProvider>
+            <List>
+              <Subheader>Leaderboard</Subheader>
              {this.props.results.map(record => {
                return (
-                 <div key={record.id}>
-                   <Art art={record} styles={newStyles} noVoting={true} />
-                   <WinLossBar data={record} />
-                 </div>
+                 <ListItem 
+                   key={record.id}
+                   primaryText={record.name}
+                   secondaryText={<WinLossBar data={record} />}
+                   leftAvatar={<img width='30' src={record.image} />}
+                 />
+
                )
              })}
+             </List>
+            </MuiThemeProvider>
          </div>
       </div>
     )

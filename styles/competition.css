@@ -7,7 +7,7 @@
 }
 
 .competition .art img{
-  height:200px;
+  height:400px;
   margin:0 auto 5px auto;
   display:block;
   cursor:pointer;
@@ -32,13 +32,13 @@
   margin:0 auto;
 }
 .competition .versusSeparator{
-  font-size: 50px;
+  font-size: 140px;
   font-weight: 700;
   text-align: center;
   margin: 30px auto;
 
-  color: rgba(0, 140, 175, 0.5);
-  height: 50px;
+  color: black;
+  height: 146px;
   display: block;
   width: 100px;
   padding: 10px;
@@ -99,7 +99,7 @@
 }
 
 .modal-contents{
-  width:300px;
+
   margin:0 auto;
 }
 
@@ -122,7 +122,7 @@
   float: none;
   clear: both;
   margin: 5px auto 0 auto;
-  width: 72px;
+  width: 144px;
 }
 
 
@@ -148,7 +148,7 @@
 
   .competition .versusSeparator{
     align-self:center;
-    width:12%;
+    width:13%;
     padding:5px;
   }
   

@@ -15,23 +15,23 @@ export const WinLossBar = ({data}) => {
   
   const styles = StyleSheet.create({
     winMeter: {
-      backgroundColor: 'green',
+      backgroundColor: '#83dea0',
       width: rate_to_percentage(data.win_loss_rate)
     },
     
     lossMeter: {
-      backgroundColor: "red",
+      backgroundColor: "rgba(201, 53, 53, 0.81)",
       width: rate_to_percentage_flipped(data.win_loss_rate)
     },
     
     meter: {
       display: "inline-block",
-      height: 20
+      height: 10
     },
     
     winLossBar: {
       width: "100%",
-      height: 20,
+      height: 10,
       display: 'block'
     },
     

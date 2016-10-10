@@ -1,12 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {ModalContents} from '../modalContents.js';
+import {WinnerModalContents} from '../winnerModalContents.js';
 import {Competition} from '../competition.js';
+import ArtInfo from '../artInfo.js'
 import {getBattle} from '../../utils/ajaxHelpers.js';
 import {getCompetitionData} from '../../actions/index.js';
 import {handleCompetitionModal} from '../../actions/userAuth.js'
+import FlatButton from 'material-ui/FlatButton'
 import Dialog from 'material-ui/Dialog';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 
 const customStyles = {
   overlay: {
@@ -27,7 +30,6 @@ const customStyles = {
 class CompetitionContainer extends React.Component{
   constructor(){
     super();
-    Modal.setAppElement('#app');    
     this.componentDidMount = this.componentDidMount.bind(this);
     this.signUp = this.signUp.bind(this);
     this.displayInfo = this.displayInfo.bind(this);
@@ -37,7 +39,10 @@ class CompetitionContainer extends React.Component{
   componentWillMount(){
     this.state = {
       artInfoVisible: false,
-      visibleArt: {}
+      visibleArt: {},
+      competition: {
+        winner_selected: false
+      }
     }
   }
   
@@ -72,6 +77,9 @@ class CompetitionContainer extends React.Component{
   
   render(){
     const winnerSelected = this.props.competition.winnerSelected;
+    const artInfoAction = <FlatButton label="Close" primary={true} onTouchTap={this.closeInfo} />;
+    const winnerModalAction = <FlatButton primary={true} backgroundColor={'#dbe7f1'} onClick={this.props.getCompetition} label="Next Battle!" />;
+
     return (
     
       <div className='container'>
@@ -80,11 +88,18 @@ class CompetitionContainer extends React.Component{
     
         <MuiThemeProvider>
           <div>
-            <Dialog open={winnerSelected} modal={true}>
-              <ModalContents competition={this.props.competition} closeModal={this.props.getCompetition} />
+            <Dialog open={winnerSelected} modal={true} actions={winnerModalAction}>
+              <WinnerModalContents competition={this.props.competition} />
             </Dialog>
-            <Dialog open={this.state.artInfoVisible} modal={false} onRequestClose={this.closeInfo}>
-              <p>Art info {this.state.visibleArt.name}</p>
+            
+            <Dialog 
+              open={this.state.artInfoVisible} 
+              modal={false} 
+              onRequestClose={this.closeInfo} 
+              autoScrollBodyContent={true}
+              actions={artInfoAction}
+            >
+              <ArtInfo art={this.state.visibleArt} />
             </Dialog>
           </div>
         </MuiThemeProvider>

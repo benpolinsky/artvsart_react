@@ -5,7 +5,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 const SearchResult = ({result, importArt}) => {
   const label = result.imported ? "Imported!" : "Import"
   return(
-    <div className='search-result'>
+    <div className='search-result' style={{width: '200px', height: '300px'}}>
       <div className='image-container'>
         <img src={result.image} />
       </div>

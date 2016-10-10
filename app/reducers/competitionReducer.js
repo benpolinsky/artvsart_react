@@ -50,7 +50,8 @@ const competitionReducer = (state=initialCompetitionState, action) => {
          ...action.competition, 
          share_title: 'ite',
          isFetching: false,
-         closeModal: true
+         closeModal: true,
+         winnerSelected: false
        }
      }
   case 'START_SELECT_COMPETITION_WINNER':
