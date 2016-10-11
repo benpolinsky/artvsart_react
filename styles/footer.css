@@ -7,13 +7,13 @@ footer#pageFooter{
   background-color:black;
   color:white;
   height:200px;
-  padding:50px 20px 20px 50px;
   box-sizing:border-box;
   display:flex;
   justify-content:flex-end;
   align-items:flex-end;
   flex-direction:column;
   font-size:12px;
+  padding:1rem;
 }
 
 footer#pageFooter a{

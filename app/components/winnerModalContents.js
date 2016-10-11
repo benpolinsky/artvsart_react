@@ -25,8 +25,7 @@ export const WinnerModalContents = ({competition, closeModal}) => {
   } else {
     consensus_message = "Thanks for playing!";
   }
-  
-  console.log(consensus_message);
+
   return(
     <div className='modal-contents'>
       <h2>Winner!</h2>

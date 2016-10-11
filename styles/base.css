@@ -1,6 +1,4 @@
-#app{
-  overflow:hidden;
-}
+
 p, div {
   font-family: 'Roboto', sans-serif; 
   font-weight:400;
@@ -26,8 +24,7 @@ h1.mainTitle{
 }
 
 #mainContainer{
-  height:100%;
-  min-height:400px;
-  padding-bottom:250px;
+  min-height:100%;
+  padding-bottom:8rem;
   position:relative;
 }

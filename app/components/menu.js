@@ -6,6 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import DropDownMenu from 'material-ui/DropDownMenu';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
+import FlatButton from 'material-ui/FlatButton';
 import MenuItem from 'material-ui/MenuItem';
 import {signOutUser} from '../actions/userAuth.js'
 
@@ -73,13 +74,13 @@ class Menu extends React.Component{
             
             <ul className='authNav'>
               <li className="nav-item">
-                <Link className="nav-link" to="/sign_up">Register</Link>
+                <FlatButton className="nav-link" label="Register" onTouchTap={() => {this.props.showAuthForm('register')}} />
               </li>
               <li className="nav-item">
               <span> | </span>
               </li>
               <li className="nav-item">
-                <Link className="nav-link" to="/sign_in">Sign In</Link>
+                <FlatButton className="nav-link" label="Sign In" onTouchTap={() => {this.props.showAuthForm('signIn')}} />
               </li>
             </ul>
             

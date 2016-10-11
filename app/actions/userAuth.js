@@ -1,42 +1,15 @@
 import * as api from '../utils/ajaxHelpers.js';
 import * as storage from '../localStorage.js'
 
-//  User Registration and Auth Actions
-
-// export const startAuthorizeGithub = () => (dispatch) => {
-//   dispatch(authGithubRequest());
-//   api.authGithubRequest()
-//   // then(response => {
-//  //    if (response.errors == null) {
-//  //      dispatch(authGithubResposne(response));
-//  //    } else {
-//  //      dispatch(authGithubFailed(response.errors));
-//  //    }
-//  //  })
-// }
-
-// const authGithubRequest = () => ({
-//   type: "BEGIN_GITHUB_AUTHORIZATION"
-// });
-//
-//
-// const authGithubResponse = (response) => ({
-//   type: "GITHUB_AUTHORIZATION_RESPONSE",
-//   response: resposne
-// });
-//
-// const authGithubFailed = (response) => ({
-//   type: "GITHUB_AUTHORIZATION_FAILED",
-//   erros: response.errors
-// });
-
 export const loginToFacebook = (response) => (dispatch) => {
   dispatch(facebookAuthRequest(response));
   api.facebookLogin(response).then(response => {
     if (response.errors == null) {
       dispatch(facebookAuthSuccess(response));
       dispatch(storeUserCredentials(response.user));
+      dispatch(closeSignUp());
       dispatch(signInUserSuccessful(response.user));
+      
     } else {
       dispatch(facebookAuthFailed(response.errors));
     }
@@ -65,6 +38,7 @@ export const signUserIn = (user, router) => (dispatch) => {
     } else {
       dispatch(storeUserCredentials(response.user));
       dispatch(signInUserSuccessful(response.user));
+      dispatch(closeSignUp())
       router.push('/profile');
       
     }
@@ -73,7 +47,7 @@ export const signUserIn = (user, router) => (dispatch) => {
 
 export const handleCompetitionModal = (result, router) => (dispatch) => {
   if (result == "SIGN UP") {
-    router.push('/sign_up');      
+    dispatch(openSignUp('register'));    
   } 
   dispatch(closeCompetitionModal());
 }
@@ -128,6 +102,7 @@ export const registerUser = (user, router) => (dispatch) => {
     } else {
       dispatch(registerUserSuccessful(response.user));
       dispatch(storeUserCredentials(response.user));
+      dispatch(closeSignUp())
       router.push(`/competition`);
 
     }
@@ -184,5 +159,14 @@ export const getUserInfo = () => (dispatch) => {
 
 const startReceiveUserInfo = () => ({
   type: "START_RECEIVE_USER_INFO"
+})
+
+export const openSignUp = (formType) => ({
+  type: "OPEN_SIGN_UP",
+  formType: formType
+})
+
+export const closeSignUp = () => ({
+  type: "CLOSE_SIGN_UP"
 })
 

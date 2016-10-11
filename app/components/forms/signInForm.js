@@ -3,6 +3,8 @@ import {signUserIn} from '../../actions/userAuth.js';
 import {connect} from 'react-redux'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import RaisedButton from 'material-ui/RaisedButton';
+import FacebookLogin from 'react-facebook-login';
+import {loginToFacebook} from '../../actions/userAuth.js';
 import TextField from 'material-ui/TextField';
 
 export class SignInForm extends React.Component {
@@ -11,6 +13,7 @@ export class SignInForm extends React.Component {
     this.update = this.update.bind(this);
     this.submitForm = this.submitForm.bind(this);
   }
+  
   componentWillMount(){
     this.setState({
       newUser: {
@@ -90,17 +93,39 @@ export class SignInForm extends React.Component {
   
   
   render(){
+    const formStyles = {
+      display: `${this.props.displayForm == 'signIn' ? 'block' : 'none'}`,
+      position: 'absolute',
+      right: 0,
+      top: 65,
+      zIndex: 1201,
+      background: 'white',
+      padding: 50
+    };
+    
     return (
-      <form className='signUpForm form'>
+     <div className='registerForm' style={formStyles}>
+      <form className="signUpForm">
         <h2>Sign In</h2>
         <MuiThemeProvider>
           <div>
-            <TextField type='email' errorText={this.state.newUser.errors.email.join(", ")} onChange={this.update} ref='email' floatingLabelText="E-Mail" /> <br/>
-            <TextField type='password' errorText={this.state.newUser.errors.password.join(", ")} onChange={this.update} ref='password' floatingLabelText="Password" /> <br/>
-            <RaisedButton label="submit" type="submit" primary={true} onClick={this.submitForm}/>
+            <TextField autoComplete={false} type='email' errorText={this.state.newUser.errors.email.join(", ")} onChange={this.update} ref='email' floatingLabelText="E-Mail" /> <br/>
+            <TextField autoComplete={false} type='password' errorText={this.state.newUser.errors.password.join(", ")} onChange={this.update} ref='password' floatingLabelText="Password" /> <br/>
+            <RaisedButton label="Sign In" fullWidth={true} type="submit" primary={true} onClick={this.submitForm}/>
           </div>
         </MuiThemeProvider>
       </form>
+      <FacebookLogin
+        appId="1118634491523505"
+        autoLoad={false}
+        fields="name,email,picture"
+        callback={this.props.responseFacebook}
+        icon="fa-facebook"
+        cookie={true}
+        textButton="with Facebook"
+        size='small'
+      />
+      </div>
 
     )
   }
@@ -117,6 +142,9 @@ const mapStateToProps = (store) => ({
 const mapDispatchToProps = (dispatch) => ({
   registerUser(user, router){
     dispatch(signUserIn(user, router));
+  },
+  responseFacebook(response){
+    dispatch(loginToFacebook(response));
   }
 })
 

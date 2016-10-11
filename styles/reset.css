@@ -31,9 +31,23 @@ footer, header, hgroup, menu, nav, section {
 html, body{
   height:100%;
 }
-body {
+body, #app {
 	line-height: 1;
+  position: relative;
+  margin: 0;
+  height: 100%;
+  box-sizing:border-box;
 }
+
+#app > div, #app > div > div{
+	line-height: 1;
+  position: relative;
+  margin: 0;
+
+  height: 100%; 
+   box-sizing:border-box; 
+}
+
 ol, ul {
 	list-style: none;
 }

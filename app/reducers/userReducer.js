@@ -5,7 +5,8 @@ const initialUserState = {
     token: "",
     authenticated: false,
     fetching: false,
-    admin: false
+    admin: false,
+    openForm: ''
   }
 }
 
@@ -21,10 +22,7 @@ const userReducer = (state=initialUserState, action) => {
     return {
       ...state,
       user: {
-        email: "",
-        type: "",
-        token: "",
-        authenticated: false,
+        ...state.user,
         fetching: true
       }
     }
@@ -32,6 +30,7 @@ const userReducer = (state=initialUserState, action) => {
     return {
       ...state,
       user: {
+         ...state.user,
         email: action.user.email,
         type: action.user.type,
         token: action.user.auth_token,
@@ -43,6 +42,7 @@ const userReducer = (state=initialUserState, action) => {
     return {
       ...state,
       user: {
+        ...state.user,
         email: "",
         type: "GuestUser",
         token: "",
@@ -54,6 +54,7 @@ const userReducer = (state=initialUserState, action) => {
     return {
       ...state,
       user: {
+        ...state.user,
         email: action.user.email,
         type: action.user.type,
         token: action.user.auth_token,
@@ -73,6 +74,7 @@ const userReducer = (state=initialUserState, action) => {
     return {
       ...state,
       user: {
+        ...state.user,
         email: action.user.email,
         type: action.user.type,
         token: action.user.auth_token,
@@ -83,13 +85,19 @@ const userReducer = (state=initialUserState, action) => {
     return {
       ...state,
       user: {
+        ...state.user,
         email: action.user.email,
         type: action.user.type,
         token: action.user.auth_token,
         authenticated: true
       }
     }
+  case "OPEN_SIGN_UP":
+    return {...state, user: {...state.user, openForm: action.formType}}
     
+  case "CLOSE_SIGN_UP":
+    return {...state, user: {...state.user, openForm: ''}}
+     
   }
   return state
 }

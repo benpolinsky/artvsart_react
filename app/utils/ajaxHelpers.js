@@ -63,9 +63,7 @@ export const signOut = () => {
   return fetch(`${domain}/api/v1/users/sign_out`, {
     credentials: 'include',
     method: 'DELETE',
-    headers: {...headers, ...tokenObject()},
-    body: {
-    }
+    headers: {...headers, ...tokenObject()}
   }).then(response => {
     return response.json();
   });
@@ -91,7 +89,6 @@ export const getToken = () => {
 }
 
 export const userInfo = () => {
-  
   return fetch(`${domain}/api/v1/`, {
     credentials: 'include',
     method: 'GET',
@@ -104,8 +101,7 @@ const getBattle = () => {
     credentials: 'include',
     method: 'POST',
     headers: {...headers, ...tokenObject()},
-    body: {
-    }
+    body: JSON.stringify({})
   }).then(response => response.json());
 }
 
@@ -113,7 +109,7 @@ const getArtInfo = () => {
   return fetch(`${domain}/api/v1/art`, {
     credentials: 'include',
     method: "GET",
-    headers: {...headers, ...tokenObject()}
+    headers: {...headers, ...tokenObject()},
   }).then(response => response.json());
 }
 
@@ -148,7 +144,6 @@ const selectWinner = (competition, winner) => {
 }
 
 const createNewArt = (art) => {
-  console.log(art);
   return fetch(`${domain}/api/v1/art`, {
     credentials: 'include',
     method: "POST",

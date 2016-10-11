@@ -104,14 +104,12 @@ class NewArtFormContainer extends React.Component {
   }
   
   updateArtValues(art){
-    console.log(art);
     this.setState({
       art: {
         ...this.state.art,
         ...art
       }
     })
-    console.log(this.state)
   }
   
   onUploadStart(file, next){
