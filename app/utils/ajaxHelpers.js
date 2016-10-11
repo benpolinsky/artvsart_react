@@ -96,12 +96,20 @@ export const userInfo = () => {
   }).then(response => response.json());
 }
 
-const getBattle = () => {
+export const getBattle = () => {
   return fetch(`${domain}/api/v1/competitions`, {
     credentials: 'include',
     method: 'POST',
     headers: {...headers, ...tokenObject()},
     body: JSON.stringify({})
+  }).then(response => response.json());
+}
+
+export const getBattleResult = (id) => {
+  return fetch(`${domain}/api/v1/competitions/${id}`, {
+    credentials: 'include',
+    method: 'GET',
+    headers: {...headers, ...tokenObject()}
   }).then(response => response.json());
 }
 
@@ -179,6 +187,6 @@ function to_params(data) {
 }
 
 export {
-  getBattle, getArtInfo, fetchArt, 
+  getArtInfo, fetchArt, 
   selectWinner, createNewArt
 }

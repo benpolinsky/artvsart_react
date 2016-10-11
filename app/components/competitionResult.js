@@ -19,38 +19,27 @@ const spinnerStyles = {
   }
 }
 
-export const Competition = ({competition, handleClose, displayInfo, noVoting}) => {
-  const actions = [
-    <FlatButton primary={true} label={"Sign Up"} onTouchTap={handleClose}/>,
-    <FlatButton label={"No Thanks..."} onTouchTap={handleClose} />
-  ];
-
+export const CompetitionResult = ({competition, displayInfo}) => {
+  const art_pair = [competition.art, competition.challenger];
+  const winning_art = art_pair.find( (art) => art.id == competition.winner_id);
+  const losing_art = art_pair.find( (art) => art.id != competition.winner_id);
+  
   return (
     <div className='competition'>
       <Loader backgroundStyle={spinnerStyles.background} show={competition.isFetching}>
   
         <div className="artPair">
           <div className='art'>
-            <Art selectInfo={displayInfo} key={competition.art.id} art={competition.art} noVoting={noVoting} />
+            <Art selectInfo={displayInfo} key={winning_art.id} art={winning_art} noVoting={true} />
           </div>
   
-          <div className='versusSeparator'>VS</div>
+          <div className='versusSeparator small'>Defeated</div>
   
           <div className='art'>
-            <Art selectInfo={displayInfo} key={competition.challenger.id} art={competition.challenger} noVoting={noVoting} />
+            <Art selectInfo={displayInfo} key={losing_art.id} art={losing_art} noVoting={true} />
           </div>
         </div>
-        
-
-        
-        {competition.errors &&
-          <div className='quick-errors'>
-            <MuiThemeProvider>
-              <Dialog open={!competition.closeModal} actions={actions} title="Oh No!">{competition.errors.base}</Dialog>
-            </MuiThemeProvider>
-          </div>
-        }
-        
+  
         <div className='share-buttons'>
           <p>Share It!</p>
           <ArtShareButtons className="competition-share" share_title={competition.share_title}/>
@@ -61,6 +50,6 @@ export const Competition = ({competition, handleClose, displayInfo, noVoting}) =
   )
 }
 
-Competition.contextTypes = {
+CompetitionResult.contextTypes = {
   store: React.PropTypes.object
 }

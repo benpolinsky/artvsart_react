@@ -6,11 +6,29 @@ export const stageCompetition = (response) => ({
   competition: response.competition
 });
 
-export const getCompetitionData = () => (dispatch) => {
+const displayCompetition = (response) => ({
+  type: "RECEIVE_FINISHED_COMPETITION",
+  competition: response.competition
+});
+
+export const getCompetitionData = (id=null) => (dispatch) => {
   dispatch(fetchCompetition());
-  return api.getBattle().then(response => {
-    dispatch(stageCompetition(response));
-  })
+
+  if (id != null) {
+    
+    return api.getBattleResult(id).then(response => {
+      dispatch(displayCompetition(response))
+    });
+    
+  } else {
+    
+    return api.getBattle().then(response => {
+      dispatch(stageCompetition(response));
+    });
+    
+  }
+
+ 
 }
 
 const fetchCompetition = () => ({

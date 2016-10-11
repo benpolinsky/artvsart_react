@@ -25,10 +25,12 @@ const initialCompetitionState = {
       description: "A Legendary Sculpture",
       image: 'http://placehold.it/250x250'
     },
+    winner_id: 2,
     share_title: "default share title",
     isFetching: true,
     winnerSelected: false,
-    closeModal: true
+    closeModal: true,
+    isResult: false
   }
 }
 
@@ -54,6 +56,24 @@ const competitionReducer = (state=initialCompetitionState, action) => {
          winnerSelected: false
        }
      }
+ case "RECEIVE_FINISHED_COMPETITION":
+   var winning_art_id = action.competition.winner_id;
+   var art_pair = [action.competition.art, action.competition.challenger];
+   var winning_art = art_pair.find( (art) => art.id == winning_art_id );
+   var losing_art = art_pair.find( (art) => art.id != winning_art_id);
+    return {
+      ...state, 
+      competition: {
+        ...action.competition, 
+        share_title: 'ite',
+        isFetching: false,
+        closeModal: true,
+        winnerSelected: true,
+        winning_art: winning_art,
+        losing_art: losing_art,
+        isResult: true
+      }
+    }
   case 'START_SELECT_COMPETITION_WINNER':
    return {
      ...state, 
@@ -73,10 +93,10 @@ const competitionReducer = (state=initialCompetitionState, action) => {
       }
     } 
   case "SELECT_COMPETITION_WINNER":
-    const winning_art_id = action.winner_id;
-    const art_pair = [state.competition.art, state.competition.challenger];
-    const winning_art = art_pair.find( (art) => art.id == winning_art_id );
-    const losing_art = art_pair.find( (art) => art.id != winning_art_id);
+    var winning_art_id = action.winner_id;
+    var art_pair = [state.competition.art, state.competition.challenger];
+    var winning_art = art_pair.find( (art) => art.id == winning_art_id );
+    var losing_art = art_pair.find( (art) => art.id != winning_art_id);
     
     return {
        ...state, 

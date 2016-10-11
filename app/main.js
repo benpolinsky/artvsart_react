@@ -9,6 +9,7 @@ import App from './app.js';
 import requireAuthentication from './authWrapper.js'
 import HomeContainer from './components/containers/homeContainer.js'
 import CompetitionContainer from './components/containers/competitionContainer.js'
+import CompetitionResultContainer from './components/containers/competitionResultContainer.js'
 import AboutContainer from './components/containers/aboutContainer.js'
 import NewArtFormContainer from './components/containers/newArtFormContainer.js'
 import ArtContainer from './components/containers/artContainer.js'
@@ -47,6 +48,7 @@ ReactDOM.render(
     <Route path='/' component={requireAuthentication(App)}>
       <IndexRoute component={HomeContainer} />
       <Route path='competition' component={CompetitionContainer} />
+      <Route path='competition_result/:id' component={CompetitionResultContainer} />
       <Route path='add_new_art' component={NewArtFormContainer} />
       <Route path='import_art' component={ImportArtFormContainer} />
       <Route path='about' component={AboutContainer} />

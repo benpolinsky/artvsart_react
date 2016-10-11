@@ -46,6 +46,11 @@
   border-right: 0;
 }
 
+.competition .versusSeparator.small{
+   font-size: 40px;
+  
+}
+
 .artInfo{
   display:none;
 }
