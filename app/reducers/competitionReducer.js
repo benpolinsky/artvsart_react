@@ -26,7 +26,7 @@ const initialCompetitionState = {
       image: 'http://placehold.it/250x250'
     },
     winner_id: 2,
-    share_title: "default share title",
+    share_title: "Visit Art Vs Art to Battle Any Art Vs Any Art",
     isFetching: true,
     winnerSelected: false,
     closeModal: true,
@@ -41,7 +41,6 @@ const competitionReducer = (state=initialCompetitionState, action) => {
       ...state, 
       competition: {
         ...state.competition, 
-        share_title: 'ite',
         isFetching: true
       }
     }    
@@ -50,22 +49,20 @@ const competitionReducer = (state=initialCompetitionState, action) => {
        ...state, 
        competition: {
          ...action.competition, 
-         share_title: 'ite',
+         share_title: `Now Battling: ${action.competition.art.name} vs. ${action.competition.challenger.name} on Art Vs Art`,
          isFetching: false,
          closeModal: true,
          winnerSelected: false
        }
      }
  case "RECEIVE_FINISHED_COMPETITION":
-   var winning_art_id = action.competition.winner_id;
-   var art_pair = [action.competition.art, action.competition.challenger];
-   var winning_art = art_pair.find( (art) => art.id == winning_art_id );
-   var losing_art = art_pair.find( (art) => art.id != winning_art_id);
+   var winning_art = winnerAndLoser(state.competition, action.winner_id).winner;
+   var losing_art = winnerAndLoser(state.competition, action.winner_id).loser;
     return {
       ...state, 
       competition: {
         ...action.competition, 
-        share_title: 'ite',
+         share_title: `${winning_art.name} battled ${losing_art.name} AND WON! on Art Vs. Art`,
         isFetching: false,
         closeModal: true,
         winnerSelected: true,
@@ -93,17 +90,14 @@ const competitionReducer = (state=initialCompetitionState, action) => {
       }
     } 
   case "SELECT_COMPETITION_WINNER":
-    var winning_art_id = action.winner_id;
-    var art_pair = [state.competition.art, state.competition.challenger];
-    var winning_art = art_pair.find( (art) => art.id == winning_art_id );
-    var losing_art = art_pair.find( (art) => art.id != winning_art_id);
-    
+    var winning_art = winnerAndLoser(state.competition, action.winner_id).winner;
+    var losing_art = winnerAndLoser(state.competition, action.winner_id).loser;
     return {
        ...state, 
        competition: {
          ...state.competition, 
          winning_art: winning_art, 
-         losing_art: losing_art,
+         losing_art:  losing_art,
          share_title: `${winning_art.name} battled ${losing_art.name} AND WON! on artvsart`,
          winnerSelected: true,
          art_percentages: action.competition.art_percentages,
@@ -121,6 +115,17 @@ const competitionReducer = (state=initialCompetitionState, action) => {
     } 
   }
   return state;
+}
+
+const winnerAndLoser = (competition, winner_id) => {
+  const art_pair = [competition.art, competition.challenger];
+  const winning_art = art_pair.find( (art) => art.id == winner_id);
+  const losing_art = art_pair.find( (art) => art.id != winner_id);
+
+  return {
+    winner: winning_art,
+    loser: losing_art
+  }
 }
 
 export default competitionReducer
