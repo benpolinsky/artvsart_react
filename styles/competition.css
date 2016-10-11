@@ -31,6 +31,11 @@
 .competition .art .voteButton{
   margin:0 auto;
 }
+
+.competition .art .percentages{
+  text-align:center;
+}
+
 .competition .versusSeparator{
   font-size: 140px;
   font-weight: 700;

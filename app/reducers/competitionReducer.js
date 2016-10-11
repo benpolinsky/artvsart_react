@@ -30,7 +30,8 @@ const initialCompetitionState = {
     isFetching: true,
     winnerSelected: false,
     closeModal: true,
-    isResult: false
+    isResult: false,
+    art_percentages: {}
   }
 }
 
@@ -56,8 +57,8 @@ const competitionReducer = (state=initialCompetitionState, action) => {
        }
      }
  case "RECEIVE_FINISHED_COMPETITION":
-   var winning_art = winnerAndLoser(state.competition, action.winner_id).winner;
-   var losing_art = winnerAndLoser(state.competition, action.winner_id).loser;
+   var winning_art = winnerAndLoser(action.competition, action.competition.winner_id).winner;
+   var losing_art = winnerAndLoser(action.competition, action.winner_id).loser;
     return {
       ...state, 
       competition: {
@@ -121,7 +122,6 @@ const winnerAndLoser = (competition, winner_id) => {
   const art_pair = [competition.art, competition.challenger];
   const winning_art = art_pair.find( (art) => art.id == winner_id);
   const losing_art = art_pair.find( (art) => art.id != winner_id);
-
   return {
     winner: winning_art,
     loser: losing_art

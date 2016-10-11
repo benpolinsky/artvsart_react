@@ -25,18 +25,21 @@ export const CompetitionResult = ({competition, displayInfo}) => {
   const losing_art = art_pair.find( (art) => art.id != competition.winner_id);
   
   return (
+
     <div className='competition'>
       <Loader backgroundStyle={spinnerStyles.background} show={competition.isFetching}>
   
         <div className="artPair">
           <div className='art'>
             <Art selectInfo={displayInfo} key={winning_art.id} art={winning_art} noVoting={true} />
+            <p className='percentages'>{competition.art_percentages.winner_winning_percentage}</p>
           </div>
   
           <div className='versusSeparator small'>Defeated</div>
   
           <div className='art'>
             <Art selectInfo={displayInfo} key={losing_art.id} art={losing_art} noVoting={true} />
+            <p className='percentages'>{competition.art_percentages.loser_winning_percentage}</p>
           </div>
         </div>
   
