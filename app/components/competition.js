@@ -4,8 +4,8 @@
 
 import React from 'react';
 import Loader from 'react-loader-advanced';
-import Art from './art.js';
-import ArtShareButtons from './ArtShareButtons.js';
+import Art from './art/art.js';
+import ShareButtons from './shareButtons.js';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -53,7 +53,7 @@ export const Competition = ({competition, handleClose, displayInfo, noVoting}) =
         
         <div className='share-buttons'>
           <p>Share It!</p>
-          <ArtShareButtons className="competition-share" share_title={competition.share_title}/>
+          <ShareButtons className="competition-share" share_title={competition.share_title}/>
         </div>
         
       </Loader>

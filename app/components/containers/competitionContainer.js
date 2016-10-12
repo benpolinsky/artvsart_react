@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {WinnerModalContents} from '../winnerModalContents.js';
 import {Competition} from '../competition.js';
-import ArtInfo from '../artInfo.js'
+import ArtInfo from '../art/artInfo.js'
 import {getBattle} from '../../utils/ajaxHelpers.js';
 import {getCompetitionData} from '../../actions/index.js';
 import {handleCompetitionModal} from '../../actions/userAuth.js'

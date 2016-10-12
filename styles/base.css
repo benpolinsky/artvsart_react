@@ -1,3 +1,10 @@
+a{
+  color:black;
+}
+
+a:visited{
+  color:black;
+}
 
 p, div {
   font-family: 'Roboto', sans-serif; 
@@ -28,3 +35,20 @@ h1.mainTitle{
   padding-bottom:8rem;
   position:relative;
 }
+
+.centered-page{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  margin-top:20px;
+}
+
+.centered-page > div{
+  width:500px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+

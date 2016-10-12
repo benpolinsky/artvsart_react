@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import Art from '../art.js';
+import Art from './art.js';
 import { Router, Route, Link, browserHistory } from 'react-router';
 import {fetchArt} from '../../actions/art.js';
 
@@ -12,10 +12,9 @@ class ArtContainer extends React.Component{
   
   render(){
     return (
-      <div>
+      <div className="centered-page">
         <Art key={this.props.art.id} art={this.props.art} noVoting={true} />
         <Link to={`/art/${this.props.art.id}/edit`} >Edit </Link>
-        
       </div>
     )
   }

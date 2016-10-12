@@ -9,7 +9,7 @@ const {
 const FacebookIcon = generateShareIcon('facebook');
 const TwitterIcon = generateShareIcon('twitter');
 
-const ArtShareButtons = ({share_title}) => {
+const MyShareButtons = ({share_title}) => {
   return (
     <div>
     <hr/>
@@ -30,4 +30,4 @@ const ArtShareButtons = ({share_title}) => {
   )
 }
 
-export default ArtShareButtons
+export default MyShareButtons

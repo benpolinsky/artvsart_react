@@ -1,5 +1,5 @@
 import React from 'react';
-import ArtShareButtons from './ArtShareButtons.js';
+import ShareButtons from './shareButtons.js';
 import FlatButton from 'material-ui/FlatButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -53,7 +53,7 @@ export const WinnerModalContents = ({competition, closeModal}) => {
       <span className='share-prompt'>Share This Result!</span>
  
       <div className='share-buttons'>
-          <ArtShareButtons className='competition-winner-share' share_title={share_title}/>
+          <ShareButtons className='competition-winner-share' share_title={share_title}/>
       </div>
 
     </div>

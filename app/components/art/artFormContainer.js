@@ -23,6 +23,8 @@ class ArtFormContainer extends React.Component {
     this.state = {
       loading: true,
       file_errors: '',
+      formTitle: "Add Art",
+      submitLabel: "Create",
       art: {
         image: ""
       }
@@ -32,9 +34,17 @@ class ArtFormContainer extends React.Component {
   componentWillReceiveProps(nextProps){
     if (nextProps != this.props) {
       if (nextProps.location.pathname == '/add_new_art') {
-        console.log('resetting art');
+        this.setState({
+          formTitle: "Add Art",
+          submitLabel: "Create"
+        });
         this.props.resetArt()
       } else {
+        this.setState({
+          formTitle: "Edit Art",
+          submitLabel: "Edit"
+        });
+        
         (nextProps.art.id == 0) && this.props.loadArt(nextProps.params.id);
       }
     }
@@ -42,11 +52,20 @@ class ArtFormContainer extends React.Component {
   
   componentDidMount(){
     this.toggleLoader(false);
-    console.log("mounting");
+
     if (this.props.location.pathname == '/add_new_art') {
-      console.log('resetting art');
+      this.setState({
+        formTitle: "Add Art",
+        submitLabel: "Create"
+      });
       this.props.resetArt()
     } else {
+      
+      this.setState({
+        formTitle: "Edit Art",
+        submitLabel: "Edit"
+      });
+      
       (this.props.art.id == 0) && this.props.loadArt(this.props.params.id);
     }
   }
@@ -124,7 +143,16 @@ class ArtFormContainer extends React.Component {
   render(){
     return (
       <Loader show={this.state.loading} message={'loading'} foregroundStyle={{color: 'white'}} backgroundStyle={{backgroundColor: 'black'}} >
-        <ArtForm initialValues={this.props.art} art={this.props.art} enableReinitialize={true} form="newArt" update={this.updateArtValues} errors={this.state.file_errors} submit={this.submitArtForm} triggerLoader={this.toggleLoader}>
+      <ArtForm initialValues={this.props.art}
+           art={this.props.art} 
+           enableReinitialize={true} 
+           formTitle={this.state.formTitle}
+           submitLabel={this.state.submitLabel}
+           form="newArt" 
+           errors={this.state.file_errors} 
+           submit={this.submitArtForm} 
+           triggerLoader={this.toggleLoader} >
+                  
           <ReactS3Uploader
             signingUrl="/api/v1/s3/sign"
             accept="image/*"
