@@ -44,13 +44,19 @@ ReactDOM.render(
  
   <Router history={browserHistory}>
     <Route path='/' component={requireAuthentication(App)}>
+
       <IndexRoute component={HomeContainer} />
+
       <Route path='competition' component={CompetitionContainer} />
       <Route path='competition_result/:id' component={CompetitionResultContainer} />
-      <Route path='add_new_art' component={ArtFormContainer} />
+
       <Route path='import_art' component={ImportArtFormContainer} />
-      <Route path='about' component={AboutContainer} />
+      <Route path='add_new_art' component={ArtFormContainer} />
       <Route path='art/:id' component={ArtContainer} />
+      <Route path='art/:id/edit' component={ArtFormContainer} />
+
+
+      <Route path='about' component={AboutContainer} />
       <Route path='leader_board' component={LeaderBoard} />
       <Route path='profile' component={ProfilePage} />
       <Route path='top_judges' component={TopJudges} />

@@ -4,7 +4,7 @@ import {Router} from 'react-router';
 import Loader from 'react-loader-advanced';
 import ReactS3Uploader from 'react-s3-uploader';
 import ArtForm from '../forms/ArtForm.js';
-import {createNewArt} from '../../actions/art.js';
+import {createNewArt, fetchArt, resetArt, updateArt} from '../../actions/art.js';
 import {storeSignedUrl} from '../../actions/art.js';
 import * as storage from '../../localStorage.js';
 
@@ -16,6 +16,7 @@ class ArtFormContainer extends React.Component {
     this.onUploadFinish = this.onUploadFinish.bind(this);
     this.onUploadStart = this.onUploadStart.bind(this);
     this.toggleLoader = this.toggleLoader.bind(this);
+    
   }
   
   componentWillMount(){
@@ -28,12 +29,29 @@ class ArtFormContainer extends React.Component {
     }
   }
   
+  componentWillReceiveProps(nextProps){
+    if (nextProps != this.props) {
+      if (nextProps.location.pathname == '/add_new_art') {
+        console.log('resetting art');
+        this.props.resetArt()
+      } else {
+        (nextProps.art.id == 0) && this.props.loadArt(nextProps.params.id);
+      }
+    }
+  }
+  
   componentDidMount(){
     this.toggleLoader(false);
+    console.log("mounting");
+    if (this.props.location.pathname == '/add_new_art') {
+      console.log('resetting art');
+      this.props.resetArt()
+    } else {
+      (this.props.art.id == 0) && this.props.loadArt(this.props.params.id);
+    }
   }
   
   submitArtForm(data){
-    debugger
     if (this.props.location.pathname == "/add_new_art") {
       this.createNewArt(data)
     } else {
@@ -52,7 +70,25 @@ class ArtFormContainer extends React.Component {
     }
     this.props.createNewArt(dataWithImage, this.context.router);
   }
-
+  
+  updateArt(data){
+    if (!this.state.art.image) {
+      if (!this.props.art.image) {
+        this.setState({file_errors: "Please upload an image"})
+        return false        
+      } else {
+        var art_image = this.props.art.image
+      }
+    } else { 
+      var art_image = this.state.art.image
+    }
+    
+    const dataWithImage = {
+      ...data,
+      image: art_image
+    }
+    this.props.updateArt(dataWithImage, this.context.router)
+  }
   
   handleResponse(response){
     this.context.router.push(`/art/${response.art.id}`)
@@ -78,6 +114,7 @@ class ArtFormContainer extends React.Component {
       
       this.setState({
         art: {
+          ...this.props.art,
           image: signed_url
         }
       })
@@ -87,7 +124,7 @@ class ArtFormContainer extends React.Component {
   render(){
     return (
       <Loader show={this.state.loading} message={'loading'} foregroundStyle={{color: 'white'}} backgroundStyle={{backgroundColor: 'black'}} >
-        <ArtForm form="newArt" update={this.updateArtValues} errors={this.state.file_errors} submit={this.submitArtForm} triggerLoader={this.toggleLoader}>
+        <ArtForm initialValues={this.props.art} art={this.props.art} enableReinitialize={true} form="newArt" update={this.updateArtValues} errors={this.state.file_errors} submit={this.submitArtForm} triggerLoader={this.toggleLoader}>
           <ReactS3Uploader
             signingUrl="/api/v1/s3/sign"
             accept="image/*"
@@ -109,12 +146,21 @@ ArtFormContainer.contextTypes = {
 }
   
 const mapStateToProps = (store) => ({
-  art: store.form.newArtForm
+  art: store.artState.art
 });
 
 const mapDispatchToProps = (dispatch) => ({
   createNewArt(art, router){
     dispatch(createNewArt(art, router));
+  },
+  updateArt(art, router){
+    dispatch(updateArt(art, router));
+  },
+  loadArt(id){
+    dispatch(fetchArt(id));
+  },
+  resetArt(){
+    dispatch(resetArt())
   }
 })
 

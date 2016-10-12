@@ -151,10 +151,19 @@ const selectWinner = (competition, winner) => {
   }).then(response => response.json()); 
 }
 
-const createNewArt = (art) => {
+export const createNewArt = (art) => {
   return fetch(`${domain}/api/v1/art`, {
     credentials: 'include',
     method: "POST",
+    headers: {...headers, ...tokenObject()},
+    body: JSON.stringify({art: art})
+  }).then(response => response.json());
+}
+
+export const updateArt = (art) => {
+  return fetch(`${domain}/api/v1/art/${art.id}`, {
+    credentials: 'include',
+    method: "PUT",
     headers: {...headers, ...tokenObject()},
     body: JSON.stringify({art: art})
   }).then(response => response.json());
@@ -188,5 +197,5 @@ function to_params(data) {
 
 export {
   getArtInfo, fetchArt, 
-  selectWinner, createNewArt
+  selectWinner
 }

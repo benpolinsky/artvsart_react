@@ -11,6 +11,10 @@ export const fetchArt = (id) => (dispatch) => {
   })
 }
 
+export const resetArt = () => ({
+  type: "RESET_ART"
+});
+
 const beginArtRequest = () => ({
   type: "ART_REQUESTED"
 });
@@ -37,6 +41,7 @@ export const createNewArt = (art, router) => (dispatch) => {
   })
 }
 
+
 const createNewArtRequest = () => ({
   type: "CREATE_NEW_ART_REQUEST"
 })
@@ -50,6 +55,34 @@ const createNewArtResponse = (response) => ({
   type: "CREATE_NEW_ART_RESPONSE",
   art: response.art
 })
+
+export const updateArt = (art, router) => (dispatch) => {
+  dispatch(updateArtRequest());
+  api.updateArt(art).then(response => {
+    if (response.errors == null) {
+      dispatch(updateArtResponse(response));
+      router.push(`/art/${response.art.id}`)
+    } else {
+      dispatch(updateArtRequestFailed(response))
+    }
+  })
+}
+
+const updateArtRequest = () => ({
+  type: "UPDATE_ART_REQUEST"
+})
+
+const updateArtRequestFailed = (response) => ({
+  type: "UPDATE_ART_REQUEST_FAILED",
+  errors: response.errors
+})
+
+const updateArtResponse = (response) => ({
+  type: "UPDATE_ART_RESPONSE",
+  art: response.art
+})
+
+
 
 export const storeSignedUrl = (signedUrl) => (dispatch) => ({
   type: "STORE_SIGNED_URL",

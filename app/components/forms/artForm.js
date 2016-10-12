@@ -36,7 +36,7 @@ class ArtForm extends React.Component{
   }
   
   render(){
-    const {submit, handleSubmit, errors} = this.props;
+    const {submit, handleSubmit, errors, art} = this.props;
     return(
      <MuiThemeProvider>
       <form onSubmit={handleSubmit(this.onSubmit)} className='createArtForm centered-form'>
@@ -46,6 +46,7 @@ class ArtForm extends React.Component{
             <Field name='creator' floatingLabelText="Creator" component={TextField} style={textFieldStyles} />
             <Field name='description' floatingLabelText="Description" component={TextField} multiLine={true} style={textFieldStyles}  />
             <div className="uploadToS3">
+              {art && art.image && <img src={art.image} />}
               {this.props.children}
             </div>
               <p>{errors}</p>

@@ -7,12 +7,17 @@ import {fetchArt} from '../../actions/art.js';
 
 class ArtContainer extends React.Component{
   componentDidMount(){
-
     this.props.loadArt(this.props.params.id);
   }
   
   render(){
-    return <Art key={this.props.art.id} art={this.props.art} noVoting={true} />
+    return (
+      <div>
+        <Art key={this.props.art.id} art={this.props.art} noVoting={true} />
+        <Link to={`/art/${this.props.art.id}/edit`} >Edit </Link>
+        
+      </div>
+    )
   }
 }
 
