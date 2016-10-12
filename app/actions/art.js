@@ -50,3 +50,8 @@ const createNewArtResponse = (response) => ({
   type: "CREATE_NEW_ART_RESPONSE",
   art: response.art
 })
+
+export const storeSignedUrl = (signedUrl) => (dispatch) => ({
+  type: "STORE_SIGNED_URL",
+  url: signedUrl
+})

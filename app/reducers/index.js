@@ -7,6 +7,7 @@ import userCompetitionsReducer from './userCompetitionsReducer.js';
 import judgesReducer from './judgesReducer.js';
 import resultsReducer from './resultsReducer.js';
 import artImportsReducer from './artImportsReducer.js';
+import {reducer as formReducer} from 'redux-form';
 
 export default combineReducers({
   competitionState: competitionReducer,
@@ -16,5 +17,6 @@ export default combineReducers({
   userCompetitionsState: userCompetitionsReducer,
   judgesState: judgesReducer,
   resultsState: resultsReducer,
-  artImportState: artImportsReducer
+  artImportState: artImportsReducer,
+  form: formReducer
 })

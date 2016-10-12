@@ -9,6 +9,7 @@ import Drawer from 'material-ui/Drawer';
 import FlatButton from 'material-ui/FlatButton';
 import MenuItem from 'material-ui/MenuItem';
 import {signOutUser} from '../actions/userAuth.js'
+import AuthNav from './authNav.js'
 
 class Menu extends React.Component{
   constructor(){
@@ -72,18 +73,7 @@ class Menu extends React.Component{
           iconElementRight={
             user_type == "GuestUser" ?
             
-            <ul className='authNav'>
-              <li className="nav-item">
-                <FlatButton className="nav-link" label="Register" onTouchTap={() => {this.props.showAuthForm('register')}} />
-              </li>
-              <li className="nav-item">
-              <span> | </span>
-              </li>
-              <li className="nav-item">
-                <FlatButton className="nav-link" label="Sign In" onTouchTap={() => {this.props.showAuthForm('signIn')}} />
-              </li>
-            </ul>
-            
+            <AuthNav showAuthForm={this.props.showAuthForm}/>
             : 
             
             <MuiThemeProvider>

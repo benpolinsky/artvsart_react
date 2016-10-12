@@ -15,10 +15,8 @@ import NewArtFormContainer from './components/containers/newArtFormContainer.js'
 import ArtContainer from './components/containers/artContainer.js'
 import ImportArtFormContainer from './components/containers/importArtFormContainer.js'
 import LeaderBoard from './components/leaderBoard.js'
-import SignUpForm from './components/forms/signUpForm.js'
-import SignInForm from './components/forms/signInForm.js'
 import ProfilePage from './components/containers/profilePage.js'
-import TopJudges from './components/containers/topJudges.js';
+import TopJudges from './components/containers/topJudges.js'
 
 const styles = [
   'reset', 
@@ -54,8 +52,6 @@ ReactDOM.render(
       <Route path='about' component={AboutContainer} />
       <Route path='art/:id' component={ArtContainer} />
       <Route path='leader_board' component={LeaderBoard} />
-      <Route path='sign_up' component={SignUpForm} />
-      <Route path='sign_in' component={SignInForm} />
       <Route path='profile' component={ProfilePage} />
       <Route path='top_judges' component={TopJudges} />
     </Route>

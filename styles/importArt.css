@@ -2,7 +2,7 @@
 
 /* ---- Import Art Form ---- */
 
-form.import-art{
+form.centered-form{
   padding:40px;
   border-bottom:1px solid black;
   display:flex;
@@ -10,7 +10,7 @@ form.import-art{
   flex-direction:column;
 }
 
-form.import-art .fields{
+form.centered-form .fields{
   margin-top:20px;
 }
 

@@ -8,7 +8,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 const ImportArtForm = ({submitForm, selected_source, selected, sources, update, errors}) => {
   const source_label = `search_${selected_source.toLowerCase()}`;
   return (
-    <form onSubmit={submitForm} className='import-art'>
+    <form onSubmit={submitForm} className='centered-form'>
       <h1 className='mainTitle'>Import Art</h1>
       <div>
         <MuiThemeProvider>  
