@@ -11,7 +11,7 @@ import HomeContainer from './components/containers/homeContainer.js'
 import CompetitionContainer from './components/containers/competitionContainer.js'
 import CompetitionResultContainer from './components/containers/competitionResultContainer.js'
 import AboutContainer from './components/containers/aboutContainer.js'
-import NewArtFormContainer from './components/containers/newArtFormContainer.js'
+import ArtFormContainer from './components/containers/artFormContainer.js'
 import ArtContainer from './components/containers/artContainer.js'
 import ImportArtFormContainer from './components/containers/importArtFormContainer.js'
 import LeaderBoard from './components/leaderBoard.js'
@@ -47,7 +47,7 @@ ReactDOM.render(
       <IndexRoute component={HomeContainer} />
       <Route path='competition' component={CompetitionContainer} />
       <Route path='competition_result/:id' component={CompetitionResultContainer} />
-      <Route path='add_new_art' component={NewArtFormContainer} />
+      <Route path='add_new_art' component={ArtFormContainer} />
       <Route path='import_art' component={ImportArtFormContainer} />
       <Route path='about' component={AboutContainer} />
       <Route path='art/:id' component={ArtContainer} />

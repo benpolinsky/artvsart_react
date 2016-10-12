@@ -49,7 +49,7 @@ export class AuthForm extends React.Component {
     
     return (
       <div className='registerForm' style={formStyles}>
-        <form onSubmit={this.props.handleSubmit(this.submitForm)} className="signUpForm">
+        <form form={`${this.props.formType}Form`} onSubmit={this.props.handleSubmit(this.submitForm)} className="signUpForm">
           <h2>{this.props.formTitle}</h2>
           <MuiThemeProvider>
             <div>
@@ -80,7 +80,7 @@ AuthForm.contextTypes = {
 }
 
 AuthForm = reduxForm({
-  form: 'signUpForm',
+  fields: ['email', 'password'],
   validate
 })(AuthForm)
 

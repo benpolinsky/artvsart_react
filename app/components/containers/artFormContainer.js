@@ -3,98 +3,56 @@ import {connect} from 'react-redux';
 import {Router} from 'react-router';
 import Loader from 'react-loader-advanced';
 import ReactS3Uploader from 'react-s3-uploader';
-import NewArtForm from '../forms/NewArtForm.js';
+import ArtForm from '../forms/ArtForm.js';
 import {createNewArt} from '../../actions/art.js';
+import {storeSignedUrl} from '../../actions/art.js';
 import * as storage from '../../localStorage.js';
 
 class ArtFormContainer extends React.Component {
   constructor(){
     super();
+    this.submitArtForm = this.submitArtForm.bind(this);
     this.createNewArt = this.createNewArt.bind(this);
-    // updateArt as well
     this.onUploadFinish = this.onUploadFinish.bind(this);
     this.onUploadStart = this.onUploadStart.bind(this);
     this.toggleLoader = this.toggleLoader.bind(this);
-    this.updateArtValues = this.updateArtValues.bind(this);
   }
-
+  
   componentWillMount(){
     this.state = {
       loading: true,
+      file_errors: '',
       art: {
-        name: "",
-        creator: "",
-        description: "",
-        errors: {
-          name: [],
-          creator: [],
-          description: []
-        }
+        image: ""
       }
     }
+  }
+  
+  componentDidMount(){
     this.toggleLoader(false);
   }
-  componentDidMount(){
-    this.setState({
-      art: {
-        name: "",
-        creator: "",
-        description: "",
-        errors: { 
-          name: [],
-          creator: [],
-          description: []
-          
-        }
-      }
-    })
+  
+  submitArtForm(data){
+    debugger
+    if (this.props.location.pathname == "/add_new_art") {
+      this.createNewArt(data)
+    } else {
+      this.updateArt(data)
+    }
   }
   
-  createNewArt(e){
-    e.preventDefault();
-    const router = this.context.router
-    this.validateForm() && this.props.createNewArt(this.state.art, router);
+  createNewArt(data){
+    if (!this.state.art.image) {
+      this.setState({file_errors: "Please upload an image"})
+      return false
+    }
+    const dataWithImage = {
+      ...data, 
+      image: this.state.art.image
+    }
+    this.props.createNewArt(dataWithImage, this.context.router);
   }
-  
-  // updateArt(){}
 
-  // It'd be nice to find a library
-  // So many edge cases
-  validateForm(){
-    let errors = {
-      name: [],
-      creator: [],
-      description: []
-    }
-    if (this.state.art.name.length < 2) {
-      errors = {
-        ...errors,
-        name: ['please enter a minimum of 2 letters']
-      }
-    } 
-    if (this.state.art.creator.length < 2) {
-      errors = {
-        ...errors,
-        creator: ['please enter a minimum of 2 letters']
-      }
-    }
-    if (this.state.art.description.length < 10) {
-      errors = {
-        ...errors,
-        description: ['please enter a minimum of 10 letters']
-      }
-    }
-    
-    this.setState({
-      ...this.state,
-      art: {
-        ...this.state.art,
-        errors: errors
-      }
-    })
-    const errorCount = Object.values(errors);
-    return !errorCount.some((error) => { return error.length > 0})
-  }
   
   handleResponse(response){
     this.context.router.push(`/art/${response.art.id}`)
@@ -105,15 +63,7 @@ class ArtFormContainer extends React.Component {
       loading: loading
     }, callback)
   }
-  
-  updateArtValues(art){
-    this.setState({
-      art: {
-        ...this.state.art,
-        ...art
-      }
-    })
-  }
+
   
   onUploadStart(file, next){
     this.toggleLoader(true);
@@ -125,10 +75,9 @@ class ArtFormContainer extends React.Component {
     // same with this, no need to call the store, we'll keep the state locally.
     this.toggleLoader(false, () => {
       const signed_url = file.signedUrl.split('?X-Amz-Expires')[0];
-      const old_art = this.state.art;
+      
       this.setState({
         art: {
-          ...old_art, 
           image: signed_url
         }
       })
@@ -138,7 +87,7 @@ class ArtFormContainer extends React.Component {
   render(){
     return (
       <Loader show={this.state.loading} message={'loading'} foregroundStyle={{color: 'white'}} backgroundStyle={{backgroundColor: 'black'}} >
-        <ArtForm update={this.updateArtValues} errors={this.state.art.errors} submit={this.createNewArt} triggerLoader={this.toggleLoader}>
+        <ArtForm form="newArt" update={this.updateArtValues} errors={this.state.file_errors} submit={this.submitArtForm} triggerLoader={this.toggleLoader}>
           <ReactS3Uploader
             signingUrl="/api/v1/s3/sign"
             accept="image/*"
@@ -148,19 +97,19 @@ class ArtFormContainer extends React.Component {
             onFinish={this.onUploadFinish}
             signingUrlHeaders={storage.tokenObject()}
             server="http://localhost:3000" />
-        </NewArtForm>
+        </ArtForm>
       </Loader>
     )
   }
 }
 
-NewArtFormContainer.contextTypes = {
+ArtFormContainer.contextTypes = {
   router: React.PropTypes.object,
   store: React.PropTypes.object
 }
   
 const mapStateToProps = (store) => ({
-  art: store.artState.art
+  art: store.form.newArtForm
 });
 
 const mapDispatchToProps = (dispatch) => ({

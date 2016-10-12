@@ -7,8 +7,8 @@ import MyOverlay from '../myOverlay.js'
 const AuthForms = ({user, responseFacebook, signUserIn, registerUser, hideAuthForm}) => {
   return(
     <div>
-      <AuthForm displayForm={user.openForm} formType="register" formTitle="Register" responseFacebook={responseFacebook} formAction={registerUser} />
-      <AuthForm displayForm={user.openForm} formType="signIn" formTitle="Sign In" responseFacebook={responseFacebook} formAction={signUserIn} />
+      <AuthForm displayForm={user.openForm} formType="register" form="RegisterForm" formTitle="Register" responseFacebook={responseFacebook} formAction={registerUser} />
+      <AuthForm displayForm={user.openForm} formType="signIn" form="SignInForm" formTitle="Sign In" responseFacebook={responseFacebook} formAction={signUserIn} />
       <MyOverlay close={hideAuthForm} show={user.openForm} /> 
     </div>
   )
