@@ -1,8 +1,11 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {CompetitionResult} from '../competitionResult.js';
+import {WinnerModalContents} from './winnerModalContents.js';
+import {Competition} from './competition.js';
 import ArtInfo from '../art/artInfo.js'
+import {getBattle} from '../../utils/ajaxHelpers.js';
 import {getCompetitionData} from '../../actions/index.js';
+import {handleCompetitionModal} from '../../actions/userAuth.js'
 import FlatButton from 'material-ui/FlatButton'
 import Dialog from 'material-ui/Dialog';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -24,10 +27,11 @@ const customStyles = {
   }
 }
     
-class CompetitionResultContainer extends React.Component{
+class CompetitionContainer extends React.Component{
   constructor(){
     super();
     this.componentDidMount = this.componentDidMount.bind(this);
+    this.signUp = this.signUp.bind(this);
     this.displayInfo = this.displayInfo.bind(this);
     this.closeInfo = this.closeInfo.bind(this);
   }
@@ -37,17 +41,21 @@ class CompetitionResultContainer extends React.Component{
       artInfoVisible: false,
       visibleArt: {},
       competition: {
-        
+        winner_selected: false
       }
     }
   }
   
   componentDidMount(){
-    if (this.props.competition.id == 0) {
-      this.props.getCompetition(this.props.params.id);      
+    if (this.props.competition.id == 0 || this.props.competition.isResult == true ) {
+      this.props.getCompetition();      
     }  
   }
   
+  signUp(e){
+    const router = this.context.router;
+    this.props.handleClose(e.target.innerText, router);
+  }
   
   displayInfo(art){
     const competition_pair = [this.props.competition.art, this.props.competition.challenger];
@@ -68,23 +76,22 @@ class CompetitionResultContainer extends React.Component{
   }
   
   render(){
+    const winnerSelected = (this.props.competition.winnerSelected && !this.props.competition.isResult);
     const artInfoAction = <FlatButton label="Close" primary={true} onTouchTap={this.closeInfo} />;
-    const art_pair = [this.props.competition.art, this.props.competition.challenger];
-    const winning_art = art_pair.find( (art) => art.id == this.props.competition.winner_id);
-    const losing_art = art_pair.find( (art) => art.id != this.props.competition.winner_id);
-    
+    const winnerModalAction = <FlatButton primary={true} backgroundColor={'#dbe7f1'} onClick={this.props.getCompetition} label="Next Battle!" />;
+
     return (
-     
     
       <div className='container'>
-        <h1 className='mainTitle'>{`${winning_art.name} WINS`}</h1>
-        <CompetitionResult
-          displayInfo={this.displayInfo} 
-          competition={this.props.competition}
-          />
+        <h1 className='mainTitle'>Battle!</h1>
+        <Competition displayInfo={this.displayInfo} handleClose={this.signUp} competition={this.props.competition}/>
     
         <MuiThemeProvider>
           <div>
+            <Dialog open={winnerSelected} modal={true} actions={winnerModalAction}>
+              <WinnerModalContents competition={this.props.competition} />
+            </Dialog>
+            
             <Dialog 
               open={this.state.artInfoVisible} 
               modal={false} 
@@ -101,7 +108,7 @@ class CompetitionResultContainer extends React.Component{
   }
 }
 
-CompetitionResultContainer.contextTypes = {
+CompetitionContainer.contextTypes = {
   store: React.PropTypes.object,
   router: React.PropTypes.object
 }
@@ -111,8 +118,8 @@ const mapStateToProps = (store) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getCompetition(id){
-    dispatch(getCompetitionData(id));
+  getCompetition(){
+    dispatch(getCompetitionData());
   },
   handleClose(result, router){
     dispatch(handleCompetitionModal(result, router));
@@ -120,4 +127,4 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(CompetitionResultContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(CompetitionContainer)

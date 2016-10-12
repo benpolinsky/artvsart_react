@@ -7,16 +7,20 @@ import { Provider } from 'react-redux';
 import store from './store.js';
 import App from './app.js';
 import requireAuthentication from './authWrapper.js'
-import HomeContainer from './components/containers/homeContainer.js'
-import CompetitionContainer from './components/containers/competitionContainer.js'
-import CompetitionResultContainer from './components/containers/competitionResultContainer.js'
-import AboutContainer from './components/containers/aboutContainer.js'
+
+import HomeContainer from './components/pages/homeContainer.js'
+import AboutContainer from './components/pages/aboutContainer.js'
+import ProfilePage from './components/pages/profilePage.js'
+import TopJudges from './components/pages/topJudges.js'
+
+import CompetitionContainer from './components/competition/competitionContainer.js'
+import CompetitionResultContainer from './components/competition/competitionResultContainer.js'
+
 import ArtFormContainer from './components/art/artFormContainer.js'
 import ArtContainer from './components/art/artContainer.js'
 import ImportArtFormContainer from './components/art/importArtFormContainer.js'
 import LeaderBoard from './components/leaderBoard.js'
-import ProfilePage from './components/containers/profilePage.js'
-import TopJudges from './components/containers/topJudges.js'
+
 
 const styles = [
   'reset', 

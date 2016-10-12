@@ -4,8 +4,8 @@
 
 import React from 'react';
 import Loader from 'react-loader-advanced';
-import Art from './art/art.js';
-import ShareButtons from './shareButtons.js';
+import Art from '../art/art.js';
+import ShareButtons from '../shareButtons.js';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';

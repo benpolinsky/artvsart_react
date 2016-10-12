@@ -1,5 +1,5 @@
 import React from 'react';
-import ShareButtons from './shareButtons.js';
+import ShareButtons from '../shareButtons.js';
 import FlatButton from 'material-ui/FlatButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
