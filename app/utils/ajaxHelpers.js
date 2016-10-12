@@ -113,7 +113,7 @@ export const getBattleResult = (id) => {
   }).then(response => response.json());
 }
 
-const getArtInfo = () => {
+export const getArtInfo = () => {
   return fetch(`${domain}/api/v1/art`, {
     credentials: 'include',
     method: "GET",
@@ -121,7 +121,7 @@ const getArtInfo = () => {
   }).then(response => response.json());
 }
 
-const fetchArt = (id) => {
+export const fetchArt = (id) => {
   return fetch(`${domain}/api/v1/art/${id}`, {
     credentials: 'include',
     method: 'GET',
@@ -138,7 +138,7 @@ export const getResults = () => {
   }).then(response => response.json());
 }
 
-const selectWinner = (competition, winner) => {
+export const selectWinner = (competition, winner) => {
   return fetch(`${domain}/api/v1/competitions/${competition}`, {
     credentials: 'include',
     method: 'PUT',
@@ -189,13 +189,16 @@ export const searchSource = (data) => {
   }).then(response => response.json());
 }
 
+export const getCategories = () => {
+  return fetch(`${domain}/api/v1/categories`, {
+    credentials: 'include',
+    method: "GET",
+    headers: {...headers, ...tokenObject()},
+  }).then(response => response.json());
+}
+
 function to_params(data) {
   return Object.keys(data).map(function(key) {
     return key + '=' + data[key];
   }).join('&');
-}
-
-export {
-  getArtInfo, fetchArt, 
-  selectWinner
 }

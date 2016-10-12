@@ -1,5 +1,4 @@
 import * as api from '../utils/ajaxHelpers.js';
-import * as storage from '../localStorage.js'
 
 export const stageCompetition = (response) => ({
   type: "RECEIVE_COMPETITION",

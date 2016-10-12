@@ -21,6 +21,7 @@ import ArtContainer from './components/art/artContainer.js'
 import ImportArtFormContainer from './components/art/importArtFormContainer.js'
 import LeaderBoard from './components/leaderBoard.js'
 
+import CategoriesList from './components/categories/categoriesList.js'
 
 const styles = [
   'reset', 
@@ -59,6 +60,8 @@ ReactDOM.render(
       <Route path='art/:id' component={ArtContainer} />
       <Route path='art/:id/edit' component={ArtFormContainer} />
 
+      <Route path='categories' component={CategoriesList} />
+   
 
       <Route path='about' component={AboutContainer} />
       <Route path='leader_board' component={LeaderBoard} />

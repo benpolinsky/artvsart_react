@@ -1,6 +1,9 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import {TextField} from 'redux-form-material-ui';
+import {DatePicker} from 'redux-form-material-ui';
+import {SelectField} from 'redux-form-material-ui';
+import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
@@ -47,6 +50,24 @@ class ArtForm extends React.Component{
             <Field name='name' floatingLabelText="Name" component={TextField} style={textFieldStyles} />
             <Field name='creator' floatingLabelText="Creator" component={TextField} style={textFieldStyles} />
             <Field name='description' floatingLabelText="Description" component={TextField} multiLine={true} style={textFieldStyles}  />
+            <Field name='creation_date' value={new Date('2-10-2016')} floatingLabelText={this.props.art.creation_date} component={DatePicker} style={textFieldStyles}  />
+            
+            <Field name='category_name' floatingLabelText="Category" component={SelectField} style={textFieldStyles} >
+              <MenuItem value="art" primaryText="Art"/>
+              <MenuItem value="music" primaryText="Music"/>
+              <MenuItem value="movie" primaryText="Movie"/>
+              <MenuItem value="show" primaryText="TV Show or Series"/>
+            </Field>
+            
+            <Field name='source' floatingLabelText="Source" component={SelectField} style={textFieldStyles} >
+              <MenuItem value="discogs" primaryText="Discogs"/>
+              <MenuItem value="imdb" primaryText="IMDB"/>
+              <MenuItem value="artsy" primaryText="Artsy"/>
+              <MenuItem value="harvard" primaryText="Harvard Art Gallery"/>
+              <MenuItem value="philart" primaryText="Philart"/>
+              <MenuItem value="other" primaryText="Other"/>
+            </Field>
+    
             <div className="uploadToS3">
               {currentImage}
               {this.props.children}

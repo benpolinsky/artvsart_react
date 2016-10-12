@@ -42,7 +42,7 @@ class ArtFormContainer extends React.Component {
       } else {
         this.setState({
           formTitle: "Edit Art",
-          submitLabel: "Edit"
+          submitLabel: "Update"
         });
         
         (nextProps.art.id == 0) && this.props.loadArt(nextProps.params.id);
@@ -63,7 +63,7 @@ class ArtFormContainer extends React.Component {
       
       this.setState({
         formTitle: "Edit Art",
-        submitLabel: "Edit"
+        submitLabel: "Update"
       });
       
       (this.props.art.id == 0) && this.props.loadArt(this.props.params.id);

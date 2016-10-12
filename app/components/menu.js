@@ -96,6 +96,7 @@ class Menu extends React.Component{
               <div className='adminLinks'>
                 <Link onTouchTap={this.closeMenu} to="/add_new_art"> Add New Art</Link>
                 <Link onTouchTap={this.closeMenu} to='/import_art'>Import Art</Link>
+                <Link onTouchTap={this.closeMenu} to='/categories'>Categories</Link>
               </div>
             }
         </Drawer>
