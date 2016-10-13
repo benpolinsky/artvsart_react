@@ -2,7 +2,7 @@ import * as api from '../utils/ajaxHelpers.js'
 
 export const fetchArt = (id) => (dispatch) => {
   dispatch(beginArtRequest());
-  api.fetchArt(id).then(response => {
+  api.get(`art/${id}`).then(response => {
     if (response.errors == null) {
       dispatch(fetchArtResponse(response))
     } else {
@@ -31,7 +31,7 @@ const fetchArtRequestFailed = (response) => ({
 
 export const createNewArt = (art, router) => (dispatch) => {
   dispatch(createNewArtRequest());
-  api.createNewArt(art).then(response => {
+  api.post('art', {art: art}).then(response => {
     if (response.errors == null) {
       dispatch(createNewArtResponse(response));
       router.push(`/art/${response.art.id}`)
@@ -58,7 +58,7 @@ const createNewArtResponse = (response) => ({
 
 export const updateArt = (art, router) => (dispatch) => {
   dispatch(updateArtRequest());
-  api.updateArt(art).then(response => {
+  api.put(`art/${art.id}`, {art: art}).then(response => {
     if (response.errors == null) {
       dispatch(updateArtResponse(response));
       router.push(`/art/${response.art.id}`)

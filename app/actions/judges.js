@@ -3,7 +3,7 @@ import * as storage from '../localStorage.js';
 
 export const fetchTopJudges = () => (dispatch) => {
   dispatch(topJudgesRequest());
-  return api.fetchTopJudges().then(response => {
+  return api.get('top_judges').then(response => {
     if (response.errors != null) {
       dispatch(topJudgesRequestFailed(response));      
     } else {

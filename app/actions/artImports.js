@@ -29,7 +29,7 @@ const displayResultsErrors = (error) => ({
 
 export const importArt = (id, source) => (dispatch) => {
   dispatch(importArtRequest());
-  return api.importArt(id, source).then(response => {
+  return api.post('art/import', {id: id, source: source}).then(response => {
     if (response.errors == null) {
       dispatch(importArtResponse(response));      
     } else {

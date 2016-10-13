@@ -15,13 +15,13 @@ export const getCompetitionData = (id=null) => (dispatch) => {
 
   if (id != null) {
     
-    return api.getBattleResult(id).then(response => {
+    return api.get(`competitions/${id}`).then(response => {
       dispatch(displayCompetition(response))
     });
     
   } else {
     
-    return api.getBattle().then(response => {
+    return api.post('competitions', {}).then(response => {
       dispatch(stageCompetition(response));
     });
     
@@ -37,8 +37,15 @@ const fetchCompetition = () => ({
 
 export const selectCompetitionWinner = (winner_id) => (dispatch, getState) => {
   dispatch(startSelectCompetitionWinner());
-  const competition = getState().competitionState.competition.id; 
-  return api.selectWinner(competition, winner_id).then(response => {
+  
+  const competition = getState().competitionState.competition.id;
+  const payload = {
+    competition: {
+      winner_id: winner_id
+    }
+  } 
+  
+  return api.put(`competitions/${competition})`, payload).then(response => {
     
     if (response.competition.errors != null) {
       dispatch(selectCompetitionWinnerFailed(response.competition));
@@ -67,7 +74,7 @@ const selectCompetitionWinnerFailed = (competition) => ({
 
 export const getGeneralArtInfo = () => (dispatch) => {
   dispatch(startGeneralArtInfo());
-  return api.getArtInfo().then(response => {
+  return api.get('art').then(response => {
     dispatch(receiveGeneralArtInfo(response));
   });
 };

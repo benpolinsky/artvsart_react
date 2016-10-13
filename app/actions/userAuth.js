@@ -3,7 +3,7 @@ import * as storage from '../localStorage.js'
 
 export const loginToFacebook = (response) => (dispatch) => {
   dispatch(facebookAuthRequest(response));
-  api.facebookLogin(response).then(response => {
+  api.get('users/auth/facebook/callback').then(response => {
     if (response.errors == null) {
       dispatch(facebookAuthSuccess(response));
       dispatch(storeUserCredentials(response.user));
@@ -32,7 +32,7 @@ const facebookAuthSuccess = (response) => ({
 
 export const signUserIn = (user, router) => (dispatch) => {
   dispatch(startSignUserIn(user));
-  return api.signIn(user).then(response => {
+  return api.post('users/sign_in', user).then(response => {
     if (response.errors != null) {
       dispatch(signInUserFailed(response.errors)); 
     } else {
@@ -74,7 +74,7 @@ const signInUserSuccessful = (user) => ({
 export const signOutUser = (router) => (dispatch) => {
   storage.deleteToken();
   dispatch(startUserSignedOut());
-  return api.signOut().then(response => {
+  return api.destroy('users/sign_out').then(response => {
 
     dispatch(storeUserCredentials(response.guest_user));
     dispatch(userSignedOut(response.guest_user));
@@ -95,7 +95,7 @@ const userSignedOut = (user) => ({
 
 export const registerUser = (user, router) => (dispatch) => {
   dispatch(startRegisterUser(user));
-  return api.registerUser(user).then(response => {
+  return api.post('users', {user: user}).then(response => {
     if (response.errors != null) {
 
       dispatch(registerUserFailed(response.errors));
@@ -126,7 +126,7 @@ const registerUserFailed = (user) => ({
 
 export const loadCredentials = (next_action) => (dispatch) => {
   dispatch(requestNewToken());
-  return api.getToken().then(response => {
+  return api.get('').then(response => {
     dispatch(storeUserCredentials(response.user));
   })
 }
@@ -151,7 +151,7 @@ export const receiveUserInfo = (user) => ({
 
 export const getUserInfo = () => (dispatch) => {
   dispatch(startReceiveUserInfo());
-  return api.userInfo().then(response => {
+  return api.get('').then(response => {
     dispatch(receiveUserInfo(response.user));
     dispatch(storeUserCredentials(response.user));
   })

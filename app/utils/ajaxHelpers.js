@@ -9,188 +9,48 @@ const headers = {
   ...token
 }
 
-// export const authGithubRequest = () => {
-//   const data = {
-//     client_id: '72999c5c016b8e18a13e',
-//     redirect_url: 'http://localhost::3333/sign_up',
-//     scope: 'user:email',
-//     state: "w80dsadkjsadja"
-//   }
-//   window.open(`https://github.com/login/oauth/authorize?${to_params(data)}`);
-// }
-//
 
-export const facebookLogin = () => {
-  return fetch(`${domain}/users/auth/facebook/callback`, {
-    credentials: 'include',
-    method: 'GET',
-    headers: {...headers, ...tokenObject()}
-  }).then(response => response.json());
-
-}
-
-
-export const fetchTopJudges = () => {
-  return fetch(`${domain}/api/v1/top_judges`, {
+export const get = url => {
+  return fetch(`${domain}/api/v1/${url}`, {
     credentials: 'include',
     method: 'GET',
     headers: {...headers, ...tokenObject()}
   }).then(response => response.json());
 }
 
-
-export const fetchUserCompetitions = () => {
-  return fetch(`${domain}/api/v1/user/competitions`, {
-    credentials: 'include',
-    method: 'GET',
-    headers: {...headers, ...tokenObject()}
-  }).then(response => response.json());
-}
-
-export const signIn = (user) => {
-  return fetch(`${domain}/api/v1/users/sign_in`, {
+export const post = (url, data) => {
+  return fetch(`${domain}/api/v1/${url}`, {
     credentials: 'include',
     method: 'POST',
     headers: {...headers, ...tokenObject()},
-    body: JSON.stringify({
-      email: user.email,
-      password: user.password
-    })
+    body: JSON.stringify(data)
   }).then(response => response.json());
 }
 
-export const signOut = () => {
-  return fetch(`${domain}/api/v1/users/sign_out`, {
-    credentials: 'include',
-    method: 'DELETE',
-    headers: {...headers, ...tokenObject()}
-  }).then(response => {
-    return response.json();
-  });
-}
-
-export const registerUser = (user) => {
-  return fetch(`${domain}/users/`, {
-    credentials: 'include',
-    method: 'POST',
-    headers: {...headers, ...tokenObject()},
-    body: JSON.stringify({
-      user: user
-    })
-  }).then(response => response.json());
-}
-
-export const getToken = () => {
-  return fetch(`${domain}/api/v1/`, {
-    credentials: 'include',
-    method: 'GET',
-    headers: {...headers, ...tokenObject()}
-  }).then(response => response.json());
-}
-
-export const userInfo = () => {
-  return fetch(`${domain}/api/v1/`, {
-    credentials: 'include',
-    method: 'GET',
-    headers: {...headers, ...tokenObject()}
-  }).then(response => response.json());
-}
-
-export const getBattle = () => {
-  return fetch(`${domain}/api/v1/competitions`, {
-    credentials: 'include',
-    method: 'POST',
-    headers: {...headers, ...tokenObject()},
-    body: JSON.stringify({})
-  }).then(response => response.json());
-}
-
-export const getBattleResult = (id) => {
-  return fetch(`${domain}/api/v1/competitions/${id}`, {
-    credentials: 'include',
-    method: 'GET',
-    headers: {...headers, ...tokenObject()}
-  }).then(response => response.json());
-}
-
-export const getArtInfo = () => {
-  return fetch(`${domain}/api/v1/art`, {
-    credentials: 'include',
-    method: "GET",
-    headers: {...headers, ...tokenObject()},
-  }).then(response => response.json());
-}
-
-export const fetchArt = (id) => {
-  return fetch(`${domain}/api/v1/art/${id}`, {
-    credentials: 'include',
-    method: 'GET',
-    headers: {...headers, ...tokenObject()}
-  }).then(response => response.json());
-}
-
-
-export const getResults = () => {
-  return fetch(`${domain}/api/v1/results`, {
-    credentials: "include",
-    method: "GET",
-    headers: {...headers, ...tokenObject()}
-  }).then(response => response.json());
-}
-
-export const selectWinner = (competition, winner) => {
-  return fetch(`${domain}/api/v1/competitions/${competition}`, {
+export const put = (url, data) => {
+  return fetch(`${domain}/api/v1/${url}`, {
     credentials: 'include',
     method: 'PUT',
     headers: {...headers, ...tokenObject()},
-    body: JSON.stringify({
-      competition: {
-        winner_id: winner
-      }
-    })
+    body: JSON.stringify(data)
   }).then(response => response.json()); 
 }
 
-export const createNewArt = (art) => {
-  return fetch(`${domain}/api/v1/art`, {
+// delete is reserved...
+export const destroy = (url) => {
+  return fetch(`${domain}/api/v1/${url}`, {
     credentials: 'include',
-    method: "POST",
-    headers: {...headers, ...tokenObject()},
-    body: JSON.stringify({art: art})
+    method: 'DELETE',
+    headers: {...headers, ...tokenObject()}
   }).then(response => response.json());
 }
 
-export const updateArt = (art) => {
-  return fetch(`${domain}/api/v1/art/${art.id}`, {
-    credentials: 'include',
-    method: "PUT",
-    headers: {...headers, ...tokenObject()},
-    body: JSON.stringify({art: art})
-  }).then(response => response.json());
-}
 
-export const importArt = (id, source) => {
-  return fetch(`${domain}/api/v1/art/import`, {
-    credentials: 'include',
-    method: 'POST',
-    headers: {...headers, ...tokenObject()},
-    body: JSON.stringify({
-      id: id,
-      source: source
-    })
-  }).then(response => response.json());
-}
-
+// I don't mind this as the to_params() call
+// doesn't belong in an action
+// it could be abstracted a bit more...
 export const searchSource = (data) => {
   return fetch(`${domain}/api/v1/search_source?${to_params(data)}`, {
-    credentials: 'include',
-    method: "GET",
-    headers: {...headers, ...tokenObject()},
-  }).then(response => response.json());
-}
-
-export const getCategories = () => {
-  return fetch(`${domain}/api/v1/categories`, {
     credentials: 'include',
     method: "GET",
     headers: {...headers, ...tokenObject()},

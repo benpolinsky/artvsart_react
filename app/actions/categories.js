@@ -2,7 +2,7 @@ import * as api from '../utils/ajaxHelpers.js';
 
 export const categoriesRequest = () => (dispatch) => {
   dispatch(requestCategories())
-  api.getCategories().then(response => {
+  api.get('categories').then(response => {
     if (response.errors == null) {
       dispatch(categoriesResponse(response))      
     } else {

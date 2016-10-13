@@ -3,7 +3,7 @@ import * as storage from '../localStorage.js';
 
 export const fetchResults = () => (dispatch) => {
   dispatch(fetchResultsRequest());
-  return api.getResults().then(response => {
+  return api.get('results').then(response => {
     if (response.errors != null) {
       dispatch(resultsRequestFailed(response));      
     } else {
