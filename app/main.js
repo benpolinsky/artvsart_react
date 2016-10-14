@@ -22,6 +22,7 @@ import ImportArtFormContainer from './components/art/importArtFormContainer.js'
 import LeaderBoard from './components/leaderBoard.js'
 
 import CategoriesList from './components/categories/categoriesList.js'
+import CategoryFormContainer from './components/categories/categoryFormContainer.js'
 
 const styles = [
   'reset', 
@@ -56,11 +57,12 @@ ReactDOM.render(
       <Route path='competition_result/:id' component={CompetitionResultContainer} />
 
       <Route path='import_art' component={ImportArtFormContainer} />
-      <Route path='add_new_art' component={ArtFormContainer} />
+      <Route path='art/new' component={ArtFormContainer} />
       <Route path='art/:id' component={ArtContainer} />
       <Route path='art/:id/edit' component={ArtFormContainer} />
 
       <Route path='categories' component={CategoriesList} />
+      <Route path='categories/new' component={CategoryFormContainer} />
    
 
       <Route path='about' component={AboutContainer} />

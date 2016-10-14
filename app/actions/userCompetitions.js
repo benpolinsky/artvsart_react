@@ -4,6 +4,7 @@ import * as storage from '../localStorage.js';
 export const fetchUserCompetitions = () => (dispatch) => {
   dispatch(userCompetitionsRequest());
   return api.get('user/competitions').then(response => {
+    console.log(response)
     if (response.errors != null) {
       dispatch(userCompetitionsRequestFailed(response));      
     } else {
@@ -18,7 +19,7 @@ const userCompetitionsRequest = () => ({
 
 const userCompetitionsResponse = (response) => ({
   type: "USER_COMPETITIONS_RESPONSE",
-  competitions: response.competitions
+  competitions: response.competition_size
 });
 
 const userCompetitionsRequestFailed = () => ({

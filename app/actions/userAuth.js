@@ -97,14 +97,12 @@ export const registerUser = (user, router) => (dispatch) => {
   dispatch(startRegisterUser(user));
   return api.post('users', {user: user}).then(response => {
     if (response.errors != null) {
-
       dispatch(registerUserFailed(response.errors));
     } else {
       dispatch(registerUserSuccessful(response.user));
       dispatch(storeUserCredentials(response.user));
       dispatch(closeSignUp())
       router.push(`/competition`);
-
     }
   })
 }

@@ -12,16 +12,16 @@ class ProfilePage extends React.Component{
 
   render(){
     return(
-      <div>
-        <h2>Profile Page</h2>
-        <p>Number of Competitions Judged: {this.props.competitions.length}</p>
+      <div className='centered-page'>
+        <h1 className='mainTitle'>Profile Page</h1>
+        <p>Number of Competitions Judged: {this.props.competitions.userCompetitions}</p>  
       </div>
     )
   }
 }
 
 const mapStateToProps = (store) => ({
-  competitions: store.userCompetitionsState.userCompetitions
+  competitions: store.userCompetitionsState
 });
 
 const mapDispatchToProps = (dispatch) => ({

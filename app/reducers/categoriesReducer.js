@@ -1,5 +1,7 @@
 const defaultCategoriesState = {
-  records: [{id: 0, name: "Category Name", color: 'black'}]
+  records: [{id: 0, name: "Category Name", color: 'black'}],
+  category: {id: null, name: "", color: ''},
+  errors: null
 };
 
 const CategoriesReducer = (state=defaultCategoriesState, action) => {

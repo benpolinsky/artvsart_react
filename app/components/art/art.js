@@ -1,5 +1,5 @@
 import React from 'react';
-import VoteButtonContainer from '../forms/VoteButton.js';
+import VoteButtonContainer from '../competition/VoteButton.js';
 import { StyleSheet, css } from 'aphrodite';
 
 

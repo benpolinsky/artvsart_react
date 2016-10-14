@@ -1,8 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Loader from 'react-loader-advanced';
-import SearchResults from '../forms/searchResults.js'
-import ImportArtForm from '../forms/ImportArtForm.js';
+import SearchResults from './searchResults.js'
+import ImportArtForm from './ImportArtForm.js';
 import {searchSource, importArt} from '../../actions/artImports.js';
 
 const spinner = <span style={{fontSize: 100, color: 'black'}} className="fa-spinner fa fa-spin"></span>;

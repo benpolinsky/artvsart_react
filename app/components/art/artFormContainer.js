@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {Router} from 'react-router';
 import Loader from 'react-loader-advanced';
 import ReactS3Uploader from 'react-s3-uploader';
-import ArtForm from '../forms/ArtForm.js';
+import ArtForm from './ArtForm.js';
 import {createNewArt, fetchArt, resetArt, updateArt} from '../../actions/art.js';
 import {storeSignedUrl} from '../../actions/art.js';
 import * as storage from '../../localStorage.js';
@@ -33,7 +33,7 @@ class ArtFormContainer extends React.Component {
   
   componentWillReceiveProps(nextProps){
     if (nextProps != this.props) {
-      if (nextProps.location.pathname == '/add_new_art') {
+      if (nextProps.location.pathname == '/art/new') {
         this.setState({
           formTitle: "Add Art",
           submitLabel: "Create"
@@ -53,7 +53,7 @@ class ArtFormContainer extends React.Component {
   componentDidMount(){
     this.toggleLoader(false);
 
-    if (this.props.location.pathname == '/add_new_art') {
+    if (this.props.location.pathname == '/art/new') {
       this.setState({
         formTitle: "Add Art",
         submitLabel: "Create"
@@ -71,7 +71,7 @@ class ArtFormContainer extends React.Component {
   }
   
   submitArtForm(data){
-    if (this.props.location.pathname == "/add_new_art") {
+    if (this.props.location.pathname == "/art/new") {
       this.createNewArt(data)
     } else {
       this.updateArt(data)
@@ -107,10 +107,6 @@ class ArtFormContainer extends React.Component {
       image: art_image
     }
     this.props.updateArt(dataWithImage, this.context.router)
-  }
-  
-  handleResponse(response){
-    this.context.router.push(`/art/${response.art.id}`)
   }
   
   toggleLoader(loading, callback){

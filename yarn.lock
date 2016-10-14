@@ -953,7 +953,7 @@ clap@^1.0.9:
   dependencies:
     chalk "^1.1.3"
 
-classnames@^2.2.5:
+classnames@^2.2.0, classnames@^2.2.5:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
 
@@ -2240,7 +2240,7 @@ lodash.words@^3.0.0:
   dependencies:
     lodash._root "^3.0.0"
 
-lodash@^4.12.0, lodash@^4.13.1, lodash@^4.16.2, lodash@^4.2.0, lodash@^4.2.1:
+lodash@^4.0.1, lodash@^4.12.0, lodash@^4.13.1, lodash@^4.16.2, lodash@^4.2.0, lodash@^4.2.1:
   version "4.16.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.16.4.tgz#01ce306b9bad1319f2a5528674f88297aeb70127"
 
@@ -2265,6 +2265,10 @@ loose-envify@^1.0.0, loose-envify@^1.1.0, loose-envify@^1.2.0:
 macaddress@^0.2.8:
   version "0.2.8"
   resolved "https://registry.yarnpkg.com/macaddress/-/macaddress-0.2.8.tgz#5904dc537c39ec6dbefeae902327135fa8511f12"
+
+material-colors@^1.0.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/material-colors/-/material-colors-1.2.0.tgz#956f0c87660882333cff7b7557efb7b03592820e"
 
 material-ui@^0.15.4:
   version "0.15.4"
@@ -2304,6 +2308,10 @@ memory-fs@~0.3.0:
 merge-descriptors@1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/merge-descriptors/-/merge-descriptors-1.0.1.tgz#b00aaa556dd8b44568150ec9d1b953f3f90cbb61"
+
+merge@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/merge/-/merge-1.2.0.tgz#7531e39d4949c281a66b8c5a6e0265e8b05894da"
 
 methods@~1.1.2:
   version "1.1.2"
@@ -2985,6 +2993,10 @@ react-addons-create-fragment@^15.2.1:
   version "15.3.2"
   resolved "https://registry.yarnpkg.com/react-addons-create-fragment/-/react-addons-create-fragment-15.3.2.tgz#0e589c8c7add0e5db5db48367b5167cbed9c5852"
 
+"react-addons-shallow-compare@^0.14.0 || ^15.0.0":
+  version "15.3.2"
+  resolved "https://registry.yarnpkg.com/react-addons-shallow-compare/-/react-addons-shallow-compare-15.3.2.tgz#c9edba49b9eab44d0c59024d289beb1ab97318b5"
+
 react-addons-test-utils@^15.3.1:
   version "15.3.2"
   resolved "https://registry.yarnpkg.com/react-addons-test-utils/-/react-addons-test-utils-15.3.2.tgz#c09a44f583425a4a9c1b38444d7a6c3e6f0f41f6"
@@ -2992,6 +3004,17 @@ react-addons-test-utils@^15.3.1:
 react-addons-transition-group@^15.2.1:
   version "15.3.2"
   resolved "https://registry.yarnpkg.com/react-addons-transition-group/-/react-addons-transition-group-15.3.2.tgz#64f758d18bd1e59128726b1c9a4db79127c4f1ed"
+
+react-color:
+  version "2.3.3"
+  resolved "https://registry.yarnpkg.com/react-color/-/react-color-2.3.3.tgz#c62d0706b290a1f15e7fd644c9f586494a966910"
+  dependencies:
+    lodash "^4.0.1"
+    material-colors "^1.0.0"
+    merge "^1.2.0"
+    react-addons-shallow-compare "^0.14.0 || ^15.0.0"
+    reactcss "^1.0.6"
+    tinycolor2 "^1.1.2"
 
 react-custom-scrollbars@^4.0.0:
   version "4.0.0"
@@ -3089,6 +3112,15 @@ react@^15.3.1:
   dependencies:
     fbjs "^0.8.4"
     loose-envify "^1.1.0"
+    object-assign "^4.1.0"
+
+reactcss@^1.0.6:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/reactcss/-/reactcss-1.0.9.tgz#adb38e1d75640433ac99ef4933b8116d8a369fd4"
+  dependencies:
+    classnames "^2.2.0"
+    lodash "^4.0.1"
+    merge "^1.2.0"
     object-assign "^4.1.0"
 
 readable-stream@^1.0.27-1, readable-stream@^1.1.13:
@@ -3590,6 +3622,10 @@ timers-browserify@^1.0.1:
   resolved "https://registry.yarnpkg.com/timers-browserify/-/timers-browserify-1.4.2.tgz#c9c58b575be8407375cb5e2462dacee74359f41d"
   dependencies:
     process "~0.11.0"
+
+tinycolor2@^1.1.2:
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/tinycolor2/-/tinycolor2-1.4.1.tgz#f4fad333447bc0b07d4dc8e9209d8f39a8ac77e8"
 
 tmatch@^2.0.1:
   version "2.0.1"

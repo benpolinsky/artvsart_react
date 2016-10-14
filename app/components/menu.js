@@ -38,7 +38,7 @@ class Menu extends React.Component{
       this.props.signOutUser(this.context.router)
       break;      
     case 'addNewArt':
-      this.context.router.push(`/add_new_art`);
+      this.context.router.push(`/art/new`);
       break;
     case 'importArt':
       this.context.router.push(`/import_art`);
@@ -94,9 +94,10 @@ class Menu extends React.Component{
           <Link onTouchTap={this.closeMenu} to="/top_judges">Top Judges</Link>
            {user_type == "admin" &&
               <div className='adminLinks'>
-                <Link onTouchTap={this.closeMenu} to="/add_new_art"> Add New Art</Link>
+                <Link onTouchTap={this.closeMenu} to="/art/new"> Add Art</Link>
                 <Link onTouchTap={this.closeMenu} to='/import_art'>Import Art</Link>
                 <Link onTouchTap={this.closeMenu} to='/categories'>Categories</Link>
+                <Link onTouchTap={this.closeMenu} to='/categories/new'>Add Category</Link>
               </div>
             }
         </Drawer>

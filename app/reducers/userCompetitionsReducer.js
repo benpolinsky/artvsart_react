@@ -1,14 +1,6 @@
 const initialState = {
-  userCompetitions: [
-    {
-      id: 0, 
-      art: 'Rakim\'s Paid in full', 
-      challenger: "Davinci", 
-      winner: "rakim", 
-      loser: "davinci", 
-      updated_at: '1-2-2016'
-    }
-  ]
+  isFetching: false,
+  userCompetitions: 0
 }
 
 const userCompetitionsReducer = (state=initialState, action) => {
