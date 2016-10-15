@@ -1,10 +1,22 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import CategoryForm from './categoryForm.js'
+import {Router} from 'react-router';
+import {createCategory, updateCategory} from '../../actions/categories.js'
 
 class CategoryFormContainer extends React.Component{
-  handleSubmit(values){
-    console.log(values);
+  constructor(){
+    super()
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  
+  handleSubmit(category){
+    if (this.props.location.pathname == "/categories/new") {
+      this.props.createCategory(category, this.context.router);      
+    } else {
+      this.props.updateCategory(category, this.context.router);
+    }
+
   }
   
   render(){
@@ -21,16 +33,21 @@ class CategoryFormContainer extends React.Component{
 } 
 
 
+CategoryFormContainer.contextTypes = {
+  router: React.PropTypes.object
+}
+  
+
 const mapStateToProps = (store) => ({
   category: store.categories.category
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  createCategory(data){
-    dispatch(createCategory(data));
+  createCategory(data, router){
+    dispatch(createCategory(data, router));
   },
-  updateCategory(data){
-    dispatch(updateCategory(data));
+  updateCategory(data, router){
+    dispatch(updateCategory(data, router));
   }
 })
 

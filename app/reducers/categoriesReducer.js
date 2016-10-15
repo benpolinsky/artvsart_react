@@ -1,19 +1,33 @@
 const defaultCategoriesState = {
   records: [{id: 0, name: "Category Name", color: 'black'}],
   category: {id: null, name: "", color: ''},
-  errors: null
+  errors: null,
+  isFetching: false
 };
 
 const CategoriesReducer = (state=defaultCategoriesState, action) => {
   switch (action.type) {
   case "CATEGORIES_REQUEST":
-    return state
+    return {...state, isFetching: true}
+  case "START_POST_CATEGORY":
+    return {...state, isFetching: true}
   case "CATEGORIES_RESPONSE":
     return {
       ...state,
       records: action.response.categories
     }
+  case "CATEGORY_RESPONSE": 
+    return {
+      ...state,
+      category: action.category.category,
+      isFetching: false
+    }
   case "CATEGORIES_RESPONSE_FAILED":
+    return {
+      ...state,
+      errors: action.errors
+    }
+  case "CATEGORY_POST_FAILED": 
     return {
       ...state,
       errors: action.errors
