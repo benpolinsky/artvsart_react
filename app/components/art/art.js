@@ -10,7 +10,7 @@ const Art = ({art, noVoting, styles, selectInfo}) => {
       <div className='imageContainer'>
         <img onClick={() => {selectInfo(art.id)}} src={art.image} />
       </div>
-      <h3 onClick={() => {selectInfo(art.id)}}>{art.name}</h3>
+      <h3 onClick={() => {selectInfo(art.id)}}>{`${art.name} by ${art.creator}`}</h3>
       {!noVoting && 
         <VoteButtonContainer art_id={art.id} /> }
     </div>
