@@ -67,7 +67,7 @@ class Menu extends React.Component{
       <div>
         <AppBar 
           className="appBar" 
-          title="ART V ART" 
+          title="ART V ART"
           onLeftIconButtonTouchTap={this.openMenu}
           iconStyleRight={{marginTop: 0}}
           iconElementRight={

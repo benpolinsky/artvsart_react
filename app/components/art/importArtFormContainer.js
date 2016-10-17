@@ -4,9 +4,8 @@ import Loader from 'react-loader-advanced';
 import SearchResults from './searchResults.js'
 import ImportArtForm from './ImportArtForm.js';
 import {searchSource, importArt} from '../../actions/artImports.js';
-
-const spinner = <span style={{fontSize: 100, color: 'black'}} className="fa-spinner fa fa-spin"></span>;
-const sources = ['Discogs', 'Artsy', 'Gracenote', 'Philart', 'IMDB', 'HarvardArt'];
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import CircularProgress from 'material-ui/CircularProgress'
 
 class ImportArtFormContainer extends React.Component{
   constructor(){
@@ -76,9 +75,26 @@ class ImportArtFormContainer extends React.Component{
  
   
   render(){
+    
+    const loaderStyles = {
+      background: {
+        backgroundColor: 'rgba(255,255,255,0.85)',
+        position: 'fixed',
+        left: '0',
+        top: '0',
+        zIndex: 9999
+      },
+      foreground: {
+        height: 50
+      }
+    }
+    
+    const circularLoader = <MuiThemeProvider><CircularProgress /></MuiThemeProvider>;
+    const sources = ['Discogs', 'Artsy', 'Gracenote', 'Philart', 'IMDB', 'HarvardArt'];
+    
     return (
       <div id="searchArtContainer">
-        <Loader backgroundStyle={{backgroundColor: 'white', opacity: 0.6}} show={this.props.loading}>
+        <Loader backgroundStyle={loaderStyles.background} foregroundStyle={loaderStyles.foreground} show={this.props.loading} message={circularLoader}>
           <ImportArtForm 
             sources={sources} 
             selected_source={this.state.source} 

@@ -1,7 +1,6 @@
 // So while this is okay, it would be great to try to rid myself of the competitionContainer and create it through connect()
 // render the modal in here or in App.  Should work.
 
-
 import React from 'react';
 import Loader from 'react-loader-advanced';
 import Art from '../art/art.js';
@@ -9,13 +8,18 @@ import ShareButtons from '../shareButtons.js';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import CircularProgress from 'material-ui/CircularProgress'
 
-const spinnerStyles = {
+const loaderStyles = {
   background: {
-    backgroundColor: 'rgba(255,255,255.0.8)',
+    backgroundColor: 'rgba(255,255,255,0.85)',
     position: 'fixed',
     left: '0',
-    top: '0'
+    top: '0',
+    zIndex: 9999
+  },
+  foreground: {
+    height: 50
   }
 }
 
@@ -24,10 +28,12 @@ export const Competition = ({competition, handleClose, displayInfo, noVoting}) =
     <FlatButton primary={true} label={"Sign Up"} onTouchTap={handleClose}/>,
     <FlatButton label={"No Thanks..."} onTouchTap={handleClose} />
   ];
+  
+  const circularLoader = <MuiThemeProvider><CircularProgress /></MuiThemeProvider>
 
   return (
     <div className='competition'>
-      <Loader backgroundStyle={spinnerStyles.background} show={competition.isFetching}>
+      <Loader foregroundStyle={loaderStyles.foreground} backgroundStyle={loaderStyles.background} message={circularLoader} show={competition.isFetching}>
   
         <div className="artPair">
           <div className='art'>

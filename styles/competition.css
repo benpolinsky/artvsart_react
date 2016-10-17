@@ -46,7 +46,7 @@
 }
 
 .competition .versusSeparator{
-  font-size: 140px;
+  font-size: 32px;
   font-weight: 700;
   text-align: center;
   margin: 30px auto;
@@ -58,6 +58,10 @@
   padding: 10px;
   border-left: 0;
   border-right: 0;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .competition .versusSeparator.small{

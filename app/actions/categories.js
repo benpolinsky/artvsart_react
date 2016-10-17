@@ -75,11 +75,12 @@ const requestCategoryFailed = (response) => ({
 })
 
 
-export const updateCategory = (category) => (dispatch) => {
+export const updateCategory = (category, router) => (dispatch) => {
   dispatch(updateCategoryStart());
   return api.put(`categories/${category.id}`, category).then(response => {
     if (response.errors == null) {
       dispatch(categoryResponse(response));
+      router.push(`/categories/${response.category.id}`)
     } else {
       dispatch(updateCategoryFailed(response));
     }

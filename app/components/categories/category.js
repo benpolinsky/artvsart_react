@@ -5,15 +5,15 @@ const Category = ({category}) => {
   const color = category.color ?  category.color : 'black'
   const title = category.name ? category.name : 'Category'
   const styles = {
-    backgroundColor: color,
-    color: 'white',
+    color: color,
     width: 100,
     display: 'block',
     boxSizing: 'borderBox',
-    padding: 4,
+    padding: '8px 4px',
     lineHeight: 1,
     textAlign: 'center',
-    margin: '0 auto'
+    margin: '0 auto',
+    fontFamily: 'Dancing Script'
   }
   return(
    <span style={styles}>{title}</span>

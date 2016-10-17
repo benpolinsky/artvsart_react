@@ -8,6 +8,8 @@ import {createNewArt, fetchArt, resetArt, updateArt} from '../../actions/art.js'
 import {categoriesRequest} from '../../actions/categories.js'
 import {storeSignedUrl} from '../../actions/art.js';
 import * as storage from '../../localStorage.js';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import CircularProgress from 'material-ui/CircularProgress'
 
 class ArtFormContainer extends React.Component {
   constructor(){
@@ -138,11 +140,26 @@ class ArtFormContainer extends React.Component {
   }
   
   render(){
+    const loaderStyles = {
+      background: {
+        backgroundColor: 'rgba(255,255,255,0.85)',
+        position: 'fixed',
+        left: '0',
+        top: '0',
+        zIndex: 9999
+      },
+      foreground: {
+        height: 50
+      }
+    }
+    
     let artInitialValues = this.props.art;
     artInitialValues.creation_date = new Date(artInitialValues.creation_date)
+    const circularLoader = <MuiThemeProvider><CircularProgress /></MuiThemeProvider>
+    
     return (
-      <Loader show={this.state.loading} message={'loading'} foregroundStyle={{color: 'white'}} backgroundStyle={{backgroundColor: 'black'}} >
-    <ArtForm initialValues={artInitialValues}
+    <Loader foregroundStyle={loaderStyles.foreground} backgroundStyle={loaderStyles.background} message={circularLoader} show={this.state.loading}>
+      <ArtForm initialValues={artInitialValues}
            categories={this.props.categories}
            art={this.props.art} 
            enableReinitialize={true} 
