@@ -6,11 +6,19 @@
   padding: 30px;
 }
 
-.competition .art img{
-  height:400px;
+.competition .art .imageContainer img{
+  max-height:400px;
   margin:0 auto 5px auto;
   display:block;
   cursor:pointer;
+}
+
+.competition .art .imageContainer{
+  height:400px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  
 }
 
 .competition .art .artDescription{
