@@ -8,6 +8,7 @@
 
 .competition .art .imageContainer img{
   max-height:400px;
+  max-width: 100%;
   margin:0 auto 5px auto;
   display:block;
   cursor:pointer;

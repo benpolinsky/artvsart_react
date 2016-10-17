@@ -4,7 +4,7 @@ import {WinnerModalContents} from './winnerModalContents.js';
 import {Competition} from './competition.js';
 import ArtInfo from '../art/artInfo.js'
 import {getBattle} from '../../utils/ajaxHelpers.js';
-import {getCompetitionData} from '../../actions/index.js';
+import {getCompetitionData, selectCompetitionWinner} from '../../actions/index.js';
 import {handleCompetitionModal} from '../../actions/userAuth.js'
 import FlatButton from 'material-ui/FlatButton'
 import Dialog from 'material-ui/Dialog';
@@ -34,6 +34,10 @@ class CompetitionContainer extends React.Component{
     this.signUp = this.signUp.bind(this);
     this.displayInfo = this.displayInfo.bind(this);
     this.closeInfo = this.closeInfo.bind(this);
+    this.setupKeyShortcuts = this.setupKeyShortcuts.bind(this);
+    this.keyFunction = this.keyFunction.bind(this);
+    this.modalKeyFunction = this.modalKeyFunction.bind(this);
+    this.setupCompetition = this.setupCompetition.bind(this)
   }
   
   componentWillMount(){
@@ -48,7 +52,7 @@ class CompetitionContainer extends React.Component{
   
   componentDidMount(){
     if (this.props.competition.id == 0 || this.props.competition.isResult == true ) {
-      this.props.getCompetition();      
+     this.setupCompetition()
     }  
   }
   
@@ -75,10 +79,44 @@ class CompetitionContainer extends React.Component{
     })
   }
   
+  setupKeyShortcuts(){
+    window.addEventListener("keydown", this.keyFunction);
+  }
+  
+  keyFunction(event){
+    switch (event.which) {
+    case 49:
+      this.props.selectWinnerViaKeyboard(this.props.competition.art.id);
+      window.removeEventListener("keydown", this.keyFunction)
+      window.addEventListener("keydown", this.modalKeyFunction);
+      return false
+    case 50:
+      console.log(this.props.competition.challenger.id)
+      this.props.selectWinnerViaKeyboard(this.props.competition.challenger.id);
+      window.removeEventListener("keydown", this.keyFunction)
+      window.addEventListener("keydown", this.modalKeyFunction);
+      return false
+    }
+
+  }
+  
+  modalKeyFunction(event){
+    switch (event.which) {
+    case 13:
+      this.setupCompetition()
+      window.removeEventListener("keydown", this.modalKeyFunction);
+    }
+  }
+  
+  setupCompetition(){
+    this.props.getCompetition(); 
+    this.setupKeyShortcuts()     
+  }
+  
   render(){
     const winnerSelected = (this.props.competition.winnerSelected && !this.props.competition.isResult);
     const artInfoAction = <FlatButton label="Close" primary={true} onTouchTap={this.closeInfo} />;
-    const winnerModalAction = <FlatButton primary={true} backgroundColor={'#dbe7f1'} onClick={this.props.getCompetition} label="Next Battle!" />;
+    const winnerModalAction = <FlatButton primary={true} backgroundColor={'#dbe7f1'} onClick={this.setupCompetition} label="Next Battle!" />;
 
     return (
     
@@ -123,6 +161,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   handleClose(result, router){
     dispatch(handleCompetitionModal(result, router));
+  },
+  selectWinnerViaKeyboard(artId){
+    dispatch(selectCompetitionWinner(artId));
   }
 })
 
