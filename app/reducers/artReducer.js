@@ -4,7 +4,8 @@ const initialArtState = {
     creator: "",
     description: "",
     image: "",
-    id: 0
+    id: 0,
+    category_name: ""
   }
 }
 

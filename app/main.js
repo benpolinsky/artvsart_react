@@ -23,7 +23,8 @@ import LeaderBoard from './components/leaderBoard.js'
 
 import CategoriesList from './components/categories/categoriesList.js'
 import CategoryFormContainer from './components/categories/categoryFormContainer.js'
-import Category from './components/categories/category.js'
+import EditCategoryFormContainer from './components/categories/editCategoryFormContainer.js'
+import ShowCategory from './components/categories/showCategory.js'
 
 const styles = [
   'reset', 
@@ -64,7 +65,8 @@ ReactDOM.render(
 
       <Route path='categories' component={CategoriesList} />
       <Route path='categories/new' component={CategoryFormContainer} />
-      <Route path='categories/:id' component={Category} />   
+      <Route path='categories/:id/edit' component={EditCategoryFormContainer} />
+      <Route path='categories/:id' component={ShowCategory} />   
 
       <Route path='about' component={AboutContainer} />
       <Route path='leader_board' component={LeaderBoard} />

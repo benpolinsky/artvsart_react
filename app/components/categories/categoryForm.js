@@ -8,11 +8,9 @@ import { CirclePicker } from 'react-color';
 const validate = () => {
 }
 
-const renderField = ({input}) => (
-  <CirclePicker color={input.value} onChangeComplete={(value) => input.onChange(value.hex)}/>
-)
+const renderField = ({input}) => <CirclePicker color={input.value} onChangeComplete={(value) => input.onChange(value.hex)}/>
   
-const Form = ({form, formTitle, formType, submitLabel, handleSubmit}) => {
+const Form = ({form, formTitle, submitLabel, handleSubmit, category}) => {
   return (
     <div>
       <MuiThemeProvider>
@@ -31,7 +29,6 @@ const Form = ({form, formTitle, formType, submitLabel, handleSubmit}) => {
 
 const CategoryForm = reduxForm({
   fields: ['name', 'color']
-
 })(Form);
 
 export default CategoryForm

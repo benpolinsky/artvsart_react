@@ -48,6 +48,49 @@ const categoryResponse = (category) => ({
 
 const categoryPostFailed = (category) => ({
   type: "CATEGORY_POST_FAILED",
-  category: category.errors
+  errors: category.errors
 });
 
+export const requestCategory = (id) => (dispatch, getState) => {
+  if (getState().categories.category.id == id) {
+    return false
+  }
+  dispatch(requestCategoryStart());
+  return api.get(`categories/${id}`).then(response => {
+    if (response.errors == null) {
+      dispatch(categoryResponse(response));
+    } else {
+      dispatch(requestCategoryFailed(response));
+    }
+  })
+}
+
+const requestCategoryStart = () => ({
+  type: "REQUEST_CATEGORY"
+})
+
+const requestCategoryFailed = (response) => ({
+  type: "REQUEST_CATEGORY_FAILED",
+  response: response
+})
+
+
+export const updateCategory = (category) => (dispatch) => {
+  dispatch(updateCategoryStart());
+  return api.put(`categories/${category.id}`, category).then(response => {
+    if (response.errors == null) {
+      dispatch(categoryResponse(response));
+    } else {
+      dispatch(updateCategoryFailed(response));
+    }
+  })
+}
+
+const updateCategoryStart = () => ({
+  type: "UPDATE_CATEGORY"
+})
+
+const updateCategoryFailed = (response) => ({
+  type: "UPDATE_CATEGORY_FAILED",
+  response: response.errors
+});

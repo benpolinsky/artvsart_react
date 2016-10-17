@@ -1,17 +1,9 @@
 import React from 'react'
-import {connect} from 'react-redux'
 
 const Category = ({category}) => {
   return(
-    <div>
-      {category.name}
-      {category.color}
-    </div>
+   <h1 className='main-title' style={{color: category.color}}>{category.name}</h1>
   )
 }
 
-const mapStateToProps = (store) => ({
-  category: store.categories.category 
-});
-
-export default connect(mapStateToProps)(Category);
+export default Category

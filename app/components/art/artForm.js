@@ -34,12 +34,14 @@ class ArtForm extends React.Component{
     this.onSubmit = this.onSubmit.bind(this)
   }  
   
+
+  
   onSubmit(data){
     this.props.handleSubmit(this.props.submit(data));
   }
   
   render(){
-    const {submit, handleSubmit, errors, art, formTitle, submitLabel} = this.props;
+    const {submit, handleSubmit, errors, art, formTitle, submitLabel, categories} = this.props;
     const currentImage = (art && art.image && <div><p>Current Image: </p> <br/> <img src={art.image} /></div>)
     
     return(
@@ -50,13 +52,12 @@ class ArtForm extends React.Component{
             <Field name='name' floatingLabelText="Name" component={TextField} style={textFieldStyles} />
             <Field name='creator' floatingLabelText="Creator" component={TextField} style={textFieldStyles} />
             <Field name='description' floatingLabelText="Description" component={TextField} multiLine={true} style={textFieldStyles}  />
-            <Field name='creation_date' value={new Date('2-10-2016')} floatingLabelText={this.props.art.creation_date} component={DatePicker} style={textFieldStyles}  />
+            <Field name='creation_date' value={new Date(this.props.art.creation_date)} floatingLabelText="Creation Date" component={DatePicker} style={textFieldStyles}  />
             
             <Field name='category_name' floatingLabelText="Category" component={SelectField} style={textFieldStyles} >
-              <MenuItem value="art" primaryText="Art"/>
-              <MenuItem value="music" primaryText="Music"/>
-              <MenuItem value="movie" primaryText="Movie"/>
-              <MenuItem value="show" primaryText="TV Show or Series"/>
+              {categories.map((category) => {
+                return <MenuItem key={category.id} value={category.name} primaryText={category.name}/>
+              })}
             </Field>
             
             <Field name='source' floatingLabelText="Source" component={SelectField} style={textFieldStyles} >

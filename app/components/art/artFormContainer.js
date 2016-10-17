@@ -5,6 +5,7 @@ import Loader from 'react-loader-advanced';
 import ReactS3Uploader from 'react-s3-uploader';
 import ArtForm from './ArtForm.js';
 import {createNewArt, fetchArt, resetArt, updateArt} from '../../actions/art.js';
+import {categoriesRequest} from '../../actions/categories.js'
 import {storeSignedUrl} from '../../actions/art.js';
 import * as storage from '../../localStorage.js';
 
@@ -52,7 +53,7 @@ class ArtFormContainer extends React.Component {
   
   componentDidMount(){
     this.toggleLoader(false);
-
+    this.props.fetchCategories()
     if (this.props.location.pathname == '/art/new') {
       this.setState({
         formTitle: "Add Art",
@@ -139,7 +140,8 @@ class ArtFormContainer extends React.Component {
   render(){
     return (
       <Loader show={this.state.loading} message={'loading'} foregroundStyle={{color: 'white'}} backgroundStyle={{backgroundColor: 'black'}} >
-      <ArtForm initialValues={this.props.art}
+    <ArtForm initialValues={this.props.art}
+           categories={this.props.categories}
            art={this.props.art} 
            enableReinitialize={true} 
            formTitle={this.state.formTitle}
@@ -170,10 +172,14 @@ ArtFormContainer.contextTypes = {
 }
   
 const mapStateToProps = (store) => ({
-  art: store.artState.art
+  art: store.artState.art,
+  categories: store.categories.records
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  fetchCategories(){
+    dispatch(categoriesRequest())
+  },
   createNewArt(art, router){
     dispatch(createNewArt(art, router));
   },

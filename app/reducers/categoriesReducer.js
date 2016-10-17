@@ -32,6 +32,26 @@ const CategoriesReducer = (state=defaultCategoriesState, action) => {
       ...state,
       errors: action.errors
     }
+  case "REQUEST_CATEGORY": 
+    return {
+      ...state, 
+      isFetching: true
+    }
+  case "REQUEST_CATEGORY_FAILED": 
+    return {
+      ...state, 
+      isFetching: false
+    }
+  case "UPDATE_CATEGORY":
+    return {
+      ...state,
+      isFetching: true
+    }
+  case "UPDATE_CATEGORY_FAILED":
+    return {
+      ...state,
+      errors: action.errors
+    }
   }
   return state
 }
