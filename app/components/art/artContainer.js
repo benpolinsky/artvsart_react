@@ -6,6 +6,10 @@ import {fetchArt} from '../../actions/art.js';
 
 
 class ArtContainer extends React.Component{
+  
+  componentWillMount(){
+    console.log(this.props.art)
+  }
   componentDidMount(){
     this.props.loadArt(this.props.params.id);
   }
@@ -13,7 +17,7 @@ class ArtContainer extends React.Component{
   render(){
     return (
       <div className="centered-page">
-        <ArtInfo art={this.props.art} />
+        <ArtInfo art={{...this.props.art, creation_date: this.props.art.creation_date.toString()}} />
         <Link to={`/art/${this.props.art.id}/edit`} >Edit </Link>
       </div>
     )

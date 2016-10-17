@@ -138,9 +138,11 @@ class ArtFormContainer extends React.Component {
   }
   
   render(){
+    let artInitialValues = this.props.art;
+    artInitialValues.creation_date = new Date(artInitialValues.creation_date)
     return (
       <Loader show={this.state.loading} message={'loading'} foregroundStyle={{color: 'white'}} backgroundStyle={{backgroundColor: 'black'}} >
-    <ArtForm initialValues={this.props.art}
+    <ArtForm initialValues={artInitialValues}
            categories={this.props.categories}
            art={this.props.art} 
            enableReinitialize={true} 

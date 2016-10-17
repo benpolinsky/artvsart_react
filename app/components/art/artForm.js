@@ -1,7 +1,7 @@
 import React from 'react';
 import { Field, reduxForm } from 'redux-form';
 import {TextField} from 'redux-form-material-ui';
-import {DatePicker} from 'redux-form-material-ui';
+import DatePicker from 'material-ui/DatePicker';
 import {SelectField} from 'redux-form-material-ui';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -28,13 +28,14 @@ const validate = (values) => {
   return errors
 }
 
+const MyDatePicker = ({input}) => <DatePicker name={input.name} value={input.value} onChange={(e, value) => input.onChange(value)} />
+
 class ArtForm extends React.Component{
   constructor(){
     super()
     this.onSubmit = this.onSubmit.bind(this)
   }  
   
-
   
   onSubmit(data){
     this.props.handleSubmit(this.props.submit(data));
@@ -52,7 +53,7 @@ class ArtForm extends React.Component{
             <Field name='name' floatingLabelText="Name" component={TextField} style={textFieldStyles} />
             <Field name='creator' floatingLabelText="Creator" component={TextField} style={textFieldStyles} />
             <Field name='description' floatingLabelText="Description" component={TextField} multiLine={true} style={textFieldStyles}  />
-            <Field name='creation_date' value={new Date(this.props.art.creation_date)} floatingLabelText="Creation Date" component={DatePicker} style={textFieldStyles}  />
+            <Field name='creation_date' floatingLabelText="Creation Date" component={MyDatePicker} style={textFieldStyles}  />
             
             <Field name='category_name' floatingLabelText="Category" component={SelectField} style={textFieldStyles} >
               {categories.map((category) => {
@@ -86,7 +87,7 @@ class ArtForm extends React.Component{
 
 
 ArtForm = reduxForm({
-  fields: ['name', "creator", 'description'],
+  fields: ['name', "creator", 'description', 'creation_date', 'category_name', 'source'],
   validate
 })(ArtForm)
 

@@ -5,7 +5,8 @@ const initialArtState = {
     description: "",
     image: "",
     id: 0,
-    category_name: ""
+    category_name: "",
+    creation_date: Date.now()
   }
 }
 
@@ -26,9 +27,9 @@ const artReducer = (state=initialArtState, action) => {
   case "CREATE_NEW_ART_REQUEST_FAILED":
     return {...state, errors: action.errors}
   case "UPDATE_ART_REQUEST":
-    return state
+    return {...state, art: {...state.art, creation_date: state.art.creation_date.toString()}}
   case "UPDATE_ART_RESPONSE":
-    return {...state, art: action.art}
+    return {...state, art: {...state.art, creation_date: state.art.creation_date.toString()}}
   case "UPDATE_ART_REQUEST_FAILED":
     return {...state, errors: action.errors}
   }
