@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {WinLossBar} from './winLossBar.js';
+import Category from './categories/category.js'
 import {fetchResults} from '../actions/results.js';
 import {List, ListItem} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
@@ -33,12 +34,18 @@ class LeaderBoard extends React.Component{
             <List>
               <Subheader>Leaderboard</Subheader>
              {this.props.results.map(record => {
+               const primaryText = `${record.name} by ${record.creator}`;
                return (
                  <ListItem 
                    key={record.id}
-                   primaryText={record.name}
-                   secondaryText={<WinLossBar data={record} />}
-                   leftAvatar={<img width='30' src={record.image} />}
+                   primaryText={primaryText}
+                   secondaryText={
+                     <div style={{height: 36}}>
+                       <Category align={'left'} category={record.category} />
+                       <WinLossBar data={record} /> 
+                     </div>
+                   }
+                   leftAvatar={<img width='50' style={{top: 19}} src={record.image} />}
                  />
 
                )

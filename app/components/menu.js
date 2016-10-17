@@ -90,7 +90,7 @@ class Menu extends React.Component{
           <h1>ART V ART</h1>
           <Link onTouchTap={this.closeMenu} to="/competition">Competition</Link>
           <Link onTouchTap={this.closeMenu} to="/about">About</Link>
-          <Link onTouchTap={this.closeMenu} to="/leader_board">Leader Board</Link>
+          <Link onTouchTap={this.closeMenu} to="/leaderboard">Leaderboard</Link>
           <Link onTouchTap={this.closeMenu} to="/top_judges">Top Judges</Link>
            {user_type == "admin" &&
               <div className='adminLinks'>

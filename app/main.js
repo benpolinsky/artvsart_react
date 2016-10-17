@@ -69,7 +69,7 @@ ReactDOM.render(
       <Route path='categories/:id' component={ShowCategory} />   
 
       <Route path='about' component={AboutContainer} />
-      <Route path='leader_board' component={LeaderBoard} />
+      <Route path='Leaderboard' component={LeaderBoard} />
       <Route path='profile' component={ProfilePage} />
       <Route path='top_judges' component={TopJudges} />
     </Route>
