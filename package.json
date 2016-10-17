@@ -12,6 +12,7 @@
   "dependencies": {
     "aphrodite": "^0.5.0",
     "babel-polyfill": "^6.13.0",
+    "datejs": "^1.0.0-rc3",
     "font-awesome": "^4.6.3",
     "material-ui": "^0.15.4",
     "react": "^15.3.1",

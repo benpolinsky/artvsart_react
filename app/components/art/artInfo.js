@@ -1,15 +1,16 @@
 import React from 'react'
 import Category from '../categories/category.js'
+import Datejs from 'datejs'
 
 const ArtInfo = ({art}) => {
- 
+  const date = Date.parse(art.creation_date).toString("M/d/yyyy");
   
   return(
     <div>
       <Category category={art.category} />
       <h1>{art.name}</h1>
       <h2>{art.creator}</h2>
-      <p>{art.creation_date}</p>
+      <p>{date}</p>
       <div><img src={art.image}/></div>
 
      
