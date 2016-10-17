@@ -5,13 +5,21 @@ const initialCompetitionState = {
       id: 1, 
       name: "Rakim's Paid in Full", 
       description: "The god Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
-      image: 'http://placehold.it/250x250'
+      image: 'http://placehold.it/250x250',
+      category: {
+        name: "",
+        color: ""
+      }
     },
     challenger: {
       id: 2, 
       name: "Michaelangelo's David", 
       description: "A Legendary Sculpture",
-      image: 'http://placehold.it/250x250'
+      image: 'http://placehold.it/250x250',
+      category: {
+        name: "",
+        color: ""
+      }
     },
     winning_art: {
       id: 2, 

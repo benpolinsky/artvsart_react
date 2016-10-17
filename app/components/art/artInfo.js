@@ -1,9 +1,12 @@
 import React from 'react'
+import Category from '../categories/category.js'
 
 const ArtInfo = ({art}) => {
+ 
+  
   return(
     <div>
-      <div style={{color: art.category_color}}>{art.category_name}</div>
+      <Category category={art.category} />
       <h1>{art.name}</h1>
       <h2>{art.creator}</h2>
       <p>{art.creation_date}</p>

@@ -6,6 +6,10 @@ const initialArtState = {
     image: "",
     id: 0,
     category_name: "",
+    category: {
+      name: "",
+      color: ""
+    },
     creation_date: Date.now()
   }
 }

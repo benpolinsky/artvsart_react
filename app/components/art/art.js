@@ -1,12 +1,14 @@
 import React from 'react';
 import VoteButtonContainer from '../competition/VoteButton.js';
 import { StyleSheet, css } from 'aphrodite';
+import Category from '../categories/category.js'
 
 
 const Art = ({art, noVoting, styles, selectInfo}) => {
 
   return (
     <div>
+      <Category category={art.category} />
       <img onClick={() => {selectInfo(art.id)}} src={art.image} />
       <h3 onClick={() => {selectInfo(art.id)}}>{art.name}</h3>
       {!noVoting && 
