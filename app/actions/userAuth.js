@@ -1,5 +1,6 @@
-import * as api from '../utils/ajaxHelpers.js';
+import * as api from '../utils/ajaxHelpers.js'
 import * as storage from '../localStorage.js'
+import { SubmissionError } from 'redux-form'
 
 export const loginToFacebook = (response) => (dispatch) => {
   dispatch(facebookAuthRequest(response));
@@ -63,7 +64,7 @@ const startSignUserIn = (user) => ({
 
 const signInUserFailed = (user) => ({
   type: "SIGN_IN_USER_FAILED",
-  user: user
+  errors: user
 })
 
 const signInUserSuccessful = (user) => ({
@@ -95,9 +96,10 @@ const userSignedOut = (user) => ({
 
 export const registerUser = (user, router) => (dispatch) => {
   dispatch(startRegisterUser(user));
-  return api.post('users', {user: user}).then(response => {
+   api.post('users', {user: user}).then(response => {
     if (response.errors != null) {
       dispatch(registerUserFailed(response.errors));
+      
     } else {
       dispatch(registerUserSuccessful(response.user));
       dispatch(storeUserCredentials(response.user));
@@ -153,7 +155,14 @@ export const getUserInfo = () => (dispatch) => {
     dispatch(receiveUserInfo(response.user));
     dispatch(storeUserCredentials(response.user));
   })
+  .catch((error) => {
+    dispatch(apiDown())
+  });
 }
+
+export const apiDown = (error) => ({
+  type: "API_DOWN"
+})
 
 const startReceiveUserInfo = () => ({
   type: "START_RECEIVE_USER_INFO"
@@ -167,4 +176,6 @@ export const openSignUp = (formType) => ({
 export const closeSignUp = () => ({
   type: "CLOSE_SIGN_UP"
 })
+
+
 

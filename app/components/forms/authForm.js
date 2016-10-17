@@ -12,12 +12,11 @@ import FacebookLogin from 'react-facebook-login';
 const validate = (values) => {
   const errors = {};
   const fieldsToValidate = ['email', 'password'];
-
   fieldsToValidate.map((field) => {
     if (!values[field]) {
       errors[field] = "Required"
-    } else if (values[field].length < 3) {
-      errors[field] = "Must be 3 characters or more"
+    } else if (values[field].length < 6) {
+      errors[field] = "Must be 6 characters or more"
     } else if (values[field].length >= 128) {
       errors[field] = `Woah, please keep your ${field} under 128 characters`
     }
@@ -30,7 +29,7 @@ export class AuthForm extends React.Component {
     super();
     this.submitForm = this.submitForm.bind(this);
   }
-  
+
   submitForm(data){
     const router = this.context.router;
     this.props.formAction(data, router);      
@@ -47,13 +46,18 @@ export class AuthForm extends React.Component {
       padding:50
     };
     
+    // Having trouble getting redux-form's server validation to work
+    // Thus, I'm handling server errors through actions/state
+    
+    const email_errors = this.props.errors ? this.props.errors.email : ''
+    
     return (
       <div className='registerForm' style={formStyles}>
         <form form={`${this.props.formType}Form`} onSubmit={this.props.handleSubmit(this.submitForm)} className="signUpForm">
           <h2>{this.props.formTitle}</h2>
           <MuiThemeProvider>
             <div>
-              <Field name="email" floatingLabelText="E-Mail" component={TextField} /> <br/>
+              <Field name="email" errorText={email_errors} floatingLabelText="E-Mail" component={TextField} /> <br/>
               <Field name="password" type='password' floatingLabelText="Password" component={TextField} /> <br/>
               <RaisedButton label={this.props.formTitle} fullWidth={true} type="submit" primary={true} />
             </div>

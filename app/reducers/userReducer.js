@@ -61,8 +61,17 @@ const userReducer = (state=initialUserState, action) => {
         authenticated: true
       }
     }
-  case 'REGISTER_USER_FAILED':
-    let errors = [];
+  case 'SIGN_IN_USER_FAILED':
+    var errors = [];
+
+    if (typeof action.errors == "string") {
+      return {
+        ...state,
+        errors: {
+          email: "Invalid Email or Password!"
+        }
+      }
+    }
     for (var key of Object.keys(action.errors)) {
       action.errors[key].forEach((item) => errors.push(item));
     }
@@ -70,17 +79,18 @@ const userReducer = (state=initialUserState, action) => {
       ...state,
       errors: errors
     }
-  case "REGISTER_USER_SUCCESSFUL":
+  case 'REGISTER_USER_FAILED':
+    var errors = [];
+    for (var key of Object.keys(action.errors)) {
+      action.errors[key].forEach((item) => errors.push(item));
+    }
     return {
       ...state,
-      user: {
-        ...state.user,
-        email: action.user.email,
-        type: action.user.type,
-        token: action.user.auth_token,
-        authenticated: true
+      errors: {
+        email: errors.join(", ")
       }
     }
+  case "REGISTER_USER_SUCCESSFUL":
   case "SIGN_IN_USER_SUCCESSFUL":
     return {
       ...state,
@@ -97,7 +107,9 @@ const userReducer = (state=initialUserState, action) => {
     
   case "CLOSE_SIGN_UP":
     return {...state, user: {...state.user, openForm: ''}}
-     
+  
+  case "API_DOWN":
+    return {...state, apiError: true}
   }
   return state
 }

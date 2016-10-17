@@ -4,6 +4,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {getUserInfo} from './actions/userAuth.js';
+import ApiDown from './components/apiDown.js'
 
 export default function requireAuthentication(Component){
   class AuthenticatedComponent extends React.Component{
@@ -20,7 +21,14 @@ export default function requireAuthentication(Component){
     render(){
       return(
        <div> 
-        {this.props.user.authenticated && <Component {...this.props} />}
+        {
+          this.props.user.authenticated 
+          ? 
+          <Component {...this.props} />
+          :
+          <ApiDown />
+          
+        }
        </div>
       )
     }

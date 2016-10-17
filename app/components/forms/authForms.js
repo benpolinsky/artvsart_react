@@ -4,11 +4,11 @@ import AuthForm from './authForm.js'
 import {closeSignUp, registerUser, signUserIn, loginToFacebook} from '../../actions/userAuth.js';
 import MyOverlay from '../myOverlay.js'
 
-const AuthForms = ({user, responseFacebook, signUserIn, registerUser, hideAuthForm}) => {
+const AuthForms = ({user, errors, responseFacebook, signUserIn, registerUser, hideAuthForm}) => {
   return(
     <div>
-      <AuthForm displayForm={user.openForm} formType="register" form="RegisterForm" formTitle="Register" responseFacebook={responseFacebook} formAction={registerUser} />
-      <AuthForm displayForm={user.openForm} formType="signIn" form="SignInForm" formTitle="Sign In" responseFacebook={responseFacebook} formAction={signUserIn} />
+      <AuthForm errors={errors} displayForm={user.openForm} formType="register" form="RegisterForm" formTitle="Register" responseFacebook={responseFacebook} formAction={registerUser} />
+      <AuthForm errors={errors} displayForm={user.openForm} formType="signIn" form="SignInForm" formTitle="Sign In" responseFacebook={responseFacebook} formAction={signUserIn} />
       <MyOverlay close={hideAuthForm} show={user.openForm} /> 
     </div>
   )
@@ -16,7 +16,8 @@ const AuthForms = ({user, responseFacebook, signUserIn, registerUser, hideAuthFo
 
 
 const mapStateToProps = (store) => ({
-  user: store.userState.user
+  user: store.userState.user,
+  errors: store.userState.errors
 })
 
 const mapDispatchToProps = (dispatch) => ({
