@@ -1,6 +1,7 @@
 const initialUserState = {
   user: {
     email: "",
+    gravatar_hash: "",
     type: "",
     token: "",
     authenticated: false,
@@ -27,6 +28,8 @@ const userReducer = (state=initialUserState, action) => {
       }
     }
   case "RECEIVE_USER_INFO":
+  case "REGISTER_USER_SUCCESSFUL":
+  case "SIGN_IN_USER_SUCCESSFUL":
     return {
       ...state,
       user: {
@@ -34,6 +37,7 @@ const userReducer = (state=initialUserState, action) => {
         email: action.user.email,
         type: action.user.type,
         token: action.user.auth_token,
+        gravatar_hash: action.user.gravatar_hash,
         authenticated: true,
         fetching: false
       }
@@ -46,6 +50,7 @@ const userReducer = (state=initialUserState, action) => {
         email: "",
         type: "GuestUser",
         token: "",
+        gravatar_hash: "",
         authenticated: false
       }
     }
@@ -88,18 +93,6 @@ const userReducer = (state=initialUserState, action) => {
       ...state,
       errors: {
         email: errors.join(", ")
-      }
-    }
-  case "REGISTER_USER_SUCCESSFUL":
-  case "SIGN_IN_USER_SUCCESSFUL":
-    return {
-      ...state,
-      user: {
-        ...state.user,
-        email: action.user.email,
-        type: action.user.type,
-        token: action.user.auth_token,
-        authenticated: true
       }
     }
   case "OPEN_SIGN_UP":
