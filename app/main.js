@@ -26,6 +26,8 @@ import CategoryFormContainer from './components/categories/categoryFormContainer
 import EditCategoryFormContainer from './components/categories/editCategoryFormContainer.js'
 import ShowCategory from './components/categories/showCategory.js'
 
+import UserRankings from './components/users/userRankings.js'
+
 const styles = [
   'reset', 
   'base', 
@@ -69,7 +71,8 @@ ReactDOM.render(
       <Route path='categories/:id' component={ShowCategory} />   
 
       <Route path='about' component={AboutContainer} />
-      <Route path='Leaderboard' component={LeaderBoard} />
+      <Route path='leaderboard' component={LeaderBoard} />
+      <Route path='user_rankings' component={UserRankings} />
       <Route path='profile' component={ProfilePage} />
       <Route path='top_judges' component={TopJudges} />
     </Route>
