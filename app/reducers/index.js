@@ -4,7 +4,6 @@ import appReducer from './appReducer.js';
 import competitionReducer from './competitionReducer.js';
 import userReducer from './userReducer.js';
 import userCompetitionsReducer from './userCompetitionsReducer.js';
-import judgesReducer from './judgesReducer.js';
 import resultsReducer from './resultsReducer.js';
 import artImportsReducer from './artImportsReducer.js';
 import categoriesReducer from './categoriesReducer.js';
@@ -18,7 +17,6 @@ export default combineReducers({
   userState: userReducer,
   userCompetitionsState: userCompetitionsReducer,
   rankedUsers: rankedUsersReducer,
-  judgesState: judgesReducer,
   resultsState: resultsReducer,
   artImportState: artImportsReducer,
   categories: categoriesReducer,

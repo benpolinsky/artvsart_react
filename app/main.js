@@ -11,7 +11,6 @@ import requireAuthentication from './authWrapper.js'
 import HomeContainer from './components/pages/homeContainer.js'
 import AboutContainer from './components/pages/aboutContainer.js'
 import ProfilePage from './components/pages/profilePage.js'
-import TopJudges from './components/pages/topJudges.js'
 
 import CompetitionContainer from './components/competition/competitionContainer.js'
 import CompetitionResultContainer from './components/competition/competitionResultContainer.js'
@@ -72,9 +71,8 @@ ReactDOM.render(
 
       <Route path='about' component={AboutContainer} />
       <Route path='leaderboard' component={LeaderBoard} />
-      <Route path='user_rankings' component={UserRankings} />
       <Route path='profile' component={ProfilePage} />
-      <Route path='top_judges' component={TopJudges} />
+      <Route path='top_judges' component={UserRankings} />
     </Route>
   </Router>
 

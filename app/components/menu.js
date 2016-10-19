@@ -91,7 +91,6 @@ class Menu extends React.Component{
           <Link onTouchTap={this.closeMenu} to="/competition">Competition</Link>
           <Link onTouchTap={this.closeMenu} to="/about">About</Link>
           <Link onTouchTap={this.closeMenu} to="/leaderboard">Leaderboard</Link>
-          <Link onTouchTap={this.closeMenu} to="/user_rankings">User Rankings</Link>
           <Link onTouchTap={this.closeMenu} to="/top_judges">Top Judges</Link>
            {user_type == "admin" &&
               <div className='adminLinks'>

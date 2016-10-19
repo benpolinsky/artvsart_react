@@ -43,7 +43,7 @@ class ArtForm extends React.Component{
   
   render(){
     const {submit, handleSubmit, errors, art, formTitle, submitLabel, categories} = this.props;
-    const currentImage = (art && art.image && <div><p>Current Image: </p> <br/> <img src={art.image} /></div>)
+    const currentImage = (art && art.image && <div><p>Current Image: </p> <br/> <img style={{maxWidth: '300px'}} src={art.image} /></div>)
     
     return(
      <MuiThemeProvider>
@@ -69,7 +69,9 @@ class ArtForm extends React.Component{
               <MenuItem value="philart" primaryText="Philart"/>
               <MenuItem value="other" primaryText="Other"/>
             </Field>
-    
+
+            <Field name='source_link' floatingLabelText="Source Link" component={TextField} style={textFieldStyles} />
+              
             <div className="uploadToS3">
               {currentImage}
               {this.props.children}

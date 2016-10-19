@@ -10,7 +10,9 @@ const initialArtState = {
       name: "",
       color: ""
     },
-    creation_date: Date.now()
+    creation_date: Date.now(),
+    source: "",
+    source_link: ""
   }
 }
 

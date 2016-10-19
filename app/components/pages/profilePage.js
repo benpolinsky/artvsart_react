@@ -10,6 +10,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 class ProfilePage extends React.Component{  
   
   componentDidMount(){
+    // should probably be fetching user data, huh...
     this.props.fetchCompetitions();
   }
 

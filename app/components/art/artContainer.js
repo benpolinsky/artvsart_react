@@ -4,6 +4,16 @@ import ArtInfo from './artInfo.js';
 import { Router, Route, Link, browserHistory } from 'react-router';
 import {fetchArt} from '../../actions/art.js';
 
+const styles = {
+  container: {
+    display: 'flex',
+    alignItems: 'center',
+    flexDirection: 'column',
+    margin: '10px auto 0 auto',
+    width: 500
+  }
+}
+
 
 class ArtContainer extends React.Component{
   
@@ -16,7 +26,7 @@ class ArtContainer extends React.Component{
   
   render(){
     return (
-      <div className="centered-page">
+      <div style={styles.container} >
         <ArtInfo art={{...this.props.art, creation_date: this.props.art.creation_date.toString()}} />
         <Link to={`/art/${this.props.art.id}/edit`} >Edit </Link>
       </div>
