@@ -6,6 +6,7 @@ import {SelectField} from 'redux-form-material-ui';
 import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Datejs from 'datejs'
 
 const textFieldStyles = {
   float: 'left',
@@ -28,7 +29,12 @@ const validate = (values) => {
   return errors
 }
 
-const MyDatePicker = ({input}) => <DatePicker name={input.name} value={input.value} onChange={(e, value) => input.onChange(value)} />
+const MyDatePicker = ({input}) => <DatePicker 
+                                    minDate={((2000).years().ago())}
+                                    name={input.name} 
+                                    value={input.value} 
+                                    onChange={(e, value) => input.onChange(value)} 
+                                  />
 
 class ArtForm extends React.Component{
   constructor(){
