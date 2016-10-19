@@ -19,4 +19,10 @@ const SearchResult = ({result, importArt}) => {
     </div>
   )
 }
+
+SearchResult.propTypes = {
+  result: React.PropTypes.object.isRequired,
+  importArt: React.PropTypes.func.isRequired
+}
+
 export default SearchResult

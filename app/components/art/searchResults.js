@@ -11,4 +11,10 @@ const SearchResults = ({error, results, importArt}) => {
     )
 }
 
+SearchResults.propTypes = {
+  error: React.PropTypes.string,
+  results: React.PropTypes.array.isRequired,
+  importArt: React.PropTypes.func.isRequired
+}
+
 export default SearchResults

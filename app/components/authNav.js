@@ -22,4 +22,8 @@ const AuthNav = ({showAuthForm}) => {
   )
 }
 
+AuthNav.propTypes = {
+  showAuthForm: React.PropTypes.func.isRequired
+}
+
 export default AuthNav

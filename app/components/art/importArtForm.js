@@ -28,5 +28,15 @@ const ImportArtForm = ({submitForm, selected_source, selected, sources, update, 
   )
 }
 
+ImportArtForm.propTypes = {
+  submitForm:  React.PropTypes.func.isRequired,
+  selected_source: React.PropTypes.string.isRequired,
+  selected: React.PropTypes.func.isRequired,
+  sources: React.PropTypes.array.isRequired,
+  update: React.PropTypes.func.isRequired,
+  errors: React.PropTypes.object
+}
+
+
 export default ImportArtForm
 

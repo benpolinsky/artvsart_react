@@ -1,5 +1,5 @@
 import * as api from '../utils/ajaxHelpers.js';
-import * as storage from '../localStorage.js';
+import * as storage from '../utils/localStorage.js';
 
 export const fetchUserCompetitions = () => (dispatch) => {
   dispatch(userCompetitionsRequest());

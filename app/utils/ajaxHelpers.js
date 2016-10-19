@@ -1,4 +1,4 @@
-import {tokenObject, loadToken} from '../localStorage.js';
+import {tokenObject, loadToken} from '../utils/localStorage.js';
 
 const domain = 'http://localhost:3000';
 const token = tokenObject();

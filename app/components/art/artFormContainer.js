@@ -7,7 +7,7 @@ import ArtForm from './ArtForm.js';
 import {createNewArt, fetchArt, resetArt, updateArt} from '../../actions/art.js';
 import {categoriesRequest} from '../../actions/categories.js'
 import {storeSignedUrl} from '../../actions/art.js';
-import * as storage from '../../localStorage.js';
+import * as storage from '../../utils/localStorage.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import CircularProgress from 'material-ui/CircularProgress'
 

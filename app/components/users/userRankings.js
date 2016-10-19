@@ -27,6 +27,10 @@ class UserRankings extends React.Component{
   }
 }
 
+UserRankings.propTypes = {
+  rankedUser: React.PropTypes.array.isRequired,
+  getRankedUsers: React.PropTypes.func.isRequired
+}
 
 const mapStateToProps = (state) => ({
   rankedUsers: state.rankedUsers.users

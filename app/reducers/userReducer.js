@@ -7,7 +7,8 @@ const initialUserState = {
     authenticated: false,
     fetching: false,
     admin: false,
-    openForm: ''
+    openForm: '',
+    error: ''
   }
 }
 
@@ -102,7 +103,7 @@ const userReducer = (state=initialUserState, action) => {
     return {...state, user: {...state.user, openForm: ''}}
   
   case "API_DOWN":
-    return {...state, apiError: true}
+    return {...state, apiError: true, error: action.error}
   }
   return state
 }

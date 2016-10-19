@@ -146,6 +146,13 @@ class CompetitionContainer extends React.Component{
   }
 }
 
+CompetitionContainer.propTypes = {
+  competition: React.PropTypes.object.isRequired,
+  getCompetition: React.PropTypes.func.isRequired,
+  handleClose: React.PropTypes.func.isRequired,
+  selectWinnerViaKeyboard: React.PropTypes.func.isRequired
+}
+
 CompetitionContainer.contextTypes = {
   store: React.PropTypes.object,
   router: React.PropTypes.object

@@ -34,4 +34,8 @@ const ArtInfo = ({art}) => {
   )
 }
 
+ArtInfo.propTypes = {
+  art: React.PropTypes.object.isRequired
+}
+
 export default ArtInfo

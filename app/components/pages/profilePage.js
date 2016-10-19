@@ -38,6 +38,12 @@ class ProfilePage extends React.Component{
   }
 }
 
+ProfilePage.propTypes = {
+  user: React.PropTypes.object.isRequired,
+  fetchCompetitions: React.PropTypes.func.isRequired,
+  competitions: React.PropTypes.object.isRequired
+}
+
 const mapStateToProps = (store) => ({
   competitions: store.userCompetitionsState,
   user: store.userState.user

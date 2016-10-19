@@ -94,25 +94,39 @@ class ImportArtFormContainer extends React.Component{
     
     return (
       <div id="searchArtContainer">
-        <Loader backgroundStyle={loaderStyles.background} foregroundStyle={loaderStyles.foreground} show={this.props.loading} message={circularLoader}>
-          <ImportArtForm 
-            sources={sources} 
-            selected_source={this.state.source} 
-            selected={this.selected} 
-            update={this.update} 
-            submitForm={this.submitForm}
-            errors={this.state.formErrors}
-          />
-          <SearchResults results={this.props.results} error={this.props.error} importArt={this.importArt} />
+        <Loader backgroundStyle={loaderStyles.background} 
+                foregroundStyle={loaderStyles.foreground} 
+                show={this.props.loading} 
+                message={circularLoader}>
+                
+                <ImportArtForm 
+                  sources={sources} 
+                  selected_source={this.state.source} 
+                  selected={this.selected} 
+                  update={this.update} 
+                  submitForm={this.submitForm}
+                  errors={this.state.formErrors}
+                />
+                
+                <SearchResults results={this.props.results} error={this.props.error} importArt={this.importArt} />
         </Loader>
       </div>
     )
   }
 }
 
+
+ImportArtFormContainer.propTypes = {
+  loading: React.PropTypes.bool.isRequired,
+  results: React.PropTypes.array.isRequired,
+  listing_id: React.PropTypes.string.isRequired,
+  error: React.PropTypes.string.isRequired,
+  submitForm: React.PropTypes.func.isRequired,
+  importArt: React.PropTypes.func.isRequired
+}
+
 const mapStateToProps = (store) => ({
   loading: store.artImportState.loading,
-  loading_message: store.artImportState.loadingMessage,
   results: store.artImportState.results,
   listing_id: store.artImportState.listing_id,
   error: store.artImportState.error

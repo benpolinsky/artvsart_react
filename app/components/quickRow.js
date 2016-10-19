@@ -1,6 +1,6 @@
 import React from 'react'
 
-const quickRow = ({label, content}) => {
+const QuickRow = ({label, content}) => {
   const styles = {
     label: {
       fontWeight: 700,
@@ -20,4 +20,9 @@ const quickRow = ({label, content}) => {
   )
 }
 
-export default quickRow
+QuickRow.propTypes = {
+  label: React.PropTypes.string.isRequired,
+  content: React.PropTypes.string.isRequired
+}
+
+export default QuickRow

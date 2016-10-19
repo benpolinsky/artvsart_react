@@ -45,12 +45,17 @@ export const CompetitionResult = ({competition, displayInfo}) => {
   
         <div className='share-buttons'>
           <p>Share It!</p>
-          <ShareButtons className="competition-share" share_title={competition.share_title}/>
+          <ShareButtons className="competition-share" shareTitle={competition.shareTitle}/>
         </div>
         
       </Loader>
     </div>
   )
+}
+
+CompetitionResult.propTypes = {
+  competition: React.PropTypes.object.isRequired,
+  displayInfo: React.PropTypes.func.isRequired
 }
 
 CompetitionResult.contextTypes = {

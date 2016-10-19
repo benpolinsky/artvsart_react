@@ -34,7 +34,7 @@ const initialCompetitionState = {
       image: 'http://placehold.it/250x250'
     },
     winner_id: 2,
-    share_title: "Visit Art Vs Art to Battle Any Art Vs Any Art",
+    shareTitle: "Visit Art Vs Art to Battle Any Art Vs Any Art",
     isFetching: true,
     winnerSelected: false,
     closeModal: true,
@@ -58,7 +58,7 @@ const competitionReducer = (state=initialCompetitionState, action) => {
        ...state, 
        competition: {
          ...action.competition, 
-         share_title: `Now Battling: ${action.competition.art.name} vs. ${action.competition.challenger.name} on Art Vs Art`,
+         shareTitle: `Now Battling: ${action.competition.art.name} vs. ${action.competition.challenger.name} on Art Vs Art`,
          isFetching: false,
          winnerSelected: false,
          closeModal: true
@@ -71,7 +71,7 @@ const competitionReducer = (state=initialCompetitionState, action) => {
       ...state, 
       competition: {
         ...action.competition, 
-         share_title: `${winning_art.name} battled ${losing_art.name} AND WON! on Art Vs. Art`,
+         shareTitle: `${winning_art.name} battled ${losing_art.name} AND WON! on Art Vs. Art`,
         isFetching: false,
         closeModal: true,
         winnerSelected: true,
@@ -107,7 +107,7 @@ const competitionReducer = (state=initialCompetitionState, action) => {
          ...state.competition, 
          winning_art: winning_art, 
          losing_art:  losing_art,
-         share_title: `${winning_art.name} battled ${losing_art.name} AND WON! on artvsart`,
+         shareTitle: `${winning_art.name} battled ${losing_art.name} AND WON! on artvsart`,
          winnerSelected: true,
          art_percentages: action.competition.art_percentages,
          isFetching: false,

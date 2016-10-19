@@ -7,7 +7,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 export const WinnerModalContents = ({competition, closeModal}) => {
 
-  const {winning_art, losing_art, art_percentages, share_title} = competition
+  const {winning_art, losing_art, art_percentages, shareTitle} = competition
   const winning_percentage = art_percentages.winner_winning_percentage;
   const win_float = parseFloat(winning_percentage.substr(0, winning_percentage.length - 1));
   var consensus_message = ""
@@ -53,7 +53,7 @@ export const WinnerModalContents = ({competition, closeModal}) => {
       <span className='share-prompt'>Share This Result!</span>
  
       <div className='share-buttons'>
-          <ShareButtons className='competition-winner-share' share_title={share_title}/>
+          <ShareButtons className='competition-winner-share' shareTitle={shareTitle}/>
       </div>
 
     </div>

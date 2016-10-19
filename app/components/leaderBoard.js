@@ -59,6 +59,12 @@ class LeaderBoard extends React.Component{
   
 }
 
+LeaderBoard.propTypes = {
+  results: React.PropTypes.array.isRequired,
+  getResults: React.PropTypes.func.isRequired
+}
+
+
 const mapStateToProps = (store) => ({
   results: store.resultsState.results
 });

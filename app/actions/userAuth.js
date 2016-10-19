@@ -1,5 +1,5 @@
 import * as api from '../utils/ajaxHelpers.js'
-import * as storage from '../localStorage.js'
+import * as storage from '../utils/localStorage.js'
 import { SubmissionError } from 'redux-form'
 
 export const loginToFacebook = (response) => (dispatch) => {
@@ -156,12 +156,14 @@ export const getUserInfo = () => (dispatch) => {
     dispatch(storeUserCredentials(response.user));
   })
   .catch((error) => {
-    dispatch(apiDown())
+    console.log(error)
+    dispatch(apiDown(error))
   });
 }
 
 export const apiDown = (error) => ({
-  type: "API_DOWN"
+  type: "API_DOWN",
+  error: error
 })
 
 const startReceiveUserInfo = () => ({

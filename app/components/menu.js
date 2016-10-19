@@ -59,8 +59,7 @@ class Menu extends React.Component{
   }
 
   render(){
-    const totals = this.props.totals;
-    const user_type = this.props.user.type;
+    const userType = this.props.user.type;
     const user_email = this.props.user.email
     return (
     <MuiThemeProvider>
@@ -71,7 +70,7 @@ class Menu extends React.Component{
           onLeftIconButtonTouchTap={this.openMenu}
           iconStyleRight={{marginTop: 0}}
           iconElementRight={
-            user_type == "GuestUser" ?
+            userType == "GuestUser" ?
             
             <AuthNav showAuthForm={this.props.showAuthForm}/>
             : 
@@ -92,7 +91,7 @@ class Menu extends React.Component{
           <Link onTouchTap={this.closeMenu} to="/about">About</Link>
           <Link onTouchTap={this.closeMenu} to="/leaderboard">Leaderboard</Link>
           <Link onTouchTap={this.closeMenu} to="/top_judges">Top Judges</Link>
-           {user_type == "admin" &&
+           {userType == "admin" &&
               <div className='adminLinks'>
                 <Link onTouchTap={this.closeMenu} to="/art/new"> Add Art</Link>
                 <Link onTouchTap={this.closeMenu} to='/import_art'>Import Art</Link>
@@ -116,6 +115,12 @@ Menu.contextTypes = {
   router: React.PropTypes.object
 }
 
+Menu.propTypes = {
+  user: React.PropTypes.object.isRequired,
+  showAuthForm: React.PropTypes.func.isRequired,
+  signOutUser: React.PropTypes.func.isRequired
+}
+
 const mapDispatchToProps = (dispatch) => ({
   signOutUser(router){
     dispatch(signOutUser(router));
@@ -125,38 +130,3 @@ const mapDispatchToProps = (dispatch) => ({
 
 
 export default connect(null, mapDispatchToProps)(Menu);
-
-// <nav className="mainMenu">
-//
-//   <ul>
-//     <Link to="/">AVA</Link>
-//
-//     <li></li>
-
-//
-//     {user_type == "GuestUser" &&
-//      <ul className='nav navbar-nav'>
-//       <li className="nav-item">
-//         <Link className="nav-link" to="/sign_up">Register</Link>
-//       </li>
-//       <li className="nav-item">
-//         <Link className="nav-link" to="/sign_in">Sign In</Link>
-//       </li>
-//      </ul>}
-//
-//     
-//
-//     {user_type == null &&
-//       }
-//
-//
-//   </ul>
-//
-//   <ul className="pull-right nav navbar-nav">
-//     <li className="navbar-brand">{totals.total_art} Arts </li>
-//     <li className="navbar-brand">{totals.total_art_judged} Arts Judged </li>
-//     <li className="navbar-brand">{totals.finished_competitions} Battles</li>
-//   </ul>
-//
-//
-// </nav>

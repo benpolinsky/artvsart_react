@@ -23,6 +23,11 @@ class CategoriesList extends React.Component{
   }
 }
 
+CategoriesList.propTypes = {
+  categories: React.PropTypes.object.isRequired,
+  fetchCategories: React.PropTypes.func.isRequired
+}
+
 const mapStateToProps = state => ({
   categories: state.categories.records
 });

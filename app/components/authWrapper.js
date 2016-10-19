@@ -3,8 +3,8 @@
 
 import React from 'react';
 import {connect} from 'react-redux';
-import {getUserInfo} from './actions/userAuth.js';
-import ApiDown from './components/apiDown.js'
+import {getUserInfo} from '../actions/userAuth.js';
+import ApiDown from './apiDown.js'
 
 export default function requireAuthentication(Component){
   class AuthenticatedComponent extends React.Component{
@@ -43,6 +43,11 @@ export default function requireAuthentication(Component){
   const mapStateToProps = (state) => ({
     user: state.userState.user
   });
+  
+  AuthenticatedComponent.propTypes = {
+    user: React.PropTypes.object.isRequired,
+    initializeApp: React.PropTypes.func.isRequired
+  }
   
   return connect(mapStateToProps, mapDispatchToProps)(AuthenticatedComponent);
 }

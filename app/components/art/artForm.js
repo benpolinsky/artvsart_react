@@ -13,6 +13,7 @@ const textFieldStyles = {
   clear: 'both'
 }
 
+
 const validate = (values) => {
   const errors = {};
   const fieldsToValidate = ['name', 'creator', 'description'];
@@ -29,7 +30,7 @@ const validate = (values) => {
   return errors
 }
 
-const MyDatePicker = ({input}) => <DatePicker 
+const WrappedDatePicker = ({input}) => <DatePicker 
                                     minDate={((2000).years().ago())}
                                     name={input.name} 
                                     value={input.value} 
@@ -59,7 +60,7 @@ class ArtForm extends React.Component{
             <Field name='name' floatingLabelText="Name" component={TextField} style={textFieldStyles} />
             <Field name='creator' floatingLabelText="Creator" component={TextField} style={textFieldStyles} />
             <Field name='description' floatingLabelText="Description" component={TextField} multiLine={true} style={textFieldStyles}  />
-            <Field name='creation_date' floatingLabelText="Creation Date" component={MyDatePicker} style={textFieldStyles}  />
+            <Field name='creation_date' floatingLabelText="Creation Date" component={WrappedDatePicker} style={textFieldStyles}  />
             
             <Field name='category_name' floatingLabelText="Category" component={SelectField} style={textFieldStyles} >
               {categories.map((category) => {

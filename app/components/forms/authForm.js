@@ -79,6 +79,16 @@ export class AuthForm extends React.Component {
   }
 }
 
+AuthForm.propTypes = {
+  formAction:React.PropTypes.func.isRequired,
+  displayForm: React.PropTypes.string.isRequired,
+  formType: React.PropTypes.string.isRequired,
+  errors: React.PropTypes.string,
+  handleSubmit: React.PropTypes.func.isRequired,
+  formTitle: React.PropTypes.string.isRequired,
+  responseFacebook: React.PropTypes.func.isRequired
+}
+
 AuthForm.contextTypes = {
   router: React.PropTypes.object
 }

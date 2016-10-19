@@ -50,3 +50,7 @@ export const WinLossBar = ({data}) => {
     </div>
   ) 
 }
+
+WinLossBar.propTypes = {
+  data: React.PropTypes.object.isRequired
+}

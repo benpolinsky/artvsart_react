@@ -5,11 +5,11 @@ import ReactDOM from 'react-dom';
 import {Router, IndexRoute, Route, browserHistory} from 'react-router';
 import { Provider } from 'react-redux';
 import store from './store.js';
-import App from './app.js';
-import requireAuthentication from './authWrapper.js'
+import App from './components/app.js';
+import requireAuthentication from './components/authWrapper.js'
 
-import HomeContainer from './components/pages/homeContainer.js'
-import AboutContainer from './components/pages/aboutContainer.js'
+import HomePage from './components/pages/homePage.js'
+import AboutPage from './components/pages/aboutPage.js'
 import ProfilePage from './components/pages/profilePage.js'
 
 import CompetitionContainer from './components/competition/competitionContainer.js'
@@ -54,7 +54,7 @@ ReactDOM.render(
   <Router history={browserHistory}>
     <Route path='/' component={requireAuthentication(App)}>
 
-      <IndexRoute component={HomeContainer} />
+      <IndexRoute component={HomePage} />
 
       <Route path='competition' component={CompetitionContainer} />
       <Route path='competition_result/:id' component={CompetitionResultContainer} />
@@ -69,7 +69,7 @@ ReactDOM.render(
       <Route path='categories/:id/edit' component={EditCategoryFormContainer} />
       <Route path='categories/:id' component={ShowCategory} />   
 
-      <Route path='about' component={AboutContainer} />
+      <Route path='about' component={AboutPage} />
       <Route path='leaderboard' component={LeaderBoard} />
       <Route path='profile' component={ProfilePage} />
       <Route path='top_judges' component={UserRankings} />

@@ -2,7 +2,7 @@
 import React from 'react';
 
 
-export default class AboutContainer extends React.Component {
+export default class AboutPage extends React.Component {
   constructor(){
     super();
   }

@@ -34,6 +34,11 @@ class ArtContainer extends React.Component{
   }
 }
 
+ArtContainer.propTypes = {
+  art: React.PropTypes.object.isRequired,
+  loadArt: React.PropTypes.func.isRequired
+}
+
 const mapStateToProps = (state) => ({
   art: state.artState.art
 });
