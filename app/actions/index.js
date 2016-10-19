@@ -10,18 +10,21 @@ const displayCompetition = (response) => ({
   competition: response.competition
 });
 
-export const getCompetitionData = (id=null) => (dispatch) => {
-  dispatch(fetchCompetition());
+export const getCompetitionData = (id=null) => {
+  return dispatch => {
+    dispatch(fetchCompetition());
 
-  if (id != null) {    
-    return api.get(`competitions/${id}`).then(response => {
-      dispatch(displayCompetition(response))
-    });
-  } else {
-    return api.post('competitions', {}).then(response => {
-      dispatch(stageCompetition(response));
-    });
+    if (id != null) {    
+      return api.get(`competitions/${id}`).then(response => {
+        dispatch(displayCompetition(response))
+      });
+    } else {
+      return api.post('competitions', {}).then(response => {
+        dispatch(stageCompetition(response));
+      });
+    }
   }
+  
  
 }
 

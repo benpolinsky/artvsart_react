@@ -50,7 +50,7 @@ const competitionReducer = (state=initialCompetitionState, action) => {
       ...state, 
       competition: {
         ...state.competition, 
-        isFetching: true
+        closeModal: false
       }
     }    
   case "RECEIVE_COMPETITION":
@@ -60,8 +60,8 @@ const competitionReducer = (state=initialCompetitionState, action) => {
          ...action.competition, 
          share_title: `Now Battling: ${action.competition.art.name} vs. ${action.competition.challenger.name} on Art Vs Art`,
          isFetching: false,
-         closeModal: true,
-         winnerSelected: false
+         winnerSelected: false,
+         closeModal: true
        }
      }
  case "RECEIVE_FINISHED_COMPETITION":

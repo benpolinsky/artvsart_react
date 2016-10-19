@@ -33,7 +33,7 @@ export const Competition = ({competition, handleClose, displayInfo, noVoting}) =
 
   return (
     <div className='competition'>
-      <Loader foregroundStyle={loaderStyles.foreground} backgroundStyle={loaderStyles.background} message={circularLoader} show={competition.isFetching}>
+      <Loader foregroundStyle={loaderStyles.foreground} backgroundStyle={loaderStyles.background} message={circularLoader} show={competition.isFetching && !competition.closeModal}>
   
         <div className="artPair">
           <div className='art'>
