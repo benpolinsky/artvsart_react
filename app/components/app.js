@@ -4,12 +4,12 @@ import Footer from './footer.js'
 import AuthForms from './forms/authForms.js'
 import {connect} from 'react-redux';
 import {openSignUp} from '../actions/userAuth.js';
-
+import baseStyles from '../styles/base.js';
 
 const App = ({app, user, children, showAuthForm}) => {
   return (
     <div>
-      <div id="mainContainer">
+      <div style={baseStyles.mainContainer}>
         <Menu totals={app.totals} user={user} showAuthForm={showAuthForm} />
         <AuthForms />
         <div>{children}</div>

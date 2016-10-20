@@ -1,12 +1,14 @@
 import React from 'react';
+import Radium from 'radium';
 import ShareButtons from '../shareButtons.js';
 import FlatButton from 'material-ui/FlatButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import CompetitionStyles from '../../styles/competition.js';
 
 
-
-export const WinnerModalContents = ({competition, closeModal}) => {
-
+const WinnerModalContents = ({competition, closeModal}) => {
+  const modalStyles = CompetitionStyles.modal
+   
   const {winning_art, losing_art, art_percentages, shareTitle} = competition
   const winning_percentage = art_percentages.winner_winning_percentage;
   const win_float = parseFloat(winning_percentage.substr(0, winning_percentage.length - 1));
@@ -27,36 +29,37 @@ export const WinnerModalContents = ({competition, closeModal}) => {
   }
 
   return(
-    <div className='modal-contents'>
+    <div style={modalStyles.contents}>
       <h2>Winner!</h2>
-      <h3 className="winner-info"> 
-        <span className="winner-name">
+      <h3> 
+        <span style={[modalStyles.winnerName, modalStyles.winnerInfo]}>
           {winning_art.name} 
         </span> 
         by
-        <span className="winner-creator"> 
+        <span style={modalStyles.winnerInfo}> 
           {winning_art.creator}
           ({art_percentages.winner_winning_percentage})
         </span>  
         defeated
 
-        <span className="loser-name">
+        <span style={modalStyles.winnerInfo}>
           {losing_art.name} 
         </span> 
 
-        <span className='loser-creator'>
+        <span style={modalStyles.winnerInfo}>
           {losing_art.creator} 
           ({art_percentages.loser_winning_percentage})
         </span>
       </h3>
       <h3>{consensus_message}</h3>
-      <span className='share-prompt'>Share This Result!</span>
+      <span style={modalStyles.sharePrompt}>Share This Result!</span>
  
-      <div className='share-buttons'>
-          <ShareButtons className='competition-winner-share' shareTitle={shareTitle}/>
+      <div style={modalStyles.shareButtons}>
+          <ShareButtons styles={CompetitionStyles.shareButtons} shareTitle={shareTitle}/>
       </div>
 
     </div>
   )
 }
-
+const StyledModal = Radium(WinnerModalContents)
+export default StyledModal

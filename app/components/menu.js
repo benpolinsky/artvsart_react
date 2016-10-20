@@ -10,6 +10,14 @@ import FlatButton from 'material-ui/FlatButton';
 import MenuItem from 'material-ui/MenuItem';
 import {signOutUser} from '../actions/userAuth.js'
 import AuthNav from './authNav.js'
+import IconButton from 'material-ui/IconButton';
+import MenuIcon from 'material-ui/svg-icons/navigation/menu'
+import Radium from 'radium'
+import {StyleRoot} from 'radium'
+import menuStyles from '../styles/navBar.js'
+import DrawerStyles from '../styles/navDrawer.js'
+
+var RadiumLink = Radium(Link)
 
 class Menu extends React.Component{
   constructor(){
@@ -65,41 +73,47 @@ class Menu extends React.Component{
     <MuiThemeProvider>
       <div>
         <AppBar 
-          className="appBar" 
+          style={menuStyles.appBar} 
           title="ART V ART"
+          titleStyle={menuStyles.appBarHeading}
           onLeftIconButtonTouchTap={this.openMenu}
           iconStyleRight={{marginTop: 0}}
+          iconStyleLeft={menuStyles.appBarIcon}
+          iconElementLeft={<IconButton><MenuIcon color='black'/></IconButton>}
           iconElementRight={
-            userType == "GuestUser" ?
-            
+          
+            userType == "GuestUser" 
+              ?
             <AuthNav showAuthForm={this.props.showAuthForm}/>
-            : 
-            
+              : 
             <MuiThemeProvider>
-              <DropDownMenu className="userMenu" onChange={this.selectMenuItem} value={this.state.menu} labelStyle={{color: 'black', borderBottom: 0, fontSize: 14, overflow: 'hidden', textOverflow: 'ellipsis'}} >
+              <DropDownMenu style={menuStyles.userMenu} onChange={this.selectMenuItem} value={this.state.menu} labelStyle={{color: 'black', borderBottom: 0, fontSize: 14, overflow: 'hidden', textOverflow: 'ellipsis'}} >
                 <MenuItem value='email' primaryText={`${user_email}`} />
                 <MenuItem value='profile' primaryText="Your Profile" />
                 <MenuItem value='sign_out' primaryText="Sign Out" />
-
               </DropDownMenu>
             </MuiThemeProvider>
           }
         />
-        <Drawer className="navDrawer" docked={false} open={this.state.navMenuOpen} onRequestChange={(open) => this.setState({navMenuOpen: open})}>
-          <h1>ART V ART</h1>
-          <Link onTouchTap={this.closeMenu} to="/competition">Competition</Link>
-          <Link onTouchTap={this.closeMenu} to="/about">About</Link>
-          <Link onTouchTap={this.closeMenu} to="/leaderboard">Leaderboard</Link>
-          <Link onTouchTap={this.closeMenu} to="/top_judges">Top Judges</Link>
-           {userType == "admin" &&
-              <div className='adminLinks'>
-                <Link onTouchTap={this.closeMenu} to="/art/new"> Add Art</Link>
-                <Link onTouchTap={this.closeMenu} to='/import_art'>Import Art</Link>
-                <Link onTouchTap={this.closeMenu} to='/categories'>Categories</Link>
-                <Link onTouchTap={this.closeMenu} to='/categories/new'>Add Category</Link>
-              </div>
-            }
-        </Drawer>
+       
+          <Drawer docked={false} open={this.state.navMenuOpen} onRequestChange={(open) => this.setState({navMenuOpen: open})}>
+            <h1 style={DrawerStyles.heading}>ART VS ART</h1>
+           <StyleRoot>
+            <RadiumLink style={DrawerStyles.links} onTouchTap={this.closeMenu} to="/competition">Competition</RadiumLink>
+            <RadiumLink style={DrawerStyles.links} onTouchTap={this.closeMenu} to="/about">About</RadiumLink>
+            <RadiumLink style={DrawerStyles.links} onTouchTap={this.closeMenu} to="/leaderboard">Leaderboard</RadiumLink>
+            <RadiumLink style={DrawerStyles.links} onTouchTap={this.closeMenu} to="/top_judges">Top Judges</RadiumLink>
+             {userType == "admin" &&
+                <div className='adminRadiumLinks'>
+                  <RadiumLink style={DrawerStyles.links} onTouchTap={this.closeMenu} to="/art/new"> Add Art</RadiumLink>
+                  <RadiumLink style={DrawerStyles.links} onTouchTap={this.closeMenu} to='/import_art'>Import Art</RadiumLink>
+                  <RadiumLink style={DrawerStyles.links} onTouchTap={this.closeMenu} to='/categories'>Categories</RadiumLink>
+                  <RadiumLink style={DrawerStyles.links} onTouchTap={this.closeMenu} to='/categories/new'>Add Category</RadiumLink>
+                </div>
+              }
+            </StyleRoot>
+          </Drawer>
+
       </div>
     
     </MuiThemeProvider>
@@ -129,4 +143,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 
 
-export default connect(null, mapDispatchToProps)(Menu);
+export default connect(null, mapDispatchToProps)(Radium(Menu));

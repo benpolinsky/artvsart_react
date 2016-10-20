@@ -6,6 +6,7 @@ import {userGreeting} from  '../../utils/users.js'
 import Divider from 'material-ui/Divider';
 import {List, ListItem} from 'material-ui/List';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import baseStyles from '../../styles/base.js';
 
 class ProfilePage extends React.Component{  
   
@@ -24,8 +25,8 @@ class ProfilePage extends React.Component{
     }
     return(
         <MuiThemeProvider>
-          <div className="container">
-           <h1 className='mainTitle'>Profile</h1>
+          <div className={baseStyles.container}>
+           <h1 style={baseStyles.mainTitle}>Profile</h1>
             <List>
               <ListItem innerDivStyle={{paddingLeft: 16}} primaryText={userGreeting(this.props.user)} leftIcon={<UserGravatar hash={this.props.user.gravatar_hash} />} />
               <Divider / >

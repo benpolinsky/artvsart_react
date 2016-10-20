@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Link, Router} from 'react-router'
 import {categoriesRequest} from '../../actions/categories.js'
 import Category from './category.js'
+import baseStyles from '../../styles/base.js'
 
 class CategoriesList extends React.Component{
   componentDidMount(){
@@ -11,8 +12,8 @@ class CategoriesList extends React.Component{
   
   render(){
     return(
-      <div className='centered-page'>
-        <h1 className="mainTitle"> Categories </h1>
+      <div style={baseStyles.centeredPage}>
+        <h1 style={baseStyles.mainTitle}> Categories </h1>
         <div>
           {this.props.categories.map(category => {
             return <Link key={category.id} to={`/categories/${category.id}`}><Category category={category} /></Link>
@@ -24,7 +25,7 @@ class CategoriesList extends React.Component{
 }
 
 CategoriesList.propTypes = {
-  categories: React.PropTypes.object.isRequired,
+  categories: React.PropTypes.array.isRequired,
   fetchCategories: React.PropTypes.func.isRequired
 }
 

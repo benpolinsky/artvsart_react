@@ -1,4 +1,5 @@
 import React from 'react';
+import Radium from 'radium';
 import { Field, reduxForm } from 'redux-form';
 import {TextField} from 'redux-form-material-ui';
 import DatePicker from 'material-ui/DatePicker';
@@ -7,6 +8,8 @@ import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Datejs from 'datejs'
+import baseStyles from '../../styles/base.js'
+import formStyles from '../../styles/forms.js'
 
 const textFieldStyles = {
   float: 'left',
@@ -54,37 +57,40 @@ class ArtForm extends React.Component{
     
     return(
      <MuiThemeProvider>
-      <form onSubmit={handleSubmit(this.onSubmit)} className='createArtForm centered-form'>
-        <h1 className='mainTitle'>{formTitle}</h1>
-        <div className='fields'>
-            <Field name='name' floatingLabelText="Name" component={TextField} style={textFieldStyles} />
-            <Field name='creator' floatingLabelText="Creator" component={TextField} style={textFieldStyles} />
-            <Field name='description' floatingLabelText="Description" component={TextField} multiLine={true} style={textFieldStyles}  />
-            <Field name='creation_date' floatingLabelText="Creation Date" component={WrappedDatePicker} style={textFieldStyles}  />
-            
-            <Field name='category_name' floatingLabelText="Category" component={SelectField} style={textFieldStyles} >
-              {categories.map((category) => {
-                return <MenuItem key={category.id} value={category.name} primaryText={category.name}/>
-              })}
-            </Field>
-            
-            <Field name='source' floatingLabelText="Source" component={SelectField} style={textFieldStyles} >
-              <MenuItem value="discogs" primaryText="Discogs"/>
-              <MenuItem value="imdb" primaryText="IMDB"/>
-              <MenuItem value="artsy" primaryText="Artsy"/>
-              <MenuItem value="harvard" primaryText="Harvard Art Gallery"/>
-              <MenuItem value="philart" primaryText="Philart"/>
-              <MenuItem value="other" primaryText="Other"/>
-            </Field>
+      <form onSubmit={handleSubmit(this.onSubmit)} style={formStyles.centered}>
+        <h1 style={baseStyles.mainTitle}>{formTitle}</h1>
+       
+        <div style={formStyles.centered.fields}>
+          <Field name='name' floatingLabelText="Name" component={TextField} style={textFieldStyles} />
+          <Field name='creator' floatingLabelText="Creator" component={TextField} style={textFieldStyles} />
+          <Field name='description' floatingLabelText="Description" component={TextField} multiLine={true} style={textFieldStyles}  />
+          <Field name='creation_date' floatingLabelText="Creation Date" component={WrappedDatePicker} style={textFieldStyles}  />
+          
+          <Field name='category_name' floatingLabelText="Category" component={SelectField} style={textFieldStyles} >
+            {categories.map((category) => {
+              return <MenuItem key={category.id} value={category.name} primaryText={category.name}/>
+            })}
+          </Field>
+          
+          <Field name='source' floatingLabelText="Source" component={SelectField} style={textFieldStyles} >
+            <MenuItem value="discogs" primaryText="Discogs"/>
+            <MenuItem value="imdb" primaryText="IMDB"/>
+            <MenuItem value="artsy" primaryText="Artsy"/>
+            <MenuItem value="harvard" primaryText="Harvard Art Gallery"/>
+            <MenuItem value="philart" primaryText="Philart"/>
+            <MenuItem value="other" primaryText="Other"/>
+          </Field>
 
-            <Field name='source_link' floatingLabelText="Source Link" component={TextField} style={textFieldStyles} />
-              
-            <div className="uploadToS3">
-              {currentImage}
-              {this.props.children}
-            </div>
-              <p>{errors}</p>
-            <RaisedButton fullWidth={true} primary={true} style={textFieldStyles} type="submit" label={submitLabel} />
+          <Field name='source_link' floatingLabelText="Source Link" component={TextField} style={textFieldStyles} />
+            
+          <div style={formStyles.uploadToS3}>
+            {currentImage}
+            {this.props.children}
+          </div>
+          
+          <p>{errors}</p>
+          
+          <RaisedButton fullWidth={true} primary={true} style={textFieldStyles} type="submit" label={submitLabel} />
         </div>
 
       </form>
@@ -100,4 +106,4 @@ ArtForm = reduxForm({
   validate
 })(ArtForm)
 
-export default ArtForm
+export default Radium(ArtForm)

@@ -29,13 +29,7 @@ import UserRankings from './components/users/userRankings.js'
 
 const styles = [
   'reset', 
-  'base', 
-  'style', 
-  'navbar', 
-  'navDrawer', 
-  'competition', 
-  'importArt',
-  'footer'
+  'base'
 ];
 
 for (let style in styles) {

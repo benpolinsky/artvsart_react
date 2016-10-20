@@ -1,18 +1,23 @@
 import React from 'react'
+import Radium from 'radium'
+import {StyleRoot} from 'radium'
+import FooterStyles from '../styles/footer.js'
 
 const Footer = () => {
   return(
-    <footer id='pageFooter'>
-      <div className='socialMediaLinks'>
-        <a className='socialLink' href="https://twitter.com/emceenoesis" target="new"><img width='32' src='/public/twitter.png' /></a>
-        <a className='socialLink' href="https://github.com/benpolinsky" target="new"><img width='32' src='/public/github.png' /></a>        
+    <footer style={FooterStyles}> 
+      <div style={FooterStyles.socialMedia}>
+        <StyleRoot>
+          <a style={[FooterStyles.link, FooterStyles.socialMediaLink]} href="https://twitter.com/emceenoesis" target="new"><img width='32' src='/public/twitter.png' /></a>
+          <a style={[FooterStyles.link, FooterStyles.socialMediaLink]} href="https://github.com/benpolinsky" target="new"><img width='32' src='/public/github.png' /></a>  
+        </StyleRoot>
       </div>
 
-      <h1>© {new Date().getFullYear()} <a target="new" href='http://benpolinsky.com'>Ben Polinsky</a></h1>
+      <h1>© {new Date().getFullYear()} <a style={FooterStyles.link} target="new" href='http://benpolinsky.com'>Ben Polinsky</a></h1>
     </footer>
   )
 }
 
-export default Footer
+export default Radium(Footer)
 
 

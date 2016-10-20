@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import {Link} from 'react-router'
 import {requestCategory} from '../../actions/categories.js'
 import Category from './category.js'
+import baseStyles from '../../styles/base.js';
 
 class ShowCategory extends React.Component{
   componentDidMount(){
@@ -13,7 +14,7 @@ class ShowCategory extends React.Component{
     const category = this.props.category;
     
     return(
-      <div className='centered-page'>
+      <div style={baseStyles.centeredPage}>
         <Category category={category} />
         <Link to={`/categories/${category.id}/edit`} >Edit</Link>
       </div>

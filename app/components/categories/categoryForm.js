@@ -5,6 +5,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Subheader from 'material-ui/Subheader';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { CirclePicker } from 'react-color';
+import baseStyles from '../../styles/base.js';
+import formStyles from '../../styles/forms.js';
 
 const validate = (values) => {
   const errors = {};
@@ -34,9 +36,9 @@ const Form = ({form, formTitle, submitLabel, handleSubmit, category}) => {
   return (
     <div>
       <MuiThemeProvider>
-        <form onSubmit={handleSubmit} className='centered-form'>
-          <h1 className='mainTitle'>{formTitle}</h1>
-          <div className='fields'>
+        <form onSubmit={handleSubmit} style={formStyles.centered}>
+          <h1 style={baseStyles.mainTitle}>{formTitle}</h1>
+          <div style={formStyles.centered.fields}>
             <Field floatingLabelText="Name" name="name" component={TextField}/><br/>
             <Field label="Color" name="color" component={renderField} /><br/>
           </div>

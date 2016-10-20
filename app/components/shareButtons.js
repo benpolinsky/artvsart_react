@@ -1,4 +1,5 @@
 import React from 'react';
+import Radium from 'radium';
 import {ShareButtons, ShareCounts, generateShareIcon} from 'react-share';
 
 const {
@@ -6,32 +7,40 @@ const {
   TwitterShareButton,
 } = ShareButtons;
 
+
 const FacebookIcon = generateShareIcon('facebook');
 const TwitterIcon = generateShareIcon('twitter');
 
-const MyShareButtons = ({shareTitle}) => {
+const MyShareButtons = ({shareTitle, styles}) => {
+  console.log(styles)
   return (
     <div>
-    <hr/>
-    <FacebookShareButton
-      url={'http://artvsart.com'}
-      title={shareTitle}
-      className="Demo__some-network__share-button">
-      <FacebookIcon size={75} square />
-    </FacebookShareButton>
-
-     <TwitterShareButton
-       url='http://www.artvsart.com'
-       title={shareTitle}
-       className="Demo__some-network__share-button">
-       <TwitterIcon size={75} square />
-     </TwitterShareButton>
+      <hr/>
+      <div className='meme' style={styles}>
+        <FacebookShareButton
+          url={'http://artvsart.io'}
+          title={shareTitle}
+        >
+          <FacebookIcon size={75} square />
+        </FacebookShareButton>
+      </div>
+          
+      <div style={styles}>
+        <TwitterShareButton
+        url='http://www.artvsart.io'
+        title={shareTitle}
+        className="Demo__some-network__share-button"
+        >
+          <TwitterIcon size={75} square />
+        </TwitterShareButton>
+       </div>
     </div>
   )
 }
 
 MyShareButtons.propTypes = {
-  shareTitle: React.PropTypes.string.isRequired
+  shareTitle: React.PropTypes.string.isRequired,
+  styles: React.PropTypes.object
 }
 
-export default MyShareButtons
+export default Radium(MyShareButtons)

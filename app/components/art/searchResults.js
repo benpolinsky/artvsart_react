@@ -1,6 +1,6 @@
 import React from 'react';
 import SearchResult from './searchResult.js';
-import {QuickError} from '../quickErrors';
+import QuickError from '../quickErrors';
 const mainStyles = {display: 'flex', flexFlow: 'row wrap', width: '100%', marginTop: 20};
 const SearchResults = ({error, results, importArt}) => {
   return(

@@ -6,7 +6,7 @@ import {getCompetitionData} from '../../actions/index.js';
 import FlatButton from 'material-ui/FlatButton'
 import Dialog from 'material-ui/Dialog';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
+import baseStyles from '../../styles/base.js';
 
 const customStyles = {
   overlay: {
@@ -76,8 +76,8 @@ class CompetitionResultContainer extends React.Component{
     return (
      
     
-      <div className='container'>
-        <h1 className='mainTitle'>{`${winning_art.name} WINS`}</h1>
+      <div style={baseStyles.container}>
+        <h1 style={baseStyles.mainTitle}>{`${winning_art.name} WINS`}</h1>
         <CompetitionResult
           displayInfo={this.displayInfo} 
           competition={this.props.competition}

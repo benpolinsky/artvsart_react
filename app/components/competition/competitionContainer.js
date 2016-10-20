@@ -1,7 +1,8 @@
 import React from 'react';
+import Radium from 'radium';
 import {connect} from 'react-redux';
-import {WinnerModalContents} from './winnerModalContents.js';
-import {Competition} from './competition.js';
+import WinnerModalContents from './winnerModalContents.js';
+import Competition from './competition.js';
 import ArtInfo from '../art/artInfo.js'
 import {getBattle} from '../../utils/ajaxHelpers.js';
 import {getCompetitionData, selectCompetitionWinner} from '../../actions/index.js';
@@ -9,6 +10,8 @@ import {handleCompetitionModal} from '../../actions/userAuth.js'
 import FlatButton from 'material-ui/FlatButton'
 import Dialog from 'material-ui/Dialog';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import baseStyles from '../../styles/base.js';
+
 
 
 const customStyles = {
@@ -120,8 +123,8 @@ class CompetitionContainer extends React.Component{
 
     return (
     
-      <div className='container'>
-        <h1 className='mainTitle'>Battle!</h1>
+      <div style={baseStyles.container}>
+        <h1 style={baseStyles.mainTitle}>Battle!</h1>
         <Competition displayInfo={this.displayInfo} handleClose={this.signUp} competition={this.props.competition}/>
     
         <MuiThemeProvider>
@@ -175,4 +178,4 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(CompetitionContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(Radium(CompetitionContainer))

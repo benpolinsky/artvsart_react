@@ -1,4 +1,5 @@
 import React from 'react';
+import Radium from 'radium';
 import {connect} from 'react-redux';
 import Loader from 'react-loader-advanced';
 import SearchResults from './searchResults.js'
@@ -6,6 +7,8 @@ import ImportArtForm from './ImportArtForm.js';
 import {searchSource, importArt} from '../../actions/artImports.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import CircularProgress from 'material-ui/CircularProgress'
+
+import loaderStyles from '../../styles/loader.js'
 
 class ImportArtFormContainer extends React.Component{
   constructor(){
@@ -75,19 +78,6 @@ class ImportArtFormContainer extends React.Component{
  
   
   render(){
-    
-    const loaderStyles = {
-      background: {
-        backgroundColor: 'rgba(255,255,255,0.85)',
-        position: 'fixed',
-        left: '0',
-        top: '0',
-        zIndex: 9999
-      },
-      foreground: {
-        height: 50
-      }
-    }
     
     const circularLoader = <MuiThemeProvider><CircularProgress /></MuiThemeProvider>;
     const sources = ['Discogs', 'Artsy', 'Gracenote', 'Philart', 'IMDB', 'HarvardArt'];

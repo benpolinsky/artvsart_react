@@ -4,21 +4,28 @@ import {selectCompetitionWinner} from '../../actions/index.js'
 import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-const buttonStyle = {
+
+
+
+const labelStyle = {
   fontSize: 21,
   fontWeight: 700
 }
 
-const VoteButton = ({onClick}) => {
+const mainStyles = {
+  margin: '0 auto',
+  display: 'block'
+}
+
+const VoteButton = ({onClick, styles}) => {
   return <MuiThemeProvider>
             <RaisedButton 
               backgroundColor="black" 
-              labelStyle={buttonStyle}
-              style={{height: 50}} 
+              labelStyle={labelStyle}
               labelColor="white" 
-              className='voteButton' 
               onClick={onClick} 
               label="Vote" 
+              style={mainStyles}
             />
          </MuiThemeProvider>
 }
@@ -32,7 +39,8 @@ const mapDispatchToProps = (dispatch, ownProps) => ({
 })
 
 VoteButton.propTypes = {
-  onClick: React.PropTypes.func.isRequired
+  onClick: React.PropTypes.func.isRequired,
+  styles: React.PropTypes.object
 }
 
 export default connect(null, mapDispatchToProps)(VoteButton)

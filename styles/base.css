@@ -1,3 +1,9 @@
+/*
+  Cool with these, for now.
+  Not targeting css selectors, 
+  and these are really base page styles
+*/
+
 a{
   color:black;
 }
@@ -16,39 +22,8 @@ h1 {
   font-weight:700 !important;
 }
 
-.container{
-  padding:10px;
-  box-sizing:border-box;
-  max-width:1500px;
-  margin:0 auto;
-}
 
-h1.mainTitle{
-  text-align:center;
-  font-size:40px;
-  font-weight:700;
-  padding:20px 0;
+/* react-facebook-login doesn't accept style prop...*/
+.kep-login-facebook.small{
+  width:100%;
 }
-
-#mainContainer{
-  min-height:100%;
-  padding-bottom:250px;
-  position:relative;
-}
-
-.centered-page{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
-  margin-top:20px;
-}
-
-.centered-page > div{
-  width:500px;
-  display:flex;
-  flex-direction:column;
-  justify-content:center;
-  align-items:center;
-}
-

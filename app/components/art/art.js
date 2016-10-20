@@ -1,41 +1,18 @@
-// The idea of merging styles if you are going to use aphrodite: 
-
-// const baseStyles = StyleSheet.create({
-//
-//   art: {
-//     float: 'left',
-//     width: '50%',
-//     boxSizing: 'border-box',
-//     padding: '30px'
-//   },
-//
-//   artImage: {
-//     width: '100%'
-//   }
-//
-// })
-
-// inside of Art:
-// if (styles != null ) {
-//   var injectedStyles = StyleSheet.create(styles);
-// }
-// const newStyles = {...baseStyles, ...injectedStyles};
-
 import React from 'react';
-import VoteButtonContainer from '../competition/VoteButton.js';
-import { StyleSheet, css } from 'aphrodite';
+import Radium from 'radium';
+import VoteButton from '../competition/VoteButton.js';
 import Category from '../categories/category.js'
 
 const Art = ({art, noVoting, styles, selectInfo}) => {
   return (
-    <div>
+    <div style={styles}>
       <Category category={art.category} />
-      <div className='imageContainer'>
-        <img onClick={() => {selectInfo(art.id)}} src={art.image} />
+      <div style={styles.imageContainer}>
+        <img style={styles.image} onClick={() => {selectInfo(art.id)}} src={art.image} />
       </div>
-      <h3 onClick={() => {selectInfo(art.id)}}>{`${art.name} by ${art.creator}`}</h3>
+      <h3 style={styles.h3} onClick={() => {selectInfo(art.id)}}>{`${art.name} by ${art.creator}`}</h3>
       {!noVoting && 
-        <VoteButtonContainer art_id={art.id} /> }
+        <VoteButton styles={styles.voteButton} art_id={art.id} /> }
     </div>
   )
 }
@@ -55,4 +32,5 @@ Art.defaultProps = {
   }
 
 }
-export default Art
+
+export default Radium(Art)

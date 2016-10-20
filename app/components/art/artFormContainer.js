@@ -1,4 +1,5 @@
 import React from 'react';
+import Radium from 'radium';
 import {connect} from 'react-redux';
 import {Router} from 'react-router';
 import Loader from 'react-loader-advanced';
@@ -10,6 +11,8 @@ import {storeSignedUrl} from '../../actions/art.js';
 import * as storage from '../../utils/localStorage.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import CircularProgress from 'material-ui/CircularProgress'
+
+import loaderStyles from '../../styles/loader.js'
 
 class ArtFormContainer extends React.Component {
   constructor(){
@@ -139,20 +142,7 @@ class ArtFormContainer extends React.Component {
     }); 
   }
   
-  render(){
-    const loaderStyles = {
-      background: {
-        backgroundColor: 'rgba(255,255,255,0.85)',
-        position: 'fixed',
-        left: '0',
-        top: '0',
-        zIndex: 9999
-      },
-      foreground: {
-        height: 50
-      }
-    }
-    
+  render(){    
     let artInitialValues = this.props.art;
     artInitialValues.creation_date = new Date(artInitialValues.creation_date)
     const circularLoader = <MuiThemeProvider><CircularProgress /></MuiThemeProvider>
@@ -214,4 +204,4 @@ const mapDispatchToProps = (dispatch) => ({
 })
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArtFormContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(Radium(ArtFormContainer))

@@ -6,7 +6,7 @@ import {TextField} from 'redux-form-material-ui';
 import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import FacebookLogin from 'react-facebook-login';
-
+import Radium from 'radium'
 
 
 const validate = (values) => {
@@ -83,7 +83,7 @@ AuthForm.propTypes = {
   formAction:React.PropTypes.func.isRequired,
   displayForm: React.PropTypes.string.isRequired,
   formType: React.PropTypes.string.isRequired,
-  errors: React.PropTypes.string,
+  errors: React.PropTypes.object,
   handleSubmit: React.PropTypes.func.isRequired,
   formTitle: React.PropTypes.string.isRequired,
   responseFacebook: React.PropTypes.func.isRequired
@@ -98,4 +98,4 @@ AuthForm = reduxForm({
   validate
 })(AuthForm)
 
-export default AuthForm
+export default Radium(AuthForm)

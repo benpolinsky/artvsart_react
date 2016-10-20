@@ -5,6 +5,7 @@ import {List, ListItem} from 'material-ui/List';
 import Subheader from 'material-ui/Subheader';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import UserGravatar from './userGravatar';
+import baseStyles from '../../styles/base.js';
 
 class UserRankings extends React.Component{
   componentWillMount(){
@@ -14,7 +15,7 @@ class UserRankings extends React.Component{
   render(){
     return (
       <MuiThemeProvider>
-        <div className="container">
+        <div style={baseStyles.container}>
           <List>
             <Subheader>User Rankings</Subheader>            
             {this.props.rankedUsers.map((user, index) => {
