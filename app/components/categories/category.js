@@ -13,7 +13,7 @@ const Category = ({category, align}) => {
     color: color,
     width: 100,
     display: 'block',
-    boxSizing: 'borderBox',
+    boxSizing: 'border-box',
     padding: alignment.padding,
     lineHeight: 1,
     textAlign: alignment.textAlign,

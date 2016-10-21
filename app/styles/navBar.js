@@ -1,3 +1,7 @@
+import MediaQueries from './mediaQueries.js'
+
+const browser = MediaQueries.browser
+
 const navBarStyles = { 
   appBar: {
     backgroundColor: 'white',
@@ -14,8 +18,16 @@ const navBarStyles = {
     marginTop: 10,
   },
   
+  userMenuWrapper: {
+    width: 200,
+    [browser]: {
+      width: 'auto'
+    }
+  },
   userMenu: {
-    marginLeft: 'auto'
+    marginLeft: 'auto',
+    fontSize: 10,
+    width: '100%'
   },
   
   authNav: {
@@ -23,15 +35,17 @@ const navBarStyles = {
     alignItems: "center",
     justifyContent: "center",
     height: "100%",
-    width: 200
+    boxSizing: "border-box"
   },
   
   authNavListItem: {
-    padding: 4
+    padding: 4,
+    boxSizing: "border-box"
   },
   
   authNavListLink: {
-    color: 'black'
+    color: 'black',
+    minWidth: 'auto'
   }
 }
 

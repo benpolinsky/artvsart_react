@@ -10,7 +10,7 @@ const compeititonStyles = {
   },
   art: {
     width: '100%',
-    boxSizing: 'borderBox',
+    boxSizing: 'border-box',
     padding: 30,
     [mediaQueries.browser]: {
       width: 'auto',

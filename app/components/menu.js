@@ -3,13 +3,12 @@ import {Link} from 'react-router';
 import {Router} from 'react-router';
 import {connect} from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import DropDownMenu from 'material-ui/DropDownMenu';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
 import FlatButton from 'material-ui/FlatButton';
-import MenuItem from 'material-ui/MenuItem';
 import {signOutUser} from '../actions/userAuth.js'
 import AuthNav from './authNav.js'
+import AdminMenu from './adminMenu.js'
 import IconButton from 'material-ui/IconButton';
 import MenuIcon from 'material-ui/svg-icons/navigation/menu'
 import Radium from 'radium'
@@ -86,13 +85,13 @@ class Menu extends React.Component{
               ?
             <AuthNav showAuthForm={this.props.showAuthForm}/>
               : 
-            <MuiThemeProvider>
-              <DropDownMenu style={menuStyles.userMenu} onChange={this.selectMenuItem} value={this.state.menu} labelStyle={{color: 'black', borderBottom: 0, fontSize: 14, overflow: 'hidden', textOverflow: 'ellipsis'}} >
-                <MenuItem value='email' primaryText={`${user_email}`} />
-                <MenuItem value='profile' primaryText="Your Profile" />
-                <MenuItem value='sign_out' primaryText="Sign Out" />
-              </DropDownMenu>
-            </MuiThemeProvider>
+            <AdminMenu 
+              menuStyles={menuStyles.userMenu} 
+              wrapperStyles={menuStyles.userMenuWrapper}
+              selectMenuItem={this.selectMenuItem} 
+              menu={this.state.menu} 
+              user_email={user_email}
+            /> 
           }
         />
        

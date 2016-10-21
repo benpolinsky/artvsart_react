@@ -39,7 +39,8 @@ const initialCompetitionState = {
     winnerSelected: false,
     closeModal: true,
     isResult: false,
-    art_percentages: {}
+    art_percentages: {},
+    errors: null
   }
 }
 
@@ -49,19 +50,25 @@ const competitionReducer = (state=initialCompetitionState, action) => {
     return {
       ...state, 
       competition: {
+        ...action.competition,
         ...state.competition, 
-        closeModal: false
+        closeModal: false,
+        winnerSelected: false,
+        isResult: false
       }
     }    
   case "RECEIVE_COMPETITION":
      return {
        ...state, 
        competition: {
+         ...state.competition,
          ...action.competition, 
          shareTitle: `Now Battling: ${action.competition.art.name} vs. ${action.competition.challenger.name} on Art Vs Art`,
          isFetching: false,
          winnerSelected: false,
-         closeModal: true
+         closeModal: true,
+         isResult: false,
+         errors: null
        }
      }
  case "RECEIVE_FINISHED_COMPETITION":
@@ -70,6 +77,7 @@ const competitionReducer = (state=initialCompetitionState, action) => {
     return {
       ...state, 
       competition: {
+        ...state.competition,
         ...action.competition, 
          shareTitle: `${winning_art.name} battled ${losing_art.name} AND WON! on Art Vs. Art`,
         isFetching: false,
@@ -77,13 +85,15 @@ const competitionReducer = (state=initialCompetitionState, action) => {
         winnerSelected: true,
         winning_art: winning_art,
         losing_art: losing_art,
-        isResult: true
+        isResult: true,
+        errors: null
       }
     }
   case 'START_SELECT_COMPETITION_WINNER':
    return {
      ...state, 
      competition: {
+       ...action.competition,
        ...state.competition,
        isFetching: true
      }
@@ -104,6 +114,7 @@ const competitionReducer = (state=initialCompetitionState, action) => {
     return {
        ...state, 
        competition: {
+         ...action.competition,
          ...state.competition, 
          winning_art: winning_art, 
          losing_art:  losing_art,
@@ -111,13 +122,16 @@ const competitionReducer = (state=initialCompetitionState, action) => {
          winnerSelected: true,
          art_percentages: action.competition.art_percentages,
          isFetching: false,
-         closeModal: false
+         closeModal: false,
+         isResult: true,
+         errors: null
        }
      }
   case "CLOSE_COMPETITION_MODAL":
     return {
       ...state, 
       competition: {
+        ...action.competition,
         ...state.competition,
         closeModal: true
       }

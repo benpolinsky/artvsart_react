@@ -54,9 +54,13 @@ class CompetitionContainer extends React.Component{
   }
   
   componentDidMount(){
-    if (this.props.competition.id == 0 || this.props.competition.isResult == true ) {
-     this.setupCompetition()
-    }  
+    this.setupCompetition();
+    this.setupKeyShortcuts();     
+  }
+  
+  componentWillUnmount(){
+    window.removeEventListener("keydown", this.keyFunction);
+    window.removeEventListener("keydown", this.modalKeyFunction);
   }
   
   signUp(e){
@@ -90,7 +94,7 @@ class CompetitionContainer extends React.Component{
     switch (event.which) {
     case 49:
       this.props.selectWinnerViaKeyboard(this.props.competition.art.id);
-      window.removeEventListener("keydown", this.keyFunction)
+      window.removeEventListener("keydown", this.keyFunction);
       window.addEventListener("keydown", this.modalKeyFunction);
       return false
     case 50:
@@ -104,20 +108,28 @@ class CompetitionContainer extends React.Component{
   }
   
   modalKeyFunction(event){
+    console.log(event);
     switch (event.which) {
     case 13:
-      this.setupCompetition()
+      if (this.props.competition.errors) {
+        this.props.handleClose('')
+      } else {
+        this.setupCompetition()      
+      }
+
       window.removeEventListener("keydown", this.modalKeyFunction);
+      window.addEventListener("keydown", this.keyFunction);
     }
   }
   
   setupCompetition(){
-    this.props.getCompetition(); 
-    this.setupKeyShortcuts()     
+    if (this.props.competition.id == 0 || this.props.competition.isResult == true ) {
+      this.props.getCompetition(); 
+    }
+
   }
   
   render(){
-    const winnerSelected = (this.props.competition.winnerSelected && !this.props.competition.isResult);
     const artInfoAction = <FlatButton label="Close" primary={true} onTouchTap={this.closeInfo} />;
     const winnerModalAction = <FlatButton primary={true} backgroundColor={'#dbe7f1'} onClick={this.setupCompetition} label="Next Battle!" />;
 
@@ -129,7 +141,7 @@ class CompetitionContainer extends React.Component{
     
         <MuiThemeProvider>
           <div>
-            <Dialog open={winnerSelected} modal={true} actions={winnerModalAction}>
+            <Dialog open={this.props.competition.winnerSelected} modal={true} actions={winnerModalAction}>
               <WinnerModalContents competition={this.props.competition} />
             </Dialog>
             
