@@ -1,6 +1,6 @@
 const baseStyles = {
   container: {
-    padding: 10,
+    padding: 0,
     boxSizing: "border-box",
     maxWidth: 1500,
     margin: '0 auto'
@@ -8,7 +8,7 @@ const baseStyles = {
   mainTitle: {
     textAlign: 'center',
     fontSize: 40,
-    fontWeight: 700,
+    fontWeight: '100',
     padding: "20px 0"
   },
   centeredPage: {

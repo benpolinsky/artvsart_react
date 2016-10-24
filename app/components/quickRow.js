@@ -1,28 +1,19 @@
 import React from 'react'
+import styles from '../styles/competition.js'
 
 const QuickRow = ({label, content}) => {
-  const styles = {
-    label: {
-      fontWeight: 700,
-      width: 120,
-      display: 'inline-block'
-    },
-    content: {
-      margin: '6px 0'
-    }
-  }
-  
+  const rowStyles = styles.artInfo
   return (
-    <h2 style={styles.content}>
-      <span style={styles.label}>{`${label}:`}</span>
+    <div style={rowStyles}>
+      <span style={rowStyles.labels}>{`${label}:`}</span>
       {content}
-    </h2>
+    </div>
   )
 }
 
 QuickRow.propTypes = {
   label: React.PropTypes.string.isRequired,
-  content: React.PropTypes.string.isRequired
+  content: React.PropTypes.string
 }
 
 export default QuickRow

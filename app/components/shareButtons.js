@@ -1,6 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
 import {ShareButtons, ShareCounts, generateShareIcon} from 'react-share';
+import Styles from '../styles/competition.js';
 
 const {
   FacebookShareButton,
@@ -10,28 +11,29 @@ const {
 
 const FacebookIcon = generateShareIcon('facebook');
 const TwitterIcon = generateShareIcon('twitter');
+const buttonStyles = Styles.shareButtons.button;
 
-const MyShareButtons = ({shareTitle, styles}) => {
-  console.log(styles)
+const MyShareButtons = ({shareTitle, size}) => {
+  const buttonSize = size ? size : 75;
+    
   return (
-    <div>
-      <hr/>
-      <div className='meme' style={styles}>
+    <div style={{display: 'flex'}}>
+      <div style={buttonStyles}>
         <FacebookShareButton
           url={'http://artvsart.io'}
           title={shareTitle}
         >
-          <FacebookIcon size={75} square />
+          <FacebookIcon size={buttonSize} square />
         </FacebookShareButton>
       </div>
           
-      <div style={styles}>
+      <div style={buttonStyles}>
         <TwitterShareButton
         url='http://www.artvsart.io'
         title={shareTitle}
         className="Demo__some-network__share-button"
         >
-          <TwitterIcon size={75} square />
+          <TwitterIcon size={buttonSize} square />
         </TwitterShareButton>
        </div>
     </div>
@@ -39,8 +41,7 @@ const MyShareButtons = ({shareTitle, styles}) => {
 }
 
 MyShareButtons.propTypes = {
-  shareTitle: React.PropTypes.string.isRequired,
-  styles: React.PropTypes.object
+  shareTitle: React.PropTypes.string.isRequired
 }
 
 export default Radium(MyShareButtons)

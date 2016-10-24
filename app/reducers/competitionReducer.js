@@ -135,7 +135,15 @@ const competitionReducer = (state=initialCompetitionState, action) => {
         ...state.competition,
         closeModal: true
       }
-    } 
+    }
+    case "CLOSE_SIGN_UP":
+    return {
+      ...state,
+      competition: {
+        ...state.competition,
+        closeModal: true
+      }
+    }
   }
   return state;
 }

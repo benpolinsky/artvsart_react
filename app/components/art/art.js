@@ -2,15 +2,24 @@ import React from 'react';
 import Radium from 'radium';
 import VoteButton from '../competition/VoteButton.js';
 import Category from '../categories/category.js'
+import InfoIcon from 'material-ui/svg-icons/action/info'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const Art = ({art, noVoting, styles, selectInfo}) => {
   return (
     <div style={styles}>
-      <Category category={art.category} />
+      <Category category={art.category} align='left' mergedStyles={styles.category} />
       <div style={styles.imageContainer}>
         <img style={styles.image} onClick={() => {selectInfo(art.id)}} src={art.image} />
+        <MuiThemeProvider>
+            <InfoIcon onClick={() => {selectInfo(art.id)}} style={styles.infoIcon} />
+        </MuiThemeProvider>
       </div>
-      <h3 style={styles.h3} onClick={() => {selectInfo(art.id)}}>{`${art.name} by ${art.creator}`}</h3>
+      <div onClick={() => {selectInfo(art.id)}}>
+        <h3 style={styles.h3} >{art.name}</h3>
+        <h3 style={styles.h3}>{`by ${art.creator}`}</h3>
+      </div>
+      
       {!noVoting && 
         <VoteButton styles={styles.voteButton} art_id={art.id} /> }
     </div>

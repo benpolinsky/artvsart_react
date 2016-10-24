@@ -152,7 +152,7 @@ class ArtFormContainer extends React.Component {
       <ArtForm initialValues={artInitialValues}
            categories={this.props.categories}
            art={this.props.art} 
-           enableReinitialize={true} 
+           enableReinitialize
            formTitle={this.state.formTitle}
            submitLabel={this.state.submitLabel}
            form="newArt" 

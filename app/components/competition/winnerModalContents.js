@@ -6,7 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import CompetitionStyles from '../../styles/competition.js';
 
 
-const WinnerModalContents = ({competition, closeModal}) => {
+const WinnerModalContents = ({competition, closeModal, nextCompetition}) => {
   const modalStyles = CompetitionStyles.modal
    
   const {winning_art, losing_art, art_percentages, shareTitle} = competition
@@ -30,32 +30,31 @@ const WinnerModalContents = ({competition, closeModal}) => {
 
   return(
     <div style={modalStyles.contents}>
-      <h2>Winner!</h2>
-      <h3> 
-        <span style={[modalStyles.winnerName, modalStyles.winnerInfo]}>
-          {winning_art.name} 
-        </span> 
-        by
-        <span style={modalStyles.winnerInfo}> 
-          {winning_art.creator}
-          ({art_percentages.winner_winning_percentage})
-        </span>  
-        defeated
-
-        <span style={modalStyles.winnerInfo}>
-          {losing_art.name} 
-        </span> 
-
-        <span style={modalStyles.winnerInfo}>
-          {losing_art.creator} 
-          ({art_percentages.loser_winning_percentage})
-        </span>
-      </h3>
-      <h3>{consensus_message}</h3>
-      <span style={modalStyles.sharePrompt}>Share This Result!</span>
+      
+      <h2 style={modalStyles.winnerName}>{winning_art.name}</h2> 
+      
+      <h3 style={modalStyles.wins}>Wins!</h3>
+      
+      <p style={modalStyles.loser}>defeated <span style={{fontWeight: 600}}>{losing_art.name}</span></p>
+      
+      <hr />
+      
+      <p style={modalStyles.consensus}>{consensus_message}</p>
+  
+      <FlatButton 
+        onTouchTap={nextCompetition} 
+        style={CompetitionStyles.actions} 
+        labelStyle={CompetitionStyles.actions.label} 
+        hoverColor='black'
+        backgroundColor='black'
+        label="Next Battle" />
+        
+  
+      
  
       <div style={modalStyles.shareButtons}>
-          <ShareButtons styles={CompetitionStyles.shareButtons} shareTitle={shareTitle}/>
+        <span style={modalStyles.sharePrompt}>Share This Result!</span>
+        <ShareButtons size={50} styles={CompetitionStyles.shareButtons} shareTitle={shareTitle}/>
       </div>
 
     </div>

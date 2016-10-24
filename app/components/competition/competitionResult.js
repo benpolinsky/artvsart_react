@@ -31,14 +31,14 @@ export const CompetitionResult = ({competition, displayInfo}) => {
   
         <div className="artPair">
           <div className='art'>
-            <Art selectInfo={displayInfo} key={winning_art.id} art={winning_art} noVoting={true} />
+            <Art selectInfo={displayInfo} key={winning_art.id} art={winning_art} noVoting />
             <p className='percentages'>{competition.art_percentages.winner_winning_percentage}</p>
           </div>
   
           <div className='versusSeparator small'>Defeated</div>
   
           <div className='art'>
-            <Art selectInfo={displayInfo} key={losing_art.id} art={losing_art} noVoting={true} />
+            <Art selectInfo={displayInfo} key={losing_art.id} art={losing_art} noVoting />
             <p className='percentages'>{competition.art_percentages.loser_winning_percentage}</p>
           </div>
         </div>

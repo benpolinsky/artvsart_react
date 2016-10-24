@@ -24,7 +24,7 @@ const ImportArtForm = ({submitForm, selected_source, selected, sources, update, 
         </MuiThemeProvider>  
         
         <MuiThemeProvider>  
-          <RaisedButton primary={true} type="submit" label='Search'/>
+          <RaisedButton primary type="submit" label='Search'/>
         </MuiThemeProvider>  
       </div>
     </form>

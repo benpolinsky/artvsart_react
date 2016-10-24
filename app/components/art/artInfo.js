@@ -1,5 +1,4 @@
 import React from 'react'
-import Category from '../categories/category.js'
 import Datejs from 'datejs'
 import QuickRow from '../quickRow.js'
 
@@ -8,28 +7,22 @@ const ArtInfo = ({art}) => {
   
   return(
     <div>
-  
-      <Category category={art.category} />
       <QuickRow label='Title' content={art.name} />
       <QuickRow label='Creator' content={art.creator} />
-      {art.source && <QuickRow label='Source' content={art.creator}/>}
-      {art.source_link && <a href={art.source_link} target='new'>Find Out More</a>}
-      <hr/>
+      <QuickRow label='Created' content={date} />
+      <QuickRow label='Category' content={art.category.name} />
+  
+      <hr style={{borderRadius: 0, borderLeftWidth: 0, borderRightWidth: 0}}/>
         
 
       <div><img style={{maxWidth: '100%'}} src={art.image}/></div>
-      
-      <QuickRow label='Creation Date' content={date} />
-      
-      <div style={{margin: '6px 0'}} >
+    
+      <div style={{position: 'relative', margin: '6px 0', paddingBottom: 20, fontSize: 12, lineHeight: 1.3}} >
         {art.description}
+        <a style={{position: 'absolute', right: 2, bottom: 2}} href={art.source_link} target='new'>{art.source}</a>
       </div>
+        
 
-      <div style={{margin: '6px 0'}}>
-        {art.additional_images && art.additional_images.forEach((image) => {
-          <p>image</p>
-        })}
-      </div>
     </div>
   )
 }

@@ -28,7 +28,7 @@ class EditCategoryFormContainer extends React.Component{
     
     return (<CategoryForm 
             initialValues={category}
-            enableReinitialize={true} 
+            enableReinitialize
             form="EditCategoryForm"
             formTitle={`Edit ${category.name}`}
             submitLabel="Update"

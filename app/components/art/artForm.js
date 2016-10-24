@@ -63,7 +63,7 @@ class ArtForm extends React.Component{
         <div style={formStyles.centered.fields}>
           <Field name='name' floatingLabelText="Name" component={TextField} style={textFieldStyles} />
           <Field name='creator' floatingLabelText="Creator" component={TextField} style={textFieldStyles} />
-          <Field name='description' floatingLabelText="Description" component={TextField} multiLine={true} style={textFieldStyles}  />
+          <Field name='description' floatingLabelText="Description" component={TextField} multiLine style={textFieldStyles}  />
           <Field name='creation_date' floatingLabelText="Creation Date" component={WrappedDatePicker} style={textFieldStyles}  />
           
           <Field name='category_name' floatingLabelText="Category" component={SelectField} style={textFieldStyles} >
@@ -90,7 +90,7 @@ class ArtForm extends React.Component{
           
           <p>{errors}</p>
           
-          <RaisedButton fullWidth={true} primary={true} style={textFieldStyles} type="submit" label={submitLabel} />
+          <RaisedButton fullWidth primary style={textFieldStyles} type="submit" label={submitLabel} />
         </div>
 
       </form>

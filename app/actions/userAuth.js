@@ -46,7 +46,7 @@ export const signUserIn = (user, router) => (dispatch) => {
   })
 }
 
-export const handleCompetitionModal = (result, router) => (dispatch) => {
+export const handleCompetitionModal = (result="") => (dispatch) => {
   if (result == "SIGN UP") {
     dispatch(openSignUp('register'));    
   } 
@@ -156,7 +156,6 @@ export const getUserInfo = () => (dispatch) => {
     dispatch(storeUserCredentials(response.user));
   })
   .catch((error) => {
-    console.log(error)
     dispatch(apiDown(error))
   });
 }

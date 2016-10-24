@@ -73,7 +73,7 @@ class Menu extends React.Component{
       <div>
         <AppBar 
           style={menuStyles.appBar} 
-          title="ART V ART"
+          title="ART VS ART"
           titleStyle={menuStyles.appBarHeading}
           onLeftIconButtonTouchTap={this.openMenu}
           iconStyleRight={{marginTop: 0}}

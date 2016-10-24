@@ -9,20 +9,25 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 const labelStyle = {
   fontSize: 21,
-  fontWeight: 700
+  fontWeight: 400,
+  textTransform: 'lowercase'
 }
 
 const mainStyles = {
-  margin: '0 auto',
-  display: 'block'
+  margin: '40px auto 80px auto',
+  display: 'block',
+  boxShadow: 'none',
+  border: '2px solid black',
+  width: 256,
+  borderRadius: 0
 }
 
 const VoteButton = ({onClick, styles}) => {
   return <MuiThemeProvider>
             <RaisedButton 
-              backgroundColor="black" 
+              backgroundColor="white" 
               labelStyle={labelStyle}
-              labelColor="white" 
+              labelColor="black" 
               onClick={onClick} 
               label="Vote" 
               style={mainStyles}

@@ -59,7 +59,7 @@ export class AuthForm extends React.Component {
             <div>
               <Field name="email" errorText={email_errors} floatingLabelText="E-Mail" component={TextField} /> <br/>
               <Field name="password" type='password' floatingLabelText="Password" component={TextField} /> <br/>
-              <RaisedButton label={this.props.formTitle} fullWidth={true} type="submit" primary={true} />
+              <RaisedButton label={this.props.formTitle} fullWidth type="submit" primary />
             </div>
           </MuiThemeProvider>
         </form>
@@ -70,7 +70,7 @@ export class AuthForm extends React.Component {
           fields="name,email,picture"
           callback={this.props.responseFacebook}
           icon="fa-facebook"
-          cookie={true}
+          cookie
           textButton="with Facebook"
           size='small'
         />

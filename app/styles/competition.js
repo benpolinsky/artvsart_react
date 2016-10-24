@@ -8,10 +8,12 @@ const compeititonStyles = {
       flexDirection: 'row'
     }
   },
+  
   art: {
     width: '100%',
     boxSizing: 'border-box',
-    padding: 30,
+    padding: 0,
+    position: 'relative',
     [mediaQueries.browser]: {
       width: 'auto',
       flex: 1,
@@ -19,25 +21,47 @@ const compeititonStyles = {
       height: 560,
       padding: 10
     },
+    category: {
+      padding: 5, 
+      width: 'auto', 
+      display: "inline-block", 
+      fontSize: 14, 
+      fontWeight: 100,
+      letterSpacing: '0.05em',
+      position: 'absolute', 
+      top: 0,
+      textTransform: 'lowercase',
+      zIndex: 1
+    },
     imageContainer: {
       height: 400,
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'center'
+      justifyContent: 'center',
+      width: '100%',
+      height: 145,
+      overflow: 'hidden',
+      position: 'relative'
     },
     
     image: {
-      maxHeight: 400,
-      maxWidth: '100%',
+      width: '100%',
       margin: '0 auto 5px auto',
       display: 'block',
       cursor: 'pointer'
     },
-    
+    infoIcon: {
+      position: 'absolute', 
+      right: 5, 
+      bottom: 5, 
+      cursor: 'pointer'
+    },
     h3: {
-      textAlign: 'center',
-      marginTop: 10,
+      textAlign: 'left',
+      margin: '5px 0 0 5px',
       cursor: 'pointer',
+      fontWeight: 600,
+      fontSize: 12,
       [mediaQueries.browser]: {
         height: 40,
         overflow: 'hidden',
@@ -82,6 +106,8 @@ const compeititonStyles = {
   },
   
   artInfo: {
+    fontSize: 12,
+    marginBottom: 4,
     default: {
       display: 'none'
     },
@@ -99,6 +125,17 @@ const compeititonStyles = {
     
     close: {
       cusor: 'pointer'
+    },
+
+    labels: {
+      fontWeight: 700,
+      width: 80,
+      display: 'inline-block'
+    },
+    
+    body: {
+      fontSize: 12,
+      margin: '6px 0'
     }
   },
   
@@ -108,6 +145,7 @@ const compeititonStyles = {
     alignItems: 'center',
     justifyContent: 'center',
     flexDirection: 'column',
+    marginRight: 10,
     p: {
       fontSize: 20,
       textTransform: 'uppercase',
@@ -118,7 +156,7 @@ const compeititonStyles = {
     button: {
       textAlign: 'center',
       display: 'inline-block',
-      margin: 5,
+      margin: '5px 0 5px 0',
       cursor: 'pointer'
     }
   },
@@ -137,12 +175,31 @@ const compeititonStyles = {
     },
     
     winnerName: {
-      fontStyle: 'italic'
+      fontSize: 14,
+      color: 'black',
+      fontWeight: 400
+    },
+    
+    loser: {
+      fontSize: 12,
+      fontWeight: 400
+    },
+    
+    wins: {
+      fontSize: 37,
+      color: 'black',
+      margin: "2px 0 8px 0"
+    },
+    
+    consensus: {
+      fontSize: 14,
+      margin: '15px auto'
     },
     
     sharePrompt: {
       display: 'block',
-      fontWeight: '700'
+      fontWeight: '700',
+      margin: '10px auto'
     },
     
     winnerInfo: {
@@ -150,12 +207,51 @@ const compeititonStyles = {
     },
     
     shareButtons: {
-      float: 'none',
       clear: 'both',
-      margin: '5px auto 0 auto',
-      width: 144
+      margin: '20px auto 0 auto',
+      width: 256,
+      display: 'flex',
+      flexDirection: 'row-reverse',
+      alignItems: 'center',
+      justifyContent: 'center'
     }
-  } 
+  },
+  
+  errorModal: {
+    width: '80%',
+    textAlign: 'center',
+    fontWeight: '600',
+    
+    title: {
+      fontWeight: '400',
+      fontSize: 26,
+      textTransform: 'uppercase',
+      textAlign: 'center',
+      paddingBottom: 4
+    },
+    
+    body: {
+      fontSize: 12,
+      margin: '0 auto 20px auto',
+      borderBottom: '1px solid black',
+      borderRadius: 0,
+      width: 256
+    }
+    
+  },
+  
+  actions: {
+    width: 256,
+    background: 'black',
+    borderRadius: 0,
+    margin: '10px auto',
+    display: 'block',
+    label: {
+      color: 'white',
+      fontFamily: 'Raleway',
+      fontWeight: 600
+    }
+  }
 }
 
 export default compeititonStyles

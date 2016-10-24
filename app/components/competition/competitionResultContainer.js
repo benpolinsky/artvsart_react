@@ -68,7 +68,7 @@ class CompetitionResultContainer extends React.Component{
   }
   
   render(){
-    const artInfoAction = <FlatButton label="Close" primary={true} onTouchTap={this.closeInfo} />;
+    const artInfoAction = <FlatButton label="Close" primary onTouchTap={this.closeInfo} />;
     const art_pair = [this.props.competition.art, this.props.competition.challenger];
     const winning_art = art_pair.find( (art) => art.id == this.props.competition.winner_id);
     const losing_art = art_pair.find( (art) => art.id != this.props.competition.winner_id);
@@ -89,7 +89,7 @@ class CompetitionResultContainer extends React.Component{
               open={this.state.artInfoVisible} 
               modal={false} 
               onRequestClose={this.closeInfo} 
-              autoScrollBodyContent={true}
+              autoScrollBodyContent
               actions={artInfoAction}
             >
               <ArtInfo art={this.state.visibleArt} />

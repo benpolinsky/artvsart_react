@@ -16,10 +16,6 @@ const styles = {
 
 
 class ArtContainer extends React.Component{
-  
-  componentWillMount(){
-    console.log(this.props.art)
-  }
   componentDidMount(){
     this.props.loadArt(this.props.params.id);
   }

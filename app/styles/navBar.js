@@ -11,11 +11,13 @@ const navBarStyles = {
   
   appBarHeading: {
     color: "black",
-    overflow: "visible"
+    overflow: "visible",
+    fontSize: 18,
+    fontWeight: 400
   },
   
   appBarIcon: {
-    marginTop: 10,
+    marginTop: 7,
   },
   
   userMenuWrapper: {
@@ -45,7 +47,15 @@ const navBarStyles = {
   
   authNavListLink: {
     color: 'black',
-    minWidth: 'auto'
+    minWidth: 'auto',
+    fontWeight: 400,
+    textTransform: 'none'
+  },
+  
+  label: {
+    boxSizing: 'border-box', 
+    padding: '0 10px',
+    textTransform: 'lowercase'
   }
 }
 

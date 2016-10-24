@@ -65,7 +65,8 @@ class CompetitionContainer extends React.Component{
   
   signUp(e){
     const router = this.context.router;
-    this.props.handleClose(e.target.innerText, router);
+    const text = e ? e.target.innerText : ""
+    this.props.handleClose(text);
   }
   
   displayInfo(art){
@@ -98,7 +99,6 @@ class CompetitionContainer extends React.Component{
       window.addEventListener("keydown", this.modalKeyFunction);
       return false
     case 50:
-      console.log(this.props.competition.challenger.id)
       this.props.selectWinnerViaKeyboard(this.props.competition.challenger.id);
       window.removeEventListener("keydown", this.keyFunction)
       window.addEventListener("keydown", this.modalKeyFunction);
@@ -108,7 +108,6 @@ class CompetitionContainer extends React.Component{
   }
   
   modalKeyFunction(event){
-    console.log(event);
     switch (event.which) {
     case 13:
       if (this.props.competition.errors) {
@@ -130,27 +129,25 @@ class CompetitionContainer extends React.Component{
   }
   
   render(){
-    const artInfoAction = <FlatButton label="Close" primary={true} onTouchTap={this.closeInfo} />;
-    const winnerModalAction = <FlatButton primary={true} backgroundColor={'#dbe7f1'} onClick={this.setupCompetition} label="Next Battle!" />;
+    const artInfoAction = <FlatButton label="Close" primary onTouchTap={this.closeInfo} />;
 
     return (
     
       <div style={baseStyles.container}>
-        <h1 style={baseStyles.mainTitle}>Battle!</h1>
         <Competition displayInfo={this.displayInfo} handleClose={this.signUp} competition={this.props.competition}/>
     
         <MuiThemeProvider>
           <div>
-            <Dialog open={this.props.competition.winnerSelected} modal={true} actions={winnerModalAction}>
-              <WinnerModalContents competition={this.props.competition} />
+            <Dialog open={this.props.competition.winnerSelected} modal>
+              <WinnerModalContents competition={this.props.competition} nextCompetition={this.setupCompetition} />
             </Dialog>
             
             <Dialog 
               open={this.state.artInfoVisible} 
-              modal={false} 
               onRequestClose={this.closeInfo} 
-              autoScrollBodyContent={true}
+              autoScrollBodyContent
               actions={artInfoAction}
+              contentStyle={{width: '100%'}}
             >
               <ArtInfo art={this.state.visibleArt} />
             </Dialog>
@@ -181,8 +178,8 @@ const mapDispatchToProps = (dispatch) => ({
   getCompetition(){
     dispatch(getCompetitionData());
   },
-  handleClose(result, router){
-    dispatch(handleCompetitionModal(result, router));
+  handleClose(result){
+    dispatch(handleCompetitionModal(result));
   },
   selectWinnerViaKeyboard(artId){
     dispatch(selectCompetitionWinner(artId));

@@ -8,15 +8,12 @@ const AuthNav = ({showAuthForm}) => {
     <ul style={menuStyles.authNav}>
       <li style={menuStyles.authNavListItem}>
         <MuiThemeProvider>
-          <FlatButton style={menuStyles.authNavListLink} labelStyle={{boxSizing: 'border-box', padding: '0 10px'}} label="Register" onTouchTap={() => {showAuthForm('register')}} />
+          <FlatButton style={menuStyles.authNavListLink} labelStyle={menuStyles.label} label="Register" onTouchTap={() => {showAuthForm('register')}} />
         </MuiThemeProvider> 
       </li>
       <li style={menuStyles.authNavListItem}>
-      <span> | </span>
-      </li>
-      <li style={menuStyles.authNavListItem}>
         <MuiThemeProvider>
-          <FlatButton style={menuStyles.authNavListLink} labelStyle={{boxSizing: 'border-box', padding: '0 10px'}} label="Sign In" onTouchTap={() => {showAuthForm('signIn')}} />
+          <FlatButton style={menuStyles.authNavListLink} labelStyle={menuStyles.label} label="Sign In" onTouchTap={() => {showAuthForm('signIn')}} />
         </MuiThemeProvider> 
       </li>
     </ul>

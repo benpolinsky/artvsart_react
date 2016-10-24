@@ -12,18 +12,24 @@ a:visited{
   color:black;
 }
 
-p, div {
-  font-family: 'Roboto', sans-serif; 
-  font-weight:400;
+p, div, span, footer, header {
+  font-family: 'Raleway', sans-serif; 
 }
 
-h1 {
-  font-family: 'Roboto', sans-serif; 
-  font-weight:700 !important;
+h1, h2, h3, h4{
+  font-family: 'Raleway', sans-serif; 
 }
+
 
 
 /* react-facebook-login doesn't accept style prop...*/
 .kep-login-facebook.small{
-  width:100%;
+  width:256px;
+  height:36px;
+  padding: 0;
+  margin: 0 auto;
+  display:block;
+  font-family: 'Raleway', sans-serif; 
+  font-weight: 700;
+  font-size:14px;
 }

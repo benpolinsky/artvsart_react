@@ -42,7 +42,7 @@ const Form = ({form, formTitle, submitLabel, handleSubmit, category}) => {
             <Field floatingLabelText="Name" name="name" component={TextField}/><br/>
             <Field label="Color" name="color" component={renderField} /><br/>
           </div>
-          <RaisedButton type='submit' primary={true} label={submitLabel} />
+          <RaisedButton type='submit' primary label={submitLabel} />
         </form>
       </MuiThemeProvider>
     </div>

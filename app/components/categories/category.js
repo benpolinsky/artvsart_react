@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Category = ({category, align}) => {
+const Category = ({category, align, mergedStyles}) => {
 
   const color = category.color ?  category.color : 'black'
   const title = category.name ? category.name : 'Category'
@@ -10,18 +10,19 @@ const Category = ({category, align}) => {
     margin: align == 'left' ? '0' : '0 auto'
   }
   const styles = {
-    color: color,
-    width: 100,
+    backgroundColor: color,
+    color: 'white',
     display: 'block',
     boxSizing: 'border-box',
     padding: alignment.padding,
     lineHeight: 1,
     textAlign: alignment.textAlign,
-    margin: alignment.margin,
-    fontFamily: 'Dancing Script'
+    margin: alignment.margin
   }
+  
+  
   return(
-   <span style={styles}>{title}</span>
+   <span style={{...styles, ...mergedStyles}}>{title}</span>
   )
 }
 
