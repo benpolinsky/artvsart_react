@@ -1,9 +1,10 @@
+var webpack = require('webpack');
 const DotenvPlugin = require('webpack-dotenv-plugin');
 
 module.exports = {
   entry: ['whatwg-fetch', './app/main.js'],
   output: {
-    path: './',
+    path: './public/',
     filename: 'index.js',
     publicPath: './public'
     },
@@ -37,7 +38,12 @@ module.exports = {
   plugins: [
     new DotenvPlugin({
       sample: './.env.default',
-      path: './.env'
-    })
+      path: './.env.production'
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+        compress: {
+            warnings: false
+        }
+    }),
   ]
 }
