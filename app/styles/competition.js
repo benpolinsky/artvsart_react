@@ -18,8 +18,8 @@ const compeititonStyles = {
       width: 'auto',
       flex: 1,
       width: '44%',
-      height: 560,
-      padding: 10
+      height: 640,
+      padding: "0 0px 10px 0px"
     },
     category: {
       padding: 5, 
@@ -31,30 +31,47 @@ const compeititonStyles = {
       position: 'absolute', 
       top: 0,
       textTransform: 'lowercase',
-      zIndex: 1
+      zIndex: 1,
+      [mediaQueries.browser]: {
+        fontSize: 22,
+        display: 'block',
+        position: 'relative',
+        textAlign: 'center',
+        marginBottom: 10
+      }
     },
     imageContainer: {
-      height: 400,
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       width: '100%',
       height: 145,
       overflow: 'hidden',
-      position: 'relative'
+      position: 'relative',
+      [mediaQueries.browser]: {
+        height: 500
+      }
     },
-    
     image: {
       width: '100%',
       margin: '0 auto 5px auto',
       display: 'block',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      [mediaQueries.browser]: {
+        maxHeight: '100%',
+        width: 'auto',
+        height: 'auto',
+        margin: '0'
+      }
     },
     infoIcon: {
       position: 'absolute', 
       right: 5, 
       bottom: 5, 
-      cursor: 'pointer'
+      cursor: 'pointer',
+      [mediaQueries.browser]: {
+        display: 'none'
+      }
     },
     h3: {
       textAlign: 'left',
@@ -63,9 +80,10 @@ const compeititonStyles = {
       fontWeight: 600,
       fontSize: 12,
       [mediaQueries.browser]: {
-        height: 40,
+        fontSize: 18,
         overflow: 'hidden',
-        textOverflow: 'ellipsis'
+        textOverflow: 'ellipsis',
+        textAlign: 'center'
       }
     },
     
@@ -74,7 +92,7 @@ const compeititonStyles = {
       display: 'block',
       [mediaQueries.browser]: {
         margin: '0 auto',
-        maxWidth: 200
+        maxWidth: "100%"
       }
     }
   },
@@ -124,7 +142,7 @@ const compeititonStyles = {
     },
     
     close: {
-      cusor: 'pointer'
+      cursor: 'pointer'
     },
 
     labels: {
@@ -238,19 +256,6 @@ const compeititonStyles = {
       width: 256
     }
     
-  },
-  
-  actions: {
-    width: 256,
-    background: 'black',
-    borderRadius: 0,
-    margin: '10px auto',
-    display: 'block',
-    label: {
-      color: 'white',
-      fontFamily: 'Raleway',
-      fontWeight: 600
-    }
   }
 }
 

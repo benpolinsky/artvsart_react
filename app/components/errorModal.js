@@ -1,46 +1,17 @@
 import React from 'react';
-import Radium from 'react';
-import {connect} from 'react-redux'
 import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
+import MainButton from './elements/mainButton.js';
+import FacebookButton from './elements/facebookButton.js';
 import EmailIcon from 'material-ui/svg-icons/communication/email'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import FacebookLogin from 'react-facebook-login';
-import {loginToFacebook} from '../actions/userAuth.js'
 import CompetitionStyles from '../styles/competition.js'
 
 
 const ErrorModal = ({errors, open, handleClose, responseFacebook}) => {
   const actions = [
-    <FacebookLogin
-      appId="1118634491523505"
-      autoLoad={false}
-      fields="name,email,picture"
-      callback={responseFacebook}
-      icon="fa-facebook"
-      cssClass='kep-login-facebook'
-      cookie
-      textButton="Sign Up With Facebook"
-      size='small'
-    />,
-    <FlatButton 
-      style={CompetitionStyles.actions} 
-      backgroundColor='black' 
-      labelStyle={CompetitionStyles.actions.label} 
-      hoverColor='black' 
-      primary 
-      label={"Sign Up With Email"} 
-      icon={<EmailIcon color="white"/>}
-      onTouchTap={handleClose}
-    />,
-    <FlatButton
-      style={CompetitionStyles.actions} 
-      backgroundColor='black' 
-      labelStyle={CompetitionStyles.actions.label} 
-      hoverColor='black' 
-      label={"No Thanks..."} 
-      onTouchTap={handleClose} 
-    />
+    <FacebookButton />,
+    <MainButton label="Sign Up With Email" action={handleClose} />,
+    <MainButton label="No Thanks..." action={handleClose} />
   ];
   return(
     <div>
@@ -61,10 +32,4 @@ const ErrorModal = ({errors, open, handleClose, responseFacebook}) => {
   )
 }
 
-const mapDispatchToProps = (dispatch) => ({
-  responseFacebook(response){
-    dispatch(loginToFacebook(response));
-  }
-})
-
-export default connect(null, mapDispatchToProps)(ErrorModal)
+export default ErrorModal

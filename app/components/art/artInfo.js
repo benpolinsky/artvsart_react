@@ -3,7 +3,11 @@ import Datejs from 'datejs'
 import QuickRow from '../quickRow.js'
 
 const ArtInfo = ({art}) => {
-  const date = Date.parse(art.creation_date).toString("M/d/yyyy");
+  var date = ""
+  
+  if (typeof art.creation_date == 'string') {
+    var date = Date.parse(art.creation_date).toString("M/d/yyyy");
+  } 
   
   return(
     <div>

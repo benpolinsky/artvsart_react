@@ -17,9 +17,17 @@ class UserRankings extends React.Component{
       <MuiThemeProvider>
         <div style={baseStyles.container}>
           <List>
-            <Subheader>User Rankings</Subheader>            
+            <Subheader>Top Judges</Subheader>            
             {this.props.rankedUsers.map((user, index) => {
-              return <div key={index} >{index+1}.<ListItem innerDivStyle={{paddingLeft: 16}} primaryText={user.email} leftIcon={<UserGravatar hash={user.gravatar_hash} />}/></div>
+              return (
+                <div key={index}>
+                  <ListItem 
+                    innerDivStyle={{paddingLeft: 16}} 
+                    primaryText={`${index+1}: ${user.email}`} 
+                    leftIcon={<UserGravatar hash={user.gravatar_hash} />}
+                  />
+                </div>
+              )
             })}
           </List>
         </div>
@@ -29,7 +37,7 @@ class UserRankings extends React.Component{
 }
 
 UserRankings.propTypes = {
-  rankedUser: React.PropTypes.array.isRequired,
+  rankedUsers: React.PropTypes.array.isRequired,
   getRankedUsers: React.PropTypes.func.isRequired
 }
 

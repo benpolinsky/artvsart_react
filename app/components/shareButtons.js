@@ -1,7 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
 import {ShareButtons, ShareCounts, generateShareIcon} from 'react-share';
-import Styles from '../styles/competition.js';
+import Styles from '../styles/buttons.js';
 
 const {
   FacebookShareButton,
@@ -11,7 +11,7 @@ const {
 
 const FacebookIcon = generateShareIcon('facebook');
 const TwitterIcon = generateShareIcon('twitter');
-const buttonStyles = Styles.shareButtons.button;
+const buttonStyles = Styles.main;
 
 const MyShareButtons = ({shareTitle, size}) => {
   const buttonSize = size ? size : 75;

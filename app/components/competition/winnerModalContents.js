@@ -1,8 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
 import ShareButtons from '../shareButtons.js';
-import FlatButton from 'material-ui/FlatButton';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import MainButton from '../elements/mainButton.js'
 import CompetitionStyles from '../../styles/competition.js';
 
 
@@ -41,17 +40,8 @@ const WinnerModalContents = ({competition, closeModal, nextCompetition}) => {
       
       <p style={modalStyles.consensus}>{consensus_message}</p>
   
-      <FlatButton 
-        onTouchTap={nextCompetition} 
-        style={CompetitionStyles.actions} 
-        labelStyle={CompetitionStyles.actions.label} 
-        hoverColor='black'
-        backgroundColor='black'
-        label="Next Battle" />
-        
-  
-      
- 
+      <MainButton action={nextCompetition} label="Next Battle"/>
+
       <div style={modalStyles.shareButtons}>
         <span style={modalStyles.sharePrompt}>Share This Result!</span>
         <ShareButtons size={50} styles={CompetitionStyles.shareButtons} shareTitle={shareTitle}/>

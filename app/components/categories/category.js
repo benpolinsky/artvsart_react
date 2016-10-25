@@ -1,4 +1,5 @@
 import React from 'react'
+import Radium from 'radium'
 
 const Category = ({category, align, mergedStyles}) => {
 
@@ -22,8 +23,8 @@ const Category = ({category, align, mergedStyles}) => {
   
   
   return(
-   <span style={{...styles, ...mergedStyles}}>{title}</span>
+   <span style={[styles, mergedStyles]}>{title}</span>
   )
 }
 
-export default Category
+export default Radium(Category)

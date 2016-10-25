@@ -5,7 +5,6 @@ import {connect} from 'react-redux';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import AppBar from 'material-ui/AppBar';
 import Drawer from 'material-ui/Drawer';
-import FlatButton from 'material-ui/FlatButton';
 import {signOutUser} from '../actions/userAuth.js'
 import AuthNav from './authNav.js'
 import AdminMenu from './adminMenu.js'

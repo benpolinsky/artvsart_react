@@ -4,7 +4,7 @@
 
 import React from 'react';
 import Loader from 'react-loader-advanced';
-import Art from '../art/art.js';
+import ArtInfo from '../art/artInfo.js';
 import ShareButtons from '../shareButtons.js';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
@@ -23,7 +23,8 @@ export const CompetitionResult = ({competition, displayInfo}) => {
   const art_pair = [competition.art, competition.challenger];
   const winning_art = art_pair.find( (art) => art.id == competition.winner_id);
   const losing_art = art_pair.find( (art) => art.id != competition.winner_id);
-  
+  console.log(winning_art);
+  console.log(losing_art);
   return (
 
     <div className='competition'>
@@ -31,14 +32,14 @@ export const CompetitionResult = ({competition, displayInfo}) => {
   
         <div className="artPair">
           <div className='art'>
-            <Art selectInfo={displayInfo} key={winning_art.id} art={winning_art} noVoting />
+            <ArtInfo key={winning_art.id} art={winning_art} />
             <p className='percentages'>{competition.art_percentages.winner_winning_percentage}</p>
           </div>
   
           <div className='versusSeparator small'>Defeated</div>
   
           <div className='art'>
-            <Art selectInfo={displayInfo} key={losing_art.id} art={losing_art} noVoting />
+            <ArtInfo key={losing_art.id} art={losing_art} />
             <p className='percentages'>{competition.art_percentages.loser_winning_percentage}</p>
           </div>
         </div>

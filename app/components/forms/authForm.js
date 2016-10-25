@@ -3,9 +3,9 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form';
 import {TextField} from 'redux-form-material-ui';
-import RaisedButton from 'material-ui/RaisedButton';
+import MainButton from '../elements/mainButton.js';
+import FacebookButton from '../elements/facebookButton.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import FacebookLogin from 'react-facebook-login';
 import Radium from 'radium'
 
 
@@ -59,21 +59,12 @@ export class AuthForm extends React.Component {
             <div>
               <Field name="email" errorText={email_errors} floatingLabelText="E-Mail" component={TextField} /> <br/>
               <Field name="password" type='password' floatingLabelText="Password" component={TextField} /> <br/>
-              <RaisedButton label={this.props.formTitle} fullWidth type="submit" primary />
+              <MainButton label={this.props.formTitle} action={this.props.handleSubmit(this.submitForm)} />
             </div>
           </MuiThemeProvider>
         </form>
       
-        <FacebookLogin
-          appId="1118634491523505"
-          autoLoad={false}
-          fields="name,email,picture"
-          callback={this.props.responseFacebook}
-          icon="fa-facebook"
-          cookie
-          textButton="with Facebook"
-          size='small'
-        />
+        <FacebookButton label={`${this.props.formTitle} With Facebook`}/>
       </div>
     )
   }
@@ -85,8 +76,7 @@ AuthForm.propTypes = {
   formType: React.PropTypes.string.isRequired,
   errors: React.PropTypes.object,
   handleSubmit: React.PropTypes.func.isRequired,
-  formTitle: React.PropTypes.string.isRequired,
-  responseFacebook: React.PropTypes.func.isRequired
+  formTitle: React.PropTypes.string.isRequired
 }
 
 AuthForm.contextTypes = {

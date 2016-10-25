@@ -72,10 +72,7 @@ class CompetitionResultContainer extends React.Component{
     const art_pair = [this.props.competition.art, this.props.competition.challenger];
     const winning_art = art_pair.find( (art) => art.id == this.props.competition.winner_id);
     const losing_art = art_pair.find( (art) => art.id != this.props.competition.winner_id);
-    
     return (
-     
-    
       <div style={baseStyles.container}>
         <h1 style={baseStyles.mainTitle}>{`${winning_art.name} WINS`}</h1>
         <CompetitionResult

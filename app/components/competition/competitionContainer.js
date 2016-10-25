@@ -7,7 +7,7 @@ import ArtInfo from '../art/artInfo.js'
 import {getBattle} from '../../utils/ajaxHelpers.js';
 import {getCompetitionData, selectCompetitionWinner} from '../../actions/index.js';
 import {handleCompetitionModal} from '../../actions/userAuth.js'
-import FlatButton from 'material-ui/FlatButton'
+import MainButton from '../elements/mainButton.js'
 import Dialog from 'material-ui/Dialog';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import baseStyles from '../../styles/base.js';
@@ -129,7 +129,7 @@ class CompetitionContainer extends React.Component{
   }
   
   render(){
-    const artInfoAction = <FlatButton label="Close" primary onTouchTap={this.closeInfo} />;
+    const artInfoAction = <MainButton label="Close" action={this.closeInfo} />;
 
     return (
     

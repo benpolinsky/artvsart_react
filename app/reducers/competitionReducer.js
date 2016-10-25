@@ -6,6 +6,7 @@ const initialCompetitionState = {
       name: "Rakim's Paid in Full", 
       description: "The god Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
       image: 'http://placehold.it/250x250',
+      creation_date: Date.now(),
       category: {
         name: "",
         color: ""
@@ -16,6 +17,7 @@ const initialCompetitionState = {
       name: "Michaelangelo's David", 
       description: "A Legendary Sculpture",
       image: 'http://placehold.it/250x250',
+      creation_date: Date.now(),
       category: {
         name: "",
         color: ""
@@ -25,13 +27,23 @@ const initialCompetitionState = {
       id: 2, 
       name: "Michaelangelo's David", 
       description: "A Legendary Sculpture",
-      image: 'http://placehold.it/250x250'
+      image: 'http://placehold.it/250x250',
+      creation_date: Date.now(),
+      category: {
+        name: "",
+        color: ""
+      }
     },
     losing_art: {
       id: 2, 
       name: "Michaelangelo's David", 
       description: "A Legendary Sculpture",
-      image: 'http://placehold.it/250x250'
+      image: 'http://placehold.it/250x250',
+      creation_date: Date.now(),
+      category: {
+        name: "",
+        color: ""
+      }
     },
     winner_id: 2,
     shareTitle: "Visit Art Vs Art to Battle Any Art Vs Any Art",
