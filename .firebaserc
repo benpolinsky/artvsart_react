@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "art-vs-art"
+    "default": "art-vs-art",
+    "staging": "art-vs-art-staging"
   }
 }

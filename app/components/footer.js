@@ -8,8 +8,12 @@ const Footer = () => {
     <footer style={FooterStyles}> 
       <div style={FooterStyles.socialMedia}>
         <StyleRoot>
-          <a style={[FooterStyles.link, FooterStyles.socialMediaLink]} href="https://twitter.com/emceenoesis" target="new"><img width='32' src='/public/twitter.png' /></a>
-          <a style={[FooterStyles.link, FooterStyles.socialMediaLink]} href="https://github.com/benpolinsky" target="new"><img width='32' src='/public/github.png' /></a>  
+          <a style={[FooterStyles.link, FooterStyles.socialMediaLink]} href="https://twitter.com/emceenoesis" target="new">
+            <img width='32' src='twitter.png' />
+          </a>
+          <a style={[FooterStyles.link, FooterStyles.socialMediaLink]} href="https://github.com/benpolinsky" target="new">
+            <img width='32' src='github.png' />
+          </a>  
         </StyleRoot>
       </div>
 

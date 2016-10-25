@@ -1,10 +1,12 @@
 var webpack = require('webpack');
+const DotenvPlugin = require('webpack-dotenv-plugin');
 
 module.exports = {
   entry: ['whatwg-fetch', './app/main.js'],
   output: {
     path: './',
-    filename: 'index.js'
+    filename: 'index.js',
+    publicPath: './public'
     },
   devServer: {
     inline: true,
@@ -34,15 +36,14 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.DefinePlugin({
-      'process.env': {
-        'NODE_ENV': JSON.stringify('production')
-      }
+    new DotenvPlugin({
+      sample: './.env.default',
+      path: './.env.production'
     }),
     new webpack.optimize.UglifyJsPlugin({
         compress: {
             warnings: false
         }
-    })
+    }),
   ]
 }

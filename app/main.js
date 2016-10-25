@@ -38,6 +38,7 @@ for (let style in styles) {
 
 
 
+
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();

@@ -15,7 +15,6 @@ import ErrorModal from '../errorModal.js'
 
 const Competition = ({competition, handleClose, displayInfo, noVoting}) => {  
   const circularLoader = <MuiThemeProvider><CircularProgress /></MuiThemeProvider>
-
   return (
     
       <div>

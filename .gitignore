@@ -28,3 +28,7 @@ chrome-user-data
 .vscode
 examples/*
 notes.md
+.env
+.env.default
+.env.development
+.env.production

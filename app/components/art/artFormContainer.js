@@ -168,7 +168,7 @@ class ArtFormContainer extends React.Component {
             onError={this.onUploadError}
             onFinish={this.onUploadFinish}
             signingUrlHeaders={storage.tokenObject()}
-            server="http://localhost:3000" />
+            server={process.env.API_URL} />
         </ArtForm>
       </Loader>
     )

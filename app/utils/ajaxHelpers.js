@@ -1,6 +1,6 @@
 import {tokenObject, loadToken} from '../utils/localStorage.js';
 
-const domain = 'http://localhost:3000';
+const domain = process.env.API_URL;
 const token = tokenObject();
 
 const headers = {
