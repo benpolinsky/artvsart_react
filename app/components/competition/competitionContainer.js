@@ -64,7 +64,7 @@ class CompetitionContainer extends React.Component{
   }
   
   signUp(e){
-    const router = this.context.router;
+    console.log(e.target.innerText);
     const text = e ? e.target.innerText : ""
     this.props.handleClose(text);
   }

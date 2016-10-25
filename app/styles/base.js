@@ -21,8 +21,8 @@ const baseStyles = {
     marginTop: 20
   },
   mainContainer: {
-    minHeight: 'calc(100% - 250px)',
-    paddingBottom: 250,
+    minHeight: 'calc(100% - 150px)',
+    paddingBottom: 150,
     position: "relative"
   },
   paddedContainer: (paddingSize=10) => ({

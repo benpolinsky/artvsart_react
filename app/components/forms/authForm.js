@@ -1,12 +1,16 @@
 // This needs to be combined iwth signInForm, 
 // they are the same except for the action they dispatch on submit
 import React from 'react'
+import Radium from 'radium'
+import {StyleRoot} from 'radium'
 import { Field, reduxForm } from 'redux-form';
 import {TextField} from 'redux-form-material-ui';
 import MainButton from '../elements/mainButton.js';
 import FacebookButton from '../elements/facebookButton.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Radium from 'radium'
+import Styles from '../../styles/forms.js'
+
+
 
 
 const validate = (values) => {
@@ -34,25 +38,20 @@ export class AuthForm extends React.Component {
     const router = this.context.router;
     this.props.formAction(data, router);      
   }
-  
+     
   render(){
+
     const formStyles = {
-      display: `${this.props.displayForm == this.props.formType ? 'block' : 'none'}`,
-      position: 'absolute',
-      right: 0,
-      top: 65,
-      zIndex: 1201,
-      background: 'white',
-      padding:50
+      display: `${this.props.displayForm == this.props.formType ? 'block' : 'none'}`
     };
     
     // Having trouble getting redux-form's server validation to work
     // Thus, I'm handling server errors through actions/state
     
     const email_errors = this.props.errors ? this.props.errors.email : ''
-    
     return (
-      <div className='registerForm' style={formStyles}>
+       <StyleRoot>
+      <div className='registerForm' style={[Styles.authForm, formStyles]}>
         <form form={`${this.props.formType}Form`} onSubmit={this.props.handleSubmit(this.submitForm)} className="signUpForm">
           <h2>{this.props.formTitle}</h2>
           <MuiThemeProvider>
@@ -66,6 +65,7 @@ export class AuthForm extends React.Component {
       
         <FacebookButton label={`${this.props.formTitle} With Facebook`}/>
       </div>
+      </StyleRoot>
     )
   }
 }

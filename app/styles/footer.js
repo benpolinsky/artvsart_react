@@ -5,7 +5,7 @@ const footerStyles = {
   right: 0,
   backgroundColor: 'black',
   color: 'white',
-  height: 200,
+  height: 90,
   boxSizing: 'border-box',
   display: 'flex',
   justifyContent: 'flex-end',

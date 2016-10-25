@@ -34,7 +34,7 @@ const WinnerModalContents = ({competition, closeModal, nextCompetition}) => {
       
       <h3 style={modalStyles.wins}>Wins!</h3>
       
-      <p style={modalStyles.loser}>defeated <span style={{fontWeight: 600}}>{losing_art.name}</span></p>
+      <p style={modalStyles.loser}>defeated <span>{losing_art.name}</span></p>
       
       <hr />
       

@@ -41,7 +41,7 @@ class LeaderBoard extends React.Component{
                    primaryText={primaryText}
                    secondaryText={
                      <div style={{height: 36}}>
-                       <Category align={'left'} category={record.category} />
+                       <Category align={'left'} category={record.category} mergedStyles={{backgroundColor: 'white', color: 'black'}} />
                        <WinLossBar data={record} /> 
                      </div>
                    }

@@ -2,8 +2,8 @@ import React from 'react'
 import Radium from 'radium'
 
 const Category = ({category, align, mergedStyles}) => {
-
-  const color = category.color ?  category.color : 'black'
+  
+  let color = category.color ?  category.color : 'black'
   const title = category.name ? category.name : 'Category'
   const alignment = {
     textAlign: align == 'left' ? 'left' : 'center',

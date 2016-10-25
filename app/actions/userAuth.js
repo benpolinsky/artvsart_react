@@ -47,7 +47,7 @@ export const signUserIn = (user, router) => (dispatch) => {
 }
 
 export const handleCompetitionModal = (result="") => (dispatch) => {
-  if (result == "SIGN UP") {
+  if (result == "SIGN UP WITH EMAIL") {
     dispatch(openSignUp('register'));    
   } 
   dispatch(closeCompetitionModal());

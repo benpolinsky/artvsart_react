@@ -1,3 +1,5 @@
+import mediaQueries from './mediaQueries.js'
+
 const forms = {
   centered: {
     padding: 40,
@@ -49,6 +51,25 @@ const forms = {
     transition: "left 0ms cubic-bezier(0.23, 1, 0.32, 1) 0ms, opacity 400ms cubic-bezier(0.23, 1, 0.32, 1) 0ms",
     zIndex: 1200,
     pointerEvents: 'auto'
+  },
+  
+  authForm: {
+    position: 'absolute',
+    right: 0,
+    top: 65,
+    zIndex: 1201,
+    background: 'white',
+    padding:50,
+    boxSizing: 'border-box',
+    width: '100%',
+    textAlign: 'center',
+    [mediaQueries.browser]: {
+      width: 'auto',
+      textAlign: 'left'
+    }
+    
+    
+    
   }
 
 }
