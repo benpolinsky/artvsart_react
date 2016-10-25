@@ -13,6 +13,7 @@
     "aphrodite": "^0.5.0",
     "babel-polyfill": "^6.13.0",
     "datejs": "^1.0.0-rc3",
+    "firebase-tools": "^3.0.8",
     "font-awesome": "^4.6.3",
     "material-ui": "^0.16.0",
     "radium": "^0.18.1",
