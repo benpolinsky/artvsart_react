@@ -46,7 +46,7 @@ ReactDOM.render(
 <Provider store={store}>
  
   <Router history={browserHistory}>
-    <Route path='/' component={requireAuthentication(App)}>
+    <Route path='/' component={App}>
 
       <IndexRoute component={HomePage} />
 
