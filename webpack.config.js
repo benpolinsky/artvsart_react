@@ -1,3 +1,5 @@
+var webpack = require('webpack');
+
 module.exports = {
   entry: ['whatwg-fetch', './app/main.js'],
   output: {
@@ -30,5 +32,17 @@ module.exports = {
         exclude: /(node_modules|bower_components)/
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+        compress: {
+            warnings: false
+        }
+    })
+  ]
 }
