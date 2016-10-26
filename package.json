@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server",
-    "test": "mocha './app/**/*.spec.js' --compilers js:babel-core/register  --timeout 15000"
+    "test": "mocha './app/**/*.spec.js' --compilers js:babel-core/register  --timeout 15000",
+    "deploy": "npm-run-all --serial buildForDeploy firebaseDeploy",
+    "buildForDeploy": "webpack -p --config webpack.config.deploy.js --progress",
+    "firebaseDeploy": "firebase deploy"
   },
   "author": "Ben Polinsky",
   "license": "ISC",
@@ -16,6 +19,7 @@
     "firebase-tools": "^3.0.8",
     "font-awesome": "^4.6.3",
     "material-ui": "^0.16.0",
+    "npm-run-all": "^3.1.1",
     "radium": "^0.18.1",
     "react": "^15.3.1",
     "react-color": "^2.3.3",

@@ -5,12 +5,14 @@ import * as storage from '../utils/localStorage.js'
 export const searchSource = (source, query) => (dispatch) => {
   dispatch(searchSourceRequest());
   return api.searchSource({source: source, query: query}).then(response => {
-    if (response.results.error == null) {
+    if (response.error == null) {
       dispatch(displayResultsSuccess(response));      
     } else {
-      dispatch(displayResultsErrors(response.results.error));
+      dispatch(displayResultsErrors(response.error));
     }
-  })
+  }).catch(err => {
+    dispatch(displayResultsErrors("No results, or a problem with Artsy..."))
+  });
 }
 
 const searchSourceRequest = () => ({

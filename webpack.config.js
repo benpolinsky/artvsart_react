@@ -4,8 +4,7 @@ module.exports = {
   entry: ['whatwg-fetch', './app/main.js'],
   output: {
     path: './',
-    filename: 'index.js',
-    publicPath: './public'
+    filename: 'index.js'
     },
   devServer: {
     inline: true,

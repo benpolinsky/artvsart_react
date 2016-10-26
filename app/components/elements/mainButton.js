@@ -7,7 +7,7 @@ const mainButton = ({action, label}) => {
   return(
     <MuiThemeProvider>
       <FlatButton 
-        onTouchTap={action} 
+        onClick={action} 
         style={Styles} 
         labelStyle={Styles.label} 
         hoverColor={Styles.hoverColor}

@@ -68,7 +68,7 @@ class CompetitionResultContainer extends React.Component{
   }
   
   render(){
-    const artInfoAction = <FlatButton label="Close" primary onTouchTap={this.closeInfo} />;
+    const artInfoAction = <FlatButton label="Close" primary onClick={this.closeInfo} />;
     const art_pair = [this.props.competition.art, this.props.competition.challenger];
     const winning_art = art_pair.find( (art) => art.id == this.props.competition.winner_id);
     const losing_art = art_pair.find( (art) => art.id != this.props.competition.winner_id);

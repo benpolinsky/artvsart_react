@@ -97,16 +97,16 @@ class Menu extends React.Component{
           <Drawer docked={false} open={this.state.navMenuOpen} onRequestChange={(open) => this.setState({navMenuOpen: open})}>
             <h1 style={DrawerStyles.heading}>ART VS ART</h1>
            <StyleRoot>
-            <RadiumLink style={DrawerStyles.links} onTouchTap={this.closeMenu} to="/competition">Competition</RadiumLink>
-            <RadiumLink style={DrawerStyles.links} onTouchTap={this.closeMenu} to="/about">About</RadiumLink>
-            <RadiumLink style={DrawerStyles.links} onTouchTap={this.closeMenu} to="/leaderboard">Leaderboard</RadiumLink>
-            <RadiumLink style={DrawerStyles.links} onTouchTap={this.closeMenu} to="/top_judges">Top Judges</RadiumLink>
+            <RadiumLink style={DrawerStyles.links} onClick={this.closeMenu} to="/competition">Competition</RadiumLink>
+            <RadiumLink style={DrawerStyles.links} onClick={this.closeMenu} to="/about">About</RadiumLink>
+            <RadiumLink style={DrawerStyles.links} onClick={this.closeMenu} to="/leaderboard">Leaderboard</RadiumLink>
+            <RadiumLink style={DrawerStyles.links} onClick={this.closeMenu} to="/top_judges">Top Judges</RadiumLink>
              {userType == "admin" &&
                 <div className='adminRadiumLinks'>
-                  <RadiumLink style={DrawerStyles.links} onTouchTap={this.closeMenu} to="/art/new"> Add Art</RadiumLink>
-                  <RadiumLink style={DrawerStyles.links} onTouchTap={this.closeMenu} to='/import_art'>Import Art</RadiumLink>
-                  <RadiumLink style={DrawerStyles.links} onTouchTap={this.closeMenu} to='/categories'>Categories</RadiumLink>
-                  <RadiumLink style={DrawerStyles.links} onTouchTap={this.closeMenu} to='/categories/new'>Add Category</RadiumLink>
+                  <RadiumLink style={DrawerStyles.links} onClick={this.closeMenu} to="/art/new"> Add Art</RadiumLink>
+                  <RadiumLink style={DrawerStyles.links} onClick={this.closeMenu} to='/import_art'>Import Art</RadiumLink>
+                  <RadiumLink style={DrawerStyles.links} onClick={this.closeMenu} to='/categories'>Categories</RadiumLink>
+                  <RadiumLink style={DrawerStyles.links} onClick={this.closeMenu} to='/categories/new'>Add Category</RadiumLink>
                 </div>
               }
             </StyleRoot>
