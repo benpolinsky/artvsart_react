@@ -22,12 +22,7 @@ export default function requireAuthentication(Component){
       return(
        <div> 
         {
-          this.props.user.authenticated 
-          ? 
-          <Component {...this.props} />
-          :
-          <ApiDown />
-          
+          this.props.user.authenticated && <Component {...this.props} />
         }
        </div>
       )

@@ -31,6 +31,7 @@ const VoteButton = ({onClick, styles}) => {
               onClick={onClick} 
               label="Vote" 
               style={mainStyles}
+              className="voteButton"
             />
          </MuiThemeProvider>
 }

@@ -66,7 +66,7 @@ class CompetitionContainer extends React.Component{
   signUp(e){
     console.log(e.target.innerText);
     const text = e ? e.target.innerText : ""
-    this.props.handleClose(text);
+    this.props.handleCompetitionModalState(text);
   }
   
   displayInfo(art){
@@ -103,22 +103,27 @@ class CompetitionContainer extends React.Component{
       window.removeEventListener("keydown", this.keyFunction)
       window.addEventListener("keydown", this.modalKeyFunction);
       return false
+    default: 
+      return false
     }
 
   }
   
   modalKeyFunction(event){
-    switch (event.which) {
-    case 13:
-      if (this.props.competition.errors) {
-        this.props.handleClose('')
-      } else {
-        this.setupCompetition()      
-      }
-
-      window.removeEventListener("keydown", this.modalKeyFunction);
-      window.addEventListener("keydown", this.keyFunction);
-    }
+    // switch (event.which) {
+//     case 13:
+//       if (this.props.competition.errors) {
+//         console.log('ere')
+//         this.props.handleCompetitionModalState('')
+//       } else {
+//         this.setupCompetition()
+//       }
+//
+//       window.removeEventListener("keydown", this.modalKeyFunction);
+//       window.addEventListener("keydown", this.keyFunction);
+//       return false
+//     }
+//     return false
   }
   
   setupCompetition(){
@@ -161,7 +166,7 @@ class CompetitionContainer extends React.Component{
 CompetitionContainer.propTypes = {
   competition: React.PropTypes.object.isRequired,
   getCompetition: React.PropTypes.func.isRequired,
-  handleClose: React.PropTypes.func.isRequired,
+  handleCompetitionModalState: React.PropTypes.func.isRequired,
   selectWinnerViaKeyboard: React.PropTypes.func.isRequired
 }
 
@@ -178,7 +183,7 @@ const mapDispatchToProps = (dispatch) => ({
   getCompetition(){
     dispatch(getCompetitionData());
   },
-  handleClose(result){
+  handleCompetitionModalState(result){
     dispatch(handleCompetitionModal(result));
   },
   selectWinnerViaKeyboard(artId){

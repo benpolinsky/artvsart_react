@@ -69,7 +69,7 @@ class Menu extends React.Component{
     const user_email = this.props.user.email
     return (
     <MuiThemeProvider>
-      <div>
+      <header>
         <AppBar 
           style={menuStyles.appBar} 
           title="ART VS ART"
@@ -112,7 +112,7 @@ class Menu extends React.Component{
             </StyleRoot>
           </Drawer>
 
-      </div>
+      </header>
     
     </MuiThemeProvider>
     )

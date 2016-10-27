@@ -12,7 +12,7 @@ const App = ({app, user, children, showAuthForm}) => {
       <div style={baseStyles.mainContainer}>
         <Menu totals={app.totals} user={user} showAuthForm={showAuthForm} />
         <AuthForms />
-        <div>{children}</div>
+        <main role='main'>{children}</main>
         <Footer />
       </div>
     </div>
