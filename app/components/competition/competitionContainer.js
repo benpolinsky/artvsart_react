@@ -7,7 +7,7 @@ import ArtInfo from '../art/artInfo.js'
 import ErrorModal from '../errorModal.js'
 import {openModal, closeModal} from '../../actions/app.js'
 import {getBattle} from '../../utils/ajaxHelpers.js';
-import {getCompetitionData, selectCompetitionWinner} from '../../actions/index.js';
+import {getCompetitionData, selectCompetitionWinner} from '../../actions/competitions.js';
 import {handleCompetitionModal} from '../../actions/userAuth.js'
 import MainButton from '../elements/mainButton.js'
 import Dialog from 'material-ui/Dialog';

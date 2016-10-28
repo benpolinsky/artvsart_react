@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {selectCompetitionWinner} from '../../actions/index.js'
+import {selectCompetitionWinner} from '../../actions/competitions.js';
 import RaisedButton from 'material-ui/RaisedButton';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 

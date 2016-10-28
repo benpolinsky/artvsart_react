@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {CompetitionResult} from './competitionResult.js';
 import ArtInfo from '../art/artInfo.js'
-import {getCompetitionData} from '../../actions/index.js';
+import {getCompetitionData} from '../../actions/competitions.js';
 import FlatButton from 'material-ui/FlatButton'
 import Dialog from 'material-ui/Dialog';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
