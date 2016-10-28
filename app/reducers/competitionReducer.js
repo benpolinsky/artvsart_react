@@ -71,15 +71,13 @@ const competitionReducer = (state=initialCompetitionState, action) => {
         isResult: false
       }
     }    
-  case "RECEIVE_COMPETITION":
-    const competition_share_title = 
-      `Now Battling: ${action.competition.art.name} vs. ${action.competition.challenger.name} on Art Vs Art`
+  case "RECEIVE_COMPETITION":      
      return {
        ...state, 
        competition: {
          ...state.competition,
          ...action.competition, 
-         shareTitle: competition_share_title,
+         shareTitle: `Now Battling: ${action.competition.art.name} vs. ${action.competition.challenger.name} on Art Vs Art`,
          isFetching: false,
          winnerSelected: false,
          closeModal: true,
@@ -161,7 +159,7 @@ const competitionReducer = (state=initialCompetitionState, action) => {
         closeModal: true
       }
     }
-    case "CLOSE_SIGN_UP":
+  case "CLOSE_SIGN_UP":
     return {
       ...state,
       competition: {
