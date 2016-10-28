@@ -13,7 +13,8 @@ const artImportsReducer = (state=initialArtState, action) => {
     return {
       ...state, 
       loading: true,
-      error: ''
+      error: '',
+      results: []
     }
   case "DISPLAY_RESULTS_SUCCESS":
     return {
