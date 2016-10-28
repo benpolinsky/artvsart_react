@@ -11,44 +11,31 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import CircularProgress from 'material-ui/CircularProgress'
 import loaderStyles from '../../styles/loader.js'
 import CompetitionStyles from '../../styles/competition.js'
-import ErrorModal from '../errorModal.js'
 
-const Competition = ({competition, handleClose, displayInfo, noVoting}) => {  
+const Competition = ({competition, displayInfo, noVoting}) => {  
   const circularLoader = <MuiThemeProvider><CircularProgress /></MuiThemeProvider>
   return (
-    
       <div>
         <Loader foregroundStyle={loaderStyles.foreground} backgroundStyle={loaderStyles.background} message={circularLoader} show={competition.isFetching && !competition.closeModal}>
+
           <StyleRoot>
             <div style={CompetitionStyles.artPair}>
               <Art styles={CompetitionStyles.art} selectInfo={displayInfo} key={competition.art.id} art={competition.art} noVoting={noVoting} />
               <Art styles={CompetitionStyles.art} selectInfo={displayInfo} key={competition.challenger.id} art={competition.challenger} noVoting={noVoting} />
             </div>
-          </StyleRoot>
-        
+          </StyleRoot>        
 
-          {competition.errors && 
-            
-            <ErrorModal 
-              errors={competition.errors.base}
-              open={!competition.closeModal} 
-              handleClose={handleClose}
-               />}
-        
           <div style={CompetitionStyles.shareButtons}>
             <p style={CompetitionStyles.shareButtons.p}>Share It!</p>
             <ShareButtons className="competition-share" shareTitle={competition.shareTitle}/>
           </div>
-        
         </Loader>
       </div>
-
   )
 }
 
 Competition.propTypes = {
   competition: React.PropTypes.object.isRequired,
-  handleClose: React.PropTypes.func.isRequired,
   displayInfo: React.PropTypes.func.isRequired,
   noVoting: React.PropTypes.bool
 }

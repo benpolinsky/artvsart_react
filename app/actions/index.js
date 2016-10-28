@@ -1,4 +1,5 @@
 import * as api from '../utils/ajaxHelpers.js';
+import {openModal, closeModal} from './app.js';
 
 export const stageCompetition = (response) => ({
   type: "RECEIVE_COMPETITION",
@@ -13,7 +14,7 @@ const displayCompetition = (response) => ({
 export const getCompetitionData = (id=null) => {
   return dispatch => {
     dispatch(fetchCompetition());
-
+    dispatch(closeModal());
     if (id != null) {    
       return api.get(`competitions/${id}`).then(response => {
         dispatch(displayCompetition(response))
@@ -50,6 +51,7 @@ export const selectCompetitionWinner = (winner_id) => (dispatch, getState) => {
       dispatch(receiveCompetitionWinner(response.competition, winner_id));
       dispatch(getGeneralArtInfo());
     }
+    dispatch(openModal());
   });
 };
 

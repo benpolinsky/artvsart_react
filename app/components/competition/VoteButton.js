@@ -28,7 +28,7 @@ const VoteButton = ({onClick, styles}) => {
               backgroundColor="white" 
               labelStyle={labelStyle}
               labelColor="black" 
-              onClick={onClick} 
+              onTouchTap={onClick} 
               label="Vote" 
               style={mainStyles}
               className="voteButton"

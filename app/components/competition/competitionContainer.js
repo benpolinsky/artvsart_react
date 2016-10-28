@@ -4,6 +4,8 @@ import {connect} from 'react-redux';
 import WinnerModalContents from './winnerModalContents.js';
 import Competition from './competition.js';
 import ArtInfo from '../art/artInfo.js'
+import ErrorModal from '../errorModal.js'
+import {openModal, closeModal} from '../../actions/app.js'
 import {getBattle} from '../../utils/ajaxHelpers.js';
 import {getCompetitionData, selectCompetitionWinner} from '../../actions/index.js';
 import {handleCompetitionModal} from '../../actions/userAuth.js'
@@ -64,7 +66,6 @@ class CompetitionContainer extends React.Component{
   }
   
   signUp(e){
-    console.log(e.target.innerText);
     const text = e ? e.target.innerText : ""
     this.props.handleCompetitionModalState(text);
   }
@@ -79,12 +80,14 @@ class CompetitionContainer extends React.Component{
       artInfoVisible: true,
       visibleArt: visibleArt[0]
     })
+    this.props.openAppModal();
   }
   
   closeInfo(){
     this.setState({
       artInfoVisible: false
     })
+    this.props.closeAppModal();
   }
   
   setupKeyShortcuts(){
@@ -92,15 +95,16 @@ class CompetitionContainer extends React.Component{
   }
   
   keyFunction(event){
+    if (this.props.winnerSelected || this.props.app.modalOpen) {
+      return false
+    }
     switch (event.which) {
     case 49:
       this.props.selectWinnerViaKeyboard(this.props.competition.art.id);
-      window.removeEventListener("keydown", this.keyFunction);
       window.addEventListener("keydown", this.modalKeyFunction);
       return false
     case 50:
       this.props.selectWinnerViaKeyboard(this.props.competition.challenger.id);
-      window.removeEventListener("keydown", this.keyFunction)
       window.addEventListener("keydown", this.modalKeyFunction);
       return false
     default: 
@@ -110,20 +114,15 @@ class CompetitionContainer extends React.Component{
   }
   
   modalKeyFunction(event){
-    // switch (event.which) {
-//     case 13:
-//       if (this.props.competition.errors) {
-//         console.log('ere')
-//         this.props.handleCompetitionModalState('')
-//       } else {
-//         this.setupCompetition()
-//       }
-//
-//       window.removeEventListener("keydown", this.modalKeyFunction);
-//       window.addEventListener("keydown", this.keyFunction);
-//       return false
-//     }
-//     return false
+    if (this.props.app.modalOpen || event.which != 13) {
+      return false
+    } 
+    
+    if (this.props.competition.errors) {
+      this.props.handleCompetitionModalState('')
+    } else {
+      this.setupCompetition()
+    }
   }
   
   setupCompetition(){
@@ -139,14 +138,14 @@ class CompetitionContainer extends React.Component{
     return (
     
       <div style={baseStyles.container}>
-        <Competition displayInfo={this.displayInfo} handleClose={this.signUp} competition={this.props.competition}/>
+        <Competition displayInfo={this.displayInfo} competition={this.props.competition}/>
     
         <MuiThemeProvider>
           <div>
             <Dialog open={this.props.competition.winnerSelected} modal>
               <WinnerModalContents competition={this.props.competition} nextCompetition={this.setupCompetition} />
             </Dialog>
-            
+
             <Dialog 
               open={this.state.artInfoVisible} 
               onRequestClose={this.closeInfo} 
@@ -156,6 +155,14 @@ class CompetitionContainer extends React.Component{
             >
               <ArtInfo art={this.state.visibleArt} />
             </Dialog>
+              
+              {this.props.competition.errors && 
+                <ErrorModal 
+                  errors={this.props.competition.errors.base}
+                  open={!this.props.competition.closeModal} 
+                  handleClose={this.signUp}
+                />
+              }
           </div>
         </MuiThemeProvider>
       </div>
@@ -165,6 +172,7 @@ class CompetitionContainer extends React.Component{
 
 CompetitionContainer.propTypes = {
   competition: React.PropTypes.object.isRequired,
+  app: React.PropTypes.object.isRequired,
   getCompetition: React.PropTypes.func.isRequired,
   handleCompetitionModalState: React.PropTypes.func.isRequired,
   selectWinnerViaKeyboard: React.PropTypes.func.isRequired
@@ -176,7 +184,8 @@ CompetitionContainer.contextTypes = {
 }
 
 const mapStateToProps = (store) => ({
-  competition: store.competitionState.competition
+  competition: store.competitionState.competition,
+  app: store.appState
 })
 
 const mapDispatchToProps = (dispatch) => ({
@@ -188,6 +197,12 @@ const mapDispatchToProps = (dispatch) => ({
   },
   selectWinnerViaKeyboard(artId){
     dispatch(selectCompetitionWinner(artId));
+  },
+  openAppModal(){
+    dispatch(openModal());
+  },
+  closeAppModal(){
+    dispatch(closeModal());
   }
 })
 

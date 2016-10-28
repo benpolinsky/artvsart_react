@@ -1,6 +1,7 @@
 import * as api from '../utils/ajaxHelpers.js'
 import * as storage from '../utils/localStorage.js'
 import { SubmissionError } from 'redux-form'
+import {openModal, closeModal} from './app.js'
 
 export const loginToFacebook = (response) => (dispatch) => {
   dispatch(facebookAuthRequest(response));
@@ -40,6 +41,7 @@ export const signUserIn = (user, router) => (dispatch) => {
       dispatch(storeUserCredentials(response.user));
       dispatch(signInUserSuccessful(response.user));
       dispatch(closeSignUp())
+      dispatch(closeModal())
       router.push('/profile');
       
     }
@@ -47,14 +49,38 @@ export const signUserIn = (user, router) => (dispatch) => {
 }
 
 export const handleCompetitionModal = (result="") => (dispatch) => {
-  if (result == "SIGN UP WITH EMAIL") {
+  switch (result) {
+  case "SIGN UP WITH EMAIL":
     dispatch(openSignUp('register'));    
-  } 
+    break;
+  default:
+    dispatch(closeModal())
+    break;
+  }
   dispatch(closeCompetitionModal());
 }
 
 const closeCompetitionModal = () => ({
   type: "CLOSE_COMPETITION_MODAL"
+})
+
+export const openSignUp = (formType) => (dispatch) => {
+  dispatch(triggerSignUp(formType));
+  dispatch(openModal());
+}
+
+const triggerSignUp = (formType) => ({
+  type: "OPEN_SIGN_UP",
+  formType: formType
+})
+
+export const closeSignUp = () => (dispatch) =>{
+  dispatch(triggerClose())
+  dispatch(closeModal())
+}
+
+const triggerClose = () => ({
+  type: "CLOSE_SIGN_UP"
 })
 
 const startSignUserIn = (user) => ({
@@ -167,15 +193,6 @@ export const apiDown = (error) => ({
 
 const startReceiveUserInfo = () => ({
   type: "START_RECEIVE_USER_INFO"
-})
-
-export const openSignUp = (formType) => ({
-  type: "OPEN_SIGN_UP",
-  formType: formType
-})
-
-export const closeSignUp = () => ({
-  type: "CLOSE_SIGN_UP"
 })
 
 

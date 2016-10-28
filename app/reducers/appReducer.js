@@ -3,7 +3,8 @@ const initialAppState = {
     total_art: 0,
     total_art_judged: 0,
     finished_competitions: 0
-  }
+  },
+  modalOpen: false
 }
 
 const AppReducer = (state=initialAppState, action) => {
@@ -14,6 +15,16 @@ const AppReducer = (state=initialAppState, action) => {
         total_art_judged: action.totals.total_pieces_of_art_judged,
         finished_competitions: action.totals.total_competitions
       }
+    }
+  case "APP_MODAL_OPEN":
+    return {
+      ...state,
+      modalOpen: true
+    }
+  case "APP_MODAL_CLOSE":
+    return {
+      ...state,
+      modalOpen: false
     }
   }
   
