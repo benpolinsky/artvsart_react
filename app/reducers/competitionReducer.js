@@ -3,9 +3,10 @@ const initialCompetitionState = {
     id: 0,
     art: {
       id: 1, 
-      name: "Rakim's Paid in Full", 
+      name: "Paid in Full",
+      creator: "Rakim",
       description: "The god Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
-      image: 'http://placehold.it/250x250',
+      image: 'https://upload.wikimedia.org/wikipedia/en/7/7a/Eric_B._%26_Rakim_-_Paid_in_Full_single.jpg',
       creation_date: Date.now(),
       category: {
         name: "",
@@ -14,9 +15,10 @@ const initialCompetitionState = {
     },
     challenger: {
       id: 2, 
-      name: "Michaelangelo's David", 
+      name: "David",
+      creator: "Michelangelo",
       description: "A Legendary Sculpture",
-      image: 'http://placehold.it/250x250',
+      image: 'https://upload.wikimedia.org/wikipedia/commons/2/24/%27David%27_by_Michelangelo_JBU0001.JPG',
       creation_date: Date.now(),
       category: {
         name: "",
@@ -70,12 +72,14 @@ const competitionReducer = (state=initialCompetitionState, action) => {
       }
     }    
   case "RECEIVE_COMPETITION":
+    const competition_share_title = 
+      `Now Battling: ${action.competition.art.name} vs. ${action.competition.challenger.name} on Art Vs Art`
      return {
        ...state, 
        competition: {
          ...state.competition,
          ...action.competition, 
-         shareTitle: `Now Battling: ${action.competition.art.name} vs. ${action.competition.challenger.name} on Art Vs Art`,
+         shareTitle: competition_share_title,
          isFetching: false,
          winnerSelected: false,
          closeModal: true,
@@ -83,6 +87,15 @@ const competitionReducer = (state=initialCompetitionState, action) => {
          errors: null
        }
      }
+ case "REQUEST_COMPETITION_FAILED":
+   return {
+     ...state, 
+     competition: {
+       ...state.competition,
+       isFetching: false,
+       errors: action.error
+     }
+   }
  case "RECEIVE_FINISHED_COMPETITION":
    var winning_art = winnerAndLoser(action.competition, action.competition.winner_id).winner;
    var losing_art = winnerAndLoser(action.competition, action.winner_id).loser;

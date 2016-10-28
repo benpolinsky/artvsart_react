@@ -1,16 +1,10 @@
 import * as api from '../utils/ajaxHelpers.js';
 import {openModal, closeModal} from './app.js';
 
-export const stageCompetition = (response) => ({
-  type: "RECEIVE_COMPETITION",
-  competition: response.competition
-});
 
-const displayCompetition = (response) => ({
-  type: "RECEIVE_FINISHED_COMPETITION",
-  competition: response.competition
-});
 
+
+// probably break this up into separate action creators...
 export const getCompetitionData = (id=null) => {
   return dispatch => {
     dispatch(fetchCompetition());
@@ -21,17 +15,36 @@ export const getCompetitionData = (id=null) => {
       });
     } else {
       return api.post('competitions', {}).then(response => {
-        dispatch(stageCompetition(response));
+        if (response.error != null) {
+          dispatch(requestCompetitionFailed(response.error));
+          dispatch(openModal());
+        } else {
+          dispatch(stageCompetition(response));
+        }
       });
     }
-  }
-  
- 
+  } 
 }
 
 const fetchCompetition = () => ({
   type: "REQUEST_COMPETITION"
 });
+
+const displayCompetition = (response) => ({
+  type: "RECEIVE_FINISHED_COMPETITION",
+  competition: response.competition
+});
+
+const stageCompetition = (response) => ({
+  type: "RECEIVE_COMPETITION",
+  competition: response.competition
+});
+
+const requestCompetitionFailed = (error) => ({
+  type: "REQUEST_COMPETITION_FAILED",
+  error: error
+});
+
 
 
 export const selectCompetitionWinner = (winner_id) => (dispatch, getState) => {
@@ -67,5 +80,5 @@ const receiveCompetitionWinner = (competition, winner_id) => ({
 
 const selectCompetitionWinnerFailed = (competition) => ({
   type: "SELECT_COMPETITION_WINNER_FAILED",
-  errors: competition.errors
+  errors: competition.errors.base
 })

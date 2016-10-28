@@ -251,7 +251,6 @@ const compeititonStyles = {
     body: {
       fontSize: 12,
       margin: '0 auto 20px auto',
-      borderBottom: '1px solid black',
       borderRadius: 0,
       width: 256
     }

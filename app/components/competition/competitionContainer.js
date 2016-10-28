@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import WinnerModalContents from './winnerModalContents.js';
 import Competition from './competition.js';
 import ArtInfo from '../art/artInfo.js'
-import ErrorModal from '../errorModal.js'
+import PromptToSignUp from './promptToSignUp.js'
 import {openModal, closeModal} from '../../actions/app.js'
 import {getBattle} from '../../utils/ajaxHelpers.js';
 import {getCompetitionData, selectCompetitionWinner} from '../../actions/competitions.js';
@@ -157,8 +157,8 @@ class CompetitionContainer extends React.Component{
             </Dialog>
               
               {this.props.competition.errors && 
-                <ErrorModal 
-                  errors={this.props.competition.errors.base}
+                <PromptToSignUp 
+                  errors={this.props.competition.errors}
                   open={!this.props.competition.closeModal} 
                   handleClose={this.signUp}
                 />
