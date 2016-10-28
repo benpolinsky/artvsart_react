@@ -6,7 +6,7 @@ import {loginToFacebook} from '../../actions/userAuth.js';
 const facebookButton = ({responseFacebook, label="Sign Up With Facebook"}) => {
   return(
     <FacebookLogin
-      appId="1118634491523505"
+      appId={process.env.FACEBOOK_APP_ID}
       autoLoad={false}
       fields="name,email,picture"
       callback={responseFacebook}

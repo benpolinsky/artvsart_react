@@ -1,7 +1,7 @@
 import * as api from '../utils/ajaxHelpers.js'
 import * as storage from '../utils/localStorage.js'
 import { SubmissionError } from 'redux-form'
-import {openModal, closeModal} from './app.js'
+import {openModal, closeModal, closeAppLoader} from './app.js'
 
 export const loginToFacebook = (response) => (dispatch) => {
   dispatch(facebookAuthRequest(response));
@@ -179,10 +179,16 @@ export const getUserInfo = () => (dispatch) => {
   dispatch(startReceiveUserInfo());
   return api.get('').then(response => {
     dispatch(receiveUserInfo(response.user));
+    dispatch(closeAppLoader())
     dispatch(storeUserCredentials(response.user));
   })
   .catch((error) => {
-    dispatch(apiDown(error))
+    if (error.message == "Failed to fetch"){
+      dispatch(apiDown(error))
+    } else {
+      console.log("An error occurred: ", error.message)
+    }
+    
   });
 }
 

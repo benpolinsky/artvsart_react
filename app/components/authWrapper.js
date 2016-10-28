@@ -1,23 +1,9 @@
-// thanks to: https://github.com/joshgeller/react-redux-jwt-auth-example for the idea.
-//  I should render a loader while authenticating.
-
 import React from 'react';
 import {connect} from 'react-redux';
 import {getUserInfo} from '../actions/userAuth.js';
-import ApiDown from './apiDown.js'
 
 export default function requireAuthentication(Component){
   class AuthenticatedComponent extends React.Component{
-    componentWillMount(){
-      if (!this.props.user.authenticated) {
-        this.initializeAuth();
-      }
-    }
-  
-    initializeAuth(){
-      this.props.initializeApp();
-    }
-    
     render(){
       return(
        <div> 
@@ -28,22 +14,16 @@ export default function requireAuthentication(Component){
       )
     }
   }
-  
-  const mapDispatchToProps = (dispatch) => ({
-    initializeApp(){
-      dispatch(getUserInfo());
-    } 
-  });
+
   
   const mapStateToProps = (state) => ({
     user: state.userState.user
   });
   
   AuthenticatedComponent.propTypes = {
-    user: React.PropTypes.object.isRequired,
-    initializeApp: React.PropTypes.func.isRequired
+    user: React.PropTypes.object.isRequired
   }
   
-  return connect(mapStateToProps, mapDispatchToProps)(AuthenticatedComponent);
+  return connect(mapStateToProps)(AuthenticatedComponent);
 }
 

@@ -4,7 +4,10 @@ const initialAppState = {
     total_art_judged: 0,
     finished_competitions: 0
   },
-  modalOpen: false
+  modalOpen: false,
+  error: null,
+  apiError: false,
+  loading: true
 }
 
 const AppReducer = (state=initialAppState, action) => {
@@ -26,6 +29,13 @@ const AppReducer = (state=initialAppState, action) => {
       ...state,
       modalOpen: false
     }
+  case "CLOSE_APP_LOADER":
+    return {
+      ...state,
+      loading: false
+    }
+  case "API_DOWN":
+    return {...state, apiError: true, error: action.error, loading: false}
   }
   
   return state

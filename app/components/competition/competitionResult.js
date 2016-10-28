@@ -23,8 +23,7 @@ export const CompetitionResult = ({competition, displayInfo}) => {
   const art_pair = [competition.art, competition.challenger];
   const winning_art = art_pair.find( (art) => art.id == competition.winner_id);
   const losing_art = art_pair.find( (art) => art.id != competition.winner_id);
-  console.log(winning_art);
-  console.log(losing_art);
+
   return (
 
     <div className='competition'>

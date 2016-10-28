@@ -101,9 +101,6 @@ const userReducer = (state=initialUserState, action) => {
     
   case "CLOSE_SIGN_UP":
     return {...state, user: {...state.user, openForm: ''}}
-  
-  case "API_DOWN":
-    return {...state, apiError: true, error: action.error}
   }
   return state
 }

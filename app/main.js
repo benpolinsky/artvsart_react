@@ -6,7 +6,8 @@ import {Router, IndexRoute, Route, browserHistory} from 'react-router';
 import { Provider } from 'react-redux';
 import store from './store.js';
 import App from './components/app.js';
-import requireAuthentication from './components/authWrapper.js'
+import authWrapper from './components/authWrapper.js'
+import appLoader from './components/appLoader.js'
 
 import HomePage from './components/pages/homePage.js'
 import AboutPage from './components/pages/aboutPage.js'
@@ -36,9 +37,6 @@ for (let style in styles) {
   require(`../styles/${styles[style]}.css`);
 }
 
-
-
-
 // Needed for onTouchTap
 // http://stackoverflow.com/a/34015469/988941
 injectTapEventPlugin();
@@ -46,7 +44,7 @@ ReactDOM.render(
 <Provider store={store}>
  
   <Router history={browserHistory}>
-  <Route path='/' component={requireAuthentication(App)}>
+  <Route path='/' component={appLoader(authWrapper(App))}>
 
       <IndexRoute component={HomePage} />
 
