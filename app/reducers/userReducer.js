@@ -6,6 +6,7 @@ const initialUserState = {
     token: "",
     authenticated: false,
     fetching: false,
+    confirmed: 'false',
     admin: false,
     openForm: '',
     error: '',
@@ -29,7 +30,6 @@ const userReducer = (state=initialUserState, action) => {
         fetching: true
       }
     }
-  case "USER_ACCOUNT_CONFIRMED":
   case "RECEIVE_USER_INFO":
   case "REGISTER_USER_SUCCESSFUL":
   case "RECEIVE_UPDATED_USER":
@@ -41,6 +41,24 @@ const userReducer = (state=initialUserState, action) => {
         ...action.user,
         authenticated: true,
         fetching: false
+      }
+    }
+  case "PENDING_EMAIL_CONFIRMATION": 
+    return {
+      ...state,
+      user: {
+        ...state.user,
+        ...action.user,
+        confirmed: 'pending'
+      }
+    }
+  case "USER_ACCOUNT_CONFIRMED":
+    return {
+      ...state,
+      user: {
+        ...state.user,
+        ...action.user,
+        confirmed: 'true'
       }
     }
   case "START_USER_SIGNED_OUT":

@@ -128,12 +128,20 @@ export const registerUser = (user, router) => (dispatch) => {
       
     } else {
       dispatch(registerUserSuccessful(response.user));
+      dispatch(pendingEmailConfirmation(response.user))
+      
+      router.push(`/user/pending_confirmation`);
       dispatch(storeUserCredentials(response.user));
       dispatch(closeSignUp())
-      router.push(`/competition`);
+
     }
   })
 }
+
+const pendingEmailConfirmation = (user) => ({
+  type: "PENDING_EMAIL_CONFIRMATION",
+  user: user
+})
 
 const startRegisterUser = (user) => ({
   type: "START_REGISTER_USER",
@@ -159,7 +167,6 @@ export const loadCredentials = (next_action) => (dispatch) => {
 
 export const storeUserCredentials = (user) => (dispatch) => {
   dispatch(startStoreUserCredentials());
-  console.log(user)
   storage.storeToken(user);
 }
 

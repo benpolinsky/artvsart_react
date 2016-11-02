@@ -14,6 +14,7 @@ import HomePage from './components/pages/homePage.js'
 import AboutPage from './components/pages/aboutPage.js'
 import ProfilePage from './components/users/profilePage.js'
 import ConfirmAccount from './components/users/confirmAccount.js'
+import PendingConfirmation from './components/users/pendingConfirmation.js'
 
 import CompetitionContainer from './components/competition/competitionContainer.js'
 import CompetitionResultContainer from './components/competition/competitionResultContainer.js'
@@ -67,6 +68,7 @@ ReactDOM.render(
       <Route path='leaderboard' component={LeaderBoard} />
       <Route path='profile' component={ProfilePage} />
       <Route path='user/confirm_account/:token' component={ConfirmAccount} />
+      <Route path='user/pending_confirmation' component={PendingConfirmation} />
       <Route path='top_judges' component={UserRankings} />
     </Route>
   </Router>

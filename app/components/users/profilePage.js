@@ -21,7 +21,10 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 class ProfilePage extends React.Component{  
   
   componentDidMount(){
-    // should probably be fetching user data, huh...
+    if (this.props.user.type == "GuestUser" || this.props.user.type == "BotUser") {
+      const router = this.context.router;
+      router.push('/competition')
+    }
     this.props.fetchCompetitions();
   }
 
@@ -63,6 +66,10 @@ ProfilePage.propTypes = {
   user: React.PropTypes.object.isRequired,
   fetchCompetitions: React.PropTypes.func.isRequired,
   competitions: React.PropTypes.object.isRequired
+}
+
+ProfilePage.contextTypes = {
+  router: React.PropTypes.object
 }
 
 const mapStateToProps = (store) => ({

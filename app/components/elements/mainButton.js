@@ -13,6 +13,7 @@ const mainButton = ({action, label}) => {
         hoverColor={Styles.hoverColor}
         backgroundColor={Styles.backgroundColor}
         label={label}
+        type='submit'
  />
     </MuiThemeProvider>
   )

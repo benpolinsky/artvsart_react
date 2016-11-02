@@ -46,10 +46,10 @@ export class PasswordForm extends React.Component {
     return (
       <StyleRoot>
         <div>
-          <form onSubmit={this.props.handleSubmit(this.submitForm)}>
+          <form style={Styles.centered}onSubmit={this.props.handleSubmit(this.submitForm)}>
             <h2>Change Password</h2>
             <MuiThemeProvider>
-              <div>
+              <div style={Styles.centered.fields}>
                 <Field 
                   name="current_password" 
                   type="password" 
@@ -57,7 +57,7 @@ export class PasswordForm extends React.Component {
                   floatingLabelText="Current Password" 
                   component={TextField} 
                 /> 
-                  
+                <br/>
                 <Field 
                   name="password" 
                   type="password" 
@@ -65,7 +65,7 @@ export class PasswordForm extends React.Component {
                   floatingLabelText="New Password" 
                   component={TextField} 
                 />     
-
+                <br/>
                 <Field 
                   name="password_confirmation" 
                   type="password" 
@@ -73,9 +73,6 @@ export class PasswordForm extends React.Component {
                   floatingLabelText="New Password Confirmation"
                   component={TextField} 
                 />     
-                  
-              
-
                 <br/>
                   
                 <MainButton label="Update" action={this.props.handleSubmit(this.submitForm)} />

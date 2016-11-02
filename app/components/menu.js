@@ -78,7 +78,7 @@ class Menu extends React.Component{
           iconElementLeft={<IconButton><MenuIcon color='black'/></IconButton>}
           iconElementRight={
           
-            this.props.user.type == "GuestUser" 
+            (this.props.user.type == "GuestUser" || this.props.user.type == "BotUser")
               ?
             <AuthNav showAuthForm={this.props.showAuthForm}/>
               : 

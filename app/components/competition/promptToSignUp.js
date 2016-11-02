@@ -12,13 +12,14 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 const PromptToSignUp = ({errors, open, handleClose, responseFacebook}) => {
   
   const actions = 
-    (errors == "We don't have enough art for you to rank.  Check back soon!") ?
-    null :
+    (errors == "Please Sign Up to Continue Judging") ?
     [
       <FacebookButton />,
       <MainButton label="Sign Up With Email" action={handleClose} />,
       <MainButton label="No Thanks..." action={handleClose} />
-    ]
+    ] :
+    null
+    
   const closeAction = 
     (errors == "We don't have enough art for you to rank.  Check back soon!") ?
     null :

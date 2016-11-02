@@ -43,10 +43,10 @@ export class ProfileForm extends React.Component {
     return (
       <StyleRoot>
         <div>
-          <form onSubmit={this.props.handleSubmit(this.submitForm)}>
-            <h2>Account Info</h2>
+          <form onSubmit={this.props.handleSubmit(this.submitForm)} style={Styles.centered}>
+            <h2>Update Email Address: </h2>
             <MuiThemeProvider>
-              <div>
+              <div style={Styles.centered.fields}>
                 <Field name="email" errorText={email_errors} floatingLabelText="E-Mail" component={TextField} /> <br/>
                 <MainButton label="Update" action={this.props.handleSubmit(this.submitForm)} />
               </div>
