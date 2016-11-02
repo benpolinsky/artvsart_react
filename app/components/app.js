@@ -8,13 +8,11 @@ import baseStyles from '../styles/base.js';
 
 const App = ({app, user, children, showAuthForm}) => {
   return (
-    <div>
-      <div style={baseStyles.mainContainer}>
-        <Menu totals={app.totals} user={user} showAuthForm={showAuthForm} />
-        <AuthForms />
-        <main role='main'>{children}</main>
-        <Footer />
-      </div>
+    <div style={baseStyles.mainContainer}>
+      <Menu totals={app.totals} user={user} showAuthForm={showAuthForm} />
+      <AuthForms />
+      <main role='main'>{children}</main>
+      <Footer />
     </div>
   )
 }

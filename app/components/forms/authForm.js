@@ -74,7 +74,7 @@ AuthForm.propTypes = {
   formAction:React.PropTypes.func.isRequired,
   displayForm: React.PropTypes.string.isRequired,
   formType: React.PropTypes.string.isRequired,
-  errors: React.PropTypes.object,
+  errors: React.PropTypes.array,
   handleSubmit: React.PropTypes.func.isRequired,
   formTitle: React.PropTypes.string.isRequired
 }

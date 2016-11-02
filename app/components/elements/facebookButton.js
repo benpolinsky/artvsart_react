@@ -12,7 +12,7 @@ const facebookButton = ({responseFacebook, label="Sign Up With Facebook"}) => {
       callback={responseFacebook}
       icon="fa-facebook"
       cssClass='kep-login-facebook'
-      cookie
+      cookie={true}
       textButton={label}
       size='small'
     />

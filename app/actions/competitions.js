@@ -62,7 +62,6 @@ export const selectCompetitionWinner = (winner_id) => (dispatch, getState) => {
       dispatch(selectCompetitionWinnerFailed(response.competition));
     } else {
       dispatch(receiveCompetitionWinner(response.competition, winner_id));
-      dispatch(getGeneralArtInfo());
     }
     dispatch(openModal());
   });

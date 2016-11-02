@@ -8,18 +8,19 @@ const initialUserState = {
     fetching: false,
     admin: false,
     openForm: '',
-    error: ''
+    error: '',
+    errors: {
+    },
+    identities: []
   }
 }
 
+
 const userReducer = (state=initialUserState, action) => {
   switch (action.type) {
-  case "FACEBOOK_AUTH_REQUEST_START": 
-    return state
-  case "FACEBOOK_AUTH_SUCCESS": 
-    return state
-  case "FACEBOOK_AUTH_FAILED": 
-    return state
+
+  case "START_UPDATE_EMAIL":
+  case "START_CONFIRM_USER_ACCOUNT":
   case "START_RECEIVE_USER_INFO":
     return {
       ...state,
@@ -28,17 +29,16 @@ const userReducer = (state=initialUserState, action) => {
         fetching: true
       }
     }
+  case "USER_ACCOUNT_CONFIRMED":
   case "RECEIVE_USER_INFO":
   case "REGISTER_USER_SUCCESSFUL":
+  case "RECEIVE_UPDATED_USER":
   case "SIGN_IN_USER_SUCCESSFUL":
     return {
       ...state,
       user: {
-         ...state.user,
-        email: action.user.email,
-        type: action.user.type,
-        token: action.user.auth_token,
-        gravatar_hash: action.user.gravatar_hash,
+        ...state.user,
+        ...action.user,
         authenticated: true,
         fetching: false
       }
@@ -67,6 +67,14 @@ const userReducer = (state=initialUserState, action) => {
         authenticated: true
       }
     }
+  case "UPDATE_USER_FAILED":
+    return {
+      ...state,
+      user: {
+        ...state.user,
+        errors: action.errors
+      }
+    }  
   case 'SIGN_IN_USER_FAILED':
     var errors = [];
 
@@ -95,6 +103,15 @@ const userReducer = (state=initialUserState, action) => {
       errors: {
         email: errors.join(", ")
       }
+    }
+  case 'CONFIRM_USER_ACCOUNT_FAILED':
+    var errors = [];
+    for (var key of Object.keys(action.errors)) {
+      action.errors[key].forEach((item) => errors.push(item));
+    }
+    return {
+      ...state,
+      errors: errors
     }
   case "OPEN_SIGN_UP":
     return {...state, user: {...state.user, openForm: action.formType}}

@@ -10,15 +10,15 @@ export const loginToFacebook = (response) => (dispatch) => {
       dispatch(facebookAuthSuccess(response));
       dispatch(storeUserCredentials(response.user));
       dispatch(closeSignUp());
-      dispatch(signInUserSuccessful(response.user));
-      
+      dispatch(signInUserSuccessful(response.user));  
     } else {
-      dispatch(facebookAuthFailed(response.errors));
+      dispatch(facebookAuthFailed());
+      dispatch(registerUserFailed(response.errors))
     }
   })
 }
 
-const facebookAuthFailed = (errors) => ({
+const facebookAuthFailed = () => ({
   type: "FACEBOOK_AUTH_FAILED"
 });
 
@@ -159,6 +159,7 @@ export const loadCredentials = (next_action) => (dispatch) => {
 
 export const storeUserCredentials = (user) => (dispatch) => {
   dispatch(startStoreUserCredentials());
+  console.log(user)
   storage.storeToken(user);
 }
 
@@ -201,5 +202,34 @@ const startReceiveUserInfo = () => ({
   type: "START_RECEIVE_USER_INFO"
 })
 
+
+export const confirmUserAccount = (token, router) => (dispatch) => {
+  dispatch(startConfirmUserAccount());
+  return api.get(`users/confirmation?confirmation_token=${token}`).then(response => {
+    if (response.errors == null){
+      dispatch(userAccountConfirmed(response));
+      dispatch(storeUserCredentials(response.user));
+      dispatch(signInUserSuccessful(response.user));
+      router.push('/competition');
+    } else {
+      dispatch(confirmUserAccountFailed(response));
+      router.push('/competition');
+    }
+  });
+}
+
+const startConfirmUserAccount = () => ({
+  type: "START_CONFIRM_USER_ACCOUNT"
+});
+
+const userAccountConfirmed = (response) => ({
+  type: "USER_ACCOUNT_CONFIRMED",
+  user: response.user
+});
+
+const confirmUserAccountFailed = (response) => ({
+  type: "CONFIRM_USER_ACCOUNT_FAILED",
+  errors: response.errors
+});
 
 

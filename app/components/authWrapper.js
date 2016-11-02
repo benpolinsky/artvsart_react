@@ -6,7 +6,7 @@ export default function requireAuthentication(Component){
   class AuthenticatedComponent extends React.Component{
     render(){
       return(
-       <div> 
+       <div style={{height: '100%'}}> 
         {
           this.props.user.authenticated && <Component {...this.props} />
         }

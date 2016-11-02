@@ -6,8 +6,9 @@
   "scripts": {
     "start": "webpack-dev-server",
     "test": "webpack-dev-server",
-    "deploy": "npm-run-all --serial buildForDeploy firebaseDeploy",
+    "deploy": "npm-run-all --serial buildForDeploy digitalOceanDeploy",
     "buildForDeploy": "webpack -p --config webpack.config.deploy.js --progress",
+    "digitalOceanDeploy": "scp -P 49311 -r public ben@162.243.85.56:/home/ben/apps/artvsart",
     "firebaseDeploy": "firebase deploy"
   },
   "author": "Ben Polinsky",

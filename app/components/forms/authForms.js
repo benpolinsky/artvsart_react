@@ -17,7 +17,7 @@ const AuthForms = ({user, errors, responseFacebook, signUserIn, registerUser, hi
 
 AuthForms.propTypes = {
   user: React.PropTypes.object.isRequired,
-  errors: React.PropTypes.object,
+  errors: React.PropTypes.array,
   hideAuthForm: React.PropTypes.func.isRequired,
   registerUser: React.PropTypes.func.isRequired,
   signUserIn: React.PropTypes.func.isRequired,

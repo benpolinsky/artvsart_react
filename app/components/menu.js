@@ -65,8 +65,6 @@ class Menu extends React.Component{
   }
 
   render(){
-    const userType = this.props.user.type;
-    const user_email = this.props.user.email
     return (
     <MuiThemeProvider>
       <header>
@@ -80,7 +78,7 @@ class Menu extends React.Component{
           iconElementLeft={<IconButton><MenuIcon color='black'/></IconButton>}
           iconElementRight={
           
-            userType == "GuestUser" 
+            this.props.user.type == "GuestUser" 
               ?
             <AuthNav showAuthForm={this.props.showAuthForm}/>
               : 
@@ -89,7 +87,7 @@ class Menu extends React.Component{
               wrapperStyles={menuStyles.userMenuWrapper}
               selectMenuItem={this.selectMenuItem} 
               menu={this.state.menu} 
-              user_email={user_email}
+              user_email={this.props.user.email}
             /> 
           }
         />
@@ -101,7 +99,7 @@ class Menu extends React.Component{
             <RadiumLink style={DrawerStyles.links} onClick={this.closeMenu} to="/about">About</RadiumLink>
             <RadiumLink style={DrawerStyles.links} onClick={this.closeMenu} to="/leaderboard">Leaderboard</RadiumLink>
             <RadiumLink style={DrawerStyles.links} onClick={this.closeMenu} to="/top_judges">Top Judges</RadiumLink>
-             {userType == "admin" &&
+             {this.props.user.type == "admin" &&
                 <div className='adminRadiumLinks'>
                   <RadiumLink style={DrawerStyles.links} onClick={this.closeMenu} to="/art/new"> Add Art</RadiumLink>
                   <RadiumLink style={DrawerStyles.links} onClick={this.closeMenu} to='/import_art'>Import Art</RadiumLink>
