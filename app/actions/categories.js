@@ -26,8 +26,9 @@ const categoriesResponseFailed = (response) => ({
 })
 
 export const createCategory = (category, router) => (dispatch) => {
+  console.log(category);
   dispatch(startPostCategory());
-  api.post('categories', category).then(response => {
+  api.post('categories', {category: category}).then(response => {
     if (response.errors == null) {
       dispatch(categoryResponse(response));
       router.push(`/categories/${response.category.id}`)
@@ -77,7 +78,7 @@ const requestCategoryFailed = (response) => ({
 
 export const updateCategory = (category, router) => (dispatch) => {
   dispatch(updateCategoryStart());
-  return api.put(`categories/${category.id}`, category).then(response => {
+  return api.put(`categories/${category.id}`, {category: category}).then(response => {
     if (response.errors == null) {
       dispatch(categoryResponse(response));
       router.push(`/categories/${response.category.id}`)

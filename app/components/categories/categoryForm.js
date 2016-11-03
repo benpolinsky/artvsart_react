@@ -3,10 +3,17 @@ import { Field, reduxForm } from 'redux-form';
 import {TextField} from 'redux-form-material-ui';
 import RaisedButton from 'material-ui/RaisedButton';
 import Subheader from 'material-ui/Subheader';
+import MenuItem from 'material-ui/MenuItem';
+import {SelectField} from 'redux-form-material-ui';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { CirclePicker } from 'react-color';
 import baseStyles from '../../styles/base.js';
 import formStyles from '../../styles/forms.js';
+
+const textFieldStyles = {
+  float: 'left',
+  clear: 'both'
+}
 
 const validate = (values) => {
   const errors = {};
@@ -32,7 +39,7 @@ const renderField = ({input}) => {
   
 }
   
-const Form = ({form, formTitle, submitLabel, handleSubmit, category}) => {
+const Form = ({form, formTitle, submitLabel, handleSubmit, category, categories}) => {
   return (
     <div>
       <MuiThemeProvider>
@@ -40,6 +47,11 @@ const Form = ({form, formTitle, submitLabel, handleSubmit, category}) => {
           <h1 style={baseStyles.mainTitle}>{formTitle}</h1>
           <div style={formStyles.centered.fields}>
             <Field floatingLabelText="Name" name="name" component={TextField}/><br/>
+            <Field name='parent_category' floatingLabelText="Parent Category (Optional)" component={SelectField} style={textFieldStyles}>
+              {categories.map((category, index) => {
+                 return <MenuItem key={index} value={category.name} primaryText={category.name} />
+              })}
+            </Field>
             <Field label="Color" name="color" component={renderField} /><br/>
           </div>
           <RaisedButton type='submit' primary label={submitLabel} />
@@ -50,7 +62,7 @@ const Form = ({form, formTitle, submitLabel, handleSubmit, category}) => {
 }
 
 const CategoryForm = reduxForm({
-  fields: ['name', 'color'],
+  fields: ['name', 'color', 'parent_category'],
   validate
 })(Form);
 

@@ -3,11 +3,12 @@
 // I'm not a fan of all the conditionals in the ArtFormContainer, 
 // so probably better to have multiple smaller components.
 
+
 import React from 'react'
 import {connect} from 'react-redux'
 import CategoryForm from './categoryForm.js'
 import {Router} from 'react-router';
-import {updateCategory, requestCategory} from '../../actions/categories.js'
+import {updateCategory, requestCategory, categoriesRequest} from '../../actions/categories.js'
 
 class EditCategoryFormContainer extends React.Component{
   constructor(){
@@ -17,6 +18,7 @@ class EditCategoryFormContainer extends React.Component{
 
   componentDidMount(){
     this.props.loadCategory(this.props.params.id);
+    this.props.fetchCategories()
   }
   
   handleSubmit(category){
@@ -24,7 +26,7 @@ class EditCategoryFormContainer extends React.Component{
   }
   
   render(){
-    const {category, updateCategory} = this.props;
+    const {category, updateCategory, categories} = this.props;
     
     return (<CategoryForm 
             initialValues={category}
@@ -33,6 +35,7 @@ class EditCategoryFormContainer extends React.Component{
             formTitle={`Edit ${category.name}`}
             submitLabel="Update"
             formAction={updateCategory}
+            categories={categories}
             onSubmit={this.handleSubmit}
            />)
   }
@@ -45,10 +48,14 @@ EditCategoryFormContainer.contextTypes = {
   
 
 const mapStateToProps = (store) => ({
-  category: store.categories.category
+  category: store.categories.category,
+  categories: store.categories.records
 })
 
 const mapDispatchToProps = (dispatch) => ({
+  fetchCategories(){
+    dispatch(categoriesRequest())
+  },
   loadCategory(id){
     dispatch(requestCategory(id))
   },
