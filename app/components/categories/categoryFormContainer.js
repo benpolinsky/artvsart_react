@@ -20,7 +20,8 @@ class CategoryFormContainer extends React.Component{
   
   render(){
     const {createCategory, category, categories} = this.props;
-    
+
+
     return (<CategoryForm 
             form="NewCategoryForm"
             formTitle="Create Category"

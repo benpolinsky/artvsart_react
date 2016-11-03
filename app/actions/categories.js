@@ -31,7 +31,7 @@ export const createCategory = (category, router) => (dispatch) => {
   api.post('categories', {category: category}).then(response => {
     if (response.errors == null) {
       dispatch(categoryResponse(response));
-      router.push(`/categories/${response.category.id}`)
+      router.push('/categories')
     } else {
       dispatch(categoryPostFailed(response));
     }
@@ -81,7 +81,7 @@ export const updateCategory = (category, router) => (dispatch) => {
   return api.put(`categories/${category.id}`, {category: category}).then(response => {
     if (response.errors == null) {
       dispatch(categoryResponse(response));
-      router.push(`/categories/${response.category.id}`)
+      router.push(`/categories`)
     } else {
       dispatch(updateCategoryFailed(response));
     }

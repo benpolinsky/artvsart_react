@@ -35,7 +35,7 @@ class EditCategoryFormContainer extends React.Component{
             formTitle={`Edit ${category.name}`}
             submitLabel="Update"
             formAction={updateCategory}
-            categories={categories}
+            categories={categories.filter(c => c.id != category.id)}
             onSubmit={this.handleSubmit}
            />)
   }

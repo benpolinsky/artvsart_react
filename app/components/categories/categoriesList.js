@@ -1,9 +1,14 @@
 import React from 'react'
+import Radium from 'radium'
+import {StyleRoot} from 'radium'
 import {connect} from 'react-redux'
 import {Link, Router} from 'react-router'
 import {categoriesRequest} from '../../actions/categories.js'
 import Category from './category.js'
 import baseStyles from '../../styles/base.js'
+import categoryStyles from '../../styles/categories.js'
+
+var RadiumLink = Radium(Link)
 
 class CategoriesList extends React.Component{
   componentDidMount(){
@@ -14,11 +19,13 @@ class CategoriesList extends React.Component{
     return(
       <div style={baseStyles.centeredPage}>
         <h1 style={baseStyles.mainTitle}> Categories </h1>
-        <div>
-          {this.props.categories.map(category => {
-            return <Link key={category.id} to={`/categories/${category.id}`}><Category category={category} /></Link>
-          })}
-        </div>
+        <StyleRoot>
+          <div>
+            {this.props.categories.map(category => {
+              return <RadiumLink style={categoryStyles.link} key={category.id} to={`/categories/${category.id}/edit`}><Category category={category} /></RadiumLink>
+            })}
+          </div>
+        </StyleRoot>
       </div>
     )
   }
@@ -39,4 +46,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(CategoriesList)
+export default connect(mapStateToProps, mapDispatchToProps)(Radium(CategoriesList))

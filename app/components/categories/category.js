@@ -23,7 +23,10 @@ const Category = ({category, align, mergedStyles}) => {
   
   
   return(
-   <span style={[styles, mergedStyles]}>{title}</span>
+     <span style={[styles, mergedStyles]}>
+       {title}
+       {category.parent_category && <span> &raquo; {category.parent_category}</span>}
+     </span>
   )
 }
 
