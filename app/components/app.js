@@ -2,18 +2,26 @@ import React from 'react';
 import Menu from './menu';
 import Footer from './footer.js'
 import AuthForms from './forms/authForms.js'
-import {connect} from 'react-redux';
 import {openSignUp} from '../actions/userAuth.js';
+import {dismissNotice} from '../actions/app.js';
+import Snackbar from 'material-ui/Snackbar';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import {connect} from 'react-redux';
+import Radium from 'radium'
+import {StyleRoot} from 'radium'
 import baseStyles from '../styles/base.js';
 
-const App = ({app, user, children, showAuthForm}) => {
+const App = ({app, user, children, dismiss, showAuthForm}) => {
   return (
+  <StyleRoot>
     <div style={baseStyles.mainContainer}>
       <Menu totals={app.totals} user={user} showAuthForm={showAuthForm} />
       <AuthForms />
       <main role='main'>{children}</main>
       <Footer />
+      <MuiThemeProvider><Snackbar open={app.notice.length > 0} onRequestClose={dismiss} message={app.notice}/></MuiThemeProvider>
     </div>
+  </StyleRoot>
   )
 }
 
@@ -25,6 +33,9 @@ const mapStateToProps = (store) => ({
 const mapDispatchToProps = (dispatch) => ({
   showAuthForm(formType){
     dispatch(openSignUp(formType));
+  },
+  dismiss(){
+    dispatch(dismissNotice())
   }
 })
 

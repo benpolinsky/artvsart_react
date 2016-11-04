@@ -7,7 +7,8 @@ const initialAppState = {
   modalOpen: false,
   error: null,
   apiError: false,
-  loading: true
+  loading: true,
+  notice: ''
 }
 
 const AppReducer = (state=initialAppState, action) => {
@@ -29,6 +30,11 @@ const AppReducer = (state=initialAppState, action) => {
       ...state,
       modalOpen: false
     }
+  case "OPEN_APP_LOADER":
+    return {
+      ...state,
+      loading: true
+    }  
   case "CLOSE_APP_LOADER":
     return {
       ...state,
@@ -36,8 +42,12 @@ const AppReducer = (state=initialAppState, action) => {
     }
   case "API_DOWN":
     return {...state, apiError: true, error: action.error, loading: false}
+
+  case "RECEIVE_RESET_PASSWORD_INSTRUCTIONS": 
+    return {...state, notice: action.notice}
+  case "DISMISS_NOTICE": 
+    return {...state, notice: ""}
   }
-  
   return state
 }
 

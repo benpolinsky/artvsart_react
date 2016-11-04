@@ -20,6 +20,7 @@
     "firebase-tools": "^3.0.8",
     "font-awesome": "^4.6.3",
     "global": "^4.3.1",
+    "lodash": "^4.16.6",
     "material-ui": "^0.16.0",
     "npm-run-all": "^3.1.1",
     "radium": "^0.18.1",
@@ -36,7 +37,7 @@
     "react-share": "^1.9.3",
     "react-tap-event-plugin": "^1.0.0",
     "redux": "^3.6.0",
-    "redux-form": "^6.1.0",
+    "redux-form": "6.1.1",
     "redux-form-material-ui": "^4.1.0",
     "redux-thunk": "^2.1.0",
     "whatwg-fetch": "^1.0.0"

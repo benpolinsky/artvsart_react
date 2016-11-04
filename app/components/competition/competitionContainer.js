@@ -114,13 +114,16 @@ class CompetitionContainer extends React.Component{
   }
   
   modalKeyFunction(event){
-    if (this.props.app.modalOpen || event.which != 13) {
+    if (event.which != 13) {
+      console.log('returning false')
       return false
     } 
     
     if (this.props.competition.errors) {
+            console.log('errs')
       this.props.handleCompetitionModalState('')
     } else {
+            console.log('should setu')
       this.setupCompetition()
     }
   }

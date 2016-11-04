@@ -13,6 +13,20 @@ const baseStyles = {
     fontWeight: '100',
     padding: "20px 0"
   },
+  traditionalLink: {
+    fontSize: 12,
+    color: 'blue',
+    textAlign: 'center',
+    margin: '10px 0 0 0',
+    display: 'inline-block',
+    cursor: 'pointer',
+  },
+  inlineSeparator: {
+    fontSize: 12,
+    color: 'black',
+    display: 'inline-block',
+    margin: '0 4px'
+  },
   centeredPage: {
     display: "flex",
     alignItems: "center",

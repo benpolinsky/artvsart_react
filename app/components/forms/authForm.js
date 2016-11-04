@@ -1,6 +1,7 @@
 // This needs to be combined iwth signInForm, 
 // they are the same except for the action they dispatch on submit
 import React from 'react'
+import {Link} from 'react-router'
 import Radium from 'radium'
 import {StyleRoot} from 'radium'
 import { Field, reduxForm } from 'redux-form';
@@ -9,7 +10,7 @@ import MainButton from '../elements/mainButton.js';
 import FacebookButton from '../elements/facebookButton.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Styles from '../../styles/forms.js'
-
+import BaseStyles from '../../styles/base.js' 
 
 
 
@@ -64,6 +65,7 @@ export class AuthForm extends React.Component {
         </form>
       
         <FacebookButton label={`${this.props.formTitle} With Facebook`}/>
+        <Link style={BaseStyles.traditionalLink} onTouchTap={() => this.props.showAuthForm('forgotPassword')}>Forgot Password?</Link>
       </div>
       </StyleRoot>
     )

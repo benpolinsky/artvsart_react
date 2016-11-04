@@ -15,6 +15,8 @@ import AboutPage from './components/pages/aboutPage.js'
 import ProfilePage from './components/users/profilePage.js'
 import ConfirmAccount from './components/users/confirmAccount.js'
 import PendingConfirmation from './components/users/pendingConfirmation.js'
+import ForgotPasswordForm from './components/forms/forgotPasswordForm.js'
+import NewPasswordForm from './components/users/newPasswordForm.js'
 
 import CompetitionContainer from './components/competition/competitionContainer.js'
 import CompetitionResultContainer from './components/competition/competitionResultContainer.js'
@@ -65,8 +67,12 @@ ReactDOM.render(
       <Route path='categories/:id' component={ShowCategory} />   
 
       <Route path='about' component={AboutPage} />
+
       <Route path='leaderboard' component={LeaderBoard} />
+
       <Route path='profile' component={ProfilePage} />
+      <Route path='user/forgot_password' component={ForgotPasswordForm} />
+      <Route path='user/new_password/:token' component={NewPasswordForm} />
       <Route path='user/confirm_account/:token' component={ConfirmAccount} />
       <Route path='user/pending_confirmation' component={PendingConfirmation} />
       <Route path='top_judges' component={UserRankings} />

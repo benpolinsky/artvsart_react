@@ -1,14 +1,16 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import AuthForm from './authForm.js'
-import {closeSignUp, registerUser, signUserIn, loginToFacebook} from '../../actions/userAuth.js';
+import ForgotPasswordForm from './forgotPasswordForm.js'
+import {closeSignUp, registerUser, signUserIn, loginToFacebook, openSignUp, forgotPassword} from '../../actions/userAuth.js';
 import MyOverlay from '../myOverlay.js'
 
-const AuthForms = ({user, errors, responseFacebook, signUserIn, registerUser, hideAuthForm}) => {
+const AuthForms = ({user, errors, responseFacebook, signUserIn, registerUser, hideAuthForm, showAuthForm, requestPasswordReset}) => {
   return(
     <div>
-      <AuthForm errors={errors} displayForm={user.openForm} formType="register" form="RegisterForm" formTitle="Register" responseFacebook={responseFacebook} formAction={registerUser} />
-      <AuthForm errors={errors} displayForm={user.openForm} formType="signIn" form="SignInForm" formTitle="Sign In" responseFacebook={responseFacebook} formAction={signUserIn} />
+      <AuthForm showAuthForm={showAuthForm} errors={errors} displayForm={user.openForm} formType="register" form="RegisterForm" formTitle="Register" responseFacebook={responseFacebook} formAction={registerUser} />
+      <AuthForm showAuthForm={showAuthForm} errors={errors} displayForm={user.openForm} formType="signIn" form="SignInForm" formTitle="Sign In" responseFacebook={responseFacebook} formAction={signUserIn} />
+      <ForgotPasswordForm showAuthForm={showAuthForm} displayForm={user.openForm} form="forgotPasswordForm" formType="forgotPassword" formAction={requestPasswordReset}/>
       <MyOverlay close={hideAuthForm} show={user.openForm} /> 
     </div>
   )
@@ -41,6 +43,12 @@ const mapDispatchToProps = (dispatch) => ({
   },
   responseFacebook(response){
     dispatch(loginToFacebook(response));
+  },
+  showAuthForm(formType){
+    dispatch(openSignUp(formType))
+  },
+  requestPasswordReset(data){
+    dispatch(forgotPassword(data))
   }
 })
 

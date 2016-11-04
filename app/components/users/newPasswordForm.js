@@ -27,7 +27,7 @@ const validate = (values) => {
   return errors
 }
 
-export class PasswordForm extends React.Component {
+export class NewPasswordForm extends React.Component {
   constructor(){
     super();
     this.submitForm = this.submitForm.bind(this);
@@ -39,6 +39,7 @@ export class PasswordForm extends React.Component {
      
   render(){
 
+    const current_password_errors = this.props.user.errors ? this.props.user.errors.current_password : ''
     const password_errors = this.props.user.errors ? this.props.user.errors.password : ''
     const password_confirmation_errors = this.props.user.errors ? this.props.user.errors.password_confirmation : ''
     
@@ -49,14 +50,6 @@ export class PasswordForm extends React.Component {
             <h2>Change Password</h2>
             <MuiThemeProvider>
               <div style={Styles.centered.fields}>
-                <Field 
-                  name="current_password" 
-                  type="password" 
-                  errorText={current_password_errors} 
-                  floatingLabelText="Current Password" 
-                  component={TextField} 
-                /> 
-                <br/>
                 <Field 
                   name="password" 
                   type="password" 
@@ -84,19 +77,20 @@ export class PasswordForm extends React.Component {
   }
 }
 
-PasswordForm.propTypes = {
+NewPasswordForm.propTypes = {
   formAction: React.PropTypes.func.isRequired,
   errors: React.PropTypes.object,
   handleSubmit: React.PropTypes.func.isRequired
 }
 
-PasswordForm.contextTypes = {
+NewPasswordForm.contextTypes = {
   router: React.PropTypes.object
 }
 
-PasswordForm = reduxForm({
+NewPasswordForm = reduxForm({
   form: "passwordForm",
-  fields: ['current_password', 'password', 'password_confirmation'],
+  fields: ['password', 'password_confirmation'],
   validate
-})(PasswordForm)
-export default Radium(PasswordForm)
+})(NewPasswordForm)
+
+export default Radium(NewPasswordForm)

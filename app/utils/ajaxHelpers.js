@@ -50,14 +50,14 @@ export const destroy = (url) => {
 // doesn't belong in an action
 // it could be abstracted a bit more...
 export const searchSource = (data) => {
-  return fetch(`${domain}/api/v1/search_source?${to_params(data)}`, {
+  return fetch(`${domain}/api/v1/search_source?${toParams(data)}`, {
     credentials: 'include',
     method: "GET",
     headers: {...headers, ...tokenObject()},
   }).then(response => response.json());
 }
 
-function to_params(data) {
+export const toParams = (data) => {
   return Object.keys(data).map(function(key) {
     return key + '=' + data[key];
   }).join('&');

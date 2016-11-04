@@ -23,6 +23,7 @@ const userReducer = (state=initialUserState, action) => {
   case "START_UPDATE_EMAIL":
   case "START_CONFIRM_USER_ACCOUNT":
   case "START_RECEIVE_USER_INFO":
+  case "START_RESET_PASSWORD":
     return {
       ...state,
       user: {
@@ -70,7 +71,8 @@ const userReducer = (state=initialUserState, action) => {
         type: "GuestUser",
         token: "",
         gravatar_hash: "",
-        authenticated: false
+        authenticated: false,
+        fetching: true
       }
     }
     
@@ -82,7 +84,8 @@ const userReducer = (state=initialUserState, action) => {
         email: action.user.email,
         type: action.user.type,
         token: action.user.auth_token,
-        authenticated: true
+        authenticated: true,
+        fetching: false
       }
     }
   case "UPDATE_USER_FAILED":
@@ -90,7 +93,8 @@ const userReducer = (state=initialUserState, action) => {
       ...state,
       user: {
         ...state.user,
-        errors: action.errors
+        errors: action.errors,
+        fetching: false
       }
     }  
   case 'SIGN_IN_USER_FAILED':
@@ -101,7 +105,8 @@ const userReducer = (state=initialUserState, action) => {
         ...state,
         errors: {
           email: "Invalid Email or Password!"
-        }
+        },
+        fetching: false
       }
     }
     for (var key of Object.keys(action.errors)) {
@@ -109,7 +114,8 @@ const userReducer = (state=initialUserState, action) => {
     }
     return {
       ...state,
-      errors: errors
+      errors: errors,
+      fetching: false
     }
   case 'REGISTER_USER_FAILED':
     var errors = [];
@@ -120,7 +126,8 @@ const userReducer = (state=initialUserState, action) => {
       ...state,
       errors: {
         email: errors.join(", ")
-      }
+      },
+      fetching: false
     }
   case 'CONFIRM_USER_ACCOUNT_FAILED':
     var errors = [];
@@ -129,13 +136,17 @@ const userReducer = (state=initialUserState, action) => {
     }
     return {
       ...state,
-      errors: errors
+      errors: errors,
+      fetching: false
     }
   case "OPEN_SIGN_UP":
     return {...state, user: {...state.user, openForm: action.formType}}
     
   case "CLOSE_SIGN_UP":
     return {...state, user: {...state.user, openForm: ''}}
+
+  case "RECEIVE_RESET_PASSWORD_INSTRUCTIONS": 
+    return {...state, user: {...state.user, fetching: false, openForm: ''}}
   }
   return state
 }

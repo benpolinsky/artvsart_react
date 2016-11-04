@@ -8,4 +8,12 @@ export const closeModal = () => ({
 
 export const closeAppLoader = () => ({
   type: "CLOSE_APP_LOADER"
+});
+
+export const openAppLoader = () => ({
+  type: "OPEN_APP_LOADER"
+});
+
+export const dismissNotice = () => ({
+  type: "DISMISS_NOTICE"
 })

@@ -1,10 +1,11 @@
 import * as api from '../utils/ajaxHelpers.js'
 import * as storage from '../utils/localStorage.js'
 import { SubmissionError } from 'redux-form'
-import {openModal, closeModal, closeAppLoader} from './app.js'
+import {openModal, closeModal, closeAppLoader, openAppLoader} from './app.js'
 
 export const loginToFacebook = (response) => (dispatch) => {
   dispatch(facebookAuthRequest(response));
+  dispatch(openAppLoader())
   api.get('users/auth/facebook/callback').then(response => {
     if (response.errors == null) {
       dispatch(facebookAuthSuccess(response));
@@ -15,6 +16,7 @@ export const loginToFacebook = (response) => (dispatch) => {
       dispatch(facebookAuthFailed());
       dispatch(registerUserFailed(response.errors))
     }
+    dispatch(closeAppLoader())
   })
 }
 
@@ -239,4 +241,31 @@ const confirmUserAccountFailed = (response) => ({
   errors: response.errors
 });
 
+
+
+export const forgotPassword = (data) => (dispatch) => {
+  dispatch(startResetPassword());
+  const params = api.toParams(data);
+  return api.get(`users/password/new?${params}`).then(response => {
+    if (response.errors == null) {
+      dispatch(receiveResetPassword(response));      
+    } else {
+      dispatch(receiveResetPasswordError(response.errors))
+    }
+  });
+}
+
+const startResetPassword = () => ({
+  type: "START_RESET_PASSWORD"
+});
+
+const receiveResetPassword = (response) => ({
+  type: "RECEIVE_RESET_PASSWORD_INSTRUCTIONS",
+  notice: response.notice
+});
+
+const receiveResetPasswordError = (errors) => ({
+  type: "RECEIVE_RESET_PASSWORD_ERROR",
+  errors: errors
+});
 
