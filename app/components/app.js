@@ -13,7 +13,7 @@ import baseStyles from '../styles/base.js';
 
 const App = ({app, user, children, dismiss, showAuthForm}) => {
   return (
-  <StyleRoot>
+  <StyleRoot style={{height: '100%'}}>
     <div style={baseStyles.mainContainer}>
       <Menu totals={app.totals} user={user} showAuthForm={showAuthForm} />
       <AuthForms />
