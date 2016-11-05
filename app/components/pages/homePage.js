@@ -3,6 +3,19 @@ import Radium from 'radium';
 import baseStyles from '../../styles/base.js';
 import CompetitionContainer from '../competition/competitionContainer.js';
 
+const artStyles = {
+  imageContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '100%',
+    height: 200,
+    overflow: 'hidden',
+    position: 'relative'
+  }
+}
+
+
 class HomePage extends React.Component{
   render(){
     return(
@@ -13,7 +26,7 @@ class HomePage extends React.Component{
           <p style={[baseStyles.homeParagraph, {fontWeight: 700}]}>Like this one: </p>
           <br/>
         </div>
-        <CompetitionContainer styles={{maxWidth: 600}} example={true} />
+        <CompetitionContainer artStyles={artStyles} styles={{maxWidth: 600}} example={true} />
       </div>
     )
   }

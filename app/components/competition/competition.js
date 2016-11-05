@@ -12,7 +12,8 @@ import CircularProgress from 'material-ui/CircularProgress'
 import loaderStyles from '../../styles/loader.js'
 import CompetitionStyles from '../../styles/competition.js'
 
-const Competition = ({competition, displayInfo, noVoting}) => {  
+const Competition = ({competition, displayInfo, noVoting, artStyle}) => {  
+  console.log({...CompetitionStyles.art, ...artStyle});
   const circularLoader = <MuiThemeProvider><CircularProgress /></MuiThemeProvider>
   return (
       <div>
@@ -20,8 +21,8 @@ const Competition = ({competition, displayInfo, noVoting}) => {
 
           <StyleRoot>
             <div style={CompetitionStyles.artPair}>
-              <Art styles={CompetitionStyles.art} selectInfo={displayInfo} key={competition.art.id} art={competition.art} noVoting={noVoting} />
-              <Art styles={CompetitionStyles.art} selectInfo={displayInfo} key={competition.challenger.id} art={competition.challenger} noVoting={noVoting} />
+              <Art styles={{...CompetitionStyles.art, ...artStyle}} selectInfo={displayInfo} key={competition.art.id} art={competition.art} noVoting={noVoting} />
+              <Art styles={{...CompetitionStyles.art, ...artStyle}} selectInfo={displayInfo} key={competition.challenger.id} art={competition.challenger} noVoting={noVoting} />
             </div>
           </StyleRoot>        
     

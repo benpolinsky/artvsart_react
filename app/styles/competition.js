@@ -18,7 +18,8 @@ const compeititonStyles = {
       width: 'auto',
       flex: 1,
       width: '44%',
-      height: 640,
+      minWidth: 280,
+      height: 700,
       padding: "0 0px 10px 0px"
     },
     category: {
