@@ -39,14 +39,19 @@ const baseStyles = {
     paddingBottom: 150,
     position: "relative"
   },
+  subheader: {
+    fontSize: 20,
+    marginBottom: 10
+  },
   paddedContainer: (paddingSize=10) => ({
     ...baseContainer,
     padding: paddingSize,
-    lineHeight: 1.3,
-    item: {
-      marginBottom: 10
-    }
-  })
+    lineHeight: 1.3
+  }),
+  paragraph: {
+    marginBottom: 10,
+    fontSize: 14
+  }
 }
 
 export default baseStyles

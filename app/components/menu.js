@@ -96,9 +96,9 @@ class Menu extends React.Component{
             <h1 style={DrawerStyles.heading}>ART VS ART</h1>
            <StyleRoot>
             <RadiumLink style={DrawerStyles.links} onClick={this.closeMenu} to="/competition">Competition</RadiumLink>
-            <RadiumLink style={DrawerStyles.links} onClick={this.closeMenu} to="/about">About</RadiumLink>
             <RadiumLink style={DrawerStyles.links} onClick={this.closeMenu} to="/leaderboard">Leaderboard</RadiumLink>
             <RadiumLink style={DrawerStyles.links} onClick={this.closeMenu} to="/top_judges">Top Judges</RadiumLink>
+            <RadiumLink style={DrawerStyles.links} onClick={this.closeMenu} to="/about">About</RadiumLink>
              {this.props.user.type == "admin" &&
                 <div className='adminRadiumLinks'>
                   <RadiumLink style={DrawerStyles.links} onClick={this.closeMenu} to="/art/new"> Add Art</RadiumLink>
