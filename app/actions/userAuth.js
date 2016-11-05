@@ -34,6 +34,12 @@ const facebookAuthSuccess = (response) => ({
   response: response
 })
 
+export const loginToGithub = (response) => (dispatch) => {
+  api.get('users/auth/github/callback').then(response => {
+    console.log(response)
+  })
+}
+
 export const signUserIn = (user, router) => (dispatch) => {
   dispatch(startSignUserIn(user));
   return api.post('users/sign_in', user).then(response => {

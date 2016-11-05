@@ -2,10 +2,11 @@ import React from 'react'
 import {connect} from 'react-redux'
 import AuthForm from './authForm.js'
 import ForgotPasswordForm from './forgotPasswordForm.js'
-import {closeSignUp, registerUser, signUserIn, loginToFacebook, openSignUp, forgotPassword} from '../../actions/userAuth.js';
+import {closeSignUp, registerUser, signUserIn, loginToFacebook, openSignUp, forgotPassword, loginToGithub} from '../../actions/userAuth.js';
 import MyOverlay from '../myOverlay.js'
+import {PopupCenter} from '../../utils/users.js'
 
-const AuthForms = ({user, errors, responseFacebook, signUserIn, registerUser, hideAuthForm, showAuthForm, requestPasswordReset}) => {
+const AuthForms = ({user, errors, responseFacebook, signUserIn, registerUser, hideAuthForm, showAuthForm, requestPasswordReset, openGithubWindow}) => {
   return(
     <div>
       <AuthForm showAuthForm={showAuthForm} errors={errors} displayForm={user.openForm} formType="register" form="RegisterForm" formTitle="Register" responseFacebook={responseFacebook} formAction={registerUser} />
