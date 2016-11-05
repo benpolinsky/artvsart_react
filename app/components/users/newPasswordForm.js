@@ -2,19 +2,21 @@
 // they are the same except for the action they dispatch on submit
 import React from 'react'
 import Radium from 'radium'
-import {StyleRoot} from 'radium'
+import {connect} from 'react-redux'
+import {StyleRoot} from 'radium';
 import { Field, reduxForm } from 'redux-form';
 import {TextField} from 'redux-form-material-ui';
 import MainButton from '../elements/mainButton.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Styles from '../../styles/forms.js'
+import Styles from '../../styles/forms.js';
+import {submitNewPassword} from '../../actions/userAuth.js';
 
 
 
 
 const validate = (values) => {
   const errors = {};
-  const fieldsToValidate = ['current_password', 'password', 'password_confirmation'];
+  const fieldsToValidate = ['password', 'password_confirmation'];
   fieldsToValidate.map((field) => {
     if (!values[field]) {
       errors[field] = "Required"
@@ -24,6 +26,9 @@ const validate = (values) => {
       errors[field] = `Woah, please keep your ${field} under 128 characters`
     }
   });
+  if (values['password'] !== values['password_confirmation']) {
+    errors['password_confirmation'] = "Password and Confirmation Must Match!"
+  }
   return errors
 }
 
@@ -34,15 +39,16 @@ export class NewPasswordForm extends React.Component {
   }
 
   submitForm(data){
-    this.props.formAction(data);      
+    const router = this.context.router;
+    this.props.formAction({...data, reset_password_token: this.props.params.token}, router);      
   }
      
   render(){
 
-    const current_password_errors = this.props.user.errors ? this.props.user.errors.current_password : ''
-    const password_errors = this.props.user.errors ? this.props.user.errors.password : ''
+    const password_errors = this.props.user.errors ? this.props.user.errors.password : '';
     const password_confirmation_errors = this.props.user.errors ? this.props.user.errors.password_confirmation : ''
-    
+    const token_error = this.props.user.errors ? this.props.user.errors.reset_password_token : ''
+
     return (
       <StyleRoot>
         <div>
@@ -50,10 +56,11 @@ export class NewPasswordForm extends React.Component {
             <h2>Change Password</h2>
             <MuiThemeProvider>
               <div style={Styles.centered.fields}>
+                {token_error && <p style={Styles.formError}>Sorry, this password token {token_error[0]}</p>}
                 <Field 
                   name="password" 
                   type="password" 
-                  errorText={current_password_errors} 
+                  errorText={password_errors} 
                   floatingLabelText="New Password" 
                   component={TextField} 
                 />     
@@ -61,7 +68,7 @@ export class NewPasswordForm extends React.Component {
                 <Field 
                   name="password_confirmation" 
                   type="password" 
-                  errorText={current_password_errors} 
+                  errorText={password_confirmation_errors} 
                   floatingLabelText="New Password Confirmation"
                   component={TextField} 
                 />     
@@ -76,6 +83,16 @@ export class NewPasswordForm extends React.Component {
     )
   }
 }
+
+const mapStateToProps = (state) => ({
+  user: state.userState.user
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  formAction(data, router){
+    dispatch(submitNewPassword(data, router));
+  }
+});
 
 NewPasswordForm.propTypes = {
   formAction: React.PropTypes.func.isRequired,
@@ -93,4 +110,4 @@ NewPasswordForm = reduxForm({
   validate
 })(NewPasswordForm)
 
-export default Radium(NewPasswordForm)
+export default connect(mapStateToProps, mapDispatchToProps)(Radium(NewPasswordForm))

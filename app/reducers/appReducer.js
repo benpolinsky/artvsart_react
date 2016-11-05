@@ -42,8 +42,9 @@ const AppReducer = (state=initialAppState, action) => {
     }
   case "API_DOWN":
     return {...state, apiError: true, error: action.error, loading: false}
-
   case "RECEIVE_RESET_PASSWORD_INSTRUCTIONS": 
+    return {...state, notice: action.notice}
+  case "DISPLAY_NOTICE":
     return {...state, notice: action.notice}
   case "DISMISS_NOTICE": 
     return {...state, notice: ""}
