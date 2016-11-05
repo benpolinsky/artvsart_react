@@ -10,9 +10,7 @@ export const searchSource = (source, query) => (dispatch) => {
     } else {
       dispatch(displayResultsErrors(response.error));
     }
-  }).catch(err => {
-    dispatch(displayResultsErrors("No results, or a problem with Artsy..."))
-  });
+  })
 }
 
 const searchSourceRequest = () => ({

@@ -80,7 +80,7 @@ class ImportArtFormContainer extends React.Component{
   render(){
     
     const circularLoader = <MuiThemeProvider><CircularProgress /></MuiThemeProvider>;
-    const sources = ['Discogs', 'Artsy', 'Gracenote', 'Philart', 'IMDB', 'HarvardArt'];
+    const sources = ['Discogs', 'Artsy', 'GoogleBooks', 'Philart', 'IMDB', 'HarvardArt'];
     
     return (
       <div id="searchArtContainer">

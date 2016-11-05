@@ -38,7 +38,7 @@ export class PasswordForm extends React.Component {
   }
      
   render(){
-
+    const current_password_errors = this.props.user.errors ? this.props.user.errors.current_password : ''
     const password_errors = this.props.user.errors ? this.props.user.errors.password : ''
     const password_confirmation_errors = this.props.user.errors ? this.props.user.errors.password_confirmation : ''
     
