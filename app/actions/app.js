@@ -14,6 +14,11 @@ export const openAppLoader = () => ({
   type: "OPEN_APP_LOADER"
 });
 
+export const displayNotice = (notice) => ({
+  type: "DISPLAY_NOTICE",
+  notice: notice
+});
+
 export const dismissNotice = () => ({
   type: "DISMISS_NOTICE"
-})
+});

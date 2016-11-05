@@ -1,7 +1,7 @@
 import * as api from '../utils/ajaxHelpers.js'
 import * as storage from '../utils/localStorage.js'
 import { SubmissionError } from 'redux-form'
-import {openModal, closeModal, closeAppLoader, openAppLoader} from './app.js'
+import {openModal, closeModal, closeAppLoader, openAppLoader, displayNotice} from './app.js'
 
 export const loginToFacebook = (response) => (dispatch) => {
   dispatch(facebookAuthRequest(response));
@@ -268,4 +268,33 @@ const receiveResetPasswordError = (errors) => ({
   type: "RECEIVE_RESET_PASSWORD_ERROR",
   errors: errors
 });
+
+
+export const submitNewPassword = (data, router) => (dispatch) => {
+  dispatch(startSubmitNewPassword());
+  return api.put('users/password', {user: data}).then(response => {
+    if (response.errors == null) {
+      dispatch(submitNewPasswordAccepted(response.user));
+      dispatch(storeUserCredentials(response.user));
+      router.push(`/competition`);
+      dispatch(displayNotice(response.notice));
+    } else {
+      dispatch(submitNewPasswordFailed(response.errors))
+    }
+  })
+}
+
+const startSubmitNewPassword = () => ({
+  type: "START_SUBMIT_NEW_PASSWORD"
+});
+
+const submitNewPasswordAccepted = (response) => ({
+  type: "SUBMIT_NEW_PASSWORD_ACCEPTED",
+  user: response
+});
+
+const submitNewPasswordFailed = (response) => ({
+  type: "SUBMIT_NEW_PASSWORD_FAILED",
+  errors: response
+})
 

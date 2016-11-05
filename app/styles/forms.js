@@ -29,7 +29,6 @@ const forms = {
       image: {
         maxHeight: 150
       }
-      
     },
     
     heading: {
@@ -67,9 +66,9 @@ const forms = {
       width: 'auto',
       textAlign: 'left'
     }
-    
-    
-    
+  },
+  formError: {
+    color: 'red'
   }
 
 }

@@ -24,6 +24,7 @@ const userReducer = (state=initialUserState, action) => {
   case "START_CONFIRM_USER_ACCOUNT":
   case "START_RECEIVE_USER_INFO":
   case "START_RESET_PASSWORD":
+  case "START_SUBMIT_NEW_PASSWORD":
     return {
       ...state,
       user: {
@@ -35,6 +36,7 @@ const userReducer = (state=initialUserState, action) => {
   case "REGISTER_USER_SUCCESSFUL":
   case "RECEIVE_UPDATED_USER":
   case "SIGN_IN_USER_SUCCESSFUL":
+  case "SUBMIT_NEW_PASSWORD_ACCEPTED":
     return {
       ...state,
       user: {
@@ -88,6 +90,7 @@ const userReducer = (state=initialUserState, action) => {
         fetching: false
       }
     }
+  case "SUBMIT_NEW_PASSWORD_FAILED":
   case "UPDATE_USER_FAILED":
     return {
       ...state,
