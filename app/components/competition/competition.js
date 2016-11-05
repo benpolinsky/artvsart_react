@@ -24,7 +24,7 @@ const Competition = ({competition, displayInfo, noVoting}) => {
               <Art styles={CompetitionStyles.art} selectInfo={displayInfo} key={competition.challenger.id} art={competition.challenger} noVoting={noVoting} />
             </div>
           </StyleRoot>        
-
+    
           <div style={CompetitionStyles.shareButtons}>
             <p style={CompetitionStyles.shareButtons.p}>Share It!</p>
             <ShareButtons className="competition-share" shareTitle={competition.shareTitle}/>

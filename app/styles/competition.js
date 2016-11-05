@@ -59,6 +59,7 @@ const compeititonStyles = {
       cursor: 'pointer',
       [mediaQueries.browser]: {
         maxHeight: '100%',
+        maxWidth: '100%',
         width: 'auto',
         height: 'auto',
         margin: '0'

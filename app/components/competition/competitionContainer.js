@@ -42,7 +42,8 @@ class CompetitionContainer extends React.Component{
     this.setupKeyShortcuts = this.setupKeyShortcuts.bind(this);
     this.keyFunction = this.keyFunction.bind(this);
     this.modalKeyFunction = this.modalKeyFunction.bind(this);
-    this.setupCompetition = this.setupCompetition.bind(this)
+    this.setupCompetition = this.setupCompetition.bind(this);
+    this.nextCompetition = this.nextCompetition.bind(this);
   }
   
   componentWillMount(){
@@ -129,10 +130,18 @@ class CompetitionContainer extends React.Component{
   }
   
   setupCompetition(){
-    if (this.props.competition.id == 0 || this.props.competition.isResult == true ) {
+    if (this.props.competition.id == 0 || this.props.competition.isResult == true ) {      
+      
       this.props.getCompetition(); 
     }
 
+  }
+  
+  nextCompetition(){
+    if (this.props.location == null ) {
+      this.context.router.push("/competition")
+    }
+    this.setupCompetition()
   }
   
   render(){
@@ -140,13 +149,13 @@ class CompetitionContainer extends React.Component{
 
     return (
     
-      <div style={baseStyles.container}>
+      <div style={[baseStyles.container, this.props.styles]}>
         <Competition displayInfo={this.displayInfo} competition={this.props.competition}/>
     
         <MuiThemeProvider>
           <div>
             <Dialog open={this.props.competition.winnerSelected} modal>
-              <WinnerModalContents competition={this.props.competition} nextCompetition={this.setupCompetition} />
+              <WinnerModalContents competition={this.props.competition} nextCompetition={this.nextCompetition} />
             </Dialog>
 
             <Dialog 

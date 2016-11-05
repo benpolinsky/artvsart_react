@@ -51,6 +51,14 @@ const baseStyles = {
   paragraph: {
     marginBottom: 10,
     fontSize: 14
+  },
+  homeParagraph: {
+    fontSize: 18,
+    margin: "10px 0",
+    maxWidth: 800,
+    textAlign: 'center',
+    lineHeight: 1.3
+    
   }
 }
 
