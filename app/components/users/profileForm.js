@@ -14,13 +14,11 @@ import Styles from '../../styles/forms.js'
 
 const validate = (values) => {
   const errors = {};
-  const fieldsToValidate = ['email', 'password'];
+  const fieldsToValidate = ['email', 'username'];
   fieldsToValidate.map((field) => {
-    if (!values[field]) {
-      errors[field] = "Required"
-    } else if (values[field].length < 6) {
+    if (values[field] && values[field].length < 6) {
       errors[field] = "Must be 6 characters or more"
-    } else if (values[field].length >= 128) {
+    } else if (values[field] && values[field].length >= 128) {
       errors[field] = `Woah, please keep your ${field} under 128 characters`
     }
   });
@@ -39,15 +37,18 @@ export class ProfileForm extends React.Component {
   }
      
   render(){
-    const email_errors = this.props.user.errors ? this.props.user.errors.email : ''
+    const email_errors = this.props.user.errors ? this.props.user.errors.email : '';
+    const username_errors = this.props.user.errors ? this.props.user.errors.username : '';
+    
     return (
       <StyleRoot>
         <div>
           <form onSubmit={this.props.handleSubmit(this.submitForm)} style={Styles.centered}>
-            <h2>Update Email Address: </h2>
+            <h2>Update Profile: </h2>
             <MuiThemeProvider>
               <div style={Styles.centered.fields}>
                 <Field name="email" errorText={email_errors} floatingLabelText="E-Mail" component={TextField} /> <br/>
+                <Field name="username" errorText={username_errors} floatingLabelText="Username" component={TextField} /> <br/>
                 <MainButton label="Update" action={this.props.handleSubmit(this.submitForm)} />
               </div>
             </MuiThemeProvider>

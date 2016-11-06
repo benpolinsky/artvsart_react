@@ -13,6 +13,12 @@ class UserRankings extends React.Component{
   }
   
   render(){
+    
+    const userRankAndId = (index, user) => {
+      const greeting = user.username ? user.username : "Unknown";
+      return `${index+1}: ${greeting}`;
+    }
+    
     return (
       <MuiThemeProvider>
         <div style={baseStyles.container}>
@@ -23,7 +29,7 @@ class UserRankings extends React.Component{
                 <div key={index}>
                   <ListItem 
                     innerDivStyle={{paddingLeft: 16}} 
-                    primaryText={`${index+1}: ${user.email}`} 
+                    primaryText={userRankAndId(index,user)} 
                     leftIcon={<UserGravatar hash={user.gravatar_hash} />}
                   />
                 </div>

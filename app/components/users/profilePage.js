@@ -49,7 +49,7 @@ class ProfilePage extends React.Component{
               </Tab>
     
               <Tab style={{color: 'black'}} label="Account Info">
-                <ProfileForm formAction={this.props.updateProfileForm} user={this.props.user} />
+                <ProfileForm initialValues={this.props.user} formAction={this.props.updateProfileForm} user={this.props.user} />
                 <PasswordForm formAction={this.props.updatePassword} user={this.props.user}/>
                 <SocialMediaIdentities user={this.props.user} />
               </Tab>
