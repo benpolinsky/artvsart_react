@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {fetchUserCompetitions} from '../../actions/userCompetitions.js'
-import {updateUserEmail, updateUserPassword} from '../../actions/userProfile.js'
+import {updateUserEmail, updateUserPassword, deleteCurrentUser} from '../../actions/userProfile.js'
 
 import ProfileForm from './profileForm.js'
 import PasswordForm from './passwordForm.js'
@@ -11,7 +11,9 @@ import baseStyles from '../../styles/base.js';
 
 import {userGreeting} from  '../../utils/users.js'
 
+import Dialog from 'material-ui/Dialog';
 import Divider from 'material-ui/Divider';
+import FlatButton from 'material-ui/FlatButton';
 import {List, ListItem} from 'material-ui/List';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -19,23 +21,48 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 
 class ProfilePage extends React.Component{  
+  constructor(){
+    super();
+    this.triggerDeleteModal = this.triggerDeleteModal.bind(this);
+  }
+  
+  componentWillMount(){
+    this.state = {
+      showModal: false
+    }
+  }
   
   componentDidMount(){
+    // this has to move to a HOC wrapper component
     if (this.props.user.type == "GuestUser" || this.props.user.type == "BotUser") {
       const router = this.context.router;
       router.push('/competition')
     }
     this.props.fetchCompetitions();
   }
+  
+  triggerDeleteModal(e, show=true){
+    this.setState({
+      showModal: show
+    })
+  }
 
   render(){
     const profileStyles = {
       h1: {
         fontSize: 20,
-        marginBottom: 10,
-        
+        marginBottom: 10,     
       }
     }
+    
+    const deleteUserActions = [
+      <FlatButton label="Yes, really delete me." 
+        onTouchTap={this.props.deleteUser.bind(this, this.context.router)} />,
+      <FlatButton label="No, No, No, No! I want to livvveee." 
+        onTouchTap={this.triggerDeleteModal.bind(this, 'e', false)}
+        />
+    ]
+    
     return(
         <MuiThemeProvider>
           <div className={baseStyles.container}>
@@ -51,11 +78,14 @@ class ProfilePage extends React.Component{
               <Tab style={{color: 'black'}} label="Account Info">
                 <ProfileForm initialValues={this.props.user} formAction={this.props.updateProfileForm} user={this.props.user} />
                 <PasswordForm formAction={this.props.updatePassword} user={this.props.user}/>
-                <SocialMediaIdentities user={this.props.user} />
+                <FlatButton label="Delete Account" onTouchTap={this.triggerDeleteModal} />
+                <SocialMediaIdentities user={this.props.user}/>
               </Tab>
            </Tabs>
-            
-        
+            <Dialog title="Are you sure??" actions={deleteUserActions} modal open={this.state.showModal}>
+              Really delete you from this the Art Vs. Art world?  <br/>
+              You can never come back.  
+            </Dialog>
           </div>
        </MuiThemeProvider>
     )
@@ -78,6 +108,9 @@ const mapStateToProps = (store) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+  deleteUser(router){
+    dispatch(deleteCurrentUser(router));
+  },
   fetchCompetitions(){
     dispatch(fetchUserCompetitions());
   },

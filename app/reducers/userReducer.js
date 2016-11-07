@@ -12,6 +12,8 @@ const initialUserState = {
     error: '',
     errors: {
     },
+    serverErrors: {
+    },
     identities: []
   }
 }
@@ -25,6 +27,7 @@ const userReducer = (state=initialUserState, action) => {
   case "START_RECEIVE_USER_INFO":
   case "START_RESET_PASSWORD":
   case "START_SUBMIT_NEW_PASSWORD":
+  case "START_DELETE_CURRENT_USER":
     return {
       ...state,
       user: {
@@ -79,6 +82,7 @@ const userReducer = (state=initialUserState, action) => {
     }
     
   case "USER_SIGNED_OUT":
+  case "CURRENT_USER_DELETED":
     return {
       ...state,
       user: {
@@ -90,6 +94,7 @@ const userReducer = (state=initialUserState, action) => {
         fetching: false
       }
     }
+  case "CURRENT_USER_DELETE_FAILED":
   case "SUBMIT_NEW_PASSWORD_FAILED":
   case "UPDATE_USER_FAILED":
     return {
@@ -151,6 +156,8 @@ const userReducer = (state=initialUserState, action) => {
   case "RECEIVE_RESET_PASSWORD_INSTRUCTIONS": 
     return {...state, user: {...state.user, fetching: false, openForm: ''}}
   }
+  
+ 
   return state
 }
 

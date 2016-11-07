@@ -13,7 +13,6 @@ import loaderStyles from '../../styles/loader.js'
 import CompetitionStyles from '../../styles/competition.js'
 
 const Competition = ({competition, displayInfo, noVoting, artStyle}) => {  
-  console.log({...CompetitionStyles.art, ...artStyle});
   const circularLoader = <MuiThemeProvider><CircularProgress /></MuiThemeProvider>
   return (
       <div>

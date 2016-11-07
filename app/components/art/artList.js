@@ -10,11 +10,12 @@ class ArtList extends React.Component {
   }
   
   render(){
-    return (<QuickTable 
-            data={this.props.art}
-            title="All Art"
-            fields={['id', 'name', 'creator', 'status', 'date']}
-          />
+    return (
+      <QuickTable 
+        data={this.props.art}
+        title="All Art"
+        fields={['id', 'name', 'creator', 'status', 'date']}
+      />
     )
   
   }

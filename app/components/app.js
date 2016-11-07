@@ -19,7 +19,7 @@ const App = ({app, user, children, dismiss, showAuthForm}) => {
       <AuthForms />
       <main role='main'>{children}</main>
       <Footer />
-      <MuiThemeProvider><Snackbar open={app.notice.length > 0} onRequestClose={dismiss} message={app.notice}/></MuiThemeProvider>
+      <MuiThemeProvider><Snackbar bodyStyle={{backgroundColor: '#d22929'}} open={app.notice.length > 0} onRequestClose={dismiss} message={app.notice}/></MuiThemeProvider>
     </div>
   </StyleRoot>
   )
