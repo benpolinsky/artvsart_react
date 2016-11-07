@@ -83,6 +83,30 @@ const updateArtResponse = (response) => ({
 })
 
 
+export const fetchAllArt = () => (dispatch) => {
+  dispatch(allArtRequested());
+  api.get('art').then(response => {
+    if (response.errors == null) {
+      dispatch(allArtResponse(response));
+    } else {
+      dispatch(allArtRequestFailed(response.errors));
+    }
+  })
+}
+
+const allArtRequested = () => ({
+  type: "ALL_ART_REQUESTED"
+});
+
+const allArtResponse = (response) => ({
+  type: "ALL_ART_RESPONSE",
+  allArt: response.art
+});
+
+const allArtRequestFailed = (response) => ({
+  type: "ALL_ART_REQUEST_FAILED",
+  errors: errors
+});
 
 export const storeSignedUrl = (signedUrl) => (dispatch) => ({
   type: "STORE_SIGNED_URL",

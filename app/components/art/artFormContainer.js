@@ -10,7 +10,7 @@ import {categoriesRequest} from '../../actions/categories.js'
 import {storeSignedUrl} from '../../actions/art.js';
 import * as storage from '../../utils/localStorage.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import CircularProgress from 'material-ui/CircularProgress'
+import LinearProgress from 'material-ui/LinearProgress'
 
 import loaderStyles from '../../styles/loader.js'
 
@@ -21,13 +21,14 @@ class ArtFormContainer extends React.Component {
     this.createNewArt = this.createNewArt.bind(this);
     this.onUploadFinish = this.onUploadFinish.bind(this);
     this.onUploadStart = this.onUploadStart.bind(this);
-    this.toggleLoader = this.toggleLoader.bind(this);
-    
+    this.onUploadProgress = this.onUploadProgress.bind(this);
+    this.toggleLoader = this.toggleLoader.bind(this);    
   }
   
   componentWillMount(){
     this.state = {
       loading: true,
+      uploadProgress: 0,
       file_errors: '',
       formTitle: "Add Art",
       submitLabel: "Create",
@@ -142,34 +143,54 @@ class ArtFormContainer extends React.Component {
     }); 
   }
   
+  onUploadProgress(percent){
+    console.log(percent)
+    this.setState({
+      uploadProgress: percent
+    });
+  }
+  
   render(){    
-    let artInitialValues = this.props.art;
-    artInitialValues.creation_date = new Date(artInitialValues.creation_date)
-    const circularLoader = <MuiThemeProvider><CircularProgress /></MuiThemeProvider>
+    let artInitialValues = {...this.props.art, creation_date: new Date(this.props.art.creation_date)};
+    const progressIndicator = <MuiThemeProvider>
+                                 <LinearProgress
+                                   mode='determinate'
+                                   value={this.state.uploadProgress}
+                                  />
+                              </MuiThemeProvider>
     
     return (
-    <Loader foregroundStyle={loaderStyles.foreground} backgroundStyle={loaderStyles.background} message={circularLoader} show={this.state.loading}>
-      <ArtForm initialValues={artInitialValues}
-           categories={this.props.categories}
-           art={this.props.art} 
-           enableReinitialize
-           formTitle={this.state.formTitle}
-           submitLabel={this.state.submitLabel}
-           form="newArt" 
-           errors={this.state.file_errors} 
-           submit={this.submitArtForm} 
-           triggerLoader={this.toggleLoader} >
-                  
-          <ReactS3Uploader
-            signingUrl="/api/v1/s3/sign"
-            accept="image/*"
-            preprocess={this.onUploadStart}
-            onProgress={this.onUploadProgress}
-            onError={this.onUploadError}
-            onFinish={this.onUploadFinish}
-            signingUrlHeaders={storage.tokenObject()}
-            server={process.env.API_URL} />
-        </ArtForm>
+      <Loader 
+        foregroundStyle={loaderStyles.foreground} 
+        backgroundStyle={loaderStyles.background} 
+        message={progressIndicator} 
+        show={this.state.loading}
+       >
+      
+        <ArtForm initialValues={artInitialValues}
+         categories={this.props.categories}
+         art={this.props.art} 
+         enableReinitialize
+         formTitle={this.state.formTitle}
+         submitLabel={this.state.submitLabel}
+         form="newArt" 
+         errors={this.state.file_errors} 
+         submit={this.submitArtForm} 
+         triggerLoader={this.toggleLoader} >
+            
+        <ReactS3Uploader
+          signingUrl="/api/v1/s3/sign"
+          accept="image/*"
+          preprocess={this.onUploadStart}
+          onProgress={this.onUploadProgress}
+          onError={this.onUploadError}
+          onFinish={this.onUploadFinish}
+          signingUrlHeaders={storage.tokenObject()}
+          server={process.env.API_URL} 
+        />
+        
+       </ArtForm>
+            
       </Loader>
     )
   }

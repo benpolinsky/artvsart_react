@@ -23,6 +23,7 @@ import CompetitionResultContainer from './components/competition/competitionResu
 
 import ArtFormContainer from './components/art/artFormContainer.js'
 import ArtContainer from './components/art/artContainer.js'
+import ArtList from './components/art/artList.js'
 import ImportArtFormContainer from './components/art/importArtFormContainer.js'
 import LeaderBoard from './components/leaderBoard.js'
 
@@ -60,6 +61,7 @@ ReactDOM.render(
       <Route path='art/new' component={ArtFormContainer} />
       <Route path='art/:id' component={ArtContainer} />
       <Route path='art/:id/edit' component={ArtFormContainer} />
+      <Route path='art' component={ArtList} />
 
       <Route path='categories' component={CategoriesList} />
       <Route path='categories/new' component={CategoryFormContainer} />

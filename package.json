@@ -39,6 +39,7 @@
     "redux": "^3.6.0",
     "redux-form": "6.1.1",
     "redux-form-material-ui": "^4.1.0",
+    "redux-freeze": "^0.1.5",
     "redux-thunk": "^2.1.0",
     "whatwg-fetch": "^1.0.0"
   },

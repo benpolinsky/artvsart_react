@@ -4,10 +4,10 @@
 // Probably some reducer logic...
 
 export const userGreeting = (user) => {
-  if (user.name) {
-    return `Heyyy, ${user.name}`
-  } else if (user.username) {
-    return `Heyyy, ${user.name}`
+  if (user.username) {
+    return `Hiya, ${user.username}`
+  } else if (user.name) {
+    return `'Ello, ${user.name}`
   } else {
     const email = user.email;
     const at = email.indexOf('@');
@@ -16,7 +16,9 @@ export const userGreeting = (user) => {
   }
 }
 
-// from: http://stackoverflow.com/a/16861050/791026
+// from: 
+// http://stackoverflow.com/a/16861050/791026
+
 export const PopupCenter = (url, title, w, h) => {
   const dualScreenLeft = window.screenLeft != undefined ? window.screenLeft : screen.left;
   const dualScreenTop = window.screenTop != undefined ? window.screenTop : screen.top;

@@ -102,6 +102,7 @@ class Menu extends React.Component{
              {this.props.user.type == "admin" &&
                 <div className='adminRadiumLinks'>
                   <RadiumLink style={DrawerStyles.links} onClick={this.closeMenu} to="/art/new"> Add Art</RadiumLink>
+                  <RadiumLink style={DrawerStyles.links} onClick={this.closeMenu} to="/art"> All Art</RadiumLink>
                   <RadiumLink style={DrawerStyles.links} onClick={this.closeMenu} to='/import_art'>Import Art</RadiumLink>
                   <RadiumLink style={DrawerStyles.links} onClick={this.closeMenu} to='/categories'>Categories</RadiumLink>
                   <RadiumLink style={DrawerStyles.links} onClick={this.closeMenu} to='/categories/new'>Add Category</RadiumLink>

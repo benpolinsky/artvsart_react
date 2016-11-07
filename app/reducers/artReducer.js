@@ -12,12 +12,38 @@ const initialArtState = {
     },
     creation_date: Date.now(),
     source: "",
-    source_link: ""
-  }
+    source_link: "",
+    status: "pending_review"
+  },
+  allArt: [
+    {
+      name: "",
+      creator: "",
+      description: "",
+      image: "",
+      id: 0,
+      category_name: "",
+      category: {
+        name: "",
+        color: ""
+      },
+      creation_date: Date.now(),
+      source: "",
+      source_link: "",
+      status: "pending_review"
+    }
+  ],
+  errors: {}
 }
 
 const artReducer = (state=initialArtState, action) => {
   switch (action.type) {
+  case "ALL_ART_REQUESTED":
+    return state
+  case "ALL_ART_RESPONSE":
+    return {...state, allArt: action.allArt}
+  case "ALL_ART_REQUEST_FAILED":
+    return {...state, errors: action.errors}
   case "ART_REQUESTED":
     return state
   case "ART_RESPONSE":

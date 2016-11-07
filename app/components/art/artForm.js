@@ -80,6 +80,12 @@ class ArtForm extends React.Component{
             <MenuItem value="philart" primaryText="Philart"/>
             <MenuItem value="other" primaryText="Other"/>
           </Field>
+            
+          <Field name='status' floatingLabelText="Status" component={SelectField} style={textFieldStyles} >
+            <MenuItem value="pending_review" primaryText="Pending Review"/>
+            <MenuItem value="published" primaryText="Published"/>
+            <MenuItem value="declined" primaryText="Declined"/>
+          </Field>
 
           <Field name='source_link' floatingLabelText="Source Link" component={TextField} style={textFieldStyles} />
             
@@ -102,7 +108,7 @@ class ArtForm extends React.Component{
 
 
 ArtForm = reduxForm({
-  fields: ['name', "creator", 'description', 'creation_date', 'category_name', 'source'],
+  fields: ['name', "creator", 'description', 'creation_date', 'category_name', 'source', 'status'],
   validate
 })(ArtForm)
 
