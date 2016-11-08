@@ -8,6 +8,7 @@ import { Provider } from 'react-redux';
 import store from './store.js';
 import App from './components/app.js';
 import authWrapper from './components/authWrapper.js'
+import AdminAuthWrapper from './components/adminAuthWrapper.js'
 import appLoader from './components/appLoader.js'
 
 import HomePage from './components/pages/homePage.js'
@@ -58,16 +59,16 @@ ReactDOM.render(
       <Route path='competition' component={CompetitionContainer} />
       <Route path='competition_result/:id' component={CompetitionResultContainer} />
 
-      <Route path='import_art' component={ImportArtFormContainer} />
-      <Route path='art/new' component={ArtFormContainer} />
-      <Route path='art/:id' component={ArtContainer} />
-      <Route path='art/:id/edit' component={ArtFormContainer} />
-      <Route path='art' component={ArtList} />
+      <Route path='import_art' component={AdminAuthWrapper(ImportArtFormContainer)} />
+      <Route path='art/new' component={AdminAuthWrapper(ArtFormContainer)} />
+      <Route path='art/:id' component={AdminAuthWrapper(ArtContainer)} />
+      <Route path='art/:id/edit' component={AdminAuthWrapper(ArtFormContainer)} />
+      <Route path='art' component={AdminAuthWrapper(ArtList)} />
 
-      <Route path='categories' component={CategoriesList} />
-      <Route path='categories/new' component={CategoryFormContainer} />
-      <Route path='categories/:id/edit' component={EditCategoryFormContainer} />
-      <Route path='categories/:id' component={ShowCategory} />   
+      <Route path='categories' component={AdminAuthWrapper(CategoriesList)} />
+      <Route path='categories/new' component={AdminAuthWrapper(CategoryFormContainer)} />
+      <Route path='categories/:id/edit' component={AdminAuthWrapper(EditCategoryFormContainer)} />
+      <Route path='categories/:id' component={AdminAuthWrapper(ShowCategory)} />   
 
       <Route path='about' component={AboutPage} />
 

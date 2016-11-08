@@ -24,6 +24,8 @@ export default function requireAuthentication(Component){
     user: React.PropTypes.object.isRequired
   }
   
+
+  
   return connect(mapStateToProps)(AuthenticatedComponent);
 }
 
