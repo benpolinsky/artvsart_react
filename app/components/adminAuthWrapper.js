@@ -6,7 +6,7 @@ export default function adminAuthWrapper(Component) {
     
     componentWillMount(){
       const router = this.context.router;
-      !this.props.user.admin && this.props.redirectNonAdmin(router);
+      this.props.user.type != 'admin' && this.props.redirectNonAdmin(router);
     }
     render(){
       return(
