@@ -12,7 +12,7 @@ export default function adminAuthWrapper(Component) {
       return(
        <div style={{height: '100%'}}> 
         {
-          this.props.user.admin && <Component {...this.props} />
+          this.props.user.type == "admin" && <Component {...this.props} />
         }
        </div>
       )
