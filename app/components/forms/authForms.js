@@ -6,11 +6,11 @@ import {closeSignUp, registerUser, signUserIn, loginToFacebook, openSignUp, forg
 import MyOverlay from '../myOverlay.js'
 import {PopupCenter} from '../../utils/users.js'
 
-const AuthForms = ({user, errors, responseFacebook, signUserIn, registerUser, hideAuthForm, showAuthForm, requestPasswordReset, openGithubWindow}) => {
+const AuthForms = ({user, errors, signUserIn, registerUser, hideAuthForm, showAuthForm, requestPasswordReset, openGithubWindow}) => {
   return(
     <div>
-      <AuthForm showAuthForm={showAuthForm} errors={errors} displayForm={user.openForm} formType="register" form="RegisterForm" formTitle="Register" responseFacebook={responseFacebook} formAction={registerUser} />
-      <AuthForm showAuthForm={showAuthForm} errors={errors} displayForm={user.openForm} formType="signIn" form="SignInForm" formTitle="Sign In" responseFacebook={responseFacebook} formAction={signUserIn} />
+      <AuthForm showAuthForm={showAuthForm} errors={errors} displayForm={user.openForm} formType="register" form="RegisterForm" formTitle="Register" formAction={registerUser} />
+      <AuthForm showAuthForm={showAuthForm} errors={errors} displayForm={user.openForm} formType="signIn" form="SignInForm" formTitle="Sign In" formAction={signUserIn} />
       <ForgotPasswordForm showAuthForm={showAuthForm} displayForm={user.openForm} form="forgotPasswordForm" formType="forgotPassword" formAction={requestPasswordReset}/>
       <MyOverlay close={hideAuthForm} show={user.openForm} /> 
     </div>
@@ -23,8 +23,7 @@ AuthForms.propTypes = {
   errors: React.PropTypes.array,
   hideAuthForm: React.PropTypes.func.isRequired,
   registerUser: React.PropTypes.func.isRequired,
-  signUserIn: React.PropTypes.func.isRequired,
-  responseFacebook: React.PropTypes.func.isRequired
+  signUserIn: React.PropTypes.func.isRequired
 }
 
 const mapStateToProps = (store) => ({
@@ -41,9 +40,6 @@ const mapDispatchToProps = (dispatch) => ({
   },
   signUserIn(user, router){
     dispatch(signUserIn(user, router));
-  },
-  responseFacebook(response){
-    dispatch(loginToFacebook(response));
   },
   showAuthForm(formType){
     dispatch(openSignUp(formType))

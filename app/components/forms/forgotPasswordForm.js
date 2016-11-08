@@ -42,7 +42,7 @@ class ForgotPasswordForm extends React.Component{
     
     return (
     <StyleRoot>
-      <div  style={[Styles.authForm, formStyles]}>
+      <div style={[Styles.authForm, formStyles]}>
         <form form="forgotPassword" onSubmit={this.props.handleSubmit(this.submitForm)} className="signUpForm">
           <h2>Reset Password</h2>
           <MuiThemeProvider>

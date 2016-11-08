@@ -65,7 +65,8 @@ class ProfilePage extends React.Component{
     
     return(
         <MuiThemeProvider>
-          <div className={baseStyles.container}>
+          <div style={baseStyles.container}>
+
            <Tabs tabItemContainerStyle={{backgroundColor: '#d6d5d5'}} inkBarStyle={{backgroundColor: 'black'}} >
               <Tab style={{color: 'black'}} label="Stats">
                 <List>
@@ -78,14 +79,16 @@ class ProfilePage extends React.Component{
               <Tab style={{color: 'black'}} label="Account Info">
                 <ProfileForm initialValues={this.props.user} formAction={this.props.updateProfileForm} user={this.props.user} />
                 <PasswordForm formAction={this.props.updatePassword} user={this.props.user}/>
-                <FlatButton label="Delete Account" onTouchTap={this.triggerDeleteModal} />
                 <SocialMediaIdentities user={this.props.user}/>
+                <FlatButton backgroundColor='lightgrey' hoverColor='#fc8181' style={{margin: "10px auto", display: "block"}} label="Delete Account" onTouchTap={this.triggerDeleteModal} />
               </Tab>
            </Tabs>
+    
             <Dialog title="Are you sure??" actions={deleteUserActions} modal open={this.state.showModal}>
               Really delete you from this the Art Vs. Art world?  <br/>
-              You can never come back.  
+              You can never come back.  (that's a lie...)
             </Dialog>
+    
           </div>
        </MuiThemeProvider>
     )

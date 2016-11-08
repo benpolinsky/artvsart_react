@@ -10,6 +10,7 @@ const initialUserState = {
     admin: false,
     openForm: '',
     error: '',
+    facebookRestoring: false,
     errors: {
     },
     serverErrors: {
@@ -155,6 +156,8 @@ const userReducer = (state=initialUserState, action) => {
 
   case "RECEIVE_RESET_PASSWORD_INSTRUCTIONS": 
     return {...state, user: {...state.user, fetching: false, openForm: ''}}
+  case "FACEBOOK_RESTORING": 
+    return {...state, user: {...state.user, fetching: false, facebookRestoring: true}}
   }
   
  

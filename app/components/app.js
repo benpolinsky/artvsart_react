@@ -11,6 +11,13 @@ import Radium from 'radium'
 import {StyleRoot} from 'radium'
 import baseStyles from '../styles/base.js';
 
+const noticeStyles = {
+  padding: "10px 24px",
+  height: 'auto',
+  lineHeight: '18px',
+  backgroundColor: '#d22929'
+}
+
 const App = ({app, user, children, dismiss, showAuthForm}) => {
   return (
   <StyleRoot style={{height: '100%'}}>
@@ -19,7 +26,7 @@ const App = ({app, user, children, dismiss, showAuthForm}) => {
       <AuthForms />
       <main role='main'>{children}</main>
       <Footer />
-      <MuiThemeProvider><Snackbar bodyStyle={{backgroundColor: '#d22929'}} open={app.notice.length > 0} onRequestClose={dismiss} message={app.notice}/></MuiThemeProvider>
+      <MuiThemeProvider><Snackbar bodyStyle={noticeStyles} open={app.notice.length > 0} onRequestClose={dismiss} message={app.notice}/></MuiThemeProvider>
     </div>
   </StyleRoot>
   )

@@ -1,24 +1,49 @@
+// This is getting prettttty big, but it's all userAuth related...
+
 import * as api from '../utils/ajaxHelpers.js'
 import * as storage from '../utils/localStorage.js'
 import { SubmissionError } from 'redux-form'
 import {openModal, closeModal, closeAppLoader, openAppLoader, displayNotice} from './app.js'
 
-export const loginToFacebook = (response) => (dispatch) => {
+
+
+export const loginToFacebook = (response, router, restoring='false') => (dispatch) => {
   dispatch(facebookAuthRequest(response));
   dispatch(openAppLoader())
-  api.get('users/auth/facebook/callback').then(response => {
-    if (response.errors == null) {
-      dispatch(facebookAuthSuccess(response));
-      dispatch(storeUserCredentials(response.user));
-      dispatch(closeSignUp());
-      dispatch(signInUserSuccessful(response.user));  
-    } else {
+  api.get(`users/auth/facebook/callback?restoring=${restoring}`).then(response => {
+    if (response.errors != null) {
       dispatch(facebookAuthFailed());
       dispatch(registerUserFailed(response.errors))
+    } else if (response.error != null) {
+      dispatch(facebookAuthFailed());
+      dispatch(displayNotice("Oh no, something went wrong..."));
+    } else if (response.deleted_user){
+      dispatch(facebookAuthFailed());
+      dispatch(closeSignUp())
+      dispatch(displayNotice(response.message));
+      dispatch(facebookRestoring(response.user));
+      dispatch(redirectToRestore(response.user, router))
+    } else {
+      dispatch(facebookAuthSuccess(response));
+      if (restoring == 'true') {
+        dispatch(restoreUserSuccess(response));
+        router.push('/competition')
+        dispatch(displayNotice("Account Restored!  Get to judging!"))
+      } else {
+        dispatch(closeSignUp());
+      }
+      // the next three can be extracted...
+      dispatch(storeUserCredentials(response.user));
+      dispatch(signInUserSuccessful(response.user));  
     }
-    dispatch(closeAppLoader())
-  })
+    dispatch(closeAppLoader());
+  });
 }
+
+const facebookRestoring = (user) => ({
+  type: "FACEBOOK_RESTORING",
+  user: user
+});
 
 const facebookAuthFailed = () => ({
   type: "FACEBOOK_AUTH_FAILED"
@@ -44,14 +69,19 @@ export const signUserIn = (user, router) => (dispatch) => {
   dispatch(startSignUserIn(user));
   return api.post('users/sign_in', user).then(response => {
     if (response.errors != null) {
-      dispatch(signInUserFailed(response.errors)); 
-    } else {
-      dispatch(storeUserCredentials(response.user));
-      dispatch(signInUserSuccessful(response.user));
+      dispatch(signInUserFailed(response.errors));
+    } else if (response.deleted_user){
+      dispatch(displayNotice(response.message));
       dispatch(closeSignUp())
+      dispatch(redirectToRestore(response.user, router))
+    } else {
+      //  can be extracted
+      dispatch(storeUserCredentials(response.user));
+      dispatch(closeSignUp())
+      dispatch(signInUserSuccessful(response.user));
+
       dispatch(closeModal())
       router.push('/profile');
-      
     }
   })
 }
@@ -134,7 +164,12 @@ export const registerUser = (user, router) => (dispatch) => {
     if (response.errors != null) {
       dispatch(registerUserFailed(response.errors));
       
-    } else {
+    } else if (response.deleted_user){
+      dispatch(displayNotice(response.message));
+      dispatch(closeSignUp())
+      dispatch(redirectToRestore(response.user, router))
+    } 
+    else {
       dispatch(registerUserSuccessful(response.user));
       dispatch(pendingEmailConfirmation(response.user))
       
@@ -304,3 +339,36 @@ const submitNewPasswordFailed = (response) => ({
   errors: response
 })
 
+const redirectToRestore = (user, router) => (dispatch) => {
+  router.push("/user/restore")
+};
+
+
+export const restoreUser = (data, router) => (dispatch) => {
+  dispatch(startRestoreUser());
+  api.put('user/restore', {user: data}).then(response => {
+    if (response.errors == null) {
+      dispatch(restoreUserSuccess(response))
+      dispatch(storeUserCredentials(response.user));
+      dispatch(signInUserSuccessful(response.user));
+      router.push('/competition')
+      dispatch(displayNotice("Account Restored!  Get to judging!"))
+    } else {
+      dispatch(restoreUserFailed(response))
+    }
+  });
+}
+
+export const startRestoreUser = () => ({
+  type: 'START_RESTORE_USER'
+})
+
+export const restoreUserSuccess = (response) => ({
+  type: 'RESTORE_USER_SUCCESS',
+  user: response.user
+})
+
+export const restoreUserFailed = (response) => ({
+  type: 'RESTORE_USER_FAILED',
+  errors: response.errors
+})

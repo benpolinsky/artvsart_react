@@ -17,6 +17,7 @@ import ConfirmAccount from './components/users/confirmAccount.js'
 import PendingConfirmation from './components/users/pendingConfirmation.js'
 import ForgotPasswordForm from './components/forms/forgotPasswordForm.js'
 import NewPasswordForm from './components/users/newPasswordForm.js'
+import RestoreUser from './components/users/restoreUser.js'
 
 import CompetitionContainer from './components/competition/competitionContainer.js'
 import CompetitionResultContainer from './components/competition/competitionResultContainer.js'
@@ -77,6 +78,7 @@ ReactDOM.render(
       <Route path='user/new_password/:token' component={NewPasswordForm} />
       <Route path='user/confirm_account/:token' component={ConfirmAccount} />
       <Route path='user/pending_confirmation' component={PendingConfirmation} />
+      <Route path='user/restore' component={RestoreUser} />
       <Route path='top_judges' component={UserRankings} />
     </Route>
   </Router>
