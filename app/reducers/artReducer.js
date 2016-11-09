@@ -33,17 +33,18 @@ const initialArtState = {
       status: "pending_review"
     }
   ],
-  errors: {}
+  errors: {},
+  fetching: false
 }
 
 const artReducer = (state=initialArtState, action) => {
   switch (action.type) {
   case "ALL_ART_REQUESTED":
-    return state
+    return {...state, fetching: true}
   case "ALL_ART_RESPONSE":
-    return {...state, allArt: action.allArt}
+    return {...state, allArt: action.allArt, fetching: false}
   case "ALL_ART_REQUEST_FAILED":
-    return {...state, errors: action.errors}
+    return {...state, errors: action.errors, fetching: false}
   case "ART_REQUESTED":
     return state
   case "ART_RESPONSE":

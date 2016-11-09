@@ -41,9 +41,7 @@ const artImportsReducer = (state=initialArtState, action) => {
       ...state,
       results: state.results.map((result) => {
         if (result['id'] == action.response.listing_id) {
-          const new_result = result
-          new_result['imported'] = true
-          return new_result
+          return {...result, imported: true}
         } 
         return result
         
