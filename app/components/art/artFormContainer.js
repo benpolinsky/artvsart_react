@@ -11,6 +11,7 @@ import {storeSignedUrl} from '../../actions/art.js';
 import * as storage from '../../utils/localStorage.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import LinearProgress from 'material-ui/LinearProgress'
+import DefaultLoader from '../defaultLoader.js'
 
 import loaderStyles from '../../styles/loader.js'
 
@@ -153,13 +154,17 @@ class ArtFormContainer extends React.Component {
   render(){    
     let artInitialValues = {...this.props.art, creation_date: new Date(this.props.art.creation_date)};
     const progressIndicator = <MuiThemeProvider>
-                                 <LinearProgress
-                                   mode='determinate'
-                                   value={this.state.uploadProgress}
+                                <div>
+                                  <p style={{color: 'black', fontSize: 110}}>{`${this.state.uploadProgress}%`}</p>
+                                  <LinearProgress
+                                  mode='determinate'
+                                  value={this.state.uploadProgress}
                                   />
+                                </div>
                               </MuiThemeProvider>
     
     return (
+    <DefaultLoader showing={this.props.fetching}>
       <Loader 
         foregroundStyle={loaderStyles.foreground} 
         backgroundStyle={loaderStyles.background} 
@@ -192,6 +197,7 @@ class ArtFormContainer extends React.Component {
        </ArtForm>
             
       </Loader>
+    </DefaultLoader>
     )
   }
 }
@@ -203,7 +209,8 @@ ArtFormContainer.contextTypes = {
   
 const mapStateToProps = (store) => ({
   art: store.artState.art,
-  categories: store.categories.records
+  categories: store.categories.records,
+  fetching: store.artState.fetching
 });
 
 const mapDispatchToProps = (dispatch) => ({

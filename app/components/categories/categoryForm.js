@@ -26,6 +26,8 @@ const validate = (values) => {
   });
   return errors
 }
+
+
 const renderField = ({input}) => {
   const colorLabel = input.value == "" ? 'Select Color:' : `Hex: ${input.value}`;
   
@@ -34,7 +36,6 @@ const renderField = ({input}) => {
       <Subheader style={{paddingLeft: 0}}>{colorLabel}</Subheader>
       <CirclePicker color={input.value} onChangeComplete={(value) => input.onChange(value.hex)}/>
     </div>
-  
   )
   
 }

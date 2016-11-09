@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import CategoryForm from './categoryForm.js'
 import {Router} from 'react-router';
 import {createCategory, categoriesRequest} from '../../actions/categories.js'
+import DefaultLoader from '../defaultLoader.js';
 
 class CategoryFormContainer extends React.Component{
   constructor(){
@@ -19,18 +20,22 @@ class CategoryFormContainer extends React.Component{
   }
   
   render(){
-    const {createCategory, category, categories} = this.props;
+    const {createCategory, category, categories, fetching} = this.props;
 
 
-    return (<CategoryForm 
-            form="NewCategoryForm"
-            formTitle="Create Category"
-            submitLabel="Create"
-            formAction={createCategory}
-            category={category}
-            categories={categories}
-            onSubmit={this.handleSubmit}
-           />)
+    return (
+      <DefaultLoader showing={fetching}>
+        <CategoryForm 
+          form="NewCategoryForm"
+          formTitle="Create Category"
+          submitLabel="Create"
+          formAction={createCategory}
+          category={category}
+          categories={categories}
+          onSubmit={this.handleSubmit}
+         />
+      </DefaultLoader>
+    )
   }
 } 
 
@@ -42,7 +47,8 @@ CategoryFormContainer.contextTypes = {
 
 const mapStateToProps = (store) => ({
   category: store.categories.category,
-  categories: store.categories.records
+  categories: store.categories.records,
+  fetching: store.categories.isFetching
 })
 
 const mapDispatchToProps = (dispatch) => ({

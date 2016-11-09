@@ -8,7 +8,7 @@ import {TextField} from 'redux-form-material-ui';
 import MainButton from '../elements/mainButton.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Styles from '../../styles/forms.js'
-
+import DefaultLoader from '../defaultLoader.js'
 
 
 
@@ -42,7 +42,7 @@ export class ProfileForm extends React.Component {
     
     return (
       <StyleRoot>
-        <div>
+        <DefaultLoader showing={this.props.user.fetching}>
           <form onSubmit={this.props.handleSubmit(this.submitForm)} style={Styles.centered}>
             <h2>Update Profile: </h2>
             <MuiThemeProvider>
@@ -53,7 +53,7 @@ export class ProfileForm extends React.Component {
               </div>
             </MuiThemeProvider>
           </form>
-        </div>
+        </DefaultLoader>
       </StyleRoot>
     )
   }

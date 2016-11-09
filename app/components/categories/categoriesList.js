@@ -7,12 +7,17 @@ import {categoriesRequest} from '../../actions/categories.js'
 import Category from './category.js'
 import baseStyles from '../../styles/base.js'
 import categoryStyles from '../../styles/categories.js'
-
+import MainButton from '../elements/mainButton.js'
 var RadiumLink = Radium(Link)
 
 class CategoriesList extends React.Component{
   componentDidMount(){
     this.props.fetchCategories();
+    this.gotoNewCategory = this.gotoNewCategory.bind(this);
+  }
+  
+  gotoNewCategory(){
+    this.context.router.push('categories/new')
   }
   
   render(){
@@ -24,6 +29,7 @@ class CategoriesList extends React.Component{
             {this.props.categories.map(category => {
               return <RadiumLink style={categoryStyles.link} key={category.id} to={`/categories/${category.id}/edit`}><Category category={category} /></RadiumLink>
             })}
+            <MainButton action={this.gotoNewCategory} label="Add New Category"/>
           </div>
         </StyleRoot>
       </div>
@@ -34,6 +40,10 @@ class CategoriesList extends React.Component{
 CategoriesList.propTypes = {
   categories: React.PropTypes.array.isRequired,
   fetchCategories: React.PropTypes.func.isRequired
+}
+
+CategoriesList.contextTypes = {
+  router: React.PropTypes.object
 }
 
 const mapStateToProps = state => ({

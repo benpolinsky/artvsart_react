@@ -9,6 +9,7 @@ import {connect} from 'react-redux'
 import CategoryForm from './categoryForm.js'
 import {Router} from 'react-router';
 import {updateCategory, requestCategory, categoriesRequest} from '../../actions/categories.js'
+import DefaultLoader from '../defaultLoader.js'
 
 class EditCategoryFormContainer extends React.Component{
   constructor(){
@@ -26,9 +27,11 @@ class EditCategoryFormContainer extends React.Component{
   }
   
   render(){
-    const {category, updateCategory, categories} = this.props;
+    const {category, updateCategory, categories, fetching} = this.props;
     
-    return (<CategoryForm 
+    return (
+        <DefaultLoader showing={fetching}>  
+          <CategoryForm 
             initialValues={category}
             enableReinitialize
             form="EditCategoryForm"
@@ -37,7 +40,9 @@ class EditCategoryFormContainer extends React.Component{
             formAction={updateCategory}
             categories={categories.filter(c => c.id != category.id)}
             onSubmit={this.handleSubmit}
-           />)
+           />
+        </DefaultLoader>  
+            )
   }
 } 
 
@@ -49,7 +54,8 @@ EditCategoryFormContainer.contextTypes = {
 
 const mapStateToProps = (store) => ({
   category: store.categories.category,
-  categories: store.categories.records
+  categories: store.categories.records,
+  fetching: store.categories.isFetching
 })
 
 const mapDispatchToProps = (dispatch) => ({
