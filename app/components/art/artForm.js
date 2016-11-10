@@ -13,7 +13,8 @@ import formStyles from '../../styles/forms.js'
 
 const textFieldStyles = {
   float: 'left',
-  clear: 'both'
+  clear: 'both',
+  width: '100%'
 }
 
 

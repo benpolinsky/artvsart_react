@@ -24,7 +24,7 @@ const App = ({app, user, children, dismiss, showAuthForm}) => {
     <div style={baseStyles.mainContainer}>
       <Menu totals={app.totals} user={user} showAuthForm={showAuthForm} />
       <AuthForms />
-      <main role='main'>{children}</main>
+      <main style={baseStyles.mainContent} role='main'>{children}</main>
       <Footer />
       <MuiThemeProvider><Snackbar bodyStyle={noticeStyles} open={app.notice.length > 0} onRequestClose={dismiss} message={app.notice}/></MuiThemeProvider>
     </div>

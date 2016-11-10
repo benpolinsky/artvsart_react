@@ -47,7 +47,7 @@ export class ProfileForm extends React.Component {
             <h2>Update Profile: </h2>
             <MuiThemeProvider>
               <div style={Styles.centered.fields}>
-                <Field name="email" errorText={email_errors} floatingLabelText="E-Mail" component={TextField} /> <br/>
+                <Field name="email" type="email" errorText={email_errors} floatingLabelText="E-Mail" component={TextField} /> <br/>
                 <Field name="username" errorText={username_errors} floatingLabelText="Username" component={TextField} /> <br/>
                 <MainButton label="Update" action={this.props.handleSubmit(this.submitForm)} />
               </div>

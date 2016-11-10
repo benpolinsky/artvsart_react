@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {fetchAllArt} from '../../actions/art.js';
+import {fetchAllArt, fetchArt} from '../../actions/art.js';
 import DefaultLoader from '../defaultLoader.js';
 import QuickTable from '../quickTable.js';
 
@@ -18,11 +18,16 @@ class ArtList extends React.Component {
           data={this.props.art}
           title="All Art"
           fields={['id', 'name', 'creator', 'status', 'date']}
+          rowAction={this.props.showArt.bind(this, this.context.router)}
         />
       </DefaultLoader>
     )
   
   }
+}
+
+ArtList.contextTypes = {
+  router: React.PropTypes.object
 }
 
 const mapStateToProps = (state) => ({
@@ -33,6 +38,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getAllArt(){
     dispatch(fetchAllArt());
+  },
+  showArt(router, id){
+    router.push(`art/${id}`)
   }
 });
 

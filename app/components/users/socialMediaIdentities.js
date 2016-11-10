@@ -6,7 +6,7 @@ import capitalize from '../../utils/capitalize.js'
 
 const socialMediaIdentities = ({user}) => {
   return(
-    <div style={baseStyles.centeredPage}>
+    <div style={[baseStyles.centeredPage, {borderBottom: '1px solid black', marginBottom: 20, paddingBottom: 10}]}>
       {(user.identities.length > 0) && 
         <div>
           <h2>Social Accounts Connected: </h2>
@@ -21,4 +21,4 @@ const socialMediaIdentities = ({user}) => {
   )
 }
 
-export default socialMediaIdentities  
+export default Radium(socialMediaIdentities)

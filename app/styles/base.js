@@ -35,9 +35,12 @@ const baseStyles = {
     marginTop: 20
   },
   mainContainer: {
-    minHeight: 'calc(100% - 150px)',
-    paddingBottom: 150,
+    minHeight: 'calc(100% - 90px)',
+    paddingBottom: 90,
     position: "relative"
+  },
+  mainContent: {
+    paddingBottom: 50
   },
   subheader: {
     fontSize: 20,

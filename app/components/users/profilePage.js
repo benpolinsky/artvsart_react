@@ -79,8 +79,8 @@ class ProfilePage extends React.Component{
               <Tab style={{color: 'black'}} label="Account Info">
                 <ProfileForm initialValues={this.props.user} formAction={this.props.updateProfileForm} user={this.props.user} />
                 <PasswordForm formAction={this.props.updatePassword} user={this.props.user}/>
-                <SocialMediaIdentities user={this.props.user}/>
-                <FlatButton backgroundColor='lightgrey' hoverColor='#fc8181' style={{margin: "10px auto", display: "block"}} label="Delete Account" onTouchTap={this.triggerDeleteModal} />
+                <SocialMediaIdentities user={this.props.user} />
+                <FlatButton backgroundColor='lightgrey' hoverColor='#fc8181' style={{margin: "10px auto", display: "block"}} label="Delete Art Vs Art Account" onTouchTap={this.triggerDeleteModal} />
               </Tab>
            </Tabs>
     

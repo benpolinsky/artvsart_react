@@ -16,13 +16,16 @@ const initialUserState = {
     serverErrors: {
     },
     identities: []
-  }
+  },
+  fetching: false
 }
 
 
 const userReducer = (state=initialUserState, action) => {
   switch (action.type) {
 
+  case "START_REGISTER_USER":
+  case "START_SIGN_USER_IN":
   case "START_UPDATE_EMAIL":
   case "START_CONFIRM_USER_ACCOUNT":
   case "START_RECEIVE_USER_INFO":
@@ -31,9 +34,9 @@ const userReducer = (state=initialUserState, action) => {
   case "START_DELETE_CURRENT_USER":
     return {
       ...state,
+      fetching: true,
       user: {
-        ...state.user,
-        fetching: true
+        ...state.user
       }
     }
   case "RECEIVE_USER_INFO":
@@ -46,9 +49,9 @@ const userReducer = (state=initialUserState, action) => {
       user: {
         ...state.user,
         ...action.user,
-        authenticated: true,
-        fetching: false
-      }
+        authenticated: true
+      },
+      fetching: false
     }
   case "PENDING_EMAIL_CONFIRMATION": 
     return {
@@ -57,7 +60,8 @@ const userReducer = (state=initialUserState, action) => {
         ...state.user,
         ...action.user,
         confirmed: 'pending'
-      }
+      },
+      fetching: false
     }
   case "USER_ACCOUNT_CONFIRMED":
     return {
@@ -66,7 +70,8 @@ const userReducer = (state=initialUserState, action) => {
         ...state.user,
         ...action.user,
         confirmed: 'true'
-      }
+      },
+      fetching: false
     }
   case "START_USER_SIGNED_OUT":
     return {
@@ -77,9 +82,9 @@ const userReducer = (state=initialUserState, action) => {
         type: "GuestUser",
         token: "",
         gravatar_hash: "",
-        authenticated: false,
-        fetching: true
-      }
+        authenticated: false
+      },
+      fetching: true
     }
     
   case "USER_SIGNED_OUT":
@@ -91,9 +96,9 @@ const userReducer = (state=initialUserState, action) => {
         email: action.user.email,
         type: action.user.type,
         token: action.user.auth_token,
-        authenticated: true,
-        fetching: false
-      }
+        authenticated: true
+      },
+      fetching: false
     }
   case "CURRENT_USER_DELETE_FAILED":
   case "SUBMIT_NEW_PASSWORD_FAILED":
@@ -102,9 +107,9 @@ const userReducer = (state=initialUserState, action) => {
       ...state,
       user: {
         ...state.user,
-        errors: action.errors,
-        fetching: false
-      }
+        errors: action.errors
+      },
+      fetching: false
     }  
   case 'SIGN_IN_USER_FAILED':
     var errors = [];

@@ -55,13 +55,14 @@ const forms = {
   authForm: {
     position: 'absolute',
     right: 0,
-    top: 65,
+    top: 0,
     zIndex: 1201,
     background: 'white',
     padding:50,
     boxSizing: 'border-box',
     width: '100%',
     textAlign: 'center',
+    height: 375,
     [mediaQueries.browser]: {
       width: 'auto',
       textAlign: 'left'

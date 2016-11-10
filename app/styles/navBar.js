@@ -6,7 +6,8 @@ const navBarStyles = {
   appBar: {
     backgroundColor: 'white',
     boxShadow: 'none',
-    borderBottom: "1px solid black"
+    borderBottom: "1px solid black",
+    height: '100%'
   },
   
   appBarHeading: {

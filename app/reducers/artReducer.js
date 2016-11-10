@@ -39,6 +39,7 @@ const initialArtState = {
 
 const artReducer = (state=initialArtState, action) => {
   switch (action.type) {
+  case "BEGIN_ART_REQUEST":
   case "ART_REQUESTED":
   case "ALL_ART_REQUESTED":
   case "CREATE_NEW_ART_REQUEST":

@@ -67,20 +67,20 @@ class Menu extends React.Component{
   render(){
     return (
     <MuiThemeProvider>
-      <header>
+      <header style={{height: 64}}>
         <AppBar 
           style={menuStyles.appBar} 
           title="ART VS ART"
           titleStyle={menuStyles.appBarHeading}
           onLeftIconButtonTouchTap={this.openMenu}
-          iconStyleRight={{marginTop: 0}}
+          iconStyleRight={{marginTop: 0, height: '100%'}}
           iconStyleLeft={menuStyles.appBarIcon}
           iconElementLeft={<IconButton><MenuIcon color='black'/></IconButton>}
           iconElementRight={
           
             (this.props.user.type == "GuestUser" || this.props.user.type == "BotUser")
               ?
-            <AuthNav showAuthForm={this.props.showAuthForm}/>
+            <AuthNav style={{height: '100%'}} showAuthForm={this.props.showAuthForm}/>
               : 
             <AdminMenu 
               menuStyles={menuStyles.userMenu} 

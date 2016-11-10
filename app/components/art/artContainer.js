@@ -10,7 +10,7 @@ const styles = {
     alignItems: 'center',
     flexDirection: 'column',
     margin: '10px auto 0 auto',
-    width: 500
+    padding: 10
   }
 }
 

@@ -57,7 +57,7 @@ export class AuthForm extends React.Component {
           <h2>{this.props.formTitle}</h2>
           <MuiThemeProvider>
             <div>
-              <Field name="email" errorText={email_errors} floatingLabelText="E-Mail" component={TextField} /> <br/>
+              <Field name="email" type='email' errorText={email_errors} floatingLabelText="E-Mail" component={TextField} /> <br/>
               <Field name="password" type='password' floatingLabelText="Password" component={TextField} /> <br/>
               <MainButton label={this.props.formTitle} action={this.props.handleSubmit(this.submitForm)} />
             </div>

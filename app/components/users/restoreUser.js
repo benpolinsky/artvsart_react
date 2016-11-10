@@ -53,7 +53,7 @@ class RestoreUser extends React.Component{
                   <FacebookButton restoring label="Restore With Facebook" />
                     :
                    <div>
-                    <Field name="email" errorText={email_errors} floatingLabelText="E-Mail" component={TextField} /> <br/>
+                    <Field name="email" type="email" errorText={email_errors} floatingLabelText="E-Mail" component={TextField} /> <br/>
                     <Field name="password" type='password' floatingLabelText="Password" component={TextField} /> <br/>
                     <MainButton label="Restore!" action={this.props.handleSubmit(this.submitForm)} />;
                   </div>

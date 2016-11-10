@@ -1,7 +1,7 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
-const QuickTable = ({data, title, fields}) => {
+const QuickTable = ({data, title, fields, rowAction}) => {
   return( 
     <MuiThemeProvider>
       <Table selectable={false}>
@@ -20,7 +20,7 @@ const QuickTable = ({data, title, fields}) => {
         <TableBody displayRowCheckbox={false}>
           {data.map(record => {
             return (
-              <TableRow key={record.id}>
+              <TableRow onTouchTap={rowAction.bind(this, record.id)} key={record.id}>
                 {fields.map(f => {return <TableRowColumn key={record.id}>{record[f]}</TableRowColumn>})}
               </TableRow>
             )

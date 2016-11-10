@@ -47,7 +47,7 @@ class ForgotPasswordForm extends React.Component{
           <h2>Reset Password</h2>
           <MuiThemeProvider>
             <div>
-              <Field name="email" floatingLabelText="E-Mail" component={TextField} /> <br/>
+              <Field type="email" name="email" floatingLabelText="E-Mail" component={TextField} /> <br/>
               <MainButton label="Reset Password" action={this.props.handleSubmit(this.submitForm)} />
               <Link style={BaseStyles.traditionalLink} onTouchTap={() => this.props.showAuthForm('signIn')}>Sign In</Link> 
               <span style={BaseStyles.inlineSeparator}>|</span>
