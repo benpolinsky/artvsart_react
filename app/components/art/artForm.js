@@ -1,15 +1,12 @@
 import React from 'react';
 import Radium from 'radium';
 import { Field, reduxForm } from 'redux-form';
-import {TextField} from 'redux-form-material-ui';
-import DatePicker from 'material-ui/DatePicker';
-import {SelectField} from 'redux-form-material-ui';
-import MenuItem from 'material-ui/MenuItem';
 import RaisedButton from 'material-ui/RaisedButton';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Datejs from 'datejs'
 import baseStyles from '../../styles/base.js'
 import formStyles from '../../styles/forms.js'
+import QuickField from '../forms/quickField.js'
+import ArtButton from '../elements/button.js'
 
 const textFieldStyles = {
   float: 'left',
@@ -57,38 +54,44 @@ class ArtForm extends React.Component{
     const currentImage = (art && art.image && <div><p>Current Image: </p> <br/> <img style={{maxWidth: '300px'}} src={art.image} /></div>)
     
     return(
-     <MuiThemeProvider>
+
       <form onSubmit={handleSubmit(this.onSubmit)} style={formStyles.centered}>
         <h1 style={baseStyles.mainTitle}>{formTitle}</h1>
-       
-        <div style={formStyles.centered.fields}>
-          <Field name='name' floatingLabelText="Name" component={TextField} style={textFieldStyles} />
-          <Field name='creator' floatingLabelText="Creator" component={TextField} style={textFieldStyles} />
-          <Field name='description' floatingLabelText="Description" component={TextField} multiLine style={textFieldStyles}  />
-          <Field name='creation_date' floatingLabelText="Creation Date" component={WrappedDatePicker} style={textFieldStyles}  />
-          
-          <Field name='category_name' floatingLabelText="Category" component={SelectField} style={textFieldStyles} >
-            {categories.map((category) => {
-              return <MenuItem key={category.id} value={category.name} primaryText={category.name}/>
-            })}
-          </Field>
-          
-          <Field name='source' floatingLabelText="Source" component={SelectField} style={textFieldStyles} >
-            <MenuItem value="discogs" primaryText="Discogs"/>
-            <MenuItem value="imdb" primaryText="IMDB"/>
-            <MenuItem value="artsy" primaryText="Artsy"/>
-            <MenuItem value="harvard" primaryText="Harvard Art Gallery"/>
-            <MenuItem value="philart" primaryText="Philart"/>
-            <MenuItem value="other" primaryText="Other"/>
-          </Field>
-            
-          <Field name='status' floatingLabelText="Status" component={SelectField} style={textFieldStyles} >
-            <MenuItem value="pending_review" primaryText="Pending Review"/>
-            <MenuItem value="published" primaryText="Published"/>
-            <MenuItem value="declined" primaryText="Declined"/>
-          </Field>
 
-          <Field name='source_link' floatingLabelText="Source Link" component={TextField} style={textFieldStyles} />
+        <div style={formStyles.centered.fields}>
+          <QuickField name="name" />
+          
+          <QuickField name="creator" />
+          
+          <QuickField name="description" styles={{height: 100}} field='textarea' />
+          
+          <QuickField name="creation_date" label="Creation Date" type='date'/>
+          
+          <QuickField name="category_name" label="Category" field='select'>
+            <option disabled>Select Category: </option>
+            {categories.map((category) => {
+              return <option key={category.id} value={category.name}>{category.name}</option>
+            })}
+          </QuickField>
+            
+          <QuickField name="source" field='select'>
+            <option  disabled>Select Source: </option>
+            <option value="discogs">Discogs</option>
+            <option value="imdb">IMDB</option>
+            <option value="artsy">Artsy</option>
+            <option value="harvard"> Harvard ArtGallery </option>
+            <option value="philart">Philart</option>
+            <option value="other">Other</option>
+          </QuickField>
+         
+          <QuickField name="status" field='select'>
+            <option  disabled>Select Status: </option>
+            <option value="pending_review">Pending Review</option>
+            <option value="published">Published</option>
+            <option value="declined">Declined</option>
+          </QuickField>
+         
+          <QuickField name="source_link" label="Source Link" type='url' />
             
           <div style={formStyles.uploadToS3}>
             {currentImage}
@@ -96,12 +99,11 @@ class ArtForm extends React.Component{
           </div>
           
           <p>{errors}</p>
-          
-          <RaisedButton fullWidth primary style={textFieldStyles} type="submit" label={submitLabel} />
+          <ArtButton type='submit' label={submitLabel} />
         </div>
 
       </form>
-    </MuiThemeProvider>
+
     )
   }
 }

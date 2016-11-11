@@ -6,7 +6,7 @@ import capitalize from '../../utils/capitalize.js'
 
 const socialMediaIdentities = ({user}) => {
   return(
-    <div style={[baseStyles.centeredPage, {borderBottom: '1px solid black', marginBottom: 20, paddingBottom: 10}]}>
+    <div style={[baseStyles.centeredPage, {marginBottom: 20, paddingBottom: 10}]}>
       {(user.identities.length > 0) && 
         <div>
           <h2>Social Accounts Connected: </h2>

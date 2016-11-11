@@ -7,7 +7,7 @@ import {categoriesRequest} from '../../actions/categories.js'
 import Category from './category.js'
 import baseStyles from '../../styles/base.js'
 import categoryStyles from '../../styles/categories.js'
-import MainButton from '../elements/mainButton.js'
+import ArtButton from '../elements/button.js'
 var RadiumLink = Radium(Link)
 
 class CategoriesList extends React.Component{
@@ -29,7 +29,7 @@ class CategoriesList extends React.Component{
             {this.props.categories.map(category => {
               return <RadiumLink style={categoryStyles.link} key={category.id} to={`/categories/${category.id}/edit`}><Category category={category} /></RadiumLink>
             })}
-            <MainButton action={this.gotoNewCategory} label="Add New Category"/>
+            <ArtButton action={this.gotoNewCategory} label="Add New Category"/>
           </div>
         </StyleRoot>
       </div>

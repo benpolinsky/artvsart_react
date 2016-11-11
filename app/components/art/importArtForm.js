@@ -1,10 +1,9 @@
+// this was before I began using redux-form...
+
 import React from 'react';
 import Radium from 'radium';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import SelectField from 'material-ui/SelectField';
 import TextField from 'material-ui/TextField';
-import MenuItem from 'material-ui/MenuItem';
-import RaisedButton from 'material-ui/RaisedButton';
+import ArtButton from '../elements/button.js';
 import baseStyles from '../../styles/base.js'
 import formStyles from '../../styles/forms.js'
 
@@ -14,18 +13,25 @@ const ImportArtForm = ({submitForm, selected_source, selected, sources, update, 
     <form onSubmit={submitForm} style={formStyles.centered}>
       <h1 style={baseStyles.mainTitle}>Import Art</h1>
       <div>
-        <MuiThemeProvider>  
+
           <div style={formStyles.centered.fields}>
-            <SelectField errorText={errors.source.join(", ")} name="import-source" value={selected_source} onChange={selected}>
-              {sources.map(source => <MenuItem key={source} primaryText={source} value={source}/>)}
-            </SelectField><br/>
-            <TextField type='search'  errorText={errors.query.join(", ")} floatingLabelText="Query" onChange={update} defaultValue="" name={source_label} />
+            <div style={formStyles.fieldContainer}>
+              <select name="import-source" value={selected_source} style={formStyles.basicField} onChange={selected}>
+                {sources.map(source => <option key={source} value={source}>{source}</option>)}
+              </select>
+            </div>
+             <div style={formStyles.fieldContainer}>
+               <label htmlFor={source_label} style={formStyles.label}>Search {selected_source} </label>
+              <div>
+                {errors.query && errors.query.map((error, index) => {return <span key={index}>{error}</span>})}
+               <input type='search' style={formStyles.basicField} onChange={update}  name={source_label} />
+              </div>
+             </div>
+              
           </div>
-        </MuiThemeProvider>  
-        
-        <MuiThemeProvider>  
-          <RaisedButton primary type="submit" label='Search'/>
-        </MuiThemeProvider>  
+
+          <ArtButton type="submit" label='Search'/>
+
       </div>
     </form>
   )

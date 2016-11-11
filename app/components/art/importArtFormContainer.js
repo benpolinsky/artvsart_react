@@ -32,15 +32,15 @@ class ImportArtFormContainer extends React.Component{
   }
   
   
-  selected(event, index, value){
+  selected(event){
     this.setState({
-      source: value
+      source: event.target.value
     })
   }
   
-  update(event, value){
+  update(event){
     this.setState({
-      query: value
+      query: event.target.value
     });
   }
   

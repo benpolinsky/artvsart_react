@@ -4,11 +4,10 @@ import React from 'react'
 import Radium from 'radium'
 import {StyleRoot} from 'radium'
 import { Field, reduxForm } from 'redux-form';
-import {TextField} from 'redux-form-material-ui';
-import MainButton from '../elements/mainButton.js';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Styles from '../../styles/forms.js'
-import DefaultLoader from '../defaultLoader.js'
+import ArtButton from '../elements/button.js';
+import QuickField from '../forms/quickField.js';
+import Styles from '../../styles/forms.js';
+import DefaultLoader from '../defaultLoader.js';
 
 
 
@@ -16,7 +15,10 @@ const validate = (values) => {
   const errors = {};
   const fieldsToValidate = ['email', 'username'];
   fieldsToValidate.map((field) => {
-    if (values[field] && values[field].length < 6) {
+    if (!values[field]) {
+      errors[field] = "Required"
+    }
+    else if (values[field] && values[field].length < 6) {
       errors[field] = "Must be 6 characters or more"
     } else if (values[field] && values[field].length >= 128) {
       errors[field] = `Woah, please keep your ${field} under 128 characters`
@@ -45,13 +47,14 @@ export class ProfileForm extends React.Component {
         <DefaultLoader showing={this.props.user.fetching}>
           <form onSubmit={this.props.handleSubmit(this.submitForm)} style={Styles.centered}>
             <h2>Update Profile: </h2>
-            <MuiThemeProvider>
+
               <div style={Styles.centered.fields}>
-                <Field name="email" type="email" errorText={email_errors} floatingLabelText="E-Mail" component={TextField} /> <br/>
-                <Field name="username" errorText={username_errors} floatingLabelText="Username" component={TextField} /> <br/>
-                <MainButton label="Update" action={this.props.handleSubmit(this.submitForm)} />
+                <QuickField name="email" label="Email" type="email" extraErrors={email_errors}/>
+                <QuickField name="username" extraErrors={username_errors}/>
+
+
+                <ArtButton label="Update" action={this.props.handleSubmit(this.submitForm)} />
               </div>
-            </MuiThemeProvider>
           </form>
         </DefaultLoader>
       </StyleRoot>

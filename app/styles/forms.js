@@ -7,15 +7,51 @@ const forms = {
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',
+    width: '100%',
+    boxSizing: 'border-box',
     fields: {
-      marginTop: 20
+      marginTop: 20,
+      maxWidth: 600,
+      width: '100%'
     }
+  },
+  
+  fieldContainer: {
+    margin: '10px 0',
+    float: "left",
+    clear: "both",
+    width: "100%"
+  },
+  colorPicker: {
+    width: 252, 
+    margin: '30px auto',
+    padding: '20px 0 0 0', 
+    float: 'none',
+    clear: 'both'
+  },
+  label: {
+    float: "left",
+    clear: 'both',
+    width: "100%"
+  },
+  
+  error: {
+    fontSize: 10,
+    color: 'red'
+  },
+  
+  basicField: {
+    float: "left",
+    clear: 'both',
+    width: "100%",
+    marginTop: 4
   },
   
   uploadToS3: {
     float: 'left',
     clear: 'both',
-    padding: '20px 20px 20px 0'
+    padding: '20px 20px 20px 0',
+    width: '100%'
   },
     
   searchResult: {

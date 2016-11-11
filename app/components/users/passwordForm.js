@@ -4,10 +4,10 @@ import React from 'react'
 import Radium from 'radium'
 import {StyleRoot} from 'radium'
 import { Field, reduxForm } from 'redux-form';
-import {TextField} from 'redux-form-material-ui';
-import MainButton from '../elements/mainButton.js';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import QuickField from '../forms/quickField.js';
+import ArtButton from '../elements/button.js';
 import Styles from '../../styles/forms.js'
+
 
 
 
@@ -47,36 +47,34 @@ export class PasswordForm extends React.Component {
         <div>
           <form style={Styles.centered} onSubmit={this.props.handleSubmit(this.submitForm)}>
             <h2>Change Password</h2>
-            <MuiThemeProvider>
+
               <div style={Styles.centered.fields}>
-                <Field 
+
+                <QuickField 
                   name="current_password" 
                   type="password" 
-                  errorText={current_password_errors} 
-                  floatingLabelText="Current Password" 
-                  component={TextField} 
+                  extraErrors={current_password_errors} 
+                  label="Current Password" 
                 /> 
-                <br/>
-                <Field 
+
+                <QuickField 
                   name="password" 
                   type="password" 
-                  errorText={current_password_errors} 
-                  floatingLabelText="New Password" 
-                  component={TextField} 
-                />     
-                <br/>
-                <Field 
+                  extraErrors={current_password_errors} 
+                  label="New Password" 
+                />   
+                    
+                <QuickField 
                   name="password_confirmation" 
                   type="password" 
-                  errorText={current_password_errors} 
-                  floatingLabelText="New Password Confirmation"
-                  component={TextField} 
+                  extraErrors={current_password_errors} 
+                  label="New Password Confirmation"
                 />     
-                <br/>
+
                   
-                <MainButton label="Update" action={this.props.handleSubmit(this.submitForm)} />
+                <ArtButton label="Update" action={this.props.handleSubmit(this.submitForm)} />
               </div>
-            </MuiThemeProvider>
+
           </form>
         </div>
       </StyleRoot>

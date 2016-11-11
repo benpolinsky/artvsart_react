@@ -1,15 +1,47 @@
-const main = {
-  width: 256,
-  hoverColor: 'black',
-  backgroundColor: 'black',
+const baseButtonStyles = {
+  color: 'black',
   borderRadius: 0,
+  boxShadow: 0,
+  background: 'none white',
+  border: '1px solid black',
+  cursor: 'pointer',
   margin: '10px auto',
   display: 'block',
-  label: {
-    color: 'white',
-    fontFamily: 'Raleway',
-    fontWeight: 600
+  fontFamily: 'Raleway',
+  fontWeight: 600,
+  display: 'block',
+  clear: 'both',
+  height: 30,
+  width: 256,
+  transition: 'all 100ms ease-in',
+  ':hover': {
+    background: 'grey',
+    transition: 'all 100ms ease-in',
+    color: 'white'
+  },
+  ':active': {
+    background: 'black',
+    transition: 'all 100ms ease-in',
+    color: 'white'
+  },
+  ':disabled': {
+    background: 'lightgrey',
+    transition: 'all 100ms ease-in',
+    pointer: "normal"
   }
 }
 
-export default main
+const button = {
+  ...baseButtonStyles,
+  default: {
+  ...baseButtonStyles
+  },
+  small: {
+    ...baseButtonStyles,
+    width: 'auto'
+  }
+}
+
+
+
+export default button
