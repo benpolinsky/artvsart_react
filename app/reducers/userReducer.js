@@ -160,9 +160,9 @@ const userReducer = (state=initialUserState, action) => {
     return {...state, user: {...state.user, openForm: ''}}
 
   case "RECEIVE_RESET_PASSWORD_INSTRUCTIONS": 
-    return {...state, user: {...state.user, fetching: false, openForm: ''}}
+    return {...state, fetching: false, user: {...state.user, openForm: ''}}
   case "FACEBOOK_RESTORING": 
-    return {...state, user: {...state.user, fetching: false, facebookRestoring: true}}
+    return {...state, fetching: false, user: {...state.user, facebookRestoring: true}}
   }
   
  

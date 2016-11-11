@@ -5,10 +5,9 @@ import {Link} from 'react-router'
 import Radium from 'radium'
 import {StyleRoot} from 'radium'
 import { Field, reduxForm } from 'redux-form';
-import {TextField} from 'redux-form-material-ui';
-import MainButton from '../elements/mainButton.js';
+import QuickField from './quickField.js'
+import ArtButton from '../elements/button.js';
 import FacebookButton from '../elements/facebookButton.js';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Styles from '../../styles/forms.js'
 import BaseStyles from '../../styles/base.js' 
 
@@ -55,17 +54,16 @@ export class AuthForm extends React.Component {
       <div className='registerForm' style={[Styles.authForm, formStyles]}>
         <form form={`${this.props.formType}Form`} onSubmit={this.props.handleSubmit(this.submitForm)} className="signUpForm">
           <h2>{this.props.formTitle}</h2>
-          <MuiThemeProvider>
             <div>
-              <Field name="email" type='email' errorText={email_errors} floatingLabelText="E-Mail" component={TextField} /> <br/>
-              <Field name="password" type='password' floatingLabelText="Password" component={TextField} /> <br/>
-              <MainButton label={this.props.formTitle} action={this.props.handleSubmit(this.submitForm)} />
+
+              <QuickField name="email" type='email' extraErrors={email_errors} label="E-Mail" /> 
+              <QuickField name="password" type='password' /> 
+              <ArtButton label={this.props.formTitle} action={this.props.handleSubmit(this.submitForm)} />
             </div>
-          </MuiThemeProvider>
         </form>
       
         <FacebookButton label={`${this.props.formTitle} With Facebook`}/>
-        <Link style={BaseStyles.traditionalLink} onTouchTap={() => this.props.showAuthForm('forgotPassword')}>Forgot Password?</Link>
+        <Link style={BaseStyles.traditionalLink} onClick={() => this.props.showAuthForm('forgotPassword')}>Forgot Password?</Link>
       </div>
       </StyleRoot>
     )

@@ -1,20 +1,24 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import FlatButton from 'material-ui/FlatButton';
-import menuStyles from '../styles/navBar.js'
+import ArtButton from './elements/button.js';
+import menuStyles from '../styles/navBar.js';
 
 const AuthNav = ({showAuthForm}) => {
   return(
     <ul style={menuStyles.authNav}>
       <li style={menuStyles.authNavListItem}>
-        <MuiThemeProvider>
-          <FlatButton style={menuStyles.authNavListLink} labelStyle={menuStyles.label} label="Register" onClick={() => {showAuthForm('register')}} />
-        </MuiThemeProvider> 
+        <ArtButton 
+          size="small"
+          label="Register"
+          action={() => {showAuthForm('register')}} 
+          />
       </li>
       <li style={menuStyles.authNavListItem}>
-        <MuiThemeProvider>
-          <FlatButton style={menuStyles.authNavListLink} labelStyle={menuStyles.label} label="Sign In" onClick={() => {showAuthForm('signIn')}} />
-        </MuiThemeProvider> 
+        <ArtButton 
+          size="small"
+          label="Sign In"
+          action={() => {showAuthForm('signIn')}} 
+          />
       </li>
     </ul>
   )

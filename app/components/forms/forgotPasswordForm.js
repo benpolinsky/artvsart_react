@@ -5,9 +5,8 @@ import {StyleRoot} from 'radium';
 import { Field, reduxForm } from 'redux-form';
 import Styles from '../../styles/forms.js';
 import BaseStyles from '../../styles/base.js';
-import {TextField} from 'redux-form-material-ui';
-import MainButton from '../elements/mainButton.js';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import ArtButton from '../elements/button.js';
+import QuickField from './quickField.js';
 
 const validate = (values) => {
   const errors = {};
@@ -45,15 +44,15 @@ class ForgotPasswordForm extends React.Component{
       <div style={[Styles.authForm, formStyles]}>
         <form form="forgotPassword" onSubmit={this.props.handleSubmit(this.submitForm)} className="signUpForm">
           <h2>Reset Password</h2>
-          <MuiThemeProvider>
+
             <div>
-              <Field type="email" name="email" floatingLabelText="E-Mail" component={TextField} /> <br/>
-              <MainButton label="Reset Password" action={this.props.handleSubmit(this.submitForm)} />
-              <Link style={BaseStyles.traditionalLink} onTouchTap={() => this.props.showAuthForm('signIn')}>Sign In</Link> 
+              <QuickField type="email" name="email" label="E-Mail" /> 
+              <ArtButton label="Reset Password" action={this.props.handleSubmit(this.submitForm)} />
+              <Link style={BaseStyles.traditionalLink} onClick={() => this.props.showAuthForm('signIn')}>Sign In</Link> 
               <span style={BaseStyles.inlineSeparator}>|</span>
-              <Link style={BaseStyles.traditionalLink} onTouchTap={() => this.props.showAuthForm('register')}>Register</Link>
+              <Link style={BaseStyles.traditionalLink} onClick={() => this.props.showAuthForm('register')}>Register</Link>
             </div>
-          </MuiThemeProvider>
+
         </form>
       </div>
 </StyleRoot>
@@ -63,7 +62,8 @@ class ForgotPasswordForm extends React.Component{
 
 ForgotPasswordForm = reduxForm({
   fields: ['email'],
-  onSubmitFail: (errors, dispatch) => console.log(errors, dispatch)
+  onSubmitFail: (errors, dispatch) => console.log(errors, dispatch),
+  validate
 })(ForgotPasswordForm)
 
 export default Radium(ForgotPasswordForm)
