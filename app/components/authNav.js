@@ -8,14 +8,14 @@ const AuthNav = ({showAuthForm}) => {
     <ul style={menuStyles.authNav}>
       <li style={menuStyles.authNavListItem}>
         <ArtButton 
-          size="small"
+          kind="small"
           label="Register"
           action={() => {showAuthForm('register')}} 
           />
       </li>
       <li style={menuStyles.authNavListItem}>
         <ArtButton 
-          size="small"
+          kind="small"
           label="Sign In"
           action={() => {showAuthForm('signIn')}} 
           />

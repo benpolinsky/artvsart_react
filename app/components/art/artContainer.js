@@ -2,7 +2,9 @@ import React from 'react';
 import {connect} from 'react-redux'
 import ArtInfo from './artInfo.js';
 import { Router, Route, Link, browserHistory } from 'react-router';
-import {fetchArt} from '../../actions/art.js';
+import {deleteArt, fetchArt} from '../../actions/art.js';
+import InlineSeparator from '../elements/inlineSeparator.js';
+import BaseStyles from '../../styles/base.js'
 
 const styles = {
   container: {
@@ -24,7 +26,12 @@ class ArtContainer extends React.Component{
     return (
       <div style={styles.container} >
         <ArtInfo art={{...this.props.art, creation_date: this.props.art.creation_date.toString()}} />
-        <Link to={`/art/${this.props.art.id}/edit`} >Edit </Link>
+        <div>
+          <Link style={BaseStyles.traditionalLink} to={`/art/${this.props.art.id}/edit`}>Edit</Link>
+          <InlineSeparator />
+          <Link to={`/art/${this.props.art.id}`} style={BaseStyles.traditionalLink} onClick={this.props.deleteArt.bind(this, this.props.art.id, this.context.router)} >Delete</Link>
+        </div>
+
       </div>
     )
   }
@@ -35,6 +42,10 @@ ArtContainer.propTypes = {
   loadArt: React.PropTypes.func.isRequired
 }
 
+ArtContainer.contextTypes = {
+  router: React.PropTypes.object
+}
+
 const mapStateToProps = (state) => ({
   art: state.artState.art
 });
@@ -42,6 +53,9 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   loadArt(id){
     dispatch(fetchArt(id));
+  },
+  deleteArt(id, router){
+    dispatch(deleteArt(id, router))
   }
 })
 

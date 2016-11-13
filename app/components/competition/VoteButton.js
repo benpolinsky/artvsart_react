@@ -1,11 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 import {selectCompetitionWinner} from '../../actions/competitions.js';
-import RaisedButton from 'material-ui/RaisedButton';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-
-
-
+import ArtButton from '../elements/button.js';
 
 const labelStyle = {
   fontSize: 21,
@@ -23,17 +19,11 @@ const mainStyles = {
 }
 
 const VoteButton = ({onClick, styles}) => {
-  return <MuiThemeProvider>
-            <RaisedButton 
-              backgroundColor="white" 
-              labelStyle={labelStyle}
-              labelColor="black" 
-              onTouchTap={onClick} 
-              label="Vote" 
-              style={mainStyles}
-              className="voteButton"
-            />
-         </MuiThemeProvider>
+  return <ArtButton 
+            action={onClick} 
+            label="Vote" 
+            size='vote'
+          />
 }
 
 

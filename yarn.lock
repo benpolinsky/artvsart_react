@@ -1225,7 +1225,7 @@ clap@^1.0.9:
   dependencies:
     chalk "^1.1.3"
 
-classnames@^2.2.0, classnames@2.2.5:
+classnames@^2.1.2, classnames@^2.2.0, classnames@2.2.5:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/classnames/-/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
 
@@ -1635,6 +1635,10 @@ dashdash@^1.12.0:
   dependencies:
     assert-plus "^1.0.0"
 
+date-arithmetic@^3.0.0:
+  version "3.1.0"
+  resolved "https://registry.yarnpkg.com/date-arithmetic/-/date-arithmetic-3.1.0.tgz#1fcd03dbd504b9dbee2b9078c85a5f1c7d3cc2d3"
+
 date-now@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/date-now/-/date-now-0.1.4.tgz#eaf439fd4d4848ad74e5cc7dbef200672b9e345b"
@@ -1658,6 +1662,10 @@ debug@2.1.3:
 decamelize@^1.0.0, decamelize@^1.1.1, decamelize@^1.1.2:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/decamelize/-/decamelize-1.2.0.tgz#f6534d15148269b20352e7bee26f501f9a191290"
+
+deconstruct-number-format@~0.0.1, deconstruct-number-format@0.0.1:
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/deconstruct-number-format/-/deconstruct-number-format-0.0.1.tgz#fbb5d7dcd45bd2b2fa0e579ed91b59c7e29b386a"
 
 deep-diff@0.3.4:
   version "0.3.4"
@@ -1731,6 +1739,10 @@ dom-css@^2.0.0:
     add-px-to-style "1.0.0"
     prefix-style "2.0.1"
     to-camel-case "1.0.0"
+
+dom-helpers@^2.2.4:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/dom-helpers/-/dom-helpers-2.4.0.tgz#9bb4b245f637367b1fa670274272aa28fe06c367"
 
 dom-walk@^0.1.0:
   version "0.1.1"
@@ -2238,6 +2250,17 @@ form-data@~2.1.1:
     asynckit "^0.4.0"
     combined-stream "^1.0.5"
     mime-types "^2.1.12"
+
+format-number-with-string@0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/format-number-with-string/-/format-number-with-string-0.0.2.tgz#eb96e8f1640c921f7414466ccf8dcb3bb6802cba"
+  dependencies:
+    deconstruct-number-format "~0.0.1"
+    format-number "^2.0.1"
+
+format-number@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/format-number/-/format-number-2.0.1.tgz#e9231a8743ca64b47d09555dce40296343be66eb"
 
 formatio@1.1.1:
   version "1.1.1"
@@ -4869,6 +4892,12 @@ react-loader-advanced@^1.4.1:
   dependencies:
     babel-runtime "^6.6.1"
 
+react-onclickoutside:
+  version "5.7.1"
+  resolved "https://registry.yarnpkg.com/react-onclickoutside/-/react-onclickoutside-5.7.1.tgz#30c2c124a6423ba4b321f3f5ce06e2a61f27257b"
+  dependencies:
+    object-assign "^4.0.1"
+
 react-redux@^5.0.0-beta.2:
   version "5.0.0-beta.3"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-5.0.0-beta.3.tgz#d50bfb00799cf7d2a9fd55fe34d6b3ecc24d3072"
@@ -4917,6 +4946,27 @@ react-tap-event-plugin@^1.0.0:
 react-test-renderer@^15.3.2:
   version "15.3.2"
   resolved "https://registry.yarnpkg.com/react-test-renderer/-/react-test-renderer-15.3.2.tgz#d8f083d37d2d41e97bbdc26a1dd9282f0baf7857"
+
+react-tether:
+  version "0.5.2"
+  resolved "https://registry.yarnpkg.com/react-tether/-/react-tether-0.5.2.tgz#d12ba064534cd9db62b1aaf960b366ca059880e9"
+  dependencies:
+    tether "^1.1.1"
+
+react-widgets:
+  version "3.4.4"
+  resolved "https://registry.yarnpkg.com/react-widgets/-/react-widgets-3.4.4.tgz#610930781d6a1911e033c3011fdf3a242e077a12"
+  dependencies:
+    classnames "^2.1.2"
+    date-arithmetic "^3.0.0"
+    dom-helpers "^2.2.4"
+    invariant "^2.1.0"
+    loose-envify "^1.2.0"
+    uncontrollable "^4.0.0"
+    warning "^2.0.0"
+  optionalDependencies:
+    deconstruct-number-format "0.0.1"
+    format-number-with-string "0.0.2"
 
 react@^15.3.1:
   version "15.3.2"
@@ -5764,6 +5814,10 @@ testcheck@^0.1.0:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/testcheck/-/testcheck-0.1.4.tgz#90056edd48d11997702616ce6716f197d8190164"
 
+tether@^1.1.1:
+  version "1.3.7"
+  resolved "https://registry.yarnpkg.com/tether/-/tether-1.3.7.tgz#65578104741694f9672c808eae04a9adae7b0304"
+
 throat@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/throat/-/throat-3.0.0.tgz#e7c64c867cbb3845f10877642f7b60055b8ec0d6"
@@ -5904,6 +5958,12 @@ uglify-to-browserify@~1.0.0:
 uid-number@~0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/uid-number/-/uid-number-0.0.6.tgz#0ea10e8035e8eb5b8e4449f06da1c730663baa81"
+
+uncontrollable@^4.0.0:
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/uncontrollable/-/uncontrollable-4.0.3.tgz#06ec76cb9e02914756085d9cea0354fc746b09b4"
+  dependencies:
+    invariant "^2.1.0"
 
 underscore@1.x:
   version "1.8.3"

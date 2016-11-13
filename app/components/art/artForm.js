@@ -24,7 +24,7 @@ const validate = (values) => {
       errors[field] = "Required"
     } else if (values[field].length < 3) {
       errors[field] = "Must be 3 characters or more"
-    } else if (values[field].length >= 128) {
+    } else if (field != 'description' && values[field].length >= 128) {
       errors[field] = `Woah, please keep your ${field} under 128 characters`
     }
   });

@@ -33,3 +33,8 @@ h1, h2, h3, h4{
   font-weight: 700;
   font-size:14px;
 }
+
+
+.tether-element{
+  z-index: 1000000;
+}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import MainButton from '../elements/mainButton.js';
+import MainButton from '../elements/button.js';
 import FacebookButton from '../elements/facebookButton.js';
 import CompetitionStyles from '../../styles/competition.js';
 import Dialog from 'material-ui/Dialog';

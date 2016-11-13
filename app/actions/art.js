@@ -82,6 +82,33 @@ const updateArtResponse = (response) => ({
   art: response.art
 })
 
+export const deleteArt = (id, router) => (dispatch) => {
+  dispatch(deleteArtRequest());
+  api.destroy(`art/${id}`).then(response => {
+    if (response.errors == null) {
+      dispatch(artDeletedResponse(response));
+      router.push('/art')
+    } else {
+      dispatch(artDeletedFailed(response))
+    }
+  })
+}
+
+const deleteArtRequest = () => ({
+  type: "DELETE_ART_REQUEST"
+})
+
+const artDeletedFailed = (response) => ({
+  type: "ART_DELETED_FAILED",
+  errors: response.errors
+})
+
+const artDeletedResponse = (response) => ({
+  type: "ART_DELETED_RESPONSE",
+  art: response.art
+})
+
+
 
 export const fetchAllArt = () => (dispatch) => {
   dispatch(allArtRequested());

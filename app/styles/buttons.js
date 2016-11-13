@@ -39,6 +39,20 @@ const button = {
   small: {
     ...baseButtonStyles,
     width: 'auto'
+  },
+  vote: {
+    ...baseButtonStyles,
+    fontSize: 16,
+    fontWeight: 400,
+    height: 40,
+    textTransform: "uppercase"
+  },
+  warn: {
+    ...baseButtonStyles,
+    background: 'none lightgrey',
+    ':hover': {
+      background: '#fc8181'
+    }
   }
 }
 

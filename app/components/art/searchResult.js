@@ -13,9 +13,7 @@ const SearchResult = ({result, importArt}) => {
       <p style={{textAlign: 'center'}}>{result.year}</p>
       <h4 style={{textAlign: 'center'}}>{result.title}</h4>
 
-      <ArtButton size="small" disabled={result.imported} action={importArt.bind(null, result.id)} label={label} />
-
-  
+      <ArtButton kind="small" disabled={result.imported} action={importArt.bind(null, result.id)} label={label} />
     </div>
   )
 }

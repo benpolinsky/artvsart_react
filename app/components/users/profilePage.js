@@ -7,13 +7,13 @@ import ProfileForm from './profileForm.js'
 import PasswordForm from './passwordForm.js'
 import SocialMediaIdentities from './socialMediaIdentities.js'
 import UserGravatar from '../users/userGravatar.js'
+import ArtButton from '../elements/button.js';
 import baseStyles from '../../styles/base.js';
 
 import {userGreeting} from  '../../utils/users.js'
 
 import Dialog from 'material-ui/Dialog';
 import Divider from 'material-ui/Divider';
-import FlatButton from 'material-ui/FlatButton';
 import {List, ListItem} from 'material-ui/List';
 import {Tabs, Tab} from 'material-ui/Tabs';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -56,13 +56,13 @@ class ProfilePage extends React.Component{
     }
     
     const deleteUserActions = [
-      <FlatButton label="Yes, really delete me." 
-        onTouchTap={this.props.deleteUser.bind(this, this.context.router)} />,
-      <FlatButton label="No, No, No, No! I want to livvveee." 
-        onTouchTap={this.triggerDeleteModal.bind(this, 'e', false)}
+      <ArtButton label="Yes, really delete me." 
+        action={this.props.deleteUser.bind(this, this.context.router)} />,
+      <ArtButton label="No, No, No, No! I want to livvveee." 
+        action={this.triggerDeleteModal.bind(this, 'e', false)}
         />
     ]
-    
+
     return(
         <MuiThemeProvider>
           <div style={baseStyles.container}>
@@ -78,9 +78,9 @@ class ProfilePage extends React.Component{
     
               <Tab style={{color: 'black'}} label="Account Info">
                 <ProfileForm initialValues={this.props.user} formAction={this.props.updateProfileForm} user={this.props.user} />
-                <PasswordForm formAction={this.props.updatePassword} user={this.props.user}/>
+                <PasswordForm user={this.props.user} formAction={this.props.updatePassword} />
                 <SocialMediaIdentities user={this.props.user} />
-                <FlatButton backgroundColor='lightgrey' hoverColor='#fc8181' style={{margin: "10px auto", display: "block"}} label="Delete Art Vs Art Account" onTouchTap={this.triggerDeleteModal} />
+                <ArtButton kind='warn' label="Delete Art Vs Art Account" action={this.triggerDeleteModal} />
               </Tab>
            </Tabs>
     
@@ -88,7 +88,6 @@ class ProfilePage extends React.Component{
               Really delete you from this the Art Vs. Art world?  <br/>
               You can never come back.  (that's a lie...)
             </Dialog>
-    
           </div>
        </MuiThemeProvider>
     )

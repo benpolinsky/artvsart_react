@@ -22,9 +22,11 @@ const navBarStyles = {
   },
   
   userMenuWrapper: {
-    width: 200,
+    width: 50,
+    marginTop: 6,
+    cursor: 'pointer',
     [browser]: {
-      width: 'auto'
+      width: 50
     }
   },
   userMenu: {

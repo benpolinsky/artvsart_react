@@ -38,6 +38,7 @@ import EditCategoryFormContainer from './components/categories/editCategoryFormC
 import ShowCategory from './components/categories/showCategory.js'
 
 import UserRankings from './components/users/userRankings.js'
+// Be sure to include styles at some point, probably during your bootstrapping
 
 const styles = [
   'reset', 

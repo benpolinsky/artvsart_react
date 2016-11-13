@@ -7,6 +7,7 @@ import Styles from '../../styles/forms.js';
 import BaseStyles from '../../styles/base.js';
 import ArtButton from '../elements/button.js';
 import QuickField from './quickField.js';
+import InlineSeparator from '../elements/inlineSeparator.js';
 
 const validate = (values) => {
   const errors = {};
@@ -49,7 +50,7 @@ class ForgotPasswordForm extends React.Component{
               <QuickField type="email" name="email" label="E-Mail" /> 
               <ArtButton label="Reset Password" action={this.props.handleSubmit(this.submitForm)} />
               <Link style={BaseStyles.traditionalLink} onClick={() => this.props.showAuthForm('signIn')}>Sign In</Link> 
-              <span style={BaseStyles.inlineSeparator}>|</span>
+              <InlineSeparator />
               <Link style={BaseStyles.traditionalLink} onClick={() => this.props.showAuthForm('register')}>Register</Link>
             </div>
 

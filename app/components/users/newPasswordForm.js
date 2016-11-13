@@ -6,7 +6,7 @@ import {connect} from 'react-redux'
 import {StyleRoot} from 'radium';
 import { Field, reduxForm } from 'redux-form';
 import {TextField} from 'redux-form-material-ui';
-import MainButton from '../elements/mainButton.js';
+import MainButton from '../elements/button.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Styles from '../../styles/forms.js';
 import {submitNewPassword} from '../../actions/userAuth.js';

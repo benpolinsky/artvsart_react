@@ -1,7 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
 import ShareButtons from '../shareButtons.js';
-import MainButton from '../elements/mainButton.js'
+import MainButton from '../elements/button.js'
 import CompetitionStyles from '../../styles/competition.js';
 
 

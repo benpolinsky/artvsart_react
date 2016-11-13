@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import Radium, {StyleRoot} from 'radium';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import {TextField} from 'redux-form-material-ui';
-import MainButton from '../elements/mainButton.js';
+import MainButton from '../elements/button.js';
 import { Field, reduxForm } from 'redux-form';
 import Styles from '../../styles/forms.js'
 import BaseStyles from '../../styles/base.js' 

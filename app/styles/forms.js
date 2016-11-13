@@ -100,7 +100,7 @@ const forms = {
     textAlign: 'center',
     height: 375,
     [mediaQueries.browser]: {
-      width: 'auto',
+      width: 350,
       textAlign: 'left'
     }
   },

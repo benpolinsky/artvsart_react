@@ -40,6 +40,7 @@ const initialArtState = {
 const artReducer = (state=initialArtState, action) => {
   switch (action.type) {
   case "BEGIN_ART_REQUEST":
+  case "DELETE_ART_REQUEST":
   case "ART_REQUESTED":
   case "ALL_ART_REQUESTED":
   case "CREATE_NEW_ART_REQUEST":
@@ -49,7 +50,9 @@ const artReducer = (state=initialArtState, action) => {
   case "ALL_ART_REQUEST_FAILED":
     return {...state, errors: action.errors, fetching: false}
   case "ART_RESPONSE":
+  case "ART_DELETED_RESPONSE":
     return {...state, art: action.art, fetching: false}
+  case "ART_DELETED_FAILED":
   case "ART_REQUEST_FAILED":
     return {...state, errors: action.errors, fetching: false}
   case "RESET_ART": 
