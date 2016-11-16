@@ -33,6 +33,9 @@ const initialArtState = {
       status: "pending_review"
     }
   ],
+  pages: {
+  
+  },
   errors: {},
   fetching: false
 }
@@ -46,7 +49,7 @@ const artReducer = (state=initialArtState, action) => {
   case "CREATE_NEW_ART_REQUEST":
     return {...state, fetching: true}
   case "ALL_ART_RESPONSE":
-    return {...state, allArt: action.allArt, fetching: false}
+    return {...state, allArt: action.allArt, pages: action.pages, fetching: false}
   case "ALL_ART_REQUEST_FAILED":
     return {...state, errors: action.errors, fetching: false}
   case "ART_RESPONSE":

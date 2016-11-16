@@ -48,7 +48,7 @@ const styles = [
 for (let style in styles) {
   require(`../styles/${styles[style]}.css`);
 }
-
+require('react-widgets/lib/less/react-widgets.less');
 
 ReactDOM.render(
 <Provider store={store}>

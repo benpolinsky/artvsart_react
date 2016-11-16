@@ -32,9 +32,9 @@ class ImportArtFormContainer extends React.Component{
   }
   
   
-  selected(event){
+  selected(value){
     this.setState({
-      source: event.target.value
+      source: value
     })
   }
   

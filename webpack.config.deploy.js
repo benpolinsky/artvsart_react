@@ -25,8 +25,24 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        loader: 'style!css',
+        loader: 'style-loader!css-loader',
         exclude: /(node_modules|bower_components)/
+      },
+      {
+        test: /\.less$/,
+        loader: 'style-loader!css-loader!less-loader'
+      },
+      {
+        test: /\.gif$/,
+        loader: 'url-loader?mimetime=image/png'
+      },
+      {
+        test: /\.woff(2)?(\?v=[0-9].[0-9].[0-9])?$/,
+        loader: "url-loader?mimetype=application/font-woff"
+      },
+      {
+        test: /\.(ttf|eot|svg)(\?v=[0-9].[0-9].[0-9])?$/,
+        loader: "file-loader?name=[name].[ext]"
       },
       {
         test: /\.png$/,

@@ -6,7 +6,7 @@ const SearchResult = ({result, importArt}) => {
   const label = result.imported ? "Imported!" : "Import"
   return(
     <div className='search-result' style={{width: 200, height: 300}}>
-      <div className='image-container' style={{width: 150, height: 150, margin: '0 auto'}}>
+      <div className='image-container' style={{width: 150, height: 150, margin: '0 auto', textAlign: "center"}}>
         <img src={result.image}  style={{maxWidth: '100%', maxHeight: '100%', textAlign: "center"}}/>
       </div>
       

@@ -1,11 +1,13 @@
 // this was before I began using redux-form...
+// I'll leave it for now for contrast.
 
 import React from 'react';
 import Radium from 'radium';
 import TextField from 'material-ui/TextField';
 import ArtButton from '../elements/button.js';
-import baseStyles from '../../styles/base.js'
-import formStyles from '../../styles/forms.js'
+import baseStyles from '../../styles/base.js';
+import formStyles from '../../styles/forms.js';
+import DropdownList from 'react-widgets/lib/DropdownList';
 
 const ImportArtForm = ({submitForm, selected_source, selected, sources, update, errors}) => {
   const source_label = `search_${selected_source.toLowerCase()}`;
@@ -16,9 +18,10 @@ const ImportArtForm = ({submitForm, selected_source, selected, sources, update, 
 
           <div style={formStyles.centered.fields}>
             <div style={formStyles.fieldContainer}>
-              <select name="import-source" value={selected_source} style={formStyles.basicField} onChange={selected}>
-                {sources.map(source => <option key={source} value={source}>{source}</option>)}
-              </select>
+              <DropdownList data={sources} 
+                defaultValue={selected_source} 
+                name="import-source" 
+                onChange={selected} />
             </div>
              <div style={formStyles.fieldContainer}>
                <label htmlFor={source_label} style={formStyles.label}>Search {selected_source} </label>

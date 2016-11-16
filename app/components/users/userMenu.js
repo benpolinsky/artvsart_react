@@ -6,18 +6,6 @@ import UserDropDown from './userDropDown.js';
 import TetherComponent from 'react-tether';
 import onClickOutside from 'react-onclickoutside'
 
-
-
-// const myMenu = Radium(DropDownMenu)
-// labelStyle={{color: 'black', borderBottom: 0, fontSize: 14, overflow: 'hidden', textOverflow: 'ellipsis'}}
-// style={menuStyles}
-//           <Select onChange={selectMenuItem} value={menu} options={options} />
-//   const {menuStyles, wrapperStyles, selectMenuItem, menu, userEmail, userHash} = this.props
-// const options = [
-//   {value: 'email', label: userEmail },
-//   {value: 'profile', label: "Your Profile"},
-//   {value: 'sign_out', label: "Sign Out"}
-// ];
 class UserMenu extends React.Component {
   
   componentWillMount(){

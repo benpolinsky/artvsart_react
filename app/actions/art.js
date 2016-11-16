@@ -110,9 +110,10 @@ const artDeletedResponse = (response) => ({
 
 
 
-export const fetchAllArt = () => (dispatch) => {
+export const fetchAllArt = (page=null) => (dispatch) => {
   dispatch(allArtRequested());
-  api.get('art').then(response => {
+  const url = page ? `art?page=${page}` : 'art';
+  api.get(url).then(response => {
     if (response.errors == null) {
       dispatch(allArtResponse(response));
     } else {
@@ -127,7 +128,8 @@ const allArtRequested = () => ({
 
 const allArtResponse = (response) => ({
   type: "ALL_ART_RESPONSE",
-  allArt: response.art
+  allArt: response.art,
+  pages: response.pages
 });
 
 const allArtRequestFailed = (response) => ({
