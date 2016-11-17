@@ -58,7 +58,12 @@ export const searchSource = (data) => {
 }
 
 export const toParams = (data) => {
-  return Object.keys(data).map(function(key) {
-    return key + '=' + data[key];
-  }).join('&');
+  return Object.keys(data).map((key) => {
+    if (data[key]) {
+      return `${key}=${data[key]}`;      
+    } else {
+      return null
+    }
+
+  }).filter(n => n).join('&');
 }

@@ -24,10 +24,10 @@ class BPPagination extends React.Component{
     const lastStyle = last_page ? {...baseStyle, ...currentStyle} : baseStyle;
     
     return(
-
-      <div style={{width: 'auto', clear: 'both', float: 'none', display: 'block', width: (20*(total_pages+2)), margin: "0 auto"}}>
+      total_pages > 1 && 
+      <div style={{width: 'auto', clear: 'both', float: 'none', display: 'block', width: (20*(total_pages+2)), margin: 10}}>
         {!first_page && <ArtButton styles={{...baseStyle}} label='<' action={this.props.action.bind(this, current_page - 1)} kind="small" />}
-        <ArtButton styles={firstStyle} label='1' action={this.props.action.bind(this, 1)} kind="small" />
+        {<ArtButton styles={firstStyle} label='1' action={this.props.action.bind(this, 1)} kind="small" />}
         {this.pagesComponents()}
         <ArtButton styles={lastStyle} label={total_pages} action={this.props.action.bind(this, total_pages)}  kind="small" />
         {!last_page &&  <ArtButton styles={{...baseStyle}} label='>' action={this.props.action.bind(this, current_page + 1)} kind="small" />}
