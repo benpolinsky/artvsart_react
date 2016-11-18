@@ -1,3 +1,5 @@
+import Immutable from 'immutable'
+
 const initialArtState = {
   art: {
     name: "",
@@ -38,7 +40,8 @@ const initialArtState = {
   },
   search: "",
   errors: {},
-  fetching: false
+  fetching: false,
+  allChecked: false
 }
 
 const artReducer = (state=initialArtState, action) => {
@@ -50,7 +53,7 @@ const artReducer = (state=initialArtState, action) => {
   case "CREATE_NEW_ART_REQUEST":
     return {...state, fetching: true}
   case "ALL_ART_RESPONSE":
-    return {...state, allArt: action.allArt, pages: action.pages, search: (action.search ? action.search : ''), fetching: false}
+    return {...state, allArt: action.allArt.map((a) => {a['checked'] = false; return a;}), pages: action.pages, search: (action.search ? action.search : ''), fetching: false}
   case "ALL_ART_REQUEST_FAILED":
     return {...state, errors: action.errors, fetching: false}
   case "ART_RESPONSE":
@@ -71,6 +74,31 @@ const artReducer = (state=initialArtState, action) => {
     return {...state, art: {...state.art, creation_date: state.art.creation_date.toString()}, fetching: false}
   case "UPDATE_ART_REQUEST_FAILED":
     return {...state, errors: action.errors, fetching: false}
+  case "TOGGLE_ALL_ART":
+    return {...state, allChecked: !action.checked, allArt: state.allArt.map(a => {
+      return ({...a, checked: !action.checked})
+    })
+  }
+  case "TOGGLE_CHECKED_ART":
+
+    var stateMap = Immutable.fromJS(state);
+    var updatedStateMap = stateMap.updateIn(['allArt', action.artIndex, 'checked'], value => !value);
+    return updatedStateMap.toJS();
+    
+  case "UPDATE_TOGGLED_SUCCESS":
+  
+    var stateMap = Immutable.fromJS(state);
+    var newState = stateMap.updateIn(['allArt'], (art) => {
+      return art.map((a) => {
+        if (action.art.map(a => a.id).includes(a.get('id'))) {
+          return a.set('status', action.status).set('checked', false)
+        } else {
+          return a
+        }
+      })
+    });
+
+    return {...newState.toJS(), fetching: false, allChecked: false};
   }
   return state
 }

@@ -61,7 +61,6 @@ const facebookAuthSuccess = (response) => ({
 
 export const loginToGithub = (response) => (dispatch) => {
   api.get('users/auth/github/callback').then(response => {
-    console.log(response)
   })
 }
 
@@ -237,7 +236,6 @@ export const getUserInfo = () => (dispatch) => {
     if (error.message == "Failed to fetch"){
       dispatch(apiDown(error))
     } else {
-      console.log("An error occurred: ", error.message)
     }
     
   });

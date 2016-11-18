@@ -145,7 +145,6 @@ class ArtFormContainer extends React.Component {
   }
   
   onUploadProgress(percent){
-    console.log(percent)
     this.setState({
       uploadProgress: percent
     });

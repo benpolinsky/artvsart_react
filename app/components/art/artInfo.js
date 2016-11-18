@@ -1,19 +1,16 @@
 import React from 'react'
-import Datejs from 'datejs'
 import QuickRow from '../quickRow.js'
+import dateFormat from '../../utils/dateFormats.js'
+
 
 const ArtInfo = ({art}) => {
-  var date = ""
-  
-  if (typeof art.creation_date == 'string') {
-    var date = Date.parse(art.creation_date).toString("M/d/yyyy");
-  } 
+ 
   
   return(
     <div>
       <QuickRow label='Title' content={art.name} />
       <QuickRow label='Creator' content={art.creator} />
-      <QuickRow label='Created' content={date} />
+      <QuickRow label='Created' content={dateFormat(art.creation_date)} />
       <QuickRow label='Category' content={art.category.name} />
   
       <hr style={{borderRadius: 0, borderLeftWidth: 0, borderRightWidth: 0}}/>

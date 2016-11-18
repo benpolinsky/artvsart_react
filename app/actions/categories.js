@@ -26,7 +26,6 @@ const categoriesResponseFailed = (response) => ({
 })
 
 export const createCategory = (category, router) => (dispatch) => {
-  console.log(category);
   dispatch(startPostCategory());
   api.post('categories', {category: category}).then(response => {
     if (response.errors == null) {
