@@ -4,8 +4,6 @@ import dateFormat from '../../utils/dateFormats.js'
 
 
 const ArtInfo = ({art}) => {
- 
-  
   return(
     <div>
       <QuickRow label='Title' content={art.name} />

@@ -53,7 +53,7 @@ class ArtFormContainer extends React.Component {
           submitLabel: "Update"
         });
         
-        (nextProps.art.id == 0) && this.props.loadArt(nextProps.params.id);
+      (this.props.art.id != this.props.params.id) && this.props.loadArt(this.props.params.id);
       }
     }
   }
@@ -74,7 +74,7 @@ class ArtFormContainer extends React.Component {
         submitLabel: "Update"
       });
       
-      (this.props.art.id == 0) && this.props.loadArt(this.props.params.id);
+      (this.props.art.id != this.props.params.id) && this.props.loadArt(this.props.params.id);
     }
   }
   

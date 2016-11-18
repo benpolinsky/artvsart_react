@@ -8,7 +8,7 @@ import dateFormat from '../utils/dateFormats.js';
 
 const headerCell = (field, toggleAll) => {
   if (field == "checkbox") {
-    return <p onClick={toggleAll}>Toggle All</p>
+    return <p style={{cursor: 'pointer'}} onClick={toggleAll}>Toggle All</p>
   } else {
     return field.toUpperCase();
   }
@@ -31,7 +31,7 @@ const determineCell = (record, field, checkAction, index, selectStatus) => {
             </TableRowColumn>)
 
   case 'edit':
-    return <TableRowColumn key={record.id}><Link to={`/art/${record.id}.edit`}>Edit</Link></TableRowColumn>
+    return <TableRowColumn key={record.id}><Link to={`/art/${record.id}/edit`}>Edit</Link></TableRowColumn>
   
   case 'checkbox':
     return (<TableRowColumn key={record.id}>

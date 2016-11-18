@@ -56,6 +56,16 @@ const button = {
   }
 }
 
+export const linkButton = {
+  ...baseButtonStyles,
+  display: 'inline',
+  padding: 5,
+  textDecoration: 'none',
+  fontSize: 11,
+  top: '14',
+  position: 'relative'
+  
+}
 
 
 export default button
