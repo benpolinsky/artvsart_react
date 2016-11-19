@@ -71,9 +71,21 @@ const artReducer = (state=initialArtState, action) => {
   case "UPDATE_ART_REQUEST":
     return {...state, art: {...state.art, creation_date: state.art.creation_date.toString()}, fetching: true}
   case "UPDATE_ART_RESPONSE":
-    return {...state, art: {...state.art, creation_date: state.art.creation_date.toString()}, fetching: false}
+    return {...state, art: {...state.art, ...action.art, creation_date: state.art.creation_date.toString()}, fetching: false}
   case "UPDATE_ART_REQUEST_FAILED":
     return {...state, errors: action.errors, fetching: false}
+  case "UPDATE_ART_STATUS_RESPONSE":
+    var stateMap = Immutable.fromJS(state);
+    var newState = stateMap.updateIn(['allArt'], (art) => {
+      return art.map((a) => {
+        if (a.get('id') == action.response.art.id) {
+          return a.set('status', action.response.art.status)
+        } else {
+          return a
+        }
+      })
+    });
+    return {...newState.toJS(), fetching: false}
   case "TOGGLE_ALL_ART":
     return {...state, allChecked: !action.checked, allArt: state.allArt.map(a => {
       return ({...a, checked: !action.checked})

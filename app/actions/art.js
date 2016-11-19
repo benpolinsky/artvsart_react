@@ -88,12 +88,17 @@ export const updateArtStatus = (id, status) => (dispatch) => {
   dispatch(updateArtRequest());
   api.put(`art/${id}/update_status`, {status: status}).then(response => {
     if (response.errors == null) {
-      dispatch(updateArtResponse(response));
+      dispatch(updateArtStatusResponse(response));
     } else {
       dispatch(updateArtRequestFailed(response))
     }
   })
 }
+
+const updateArtStatusResponse = (response) => ({
+  type: "UPDATE_ART_STATUS_RESPONSE",
+  response
+})
 
 
 export const deleteArt = (id, router) => (dispatch) => {
