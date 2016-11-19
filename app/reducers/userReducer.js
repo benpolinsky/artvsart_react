@@ -11,13 +11,14 @@ const initialUserState = {
     openForm: '',
     error: '',
     facebookRestoring: false,
-    errors: {
-    },
+    errors: [
+      ],
     serverErrors: {
     },
     identities: []
   },
-  fetching: false
+  fetching: false,
+  errors: []
 }
 
 
@@ -117,9 +118,7 @@ const userReducer = (state=initialUserState, action) => {
     if (typeof action.errors == "string") {
       return {
         ...state,
-        errors: {
-          email: "Invalid Email or Password!"
-        },
+        errors: ["Invalid Email or Password!"],
         fetching: false
       }
     }
@@ -138,9 +137,7 @@ const userReducer = (state=initialUserState, action) => {
     }
     return {
       ...state,
-      errors: {
-        email: errors.join(", ")
-      },
+      errors: errors,
       fetching: false
     }
   case 'CONFIRM_USER_ACCOUNT_FAILED':
@@ -163,6 +160,8 @@ const userReducer = (state=initialUserState, action) => {
     return {...state, fetching: false, user: {...state.user, openForm: ''}}
   case "FACEBOOK_RESTORING": 
     return {...state, fetching: false, user: {...state.user, facebookRestoring: true}}
+  case "CLEAR_AUTH_FORM": 
+    return {...state, fetching: false, errors: []}
   }
   
  

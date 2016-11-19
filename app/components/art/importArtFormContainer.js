@@ -95,10 +95,10 @@ class ImportArtFormContainer extends React.Component{
                   selected={this.selected} 
                   update={this.update} 
                   submitForm={this.submitForm}
-                  errors={this.state.formErrors}
+                  formErrors={this.state.formErrors}
                 />
                 
-                <SearchResults results={this.props.results} error={this.props.error} importArt={this.importArt} />
+                <SearchResults results={this.props.results} errors={this.props.errors} importArt={this.importArt} />
         </Loader>
       </div>
     )
@@ -110,7 +110,7 @@ ImportArtFormContainer.propTypes = {
   loading: React.PropTypes.bool.isRequired,
   results: React.PropTypes.array.isRequired,
   listing_id: React.PropTypes.string.isRequired,
-  error: React.PropTypes.string.isRequired,
+  errors: React.PropTypes.array.isRequired,
   submitForm: React.PropTypes.func.isRequired,
   importArt: React.PropTypes.func.isRequired
 }
@@ -119,7 +119,7 @@ const mapStateToProps = (store) => ({
   loading: store.artImportState.loading,
   results: store.artImportState.results,
   listing_id: store.artImportState.listing_id,
-  error: store.artImportState.error
+  errors: store.artImportState.errors
 });
 
 const mapDispatchToProps = (dispatch) => ({

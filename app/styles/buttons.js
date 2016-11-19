@@ -62,7 +62,7 @@ export const linkButton = {
   padding: 5,
   textDecoration: 'none',
   fontSize: 11,
-  top: '14',
+  top: 14,
   position: 'relative'
   
 }

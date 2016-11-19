@@ -4,7 +4,7 @@ const initialArtState = {
   loading_message: "loading",
   results: [],
   listing_id: "",
-  error: ''
+  errors: []
 }
 
 const artImportsReducer = (state=initialArtState, action) => {
@@ -13,7 +13,7 @@ const artImportsReducer = (state=initialArtState, action) => {
     return {
       ...state, 
       loading: true,
-      error: '',
+      errors: [],
       results: []
     }
   case "DISPLAY_RESULTS_SUCCESS":
@@ -21,20 +21,20 @@ const artImportsReducer = (state=initialArtState, action) => {
       ...state, 
       loading: false,
       results: action.results,
-      error: ''
+      errors: []
     }
     
   case "DISPLAY_RESULTS_ERRORS":
     return {
       ...state,
       loading: false,
-      error: action.errors
+      errors: action.errors
     }
   case "IMPORT_ART_REQUEST":
     return {
       ...state, 
       loading: true,
-      error: ''
+      errors: []
     }
   case "IMPORT_ART_RESPONSE":
     return {
@@ -47,13 +47,13 @@ const artImportsReducer = (state=initialArtState, action) => {
         
       }),
       loading: false,
-      error: ''
+      errors: []
     }
   case "IMPORT_ART_FAILED":
     return {
       ...state, 
       loading: false,
-      error: action.errors
+      errors: action.errors
     }
   }
   return state

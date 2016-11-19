@@ -68,7 +68,9 @@ export const signUserIn = (user, router) => (dispatch) => {
   dispatch(startSignUserIn(user));
   return api.post('users/sign_in', user).then(response => {
     if (response.errors != null) {
+      console.log(response.errors)
       dispatch(signInUserFailed(response.errors));
+      
     } else if (response.deleted_user){
       dispatch(displayNotice(response.message));
       dispatch(closeSignUp())
@@ -369,4 +371,8 @@ export const restoreUserSuccess = (response) => ({
 export const restoreUserFailed = (response) => ({
   type: 'RESTORE_USER_FAILED',
   errors: response.errors
+})
+
+export const clearAuthForm = () => ({
+  type: "CLEAR_AUTH_FORM"
 })

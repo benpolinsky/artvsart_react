@@ -33,7 +33,17 @@ export class AuthForm extends React.Component {
     super();
     this.submitForm = this.submitForm.bind(this);
   }
-
+  
+  componentDidUpdate(prevProps){
+    const currentFormIsDisplayed = this.props.displayForm == this.props.formType;
+    const currentFormWasDisplayed = prevProps.displayForm == this.props.formType;
+    if (prevProps == this.props){ 
+        return false 
+    } else if (currentFormIsDisplayed && !currentFormWasDisplayed ){ 
+      this.props.clearForm()
+    }
+  }
+    
   submitForm(data){
     const router = this.context.router;
     this.props.formAction(data, router);      
@@ -48,7 +58,7 @@ export class AuthForm extends React.Component {
     // Having trouble getting redux-form's server validation to work
     // Thus, I'm handling server errors through actions/state
     
-    const email_errors = this.props.errors ? this.props.errors.email : ''
+    const email_errors = this.props.errors ? this.props.errors : '';
     return (
        <StyleRoot>
       <div className='registerForm' style={[Styles.authForm, formStyles]}>

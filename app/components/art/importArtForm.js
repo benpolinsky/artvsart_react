@@ -9,7 +9,7 @@ import baseStyles from '../../styles/base.js';
 import formStyles from '../../styles/forms.js';
 import DropdownList from 'react-widgets/lib/DropdownList';
 
-const ImportArtForm = ({submitForm, selected_source, selected, sources, update, errors}) => {
+const ImportArtForm = ({submitForm, selected_source, selected, sources, update, formErrors}) => {
   const source_label = `search_${selected_source.toLowerCase()}`;
   return (
     <form onSubmit={submitForm} style={formStyles.centered}>
@@ -26,7 +26,7 @@ const ImportArtForm = ({submitForm, selected_source, selected, sources, update, 
              <div style={formStyles.fieldContainer}>
                <label htmlFor={source_label} style={formStyles.label}>Search {selected_source} </label>
               <div>
-                {errors.query && errors.query.map((error, index) => {return <span key={index}>{error}</span>})}
+                {formErrors.query && formErrors.query.map((error, index) => {return <span key={index}>{error}</span>})}
                <input type='search' style={formStyles.basicField} onChange={update}  name={source_label} />
               </div>
              </div>
@@ -46,7 +46,7 @@ ImportArtForm.propTypes = {
   selected: React.PropTypes.func.isRequired,
   sources: React.PropTypes.array.isRequired,
   update: React.PropTypes.func.isRequired,
-  errors: React.PropTypes.object
+  formErrors: React.PropTypes.object
 }
 
 

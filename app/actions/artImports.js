@@ -1,14 +1,16 @@
 import * as api from '../utils/ajaxHelpers.js'
 import * as storage from '../utils/localStorage.js'
+import {displayNotice} from './app.js';
 
 
 export const searchSource = (source, query) => (dispatch) => {
   dispatch(searchSourceRequest());
   return api.searchSource({source: source, query: query}).then(response => {
-    if (response.error == null) {
+    console.log(response)
+    if (response.errors == null) {
       dispatch(displayResultsSuccess(response));      
     } else {
-      dispatch(displayResultsErrors(response.error));
+      dispatch(displayResultsErrors(response.errors));
     }
   })
 }
@@ -31,7 +33,8 @@ export const importArt = (id, source) => (dispatch) => {
   dispatch(importArtRequest());
   return api.post('art/import', {id: id, source: source}).then(response => {
     if (response.errors == null) {
-      dispatch(importArtResponse(response));      
+      dispatch(importArtResponse(response));
+      dispatch(displayNotice("Imported!"))      
     } else {
       dispatch(importArtFailed(response));
     }

@@ -2,16 +2,16 @@ import React from 'react'
 import {connect} from 'react-redux'
 import AuthForm from './authForm.js'
 import ForgotPasswordForm from './forgotPasswordForm.js'
-import {closeSignUp, registerUser, signUserIn, loginToFacebook, openSignUp, forgotPassword, loginToGithub} from '../../actions/userAuth.js';
+import {closeSignUp, registerUser, signUserIn, loginToFacebook, openSignUp, forgotPassword, loginToGithub, clearAuthForm} from '../../actions/userAuth.js';
 import MyOverlay from '../myOverlay.js'
 import {PopupCenter} from '../../utils/users.js'
 import DefaultLoader from '../defaultLoader.js'
 
-const AuthForms = ({user, errors, signUserIn, registerUser, hideAuthForm, showAuthForm, requestPasswordReset, openGithubWindow, fetching}) => {
+const AuthForms = ({clearForm, user, errors, signUserIn, registerUser, hideAuthForm, showAuthForm, requestPasswordReset, openGithubWindow, fetching}) => {
   return(
     <DefaultLoader showing={fetching}>
-      <AuthForm showAuthForm={showAuthForm} errors={errors} displayForm={user.openForm} formType="register" form="RegisterForm" formTitle="Register" formAction={registerUser} />
-      <AuthForm showAuthForm={showAuthForm} errors={errors} displayForm={user.openForm} formType="signIn" form="SignInForm" formTitle="Sign In" formAction={signUserIn} />
+      <AuthForm showAuthForm={showAuthForm} clearForm={clearForm} errors={errors} displayForm={user.openForm} formType="register" form="RegisterForm" formTitle="Register" formAction={registerUser} />
+      <AuthForm showAuthForm={showAuthForm} clearForm={clearForm} errors={errors} displayForm={user.openForm} formType="signIn" form="SignInForm" formTitle="Sign In" formAction={signUserIn} />
       <ForgotPasswordForm showAuthForm={showAuthForm} displayForm={user.openForm} form="forgotPasswordForm" formType="forgotPassword" formAction={requestPasswordReset}/>
       <MyOverlay close={hideAuthForm} show={user.openForm} /> 
     </DefaultLoader>
@@ -49,6 +49,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   requestPasswordReset(data){
     dispatch(forgotPassword(data))
+  },
+  clearForm(){
+    dispatch(clearAuthForm())
   }
 })
 
