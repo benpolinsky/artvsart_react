@@ -8,8 +8,9 @@ import React from 'react'
 import {connect} from 'react-redux'
 import CategoryForm from './categoryForm.js'
 import {Router} from 'react-router';
-import {updateCategory, requestCategory, categoriesRequest} from '../../actions/categories.js'
-import DefaultLoader from '../defaultLoader.js'
+import {updateCategory, requestCategory, categoriesRequest, deleteCategory} from '../../actions/categories.js'
+import DefaultLoader from '../defaultLoader.js';
+import ArtButton from '../elements/button.js';
 
 class EditCategoryFormContainer extends React.Component{
   constructor(){
@@ -27,7 +28,7 @@ class EditCategoryFormContainer extends React.Component{
   }
   
   render(){
-    const {category, updateCategory, categories, fetching} = this.props;
+    const {category, updateCategory, categories, fetching, removeCategory} = this.props;
     
     return (
         <DefaultLoader showing={fetching}>  
@@ -41,6 +42,7 @@ class EditCategoryFormContainer extends React.Component{
             categories={categories.filter(c => c.id != category.id)}
             onSubmit={this.handleSubmit}
            />
+            <ArtButton label='Delete' action={() => removeCategory(category.id, this.context.router)}/>
         </DefaultLoader>  
             )
   }
@@ -66,7 +68,10 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(requestCategory(id))
   },
   updateCategory(data, router){
-    dispatch(updateCategory(data, router));
+    dispatch(updateCategory(data, router))
+  },
+  removeCategory(id, router){
+    dispatch(deleteCategory(id, router))
   }
 })
 

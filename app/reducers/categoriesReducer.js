@@ -9,6 +9,7 @@ const CategoriesReducer = (state=defaultCategoriesState, action) => {
   switch (action.type) {
   case "CATEGORIES_REQUEST":
     return {...state, isFetching: true}
+  case "DELETE_CATEGORY":
   case "START_POST_CATEGORY":
     return {...state, isFetching: true}
   case "CATEGORIES_RESPONSE":
@@ -29,7 +30,8 @@ const CategoriesReducer = (state=defaultCategoriesState, action) => {
       errors: action.errors,
       isFetching: false
     }
-  case "CATEGORY_POST_FAILED": 
+  case "DELETE_CATEGORY_FAILED":
+  case "CATEGORY_POST_FAILED":
     return {
       ...state,
       errors: action.errors,
@@ -54,6 +56,11 @@ const CategoriesReducer = (state=defaultCategoriesState, action) => {
     return {
       ...state,
       errors: action.errors,
+      isFetching: false
+    }
+  case "CATEGORY_DELETED":
+    return {
+      ...state,
       isFetching: false
     }
   }

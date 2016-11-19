@@ -3,7 +3,6 @@ import mediaQueries from './mediaQueries.js'
 const forms = {
   centered: {
     padding: 40,
-    borderBottom: '1px solid black',
     display: 'flex',
     alignItems: 'center',
     flexDirection: 'column',

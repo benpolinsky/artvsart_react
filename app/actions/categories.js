@@ -1,4 +1,5 @@
 import * as api from '../utils/ajaxHelpers.js';
+import {displayNotice} from './app.js';
 
 export const categoriesRequest = () => (dispatch) => {
   dispatch(requestCategories())
@@ -94,4 +95,32 @@ const updateCategoryStart = () => ({
 const updateCategoryFailed = (response) => ({
   type: "UPDATE_CATEGORY_FAILED",
   response: response.errors
+});
+
+export const deleteCategory = (categoryId, router) => (dispatch) => {
+  dispatch(deleteCategoryStart());
+  return api.destroy(`categories/${categoryId}`).then(response => {
+    if (response.errors == null) {
+      dispatch(categoryDeletedResponse(categoryId));
+      router.push(`/categories`)
+    } else {
+      dispatch(deleteCategoryFailed(response.errors));
+      dispatch(displayNotice(response.errors.join(", ")))
+    }
+  })
+}
+
+
+const deleteCategoryStart = () => ({
+  type: "DELETE_CATEGORY"
+});
+
+const categoryDeletedResponse = (category_id) => ({
+  type: "CATEGORY_DELETED",
+  category_id
+});
+
+const deleteCategoryFailed = (errors) => ({
+  type: "DELETE_CATEGORY_FAILED",
+  errors
 });
