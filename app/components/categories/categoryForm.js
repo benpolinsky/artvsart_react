@@ -24,12 +24,15 @@ const validate = (values) => {
 }
 
 
-const renderField = ({input}) => {
+const colorComponent = ({input, meta}) => {
   const colorLabel = input.value == "" ? 'Select Color:' : `Hex: ${input.value}`;
   
   return (
     <div style={formStyles.colorPicker}>
       <h1 style={{paddingLeft: 0}}>{colorLabel}</h1>
+        {meta.touched && 
+        meta.error && 
+        (<span style={formStyles.error} className="error">{meta.error}</span>)}
       <CirclePicker color={input.value} onChangeComplete={(value) => input.onChange(value.hex)}/>
     </div>
   )
@@ -49,7 +52,7 @@ const Form = ({form, formTitle, submitLabel, handleSubmit, category, categories}
                  return <option key={index} value={category.name} >{category.name}</option> 
               })}
             </QuickField>
-            <Field label="Color" name="color" component={renderField} />
+            <Field label="Color" name="color" component={colorComponent} />
           </div>
           <ArtButton type='submit' label={submitLabel} />
         </form>
