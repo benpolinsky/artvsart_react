@@ -3,6 +3,9 @@ import React from 'react'
 import formStyles from '../../styles/forms.js'
 import capitalize from '../../utils/capitalize.js'
 import { Field, reduxForm } from 'redux-form';
+import DatePicker from 'react-datepicker'
+import moment from 'moment'
+require('!style!css!react-datepicker/dist/react-datepicker.css');
 
 const componentField = (props) => {
   const errors = props.meta.touched && 
@@ -27,6 +30,11 @@ const componentField = (props) => {
         <select id={props.id} {...props.input}  style={props.style}>{props.children}</select>
       </div>
     )
+  case 'date':
+    return (
+    <DatePicker {...props.input} dateFormat="MM-DD-YYYY" selected={props.input.value ? moment(props.input.value, "MM-DD-YYYY") : null}/>
+    )
+    
   default:
     return (
       <div>

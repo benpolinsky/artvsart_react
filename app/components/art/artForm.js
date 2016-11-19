@@ -31,12 +31,6 @@ const validate = (values) => {
   return errors
 }
 
-const WrappedDatePicker = ({input}) => <DatePicker 
-                                    minDate={((2000).years().ago())}
-                                    name={input.name} 
-                                    value={input.value} 
-                                    onChange={(e, value) => input.onChange(value)} 
-                                  />
 
 class ArtForm extends React.Component{
   constructor(){
@@ -65,7 +59,7 @@ class ArtForm extends React.Component{
           
           <QuickField name="description" styles={{height: 100}} field='textarea' />
           
-          <QuickField name="creation_date" label="Creation Date" type='date'/>
+          <QuickField name="creation_date" label="Creation Date" field='date' />
           
           <QuickField name="category_name" label="Category" field='select'>
             <option disabled>Select Category: </option>

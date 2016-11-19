@@ -12,6 +12,7 @@ import * as storage from '../../utils/localStorage.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import LinearProgress from 'material-ui/LinearProgress'
 import DefaultLoader from '../defaultLoader.js'
+import moment from 'moment'
 
 import loaderStyles from '../../styles/loader.js'
 
@@ -110,11 +111,13 @@ class ArtFormContainer extends React.Component {
       var art_image = this.state.art.image
     }
     
-    const dataWithImage = {
+    const formattedData = {
       ...data,
-      image: art_image
+      image: art_image,
+      creation_date: moment(data.creation_date, "MM-DD-YYYY").format("DD-MM-YYYY")
     }
-    this.props.updateArt(dataWithImage, this.context.router)
+    
+    this.props.updateArt(formattedData, this.context.router)
   }
   
   toggleLoader(loading, callback){

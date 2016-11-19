@@ -88,8 +88,9 @@ export const signUserIn = (user, router) => (dispatch) => {
 }
 
 export const handleCompetitionModal = (result="") => (dispatch) => {
+  console.log(result)
   switch (result) {
-  case "SIGN UP WITH EMAIL":
+  case "Sign Up With Email":
     dispatch(openSignUp('register'));    
     break;
   default:
