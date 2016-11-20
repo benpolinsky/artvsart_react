@@ -4,7 +4,6 @@ import {StyleRoot} from 'radium';
 import UserGravatar from './userGravatar.js';
 import UserDropDown from './userDropDown.js';
 import TetherComponent from 'react-tether';
-import onClickOutside from 'react-onclickoutside'
 
 class UserMenu extends React.Component {
   
@@ -21,29 +20,16 @@ class UserMenu extends React.Component {
   }
   
   toggleMenu(){
-    !this.state.menuOpen ? this.props.enableOnClickOutside() : this.props.disableOnClickOutside()
     this.setState({
       menuOpen: !this.state.menuOpen
     })
+  }
 
-  }
-  
-  handleClickOutside(evt){
-    
-    const clickOnMenu = evt.path.some((e) => {
-      return e.classList && [...e.classList].includes('tether-element');
-    });
-    
-    if (this.state.menuOpen && !clickOnMenu){
-      this.toggleMenu()
-    }
-  }
-  
   render(){
     return (
         <StyleRoot>
           <div style={this.props.wrapperStyles}>
-            <TetherComponent attachment='bottom right' targetOffset='7px 50px' constraints={[{
+            <TetherComponent attachment='bottom left' targetOffset='7px 50px' constraints={[{
               to: 'scrollParent',
               attachment: 'together'
             }]}>
@@ -63,4 +49,4 @@ class UserMenu extends React.Component {
   
 }
 
-export default Radium(onClickOutside(UserMenu))
+export default Radium(UserMenu)

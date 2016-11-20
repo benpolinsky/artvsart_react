@@ -24,8 +24,8 @@ const drawer = {
   heading: {
     fontSize: 18,
     fontWeight: 400,
-    height: 64,
-    lineHeight: '64px',
+    height: 63,
+    lineHeight: '63px',
     width: '100%',
     textAlign: 'center',
     borderBottom: '1px solid black',

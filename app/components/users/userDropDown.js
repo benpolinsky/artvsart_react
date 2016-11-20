@@ -7,6 +7,7 @@ import {StyleRoot} from 'radium';
 import {Link} from 'react-router';
 
 import {signOutUser} from '../../actions/userAuth.js';
+import onClickOutside from 'react-onclickoutside'
 
 class UserDropDown extends React.Component {
   
@@ -14,10 +15,16 @@ class UserDropDown extends React.Component {
     if (itemName == 'profile') {
       this.context.router.push('profile');
     } else if (itemName = "signOut"){
-      this.props.signOutUser(this.context.router)
+      this.props.signOutUser(this.context.router);
     }
     this.props.closeMenu();
   }
+  
+  
+  handleClickOutside(evt){
+    this.props.closeMenu();
+  }
+  
   
   render(){
     return (
@@ -59,4 +66,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 
 
-export default connect(null, mapDispatchToProps)(Radium(UserDropDown))
+export default connect(null, mapDispatchToProps)(Radium(onClickOutside(UserDropDown)))

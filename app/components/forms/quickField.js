@@ -40,7 +40,7 @@ const componentField = (props) => {
       <div>
         {errors}
         {extraErrors}
-        <input id={props.id} {...props.input} style={props.style} type={props.type} />
+        <input id={props.id} {...props.input} style={{...props.style, ...formStyles.bottomBorder}} type={props.type} />
       </div>
     )
   }

@@ -6,6 +6,7 @@ import Radium from 'radium'
 import {StyleRoot} from 'radium'
 import { Field, reduxForm } from 'redux-form';
 import QuickField from './quickField.js'
+import FormHeader from './formHeader.js'
 import ArtButton from '../elements/button.js';
 import FacebookButton from '../elements/facebookButton.js';
 import Styles from '../../styles/forms.js'
@@ -63,12 +64,12 @@ export class AuthForm extends React.Component {
        <StyleRoot>
       <div className='registerForm' style={[Styles.authForm, formStyles]}>
         <form form={`${this.props.formType}Form`} onSubmit={this.props.handleSubmit(this.submitForm)} className="signUpForm">
-          <h2>{this.props.formTitle}</h2>
+          <FormHeader label={this.props.formTitle} />
             <div>
 
               <QuickField name="email" type='email' extraErrors={email_errors} label="E-Mail" /> 
               <QuickField name="password" type='password' /> 
-              <ArtButton label={this.props.formTitle} action={this.props.handleSubmit(this.submitForm)} />
+              <ArtButton label={this.props.formTitle} styles={{width: '100%'}} action={this.props.handleSubmit(this.submitForm)} />
             </div>
         </form>
       

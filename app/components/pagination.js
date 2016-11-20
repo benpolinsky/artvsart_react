@@ -25,7 +25,7 @@ class BPPagination extends React.Component{
     
     return(
       total_pages > 1 && 
-      <div style={{width: 'auto', width: (20*(total_pages+2))}}>
+      <div style={{margin: '0 auto', width: (20*(total_pages+2))}}>
         {!first_page && <ArtButton styles={{...baseStyle}} label='<' action={this.props.action.bind(this, current_page - 1)} kind="small" />}
         {<ArtButton styles={firstStyle} label='1' action={this.props.action.bind(this, 1)} kind="small" />}
         {this.pagesComponents()}

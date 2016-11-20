@@ -1,4 +1,5 @@
 import React from 'react';
+import Radium, {StyleRoot} from 'radium';
 import {connect} from 'react-redux';
 import {fetchArtCollection, fetchArt, updateArtStatus, toggleCheckedArt, toggleAllArt, updateToggledArt} from '../../actions/art.js';
 import DefaultLoader from '../defaultLoader.js';
@@ -6,6 +7,7 @@ import ArtButton from '../elements/button.js';
 import QuickTable from '../quickTable.js';
 import Pagination from '../pagination.js';
 import DropdownList from 'react-widgets/lib/DropdownList';
+import ArtListStyles from '../../styles/artList.js';
 
 class ArtList extends React.Component {
   constructor(){
@@ -62,35 +64,37 @@ class ArtList extends React.Component {
   render(){ 
     return (
       <DefaultLoader showing={this.props.showLoader}>
-     <div style={{display: 'flex', flexDirection: 'row-reverse'}}>
-         <div style={{float: 'none', clear: 'both', width: 300, margin: '50px 20px 0 50px'}}>
-          <Pagination action={this.setPage} pages={this.props.pages}/>
-           <input placeholder="Search" style={{width: 256, margin: '10px auto', display: 'block'}} type='search' value={this.state.search} onChange={(e) => this.setState({search: e.target.value})}/>
-           <ArtButton label="Search" action={this.submitQuery} />
-           <ArtButton label="Clear" action={this.clearAll} />
-           <DropdownList
+        <StyleRoot>
+          <div style={ArtListStyles.container}>
+            <div style={ArtListStyles.aux}>
+              <Pagination action={this.setPage} pages={this.props.pages}/>
+              <input placeholder="Search" style={{width: 256, margin: '10px auto', display: 'block'}} type='search' value={this.state.search} onChange={(e) => this.setState({search: e.target.value})}/>
+              <ArtButton label="Search" action={this.submitQuery} />
+              <ArtButton label="Clear" action={this.clearAll} />
+              <DropdownList
                style={{width: 256, margin: '0 auto'}}
                placeholder="Change Checked Status"
                data={['pending_review', 'published', 'declined']} 
                name="toggled_art_status"
                disabled={!this.props.allChecked && !this.props.art.some(e => e.checked)}
                onSelect={(status) => this.props.toggleSelectedStatus(this.props.art.filter(a => a.checked).map(a => a.id), status)} />
-           
-         </div>
-       
-     
-           <div style={{float: 'none', clear: 'both'}}>
-             <QuickTable 
+            </div>
+
+
+            <div style={{float: 'none', clear: 'both', width: '100%'}}>
+              <QuickTable 
                data={this.props.art}
                title="All Art"
-               fields={['checkbox', 'edit', 'id', 'name', 'creator', 'status', 'creation_date']}
+               fields={['id', 'checkbox', 'edit', 'name', 'creator', 'status']}
                rowAction={this.props.showArt.bind(this, this.context.router)}
                checkAction={(e) =>this.props.toggleArt(e.target)}
                selectStatus={(id, status) => this.props.updateArtStatus(id, status)}
                toggleAll={() => this.props.toggleAll(this.props.allChecked)}
-             />
-           </div>
-        </div>
+              />
+            </div>
+               
+          </div>
+        </StyleRoot>
       </DefaultLoader>
     )
   
