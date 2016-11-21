@@ -14,7 +14,17 @@ import menuStyles from '../styles/navBar.js'
 import DrawerStyles from '../styles/navDrawer.js'
 
 
-var RadiumLink = Radium(Link)
+const RadiumLink = Radium(Link)
+var body = document.getElementsByTagName("body")[0]; 
+const fixBody = () => {
+  body.style.position = 'fixed';
+}
+
+const unFixBody = () => {
+  body.style.position = 'relative';
+}
+
+
 
 class Menu extends React.Component{
   constructor(){
@@ -31,16 +41,21 @@ class Menu extends React.Component{
     }
   }
   
-  openMenu(){
+  
+  toggleNav(open){
+    open ? fixBody() : unFixBody();
     this.setState({
-      navMenuOpen: true
+      navMenuOpen: open
     })
   }
   
+  openMenu(){
+    this.toggleNav(true)
+  
+  }
+  
   closeMenu(){
-    this.setState({
-      navMenuOpen: false
-    })
+    this.toggleNav(false)
   }
 
   render(){
@@ -68,7 +83,7 @@ class Menu extends React.Component{
           iconElementRight={rightElementIcon}
         />
        
-          <Drawer docked={false} open={this.state.navMenuOpen} onRequestChange={(open) => this.setState({navMenuOpen: open})}>
+          <Drawer docked={false} open={this.state.navMenuOpen} onRequestChange={(open) => this.toggleNav(open)}>
             <h1 style={DrawerStyles.heading}>ART VS ART</h1>
            <StyleRoot>
             <RadiumLink style={DrawerStyles.links} onClick={this.closeMenu} to="/competition">Competition</RadiumLink>

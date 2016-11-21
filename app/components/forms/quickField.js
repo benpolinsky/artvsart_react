@@ -30,9 +30,15 @@ const componentField = (props) => {
         <select id={props.id} {...props.input}  style={props.style}>{props.children}</select>
       </div>
     )
-  case 'date':
+  case 'date':    
     return (
-    <DatePicker {...props.input} dateFormat="MM-DD-YYYY" selected={props.input.value ? moment(props.input.value, "MM-DD-YYYY") : null}/>
+      Modernizr.inputtypes.date ?
+      <div>
+        {errors}
+        {extraErrors}
+        <input id={props.id} {...props.input} style={{...props.style, ...formStyles.bottomBorder}} type='date' />
+      </div> :
+      <DatePicker {...props.input} readonly dateFormat="MM-DD-YYYY" selected={props.input.value ? moment(props.input.value, "MM-DD-YYYY") : null}/>
     )
     
   default:

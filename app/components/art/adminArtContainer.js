@@ -17,7 +17,7 @@ const styles = {
 }
 
 
-class ArtContainer extends React.Component{
+class AdminArtContainer extends React.Component{
   componentDidMount(){
     this.props.loadArt(this.props.params.id);
   }
@@ -37,12 +37,12 @@ class ArtContainer extends React.Component{
   }
 }
 
-ArtContainer.propTypes = {
+AdminArtContainer.propTypes = {
   art: React.PropTypes.object.isRequired,
   loadArt: React.PropTypes.func.isRequired
 }
 
-ArtContainer.contextTypes = {
+AdminArtContainer.contextTypes = {
   router: React.PropTypes.object
 }
 
@@ -59,4 +59,4 @@ const mapDispatchToProps = (dispatch) => ({
   }
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(ArtContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(AdminArtContainer)

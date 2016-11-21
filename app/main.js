@@ -27,7 +27,7 @@ import CompetitionContainer from './components/competition/competitionContainer.
 import CompetitionResultContainer from './components/competition/competitionResultContainer.js'
 
 import ArtFormContainer from './components/art/artFormContainer.js'
-import ArtContainer from './components/art/artContainer.js'
+import AdminArtContainer from './components/art/adminArtContainer.js'
 import ArtList from './components/art/artList.js'
 import ImportArtFormContainer from './components/art/importArtFormContainer.js'
 import LeaderBoard from './components/leaderBoard.js'
@@ -54,7 +54,15 @@ ReactDOM.render(
 <Provider store={store}>
  
   <Router history={browserHistory}>
-  <Route path='/' component={appLoader(authWrapper(App))}>
+  <Route 
+    path='/' 
+    component={appLoader(authWrapper(App))}
+    onChange={(prevState, nextState) => {
+          if (nextState.location.action !== "POP") {
+            window.scrollTo(0, 0);
+          }
+        }}
+  >
 
       <IndexRoute component={HomePage} />
 
@@ -63,7 +71,7 @@ ReactDOM.render(
 
       <Route path='import_art' component={AdminAuthWrapper(ImportArtFormContainer)} />
       <Route path='art/new' component={AdminAuthWrapper(ArtFormContainer)} />
-      <Route path='art/:id' component={AdminAuthWrapper(ArtContainer)} />
+      <Route path='art/:id' component={AdminAuthWrapper(AdminArtContainer)} />
       <Route path='art/:id/edit' component={AdminAuthWrapper(ArtFormContainer)} />
       <Route path='art' component={AdminAuthWrapper(ArtList)} />
 

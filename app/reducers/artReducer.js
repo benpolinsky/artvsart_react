@@ -15,7 +15,15 @@ const initialArtState = {
     creation_date: Date.now(),
     source: "",
     source_link: "",
-    status: "pending_review"
+    status: "pending_review",
+    previous: {
+      id: 0,
+      name: ''
+    },
+    next: {
+      id: 0,
+      name: ''
+    }
   },
   allArt: [
     {
@@ -57,6 +65,10 @@ const artReducer = (state=initialArtState, action) => {
   case "ALL_ART_REQUEST_FAILED":
     return {...state, errors: action.errors, fetching: false}
   case "ART_RESPONSE":
+    // const currentArtIndex = state.allArt.findIndex((art) => art.id == action.art.id);
+    // // we need to handle cases
+    // const previousArt = state.allArt
+    return {...state, art: action.art, fetching: false}
   case "ART_DELETED_RESPONSE":
     return {...state, art: action.art, fetching: false}
   case "ART_DELETED_FAILED":
