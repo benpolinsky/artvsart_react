@@ -7,6 +7,7 @@ import FlatButton from 'material-ui/FlatButton'
 import Dialog from 'material-ui/Dialog';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import baseStyles from '../../styles/base.js';
+import Helmet from 'react-helmet'
 
 const customStyles = {
   overlay: {
@@ -75,6 +76,7 @@ class CompetitionResultContainer extends React.Component{
 
    return (
       <div style={baseStyles.container}>
+      <Helmet title={this.props.competition.shareTitle} />
         <h1 style={{...baseStyles.homeParagraph, fontWeight: 700, margin: '30px auto'}}>
           {`'${winning_art.name}' Wins! (this time...)`}
         </h1>

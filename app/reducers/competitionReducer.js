@@ -66,7 +66,7 @@ const competitionReducer = (state=initialCompetitionState, action) => {
       competition: {
         ...action.competition,
         ...state.competition, 
-        closeModal: false,
+        closeModal: true,
         winnerSelected: false,
         isResult: false
       }
@@ -95,8 +95,9 @@ const competitionReducer = (state=initialCompetitionState, action) => {
      }
    }
  case "RECEIVE_FINISHED_COMPETITION":
-   var winning_art = winnerAndLoser(action.competition, action.competition.winner_id).winner;
-   var losing_art = winnerAndLoser(action.competition, action.winner_id).loser;
+   const artPair = winnerAndLoser(action.competition, action.competition.winner_id)
+   var winning_art = artPair.winner;
+   var losing_art = artPair.loser;
     return {
       ...state, 
       competition: {

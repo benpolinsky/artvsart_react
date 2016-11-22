@@ -1,7 +1,6 @@
 // So while this is okay, it would be great to try to rid myself of the competitionContainer and create it through connect()
 // render the modal in here or in App.  Should work.
 
-
 import React from 'react';
 import Radium from 'radium'
 import {StyleRoot} from 'radium'

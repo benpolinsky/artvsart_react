@@ -68,7 +68,7 @@ export const signUserIn = (user, router) => (dispatch) => {
   dispatch(startSignUserIn(user));
   return api.post('users/sign_in', user).then(response => {
     if (response.errors != null) {
-      console.log(response.errors)
+
       dispatch(signInUserFailed(response.errors));
       
     } else if (response.deleted_user){
@@ -88,7 +88,6 @@ export const signUserIn = (user, router) => (dispatch) => {
 }
 
 export const handleCompetitionModal = (result="") => (dispatch) => {
-  console.log(result)
   switch (result) {
   case "Sign Up With Email":
     dispatch(openSignUp('register'));    
@@ -261,6 +260,7 @@ export const confirmUserAccount = (token, router) => (dispatch) => {
       dispatch(userAccountConfirmed(response));
       dispatch(storeUserCredentials(response.user));
       dispatch(signInUserSuccessful(response.user));
+      dispatch(displayNotice("Account Confirmed, thanks!"))
       router.push('/competition');
     } else {
       dispatch(confirmUserAccountFailed(response));
