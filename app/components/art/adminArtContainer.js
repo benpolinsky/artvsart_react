@@ -25,7 +25,7 @@ class AdminArtContainer extends React.Component{
   render(){
     return (
       <div style={styles.container} >
-        <ArtInfo art={{...this.props.art, creation_date: this.props.art.creation_date.toString()}} />
+        <ArtInfo art={{...this.props.art}} />
         <div>
           <Link style={BaseStyles.traditionalLink} to={`/art/${this.props.art.id}/edit`}>Edit</Link>
           <InlineSeparator />
