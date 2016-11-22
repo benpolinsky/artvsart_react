@@ -59,7 +59,7 @@ class ArtForm extends React.Component{
           
           <QuickField name="description" field='textarea' />
           
-          <QuickField name="creation_date" label="Creation Date (mm/dd/yyyy)" field='date' />
+          <QuickField name="creation_date" label="Creation Date" field='date' />
           
           <QuickField name="category_name" label="Category" field='select'>
             <option disabled>Select Category: </option>

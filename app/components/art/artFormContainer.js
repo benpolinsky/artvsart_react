@@ -24,7 +24,6 @@ import * as storage from '../../utils/localStorage.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import LinearProgress from 'material-ui/LinearProgress'
 
-import moment from 'moment';
 import loaderStyles from '../../styles/loader.js'
 
 class ArtFormContainer extends React.Component {
@@ -118,8 +117,7 @@ class ArtFormContainer extends React.Component {
     
     const formattedData = {
       ...data,
-      image: art_image,
-      creation_date: moment(data.creation_date, "MM-DD-YYYY").format("DD-MM-YYYY")
+      image: art_image
     }
     
     this.props.updateArt(formattedData, this.context.router)
