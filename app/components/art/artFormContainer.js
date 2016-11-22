@@ -37,6 +37,7 @@ class ArtFormContainer extends React.Component {
     this.onUploadProgress = this.onUploadProgress.bind(this);
     this.toggleLoader = this.toggleLoader.bind(this);
     this.showArt = this.showArt.bind(this);
+    this.scrollToErrors = this.scrollToErrors.bind(this);
   }
   
   componentWillMount(){
@@ -161,6 +162,13 @@ class ArtFormContainer extends React.Component {
     });
   }
   
+  scrollToErrors(errors){
+    if (errors){
+      document.getElementById(Object.keys(errors)[0]).focus();
+    }
+    
+  }
+  
   render(){    
     const progressIndicator = <MuiThemeProvider>
                                 <div>
@@ -191,7 +199,9 @@ class ArtFormContainer extends React.Component {
          form="newArt" 
          errors={this.state.file_errors} 
          submit={this.submitArtForm} 
-         triggerLoader={this.toggleLoader} >
+         triggerLoader={this.toggleLoader} 
+         onSubmitFail={this.scrollToErrors}
+         >
             
         <ReactS3Uploader
           signingUrl="/api/v1/s3/sign"

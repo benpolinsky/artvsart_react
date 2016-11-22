@@ -1,5 +1,4 @@
 import Immutable from 'immutable'
-import moment from 'moment'
 
 const initialArtState = {
   art: {
@@ -13,7 +12,7 @@ const initialArtState = {
       name: "",
       color: ""
     },
-    creation_date: moment().format("DD/MM/YYYY"),
+    creation_date: "",
     source: "",
     source_link: "",
     status: "pending_review",
@@ -38,7 +37,7 @@ const initialArtState = {
         name: "",
         color: ""
       },
-      creation_date: moment().format("DD/MM/YYYY"),
+      creation_date: "",
       source: "",
       source_link: "",
       status: "pending_review"
