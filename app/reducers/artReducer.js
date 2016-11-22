@@ -1,4 +1,5 @@
 import Immutable from 'immutable'
+import moment from 'moment'
 
 const initialArtState = {
   art: {
@@ -12,7 +13,7 @@ const initialArtState = {
       name: "",
       color: ""
     },
-    creation_date: Date.now(),
+    creation_date: moment().format("DD/MM/YYYY"),
     source: "",
     source_link: "",
     status: "pending_review",
@@ -37,7 +38,7 @@ const initialArtState = {
         name: "",
         color: ""
       },
-      creation_date: Date.now(),
+      creation_date: moment().format("DD/MM/YYYY"),
       source: "",
       source_link: "",
       status: "pending_review"
@@ -59,16 +60,14 @@ const artReducer = (state=initialArtState, action) => {
   case "ART_REQUESTED":
   case "ALL_ART_REQUESTED":
   case "CREATE_NEW_ART_REQUEST":
+  case "UPDATE_ART_REQUEST":
     return {...state, fetching: true}
   case "ALL_ART_RESPONSE":
     return {...state, allArt: action.allArt.map((a) => {a['checked'] = false; return a;}), pages: action.pages, search: (action.search ? action.search : ''), fetching: false}
   case "ALL_ART_REQUEST_FAILED":
     return {...state, errors: action.errors, fetching: false}
   case "ART_RESPONSE":
-    // const currentArtIndex = state.allArt.findIndex((art) => art.id == action.art.id);
-    // // we need to handle cases
-    // const previousArt = state.allArt
-    return {...state, art: action.art, fetching: false}
+    return {...state, art: {...action.art, creation_date: action.art.creation_date}, fetching: false}
   case "ART_DELETED_RESPONSE":
     return {...state, art: action.art, fetching: false}
   case "ART_DELETED_FAILED":
@@ -80,10 +79,8 @@ const artReducer = (state=initialArtState, action) => {
     return {...state, art: action.art, fetching: false}
   case "CREATE_NEW_ART_REQUEST_FAILED":
     return {...state, errors: action.errors, fetching: false}
-  case "UPDATE_ART_REQUEST":
-    return {...state, art: {...state.art, creation_date: state.art.creation_date.toString()}, fetching: true}
   case "UPDATE_ART_RESPONSE":
-    return {...state, art: {...state.art, ...action.art, creation_date: state.art.creation_date.toString()}, fetching: false}
+    return {...state, art: {...state.art, ...action.art, creation_date: state.art.creation_date}, fetching: false}
   case "UPDATE_ART_REQUEST_FAILED":
     return {...state, errors: action.errors, fetching: false}
   case "UPDATE_ART_STATUS_RESPONSE":

@@ -4,7 +4,6 @@ import Radium, {StyleRoot} from 'radium';
 import formStyles from '../../styles/forms.js'
 import capitalize from '../../utils/capitalize.js'
 import { Field, reduxForm } from 'redux-form';
-import DatePicker from 'react-datepicker'
 import moment from 'moment'
 require('!style!css!react-datepicker/dist/react-datepicker.css');
 
@@ -40,13 +39,17 @@ const componentField = (props) => {
   case 'date':    
 
     return (
-      Modernizr.inputtypes.date ?
+      
       <StyleRoot>
         {errors}
         {extraErrors}
-        <input id={props.id} {...props.input} value={props.input.value ? moment(props.input.value).format("YYYY-MM-DD") : ''} style={{...props.style, ...formStyles.bottomBorder}} type='date' />
-      </StyleRoot> :
-      <DatePicker {...props.input} readonly dateFormat="MM-DD-YYYY" selected={props.input.value ? moment(props.input.value, "MM-DD-YYYY") : null}/>
+        <input 
+        type='text' 
+        id={props.id} 
+        {...props.input} 
+        value={props.input.value} style={{...props.style, ...formStyles.bottomBorder}} />
+      </StyleRoot>
+
     )
     
   default:

@@ -162,7 +162,6 @@ class ArtFormContainer extends React.Component {
   }
   
   render(){    
-    let artInitialValues = {...this.props.art, creation_date: new Date(this.props.art.creation_date)};
     const progressIndicator = <MuiThemeProvider>
                                 <div>
                                   <p style={{color: 'black', fontSize: 110}}>{`${this.state.uploadProgress}%`}</p>
@@ -183,7 +182,7 @@ class ArtFormContainer extends React.Component {
        >
         <ArtNav art={this.props.art} />
         
-        <ArtForm initialValues={artInitialValues}
+        <ArtForm initialValues={this.props.art}
          categories={this.props.categories}
          art={this.props.art} 
          enableReinitialize
@@ -236,6 +235,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(createNewArt(art, router));
   },
   updateArt(art, router){
+    console.log(art.creation_date)
     dispatch(updateArt(art, router));
   },
   loadArt(id){

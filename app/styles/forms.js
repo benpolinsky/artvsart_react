@@ -58,7 +58,7 @@ const forms = {
     ':focus': {
       borderColor: '#167a59',
       backgroundColor: 'rgba(0, 255, 16, 0.02)',
-      transition: 'all 600ms ease-in-out'
+      transition: 'all 300ms ease-in-out'
     }
   },
   textarea: {

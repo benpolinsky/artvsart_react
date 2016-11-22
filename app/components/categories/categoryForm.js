@@ -48,8 +48,9 @@ const Form = ({form, formTitle, submitLabel, handleSubmit, category, categories}
           <div style={formStyles.centered.fields}>
             <QuickField name="name" />
             <QuickField name='parent_category' field="select" label="Parent Category (Optional)">
+              <option key={0} value="none" >None</option> 
               {categories.map((category, index) => {
-                 return <option key={index} value={category.name} >{category.name}</option> 
+                 return <option key={index+1} value={category.name}>{category.name}</option> 
               })}
             </QuickField>
             <Field label="Color" name="color" component={colorComponent} />

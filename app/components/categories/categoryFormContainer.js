@@ -47,7 +47,7 @@ CategoryFormContainer.contextTypes = {
 
 const mapStateToProps = (store) => ({
   category: store.categories.category,
-  categories: store.categories.records,
+  categories: store.categories.records.filter(category => category.root == true),
   fetching: store.categories.isFetching
 })
 
