@@ -29,11 +29,6 @@ const determineCell = (record, field, checkAction, index, selectStatus) => {
                   value={record[field]} 
                   name="art_status" 
                   onChange={(status) => selectStatus(record.id, status)} />
-            </RadiumTRC>)   
-                  
-  case 'creation_date':  
-    return (<RadiumTRC style={{overflow: 'visible', ...tableStyles.table.td}} key={record.id}>
-              {dateFormat(record[field])}
             </RadiumTRC>)
 
   case 'edit':

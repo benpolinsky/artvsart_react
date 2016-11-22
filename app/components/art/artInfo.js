@@ -8,7 +8,7 @@ const ArtInfo = ({art}) => {
     <div>
       <QuickRow label='Title' content={art.name} />
       <QuickRow label='Creator' content={art.creator} />
-      <QuickRow label='Created' content={dateFormat(art.creation_date)} />
+      <QuickRow label='Created' content={art.creation_date} />
       <QuickRow label='Category' content={art.category.name} />
   
       <hr style={{borderRadius: 0, borderLeftWidth: 0, borderRightWidth: 0}}/>
