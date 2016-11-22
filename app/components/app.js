@@ -1,5 +1,7 @@
 import React from 'react';
 import Helmet from 'react-helmet';
+import {metrics} from 'react-metrics';
+import GoogleAnalytics from './googleAnalytics.js';
 import Menu from './menu';
 import Footer from './footer.js'
 import AuthForms from './forms/authForms.js'
@@ -18,6 +20,23 @@ const noticeStyles = {
   lineHeight: '18px',
   backgroundColor: '#d22929'
 }
+
+const reactMetricsConfig = {
+    vendors: [{
+        name: "Google Analytics",
+        api: new GoogleAnalytics({
+            trackingId: "UA-87928906-1"
+        })
+    }],
+    pageViewEvent: "pageLoad",
+    pageDefaults: () => {
+        return {
+            siteName: "Art Vs Art io"
+        };
+    }
+}
+
+
 
 const App = ({app, user, children, dismiss, showAuthForm}) => {
   return (
@@ -53,4 +72,4 @@ App.propTypes = {
   user: React.PropTypes.object.isRequired
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App)
+export default connect(mapStateToProps, mapDispatchToProps)(metrics(reactMetricsConfig)(App))

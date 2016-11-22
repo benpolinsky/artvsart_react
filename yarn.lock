@@ -49,6 +49,10 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
+analytics.js:
+  version "2.9.1"
+  resolved "https://registry.yarnpkg.com/analytics.js/-/analytics.js-2.9.1.tgz#eef186fdbdd07bd6f530020be025df0e6783d99f"
+
 ansi-align@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/ansi-align/-/ansi-align-1.1.0.tgz#2f0c1658829739add5ebb15e6b0c6e3423f016ba"
@@ -1946,7 +1950,7 @@ event-stream@~3.3.0:
     stream-combiner "~0.0.4"
     through "~2.3.1"
 
-eventemitter3@1.x.x:
+eventemitter3@^1.1.1, eventemitter3@1.x.x:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-1.2.0.tgz#1c86991d816ad1e504750e73874224ecf3bec508"
 
@@ -4856,7 +4860,7 @@ querystring-es3@~0.2.0:
   version "0.2.1"
   resolved "https://registry.yarnpkg.com/querystring-es3/-/querystring-es3-0.2.1.tgz#9ec61f79049875707d69414596fd907a4d711e73"
 
-querystring@0.2.0:
+querystring@^0.2.0, querystring@0.2.0:
   version "0.2.0"
   resolved "https://registry.yarnpkg.com/querystring/-/querystring-0.2.0.tgz#b209849203bb25df820da756e747005878521620"
 
@@ -4993,6 +4997,17 @@ react-loader-advanced@^1.4.1:
   resolved "https://registry.yarnpkg.com/react-loader-advanced/-/react-loader-advanced-1.4.1.tgz#daa82beb15af40e4b7a44f6c258c87f75a4c0f64"
   dependencies:
     babel-runtime "^6.6.1"
+
+react-metrics:
+  version "2.2.3"
+  resolved "https://registry.yarnpkg.com/react-metrics/-/react-metrics-2.2.3.tgz#59bb738b39ca3bb023eec3d2f406a98c6c0b0f85"
+  dependencies:
+    deep-equal "^1.0.1"
+    eventemitter3 "^1.1.1"
+    fbjs "^0.8.4"
+    hoist-non-react-statics "^1.0.5"
+    querystring "^0.2.0"
+    rimraf "^2.5.1"
 
 react-onclickoutside@^4.8.0:
   version "4.9.0"
@@ -5450,7 +5465,7 @@ right-align@^0.1.1:
   dependencies:
     align-text "^0.1.1"
 
-rimraf@^2.2.8, rimraf@^2.4.0, rimraf@^2.4.3, rimraf@^2.4.4, rimraf@~2.5.1, rimraf@~2.5.4, rimraf@2:
+rimraf@^2.2.8, rimraf@^2.4.0, rimraf@^2.4.3, rimraf@^2.4.4, rimraf@^2.5.1, rimraf@~2.5.1, rimraf@~2.5.4, rimraf@2:
   version "2.5.4"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.5.4.tgz#96800093cbf1a0c86bd95b4625467535c29dfa04"
   dependencies:
