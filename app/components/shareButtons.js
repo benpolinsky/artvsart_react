@@ -13,27 +13,26 @@ const FacebookIcon = generateShareIcon('facebook');
 const TwitterIcon = generateShareIcon('twitter');
 
 
-const MyShareButtons = ({shareTitle, size}) => {
-  const buttonSize = size ? size : 75;
-    
+const MyShareButtons = ({shareTitle, size=75, shareLink='http://www.artvsart.io'}) => {
+
   return (
     <div style={{display: 'flex'}}>
       <div style={{cursor: 'pointer'}}>
         <FacebookShareButton
-          url={'http://artvsart.io'}
+          url={shareLink}
           title={shareTitle}
         >
-          <FacebookIcon size={buttonSize} square />
+          <FacebookIcon size={size} square />
         </FacebookShareButton>
       </div>
           
       <div style={{cursor: 'pointer'}}>
         <TwitterShareButton
-        url='http://www.artvsart.io'
+        url={shareLink}
         title={shareTitle}
         className="Demo__some-network__share-button"
         >
-          <TwitterIcon size={buttonSize} square />
+          <TwitterIcon size={size} square />
         </TwitterShareButton>
        </div>
     </div>
@@ -41,7 +40,10 @@ const MyShareButtons = ({shareTitle, size}) => {
 }
 
 MyShareButtons.propTypes = {
-  shareTitle: React.PropTypes.string.isRequired
+  shareTitle: React.PropTypes.string.isRequired,
+  shareLink: React.PropTypes.string,
+  size: React.PropTypes.number,
+  
 }
 
 export default Radium(MyShareButtons)

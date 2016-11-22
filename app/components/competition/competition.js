@@ -20,8 +20,8 @@ const Competition = ({competition, displayInfo, noVoting, artStyle}) => {
 
           <StyleRoot>
             <div style={CompetitionStyles.artPair}>
-              <Art styles={{...CompetitionStyles.art, ...artStyle}} selectInfo={displayInfo} key={competition.art.id} art={competition.art} noVoting={noVoting} />
-              <Art styles={{...CompetitionStyles.art, ...artStyle}} selectInfo={displayInfo} key={competition.challenger.id} art={competition.challenger} noVoting={noVoting} />
+              <Art styles={{...CompetitionStyles.art}} selectInfo={displayInfo} key={competition.art.id} art={competition.art} noVoting={noVoting} />
+              <Art styles={{...CompetitionStyles.art}} selectInfo={displayInfo} key={competition.challenger.id} art={competition.challenger} noVoting={noVoting} />
             </div>
           </StyleRoot>        
     

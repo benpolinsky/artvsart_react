@@ -57,7 +57,7 @@ const baseStyles = {
   },
   homeParagraph: {
     fontSize: 18,
-    margin: "10px 0",
+    margin: "10px auto",
     maxWidth: 800,
     textAlign: 'center',
     lineHeight: 1.3

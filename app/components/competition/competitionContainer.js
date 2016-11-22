@@ -152,7 +152,7 @@ class CompetitionContainer extends React.Component{
     
       <div style={[baseStyles.container, this.props.styles]}>
         <Helmet title="Art Vs Art: FIGHT" />
-        <Competition artStyle={this.props.artStyles} displayInfo={this.displayInfo} competition={this.props.competition}/>
+        <Competition displayInfo={this.displayInfo} competition={this.props.competition}/>
     
         <MuiThemeProvider>
           <div>

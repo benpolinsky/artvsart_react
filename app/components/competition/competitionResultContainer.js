@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {CompetitionResult} from './competitionResult.js';
+import CompetitionResult from './competitionResult.js';
 import ArtInfo from '../art/artInfo.js'
 import {getCompetitionData} from '../../actions/competitions.js';
 import FlatButton from 'material-ui/FlatButton'
@@ -43,9 +43,9 @@ class CompetitionResultContainer extends React.Component{
   }
   
   componentDidMount(){
-    if (this.props.competition.id == 0) {
+    if (this.props.competition.id != this.props.params.id) {
       this.props.getCompetition(this.props.params.id);      
-    }  
+    } 
   }
   
   
@@ -72,13 +72,17 @@ class CompetitionResultContainer extends React.Component{
     const art_pair = [this.props.competition.art, this.props.competition.challenger];
     const winning_art = art_pair.find( (art) => art.id == this.props.competition.winner_id);
     const losing_art = art_pair.find( (art) => art.id != this.props.competition.winner_id);
-    return (
+
+   return (
       <div style={baseStyles.container}>
-        <h1 style={baseStyles.mainTitle}>{`${winning_art.name} WINS`}</h1>
+        <h1 style={{...baseStyles.homeParagraph, fontWeight: 700, margin: '30px auto'}}>
+          {`'${winning_art.name}' Wins! (this time...)`}
+        </h1>
+          
         <CompetitionResult
           displayInfo={this.displayInfo} 
           competition={this.props.competition}
-          />
+        />
     
         <MuiThemeProvider>
           <div>
@@ -88,7 +92,7 @@ class CompetitionResultContainer extends React.Component{
               onRequestClose={this.closeInfo} 
               autoScrollBodyContent
               actions={artInfoAction}
-            >
+             >
               <ArtInfo art={this.state.visibleArt} />
             </Dialog>
           </div>

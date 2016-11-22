@@ -104,9 +104,10 @@ const compeititonStyles = {
   },
   
   versus: {
-    fontSize: 32,
-    fontWeight: '700',
+    fontSize: 13,
+    fontWeight: 'bold',
     textAlign: 'center',
+    textTransform: 'uppercase',
     margin: '30px auto',
     color: 'black',
     height: 146,
@@ -257,6 +258,11 @@ const compeititonStyles = {
       width: 256
     }
     
+  },
+  
+  losingArt: {
+    filter: 'grayscale(93%)',
+    opacity: '0.4'
   }
 }
 
