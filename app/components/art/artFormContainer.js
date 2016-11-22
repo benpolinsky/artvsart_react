@@ -7,11 +7,12 @@
 import React from 'react';
 import Radium from 'radium';
 import {connect} from 'react-redux';
-import {Router} from 'react-router';
+import {Link} from 'react-router';
 import Loader from 'react-loader-advanced';
 import ReactS3Uploader from 'react-s3-uploader';
 
 import ArtForm from './ArtForm.js';
+import PrevNextNav from './prevNextNav.js';
 import ArtNav from './artNav.js';
 import DefaultLoader from '../defaultLoader.js'
 
@@ -24,7 +25,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import LinearProgress from 'material-ui/LinearProgress'
 
 import moment from 'moment';
-
 import loaderStyles from '../../styles/loader.js'
 
 class ArtFormContainer extends React.Component {
@@ -36,6 +36,7 @@ class ArtFormContainer extends React.Component {
     this.onUploadStart = this.onUploadStart.bind(this);
     this.onUploadProgress = this.onUploadProgress.bind(this);
     this.toggleLoader = this.toggleLoader.bind(this);
+    this.showArt = this.showArt.bind(this);
   }
   
   componentWillMount(){
@@ -123,6 +124,10 @@ class ArtFormContainer extends React.Component {
     this.props.updateArt(formattedData, this.context.router)
   }
   
+  showArt(){
+    this.context.router.push(`/art/${this.props.art.id}`)
+  }
+  
   toggleLoader(loading, callback){
     this.setState({
       loading: loading
@@ -176,7 +181,8 @@ class ArtFormContainer extends React.Component {
         message={progressIndicator} 
         show={this.state.loading}
        >
-      
+        <ArtNav art={this.props.art} />
+        
         <ArtForm initialValues={artInitialValues}
          categories={this.props.categories}
          art={this.props.art} 
@@ -201,8 +207,9 @@ class ArtFormContainer extends React.Component {
         />
         
        </ArtForm>
-          
-       {this.props.location.pathname != '/art/new' && <ArtNav art={this.props.art} />}
+       
+
+       {this.props.location.pathname != '/art/new' && <PrevNextNav art={this.props.art} />}
        
       </Loader>
     </DefaultLoader>

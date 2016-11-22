@@ -61,7 +61,11 @@ const baseStyles = {
     maxWidth: 800,
     textAlign: 'center',
     lineHeight: 1.3
-    
+  },
+  center: {
+    textAlign: 'center',
+    margin: '0 auto',
+    display: 'block'
   }
 }
 

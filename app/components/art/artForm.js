@@ -57,7 +57,7 @@ class ArtForm extends React.Component{
           
           <QuickField name="creator" />
           
-          <QuickField name="description" styles={{height: 100}} field='textarea' />
+          <QuickField name="description" field='textarea' />
           
           <QuickField name="creation_date" label="Creation Date" field='date' />
           
@@ -69,12 +69,13 @@ class ArtForm extends React.Component{
           </QuickField>
             
           <QuickField name="source" field='select'>
-            <option  disabled>Select Source: </option>
-            <option value="discogs">Discogs</option>
-            <option value="imdb">IMDB</option>
-            <option value="artsy">Artsy</option>
-            <option value="harvard"> Harvard ArtGallery </option>
-            <option value="philart">Philart</option>
+            <option disabled>Select Source: </option>
+            <option value="Discogs">Discogs</option>
+            <option value="IMDB">IMDB</option>
+            <option value="Artsy">Artsy</option>
+            <option value="Harvard Art Museums"> Harvard Art Museums </option>
+            <option value="Philadelphia Public Art">Philadelphia Public Art</option>
+            <option value="Google Books">Google Books</option>
             <option value="other">Other</option>
           </QuickField>
          
@@ -101,7 +102,6 @@ class ArtForm extends React.Component{
     )
   }
 }
-
 
 
 ArtForm = reduxForm({

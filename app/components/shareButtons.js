@@ -1,7 +1,7 @@
 import React from 'react';
 import Radium from 'radium';
 import {ShareButtons, ShareCounts, generateShareIcon} from 'react-share';
-import Styles from '../styles/buttons.js';
+
 
 const {
   FacebookShareButton,
@@ -11,14 +11,14 @@ const {
 
 const FacebookIcon = generateShareIcon('facebook');
 const TwitterIcon = generateShareIcon('twitter');
-const buttonStyles = Styles.main;
+
 
 const MyShareButtons = ({shareTitle, size}) => {
   const buttonSize = size ? size : 75;
     
   return (
     <div style={{display: 'flex'}}>
-      <div style={buttonStyles}>
+      <div style={{cursor: 'pointer'}}>
         <FacebookShareButton
           url={'http://artvsart.io'}
           title={shareTitle}
@@ -27,7 +27,7 @@ const MyShareButtons = ({shareTitle, size}) => {
         </FacebookShareButton>
       </div>
           
-      <div style={buttonStyles}>
+      <div style={{cursor: 'pointer'}}>
         <TwitterShareButton
         url='http://www.artvsart.io'
         title={shareTitle}

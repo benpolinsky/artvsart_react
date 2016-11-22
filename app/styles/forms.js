@@ -31,7 +31,9 @@ const forms = {
   label: {
     float: "left",
     clear: 'both',
-    width: "100%"
+    width: "100%",
+    fontSize: 12,
+    fontColor: "#798386"
   },
   
   error: {
@@ -51,7 +53,18 @@ const forms = {
     borderWidth: '0 0 1px 0',
     borderColor: 'darkgrey',
     borderRadius: '0',
-    borderStyle: 'solid'
+    borderStyle: 'solid',
+    outline: 'none',
+    ':focus': {
+      borderColor: '#167a59',
+      backgroundColor: 'rgba(0, 255, 16, 0.02)',
+      transition: 'all 600ms ease-in-out'
+    }
+  },
+  textarea: {
+    height: 'auto',
+    overflowY: 'auto',
+    resize: 'vertical'
   },
   
   uploadToS3: {

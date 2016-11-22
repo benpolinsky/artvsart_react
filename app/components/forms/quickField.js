@@ -1,5 +1,6 @@
 // this is really a 'ReduxQuickField' as it relies heavily upon it.
 import React from 'react'
+import Radium, {StyleRoot} from 'radium';
 import formStyles from '../../styles/forms.js'
 import capitalize from '../../utils/capitalize.js'
 import { Field, reduxForm } from 'redux-form';
@@ -16,11 +17,17 @@ const componentField = (props) => {
   switch (props.field) {
   case 'textarea':
     return (
-      <div> 
+      <StyleRoot> 
         {errors}
         {extraErrors}
-        <textarea id={props.id} {...props.input} style={props.style} />
-      </div>
+        <textarea 
+          id={props.id} 
+          {...props.input} 
+          style={{...props.style, 
+                  ...formStyles.bottomBorder, 
+                  ...formStyles.textarea}} 
+        />
+      </StyleRoot>
     )
   case 'select':
     return (
@@ -31,23 +38,24 @@ const componentField = (props) => {
       </div>
     )
   case 'date':    
+
     return (
       Modernizr.inputtypes.date ?
-      <div>
+      <StyleRoot>
         {errors}
         {extraErrors}
-        <input id={props.id} {...props.input} style={{...props.style, ...formStyles.bottomBorder}} type='date' />
-      </div> :
+        <input id={props.id} {...props.input} value={props.input.value ? moment(props.input.value).format("YYYY-MM-DD") : ''} style={{...props.style, ...formStyles.bottomBorder}} type='date' />
+      </StyleRoot> :
       <DatePicker {...props.input} readonly dateFormat="MM-DD-YYYY" selected={props.input.value ? moment(props.input.value, "MM-DD-YYYY") : null}/>
     )
     
   default:
     return (
-      <div>
+      <StyleRoot>
         {errors}
         {extraErrors}
         <input id={props.id} {...props.input} style={{...props.style, ...formStyles.bottomBorder}} type={props.type} />
-      </div>
+      </StyleRoot>
     )
   }
 }
@@ -56,20 +64,22 @@ const QuickField = ({name, field='input', type='text', label, styles={}, childre
   const labelText = label ? label : capitalize(name);
    
   return(
-    <div style={formStyles.fieldContainer}>
-      <label htmlFor={name} style={formStyles.label}>{labelText}:</label>
-      <Field 
-         field={field}
-         type={type} 
-         style={{...formStyles.basicField, ...styles}}
-         id={name} 
-         name={name} 
-         component={componentField}
-         children={children}
-         extraErrors={extraErrors}
-        />
-    </div>
+    
+      <div style={formStyles.fieldContainer}>
+        <label htmlFor={name} style={formStyles.label}>{labelText}:</label>
+        <Field 
+           field={field}
+           type={type} 
+           style={{...formStyles.basicField, ...styles}}
+           id={name} 
+           name={name} 
+           component={componentField}
+           children={children}
+           extraErrors={extraErrors}
+          />
+      </div>
+
   )
 }
 
-export default QuickField
+export default Radium(QuickField)

@@ -77,7 +77,7 @@ const competitionReducer = (state=initialCompetitionState, action) => {
        competition: {
          ...state.competition,
          ...action.competition, 
-         shareTitle: `Now Battling: ${action.competition.art.name} vs. ${action.competition.challenger.name} on Art Vs Art`,
+         shareTitle: `Now Battling: ${action.competition.art.name} vs. ${action.competition.challenger.name} on Art Vs Art!`,
          isFetching: false,
          winnerSelected: false,
          closeModal: true,

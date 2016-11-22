@@ -5,7 +5,8 @@ const alerts = {
   padding: 5,
   boxSizing: 'border-box',
   backgroundColor: 'pink',
-  borderRadius: 1
+  borderRadius: 1,
+  margin: '0 auto'
 }
 
 export default alerts
