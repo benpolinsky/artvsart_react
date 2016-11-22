@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import Menu from './menu';
 import Footer from './footer.js'
 import AuthForms from './forms/authForms.js'

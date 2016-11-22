@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import Radium from 'radium';
 import {connect} from 'react-redux';
 import WinnerModalContents from './winnerModalContents.js';
@@ -150,6 +151,7 @@ class CompetitionContainer extends React.Component{
     return (
     
       <div style={[baseStyles.container, this.props.styles]}>
+        <Helmet title="Art Vs Art: FIGHT" />
         <Competition artStyle={this.props.artStyles} displayInfo={this.displayInfo} competition={this.props.competition}/>
     
         <MuiThemeProvider>

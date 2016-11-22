@@ -1,4 +1,5 @@
 import React from 'react';
+import Helmet from 'react-helmet';
 import {connect} from 'react-redux';
 import {WinLossBar} from './winLossBar.js';
 import Category from './categories/category.js'
@@ -29,6 +30,7 @@ class LeaderBoard extends React.Component{
   render(){
     return(
       <div className="resultsPage">        
+        <Helmet title="Art Vs Art: Leaderboard" />
          <div className="bestRecords otherRecords">
           <MuiThemeProvider>
             <List>
