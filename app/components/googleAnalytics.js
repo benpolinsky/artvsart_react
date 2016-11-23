@@ -23,7 +23,7 @@ class GoogleAnalytics {
      */
     pageView(...args) {
       console.log('page view');
-        return this.track(...args);
+      return this.track(...args);
     }
     user(userId) {
         return new Promise((resolve) => {
