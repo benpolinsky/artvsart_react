@@ -6,7 +6,6 @@ import {displayNotice} from './app.js';
 export const searchSource = (source, query) => (dispatch) => {
   dispatch(searchSourceRequest());
   return api.searchSource({source: source, query: query}).then(response => {
-    console.log(response)
     if (response.errors == null) {
       dispatch(displayResultsSuccess(response));      
     } else {
@@ -32,11 +31,16 @@ const displayResultsErrors = (error) => ({
 export const importArt = (id, source) => (dispatch) => {
   dispatch(importArtRequest());
   return api.post('art/import', {id: id, source: source}).then(response => {
-    if (response.errors == null) {
-      dispatch(importArtResponse(response));
-      dispatch(displayNotice("Imported!"))      
+    if (response.error) {
+      dispatch(importArtFailed([response.error]))
+      dispatch(displayNotice(response.error))
+    }
+    else if (response.errors) {
+      dispatch(importArtFailed(response.errors));
+      dispatch(displayNotice(response.errors))
     } else {
-      dispatch(importArtFailed(response));
+      dispatch(importArtResponse(response));
+      dispatch(displayNotice("Imported!"))    
     }
   })
 }
@@ -50,7 +54,7 @@ const importArtResponse = (response) => ({
   response: response
 })
 
-const importArtFailed = (response) => ({
+const importArtFailed = (errors) => ({
   type: "IMPORT_ART_FAILED",
-  errors: response.errors
+  errors: errors
 })

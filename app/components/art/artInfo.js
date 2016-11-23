@@ -1,7 +1,7 @@
 import React from 'react'
 import QuickRow from '../quickRow.js'
 import dateFormat from '../../utils/dateFormats.js'
-
+import CompetitionStyles from '../../styles/competition.js';
 
 const ArtInfo = ({art}) => {
   return(
@@ -16,7 +16,7 @@ const ArtInfo = ({art}) => {
 
       <div><img style={{maxWidth: '100%'}} src={art.image}/></div>
     
-      <div style={{position: 'relative', margin: '6px 0', paddingBottom: 20, fontSize: 12, lineHeight: 1.3, wordBreak: 'break-all'}} >
+      <div style={CompetitionStyles.artInfo.body} >
         {art.description}
         <a style={{position: 'absolute', right: 2, bottom: 2}} href={art.source_link} target='new'>{art.source}</a>
       </div>

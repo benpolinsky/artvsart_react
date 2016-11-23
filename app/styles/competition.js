@@ -156,7 +156,10 @@ const compeititonStyles = {
     
     body: {
       fontSize: 12,
-      margin: '6px 0'
+      margin: '6px 0',
+      lineHeight: 1.75,
+      wordBreak: 'break-word',
+      boxSizing: 'border-box'
     }
   },
   
