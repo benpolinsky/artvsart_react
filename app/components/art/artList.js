@@ -6,6 +6,7 @@ import DefaultLoader from '../defaultLoader.js';
 import ArtButton from '../elements/button.js';
 import QuickTable from '../quickTable.js';
 import Pagination from '../pagination.js';
+import ArtCounts from './artCounts.js';
 import DropdownList from 'react-widgets/lib/DropdownList';
 import ArtListStyles from '../../styles/artList.js';
 
@@ -78,6 +79,7 @@ class ArtList extends React.Component {
                name="toggled_art_status"
                disabled={!this.props.allChecked && !this.props.art.some(e => e.checked)}
                onSelect={(status) => this.props.toggleSelectedStatus(this.props.art.filter(a => a.checked).map(a => a.id), status)} />
+               <ArtCounts totalCount={this.props.pages.total_count} categories={this.props.categoryCounts}/>
             </div>
 
 
@@ -110,6 +112,7 @@ const mapStateToProps = (state) => ({
   showLoader: state.artState.fetching,
   pages: state.artState.pages,
   search: state.artState.search,
+  categoryCounts: state.artState.categoryCounts, 
   allChecked: state.artState.allChecked
 });
 

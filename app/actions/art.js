@@ -150,7 +150,8 @@ const allArtResponse = (response) => ({
   type: "ALL_ART_RESPONSE",
   allArt: response.art,
   pages: response.pages,
-  search: response.search
+  search: response.search,
+  categoryCounts: response.category_counts
 });
 
 const allArtRequestFailed = (response) => ({

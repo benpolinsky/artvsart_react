@@ -44,9 +44,10 @@ const initialArtState = {
     }
   ],
   pages: {
-  
+    total_pages: 0
   },
   search: "",
+  categoryCounts: [],
   errors: {},
   fetching: false,
   allChecked: false
@@ -62,7 +63,14 @@ const artReducer = (state=initialArtState, action) => {
   case "UPDATE_ART_REQUEST":
     return {...state, fetching: true}
   case "ALL_ART_RESPONSE":
-    return {...state, allArt: action.allArt.map((a) => {a['checked'] = false; return a;}), pages: action.pages, search: (action.search ? action.search : ''), fetching: false}
+    return {
+        ...state, 
+        allArt: action.allArt.map((a) => {a['checked'] = false; return a;}), 
+        pages: action.pages, 
+        categoryCounts: action.categoryCounts,
+        search: (action.search ? action.search : ''), 
+        fetching: false
+    }
   case "ALL_ART_REQUEST_FAILED":
     return {...state, errors: action.errors, fetching: false}
   case "ART_RESPONSE":
