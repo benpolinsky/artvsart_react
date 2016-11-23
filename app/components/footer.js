@@ -8,10 +8,10 @@ const Footer = () => {
     <footer style={FooterStyles}> 
       <div style={FooterStyles.socialMedia}>
         <StyleRoot>
-          <a style={[FooterStyles.link, FooterStyles.socialMediaLink]} href="https://twitter.com/emceenoesis" target="new">
+          <a style={[FooterStyles.link, FooterStyles.socialMediaLink]} href="https://twitter.com/artvsart_io" target="new">
             <img width='32' src='/twitter.png' />
           </a>
-          <a style={[FooterStyles.link, FooterStyles.socialMediaLink]} href="https://github.com/benpolinsky" target="new">
+          <a style={[FooterStyles.link, FooterStyles.socialMediaLink]} href="https://github.com/benpolinsky/artvsart" target="new">
             <img width='32' src='/github.png' />
           </a>  
         </StyleRoot>

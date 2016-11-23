@@ -42,10 +42,16 @@ const button = {
   },
   vote: {
     ...baseButtonStyles,
-    fontSize: 16,
-    fontWeight: 400,
+    fontSize: 20,
+    fontWeight: 700,
     height: 40,
-    textTransform: "uppercase"
+    textTransform: "uppercase",
+    width: 180,
+    margin: '30px auto',
+    ':hover': {
+      background: '#3f7aa3',
+      color: 'white'
+    }
   },
   warn: {
     ...baseButtonStyles,

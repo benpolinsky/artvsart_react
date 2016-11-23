@@ -22,7 +22,7 @@ const VoteButton = ({onClick, styles}) => {
   return <ArtButton 
             action={onClick} 
             label="Vote" 
-            size='vote'
+            kind='vote'
           />
 }
 

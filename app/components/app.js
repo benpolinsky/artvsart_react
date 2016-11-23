@@ -72,4 +72,4 @@ App.propTypes = {
   user: React.PropTypes.object.isRequired
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(metrics(reactMetricsConfig)(App))
+export default metrics(reactMetricsConfig)(connect(mapStateToProps, mapDispatchToProps)(App))
