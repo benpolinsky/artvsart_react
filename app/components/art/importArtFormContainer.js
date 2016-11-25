@@ -108,7 +108,7 @@ class ImportArtFormContainer extends React.Component{
 
             <Drawer 
               docked={false}
-              width={500} 
+              width={500}
               openSecondary={true} 
               open={this.props.importedArtId != null && this.props.appModalOpen }>
               <StyleRoot>

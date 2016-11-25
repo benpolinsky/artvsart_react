@@ -46,8 +46,8 @@ const Form = ({form, formTitle, submitLabel, handleSubmit, category, categories}
         <form onSubmit={handleSubmit} style={formStyles.centered}>
           <h1 style={baseStyles.mainTitle}>{formTitle}</h1>
           <div style={formStyles.centered.fields}>
-            <QuickField name="name" />
-            <QuickField name='parent_category' field="select" label="Parent Category (Optional)">
+            <QuickField styles={formStyles.fullField} name="name" />
+            <QuickField styles={formStyles.fullField} name='parent_category' field="select" label="Parent Category (Optional)">
               <option key={0} value="none" >None</option> 
               {categories.map((category, index) => {
                  return <option key={index+1} value={category.name}>{category.name}</option> 

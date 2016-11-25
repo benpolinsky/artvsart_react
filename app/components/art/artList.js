@@ -5,17 +5,12 @@ import {fetchArtCollection, fetchArt, updateArtStatus, toggleCheckedArt, toggleA
 import DefaultLoader from '../defaultLoader.js';
 import ArtButton from '../elements/button.js';
 import QuickTable from '../quickTable.js';
-import Pagination from '../pagination.js';
-import ArtCounts from './artCounts.js';
-import DropdownList from 'react-widgets/lib/DropdownList';
 import ArtListStyles from '../../styles/artList.js';
+import ArtSidebar from './artSidebar.js';
 
 class ArtList extends React.Component {
   constructor(){
     super();
-    this.setPage = this.setPage.bind(this);
-    this.submitQuery = this.submitQuery.bind(this);
-    this.clearAll = this.clearAll.bind(this);
     this.updateCheckedRecords = this.updateCheckedRecords.bind(this);
   }
 
@@ -28,7 +23,6 @@ class ArtList extends React.Component {
   }
   
   componentWillReceiveProps(nextProps){
-   
     if (nextProps == this.props) {
       return false
     }
@@ -39,50 +33,20 @@ class ArtList extends React.Component {
     }
   }
   
-  setPage(page){
-    if (this.state.search) {
-      this.context.router.push(`/art?page=${page}&search=${this.state.search}`);
-    } else {
-      this.context.router.push(`/art?page=${page}`);
-    }
-    
-  }
-  
-  submitQuery(){
-    if (this.state.search.length > 0) {
-      this.context.router.push(`/art?search=${this.state.search}`);      
-    }
-  }
-  
-  clearAll(){
-    this.context.router.push(`/art`);
-  }
-  
+
   updateCheckedRecords(checked, value){
     this.props.toggleArt(value);
   }
  
   render(){ 
+    const disabled = !this.props.allChecked && !this.props.art.some(e => e.checked)
+   
     return (
-      <DefaultLoader showing={this.props.showLoader}>
+      <DefaultLoader showing={this.props.showLoader} >
         <StyleRoot>
           <div style={ArtListStyles.container}>
-            <div style={ArtListStyles.aux}>
-              <Pagination action={this.setPage} pages={this.props.pages}/>
-              <input placeholder="Search" style={{width: 256, margin: '10px auto', display: 'block'}} type='search' value={this.state.search} onChange={(e) => this.setState({search: e.target.value})}/>
-              <ArtButton label="Search" action={this.submitQuery} />
-              <ArtButton label="Clear" action={this.clearAll} />
-              <DropdownList
-               style={{width: 256, margin: '0 auto'}}
-               placeholder="Change Checked Status"
-               data={['pending_review', 'published', 'declined']} 
-               name="toggled_art_status"
-               disabled={!this.props.allChecked && !this.props.art.some(e => e.checked)}
-               onSelect={(status) => this.props.toggleSelectedStatus(this.props.art.filter(a => a.checked).map(a => a.id), status)} />
-               <ArtCounts totalCount={this.props.pages.total_count} categories={this.props.categoryCounts}/>
-            </div>
-
-
+            <ArtSidebar />
+          
             <div style={{float: 'none', clear: 'both', width: '100%'}}>
               <QuickTable 
                data={this.props.art}
