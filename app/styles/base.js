@@ -15,7 +15,7 @@ const baseStyles = {
     fontSize: 28,
     textAlign: 'center',
     fontWeight: '100',
-    padding: "0px 0 20px 0",
+    padding: '20px 0',
     [mediaQueries.browser]: {
       fontSize: 40,
       padding: '20px 0'

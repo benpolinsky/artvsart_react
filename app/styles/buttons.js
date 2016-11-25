@@ -66,7 +66,8 @@ const button = {
     ...baseButtonStyles,
     width: '100%',
     [mediaQueries.browser]: {
-      width: 256
+      width: 256,
+      maxWidth: '100%'
     }
   }
 }

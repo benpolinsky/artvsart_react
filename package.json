@@ -6,7 +6,6 @@
   "scripts": {
     "start": "webpack-dev-server",
     "test": "webpack-dev-server",
-    "deploy": "npm-run-all --serial buildForDeploy digitalOceanDeploy",
     "buildForDeploy": "webpack -p --config webpack.config.deploy.js --progress",
     "firebaseDeploy": "firebase deploy"
   },

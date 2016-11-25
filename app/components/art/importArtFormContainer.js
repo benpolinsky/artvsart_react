@@ -1,13 +1,14 @@
 import React from 'react';
-import Radium from 'radium';
+import Radium, {StyleRoot} from 'radium';
 import {connect} from 'react-redux';
 import Loader from 'react-loader-advanced';
 import SearchResults from './searchResults.js'
 import ImportArtForm from './ImportArtForm.js';
+import ArtFormContainer from './artFormContainer.js'
 import {searchSource, importArt} from '../../actions/artImports.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import Drawer from 'material-ui/Drawer';
 import CircularProgress from 'material-ui/CircularProgress'
-
 import loaderStyles from '../../styles/loader.js'
 
 class ImportArtFormContainer extends React.Component{
@@ -85,20 +86,37 @@ class ImportArtFormContainer extends React.Component{
     return (
       <div id="searchArtContainer">
         <Loader backgroundStyle={loaderStyles.background} 
-                foregroundStyle={loaderStyles.foreground} 
-                show={this.props.loading} 
-                message={circularLoader}>
-                
-                <ImportArtForm 
-                  sources={sources} 
-                  selected_source={this.state.source} 
-                  selected={this.selected} 
-                  update={this.update} 
-                  submitForm={this.submitForm}
-                  formErrors={this.state.formErrors}
-                />
-                
-                <SearchResults results={this.props.results} errors={this.props.errors} importArt={this.importArt} />
+          foregroundStyle={loaderStyles.foreground} 
+          show={this.props.loading} 
+          message={circularLoader}>
+          
+          <ImportArtForm 
+            sources={sources} 
+            selected_source={this.state.source} 
+            selected={this.selected} 
+            update={this.update} 
+            submitForm={this.submitForm}
+            formErrors={this.state.formErrors}
+          />
+          
+          <SearchResults 
+            results={this.props.results} 
+            errors={this.props.errors} 
+            importArt={this.importArt} 
+          />
+          <MuiThemeProvider>
+
+            <Drawer 
+              docked={false}
+              width={500} 
+              openSecondary={true} 
+              open={this.props.importedArtId != null && this.props.appModalOpen }>
+              <StyleRoot>
+                <ArtFormContainer artId={this.props.importedArtId} fromImport={true}/>
+              </StyleRoot>
+            </Drawer>
+
+          </MuiThemeProvider>  
         </Loader>
       </div>
     )
@@ -119,7 +137,9 @@ const mapStateToProps = (store) => ({
   loading: store.artImportState.loading,
   results: store.artImportState.results,
   listing_id: store.artImportState.listing_id,
-  errors: store.artImportState.errors
+  errors: store.artImportState.errors,
+  importedArtId: store.artImportState.importedArtId,
+  appModalOpen: store.appState.modalOpen 
 });
 
 const mapDispatchToProps = (dispatch) => ({

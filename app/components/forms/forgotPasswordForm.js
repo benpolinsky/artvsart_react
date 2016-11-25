@@ -49,7 +49,7 @@ class ForgotPasswordForm extends React.Component{
 
             <div>
               <QuickField type="email" name="email" label="E-Mail" /> 
-              <ArtButton kind='responsive' label="Reset Password" action={this.props.handleSubmit(this.submitForm)} />
+              <ArtButton styles={{width: '100%'}} kind='responsive' label="Reset Password" action={this.props.handleSubmit(this.submitForm)} />
               <Link style={BaseStyles.traditionalLink} onClick={() => this.props.showAuthForm('signIn')}>Sign In</Link> 
               <InlineSeparator />
               <Link style={BaseStyles.traditionalLink} onClick={() => this.props.showAuthForm('register')}>Register</Link>

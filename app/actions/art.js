@@ -1,4 +1,5 @@
 import * as api from '../utils/ajaxHelpers.js'
+import {closeModal} from './app.js'
 
 export const fetchArt = (id) => (dispatch) => {
   dispatch(beginArtRequest());
@@ -56,12 +57,13 @@ const createNewArtResponse = (response) => ({
   art: response.art
 })
 
-export const updateArt = (art, router) => (dispatch) => {
+export const updateArt = (art, router=null) => (dispatch) => {
   dispatch(updateArtRequest());
   api.put(`art/${art.id}`, {art: art}).then(response => {
     if (response.errors == null) {
       dispatch(updateArtResponse(response));
-      router.push(`/art/${response.art.id}`)
+      dispatch(closeModal());
+      router && router.push(`/art/${response.art.id}`)
     } else {
       dispatch(updateArtRequestFailed(response))
     }

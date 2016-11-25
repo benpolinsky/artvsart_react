@@ -1,5 +1,5 @@
 import React from 'react';
-import Radium from 'radium';
+import Radium, {StyleRoot} from 'radium';
 import { Field, reduxForm } from 'redux-form';
 import RaisedButton from 'material-ui/RaisedButton';
 import Datejs from 'datejs'
@@ -48,27 +48,27 @@ class ArtForm extends React.Component{
     const currentImage = (art && art.image && <div><p>Current Image: </p> <br/> <img style={{maxWidth: '300px'}} src={art.image} /></div>)
     
     return(
-
+    <StyleRoot>
       <form onSubmit={handleSubmit(this.onSubmit)} style={formStyles.centered}>
         <h1 style={baseStyles.mainTitle}>{formTitle}</h1>
 
         <div style={formStyles.centered.fields}>
-          <QuickField name="name" />
+          <QuickField styles={formStyles.fullField} name="name" />
           
-          <QuickField name="creator" />
+          <QuickField styles={formStyles.fullField} name="creator" />
           
-          <QuickField name="description" field='textarea' />
+          <QuickField styles={formStyles.fullField} name="description" field='textarea' />
           
-          <QuickField name="creation_date" label="Creation Date" field='date' />
+          <QuickField styles={formStyles.fullField} name="creation_date" label="Creation Date" field='date' />
           
-          <QuickField name="category_name" label="Category" field='select'>
+          <QuickField styles={formStyles.fullField} name="category_name" label="Category" field='select'>
             <option disabled>Select Category: </option>
             {categories.map((category) => {
               return <option key={category.id} value={category.name}>{category.name}</option>
             })}
           </QuickField>
             
-          <QuickField name="source" field='select'>
+          <QuickField styles={formStyles.fullField} name="source" field='select'>
             <option disabled>Select Source: </option>
             <option value="Discogs">Discogs</option>
             <option value="IMDB">IMDB</option>
@@ -79,14 +79,14 @@ class ArtForm extends React.Component{
             <option value="other">Other</option>
           </QuickField>
          
-          <QuickField name="status" field='select'>
+          <QuickField styles={formStyles.fullField} name="status" field='select'>
             <option  disabled>Select Status: </option>
             <option value="pending_review">Pending Review</option>
             <option value="published">Published</option>
             <option value="declined">Declined</option>
           </QuickField>
          
-          <QuickField name="source_link" label="Source Link" type='url' />
+          <QuickField styles={formStyles.fullField} name="source_link" label="Source Link" type='url' />
             
           <div style={formStyles.uploadToS3}>
             {currentImage}
@@ -98,7 +98,7 @@ class ArtForm extends React.Component{
         </div>
 
       </form>
-
+</StyleRoot>
     )
   }
 }

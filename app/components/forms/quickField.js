@@ -29,11 +29,11 @@ const componentField = (props) => {
     )
   case 'select':
     return (
-      <div>
+      <StyleRoot>
         {errors}
         {extraErrors}
         <select id={props.id} {...props.input}  style={props.style}>{props.children}</select>
-      </div>
+      </StyleRoot>
     )
   case 'date':    
 

@@ -2,7 +2,9 @@
 // if we're on the edit or new path
 // either look at react-router transitions (or another 'onload' dealie)
 // or extract to two different containers
-// You could also inject a RouteAction class
+// but now we're dealing with the situation of loading this into a sidebar 
+// from the art/import page....
+
 
 import React from 'react';
 import Radium from 'radium';
@@ -40,6 +42,7 @@ class ArtFormContainer extends React.Component {
   }
   
   componentWillMount(){
+    console.log('sj')
     this.state = {
       loading: true,
       uploadProgress: 0,
@@ -66,7 +69,7 @@ class ArtFormContainer extends React.Component {
   }
   
   setupForms(props){
-    if (props.location.pathname == '/art/new') {
+    if (props.location && props.location.pathname == '/art/new') {
       this.setState({
         formTitle: "Add Art",
         submitLabel: "Create"
@@ -78,12 +81,21 @@ class ArtFormContainer extends React.Component {
         submitLabel: "Update"
       });      
 
-      (!this.props.fetching && !props.fetching &&  this.props.art.id != props.params.id) && this.props.loadArt(props.params.id);
+      if (!this.props.fetching && !props.fetching) {
+        console.log('not fetching');
+        if (props.params && props.params.id) {
+          console.log('load from pararms');
+          this.props.loadArt(props.params.id);
+        } else if (props.artId) {
+          console.log('load form artid');
+          this.props.loadArt(props.artId);
+        }
+      }
     }
   }
   
   submitArtForm(data){
-    if (this.props.location.pathname == "/art/new") {
+    if (this.props.location && this.props.location.pathname == "/art/new") {
       this.createNewArt(data)
     } else {
       this.updateArt(data)
@@ -120,7 +132,13 @@ class ArtFormContainer extends React.Component {
       image: art_image
     }
     
-    this.props.updateArt(formattedData, this.context.router)
+    if (this.props.fromImport) {
+      this.props.updateArt(formattedData);
+    } else {
+      this.props.updateArt(formattedData, this.context.router)
+    }
+    
+    
   }
   
   showArt(){
@@ -216,7 +234,7 @@ class ArtFormContainer extends React.Component {
        </ArtForm>
        
 
-       {this.props.location.pathname != '/art/new' && <PrevNextNav art={this.props.art} />}
+       {this.props.location && this.props.location.pathname != '/art/new' && <PrevNextNav art={this.props.art} />}
        
       </Loader>
     </DefaultLoader>
@@ -243,11 +261,9 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(createNewArt(art, router));
   },
   updateArt(art, router){
-    console.log(art.creation_date)
     dispatch(updateArt(art, router));
   },
   loadArt(id){
-    console.log('loading art: ', id)
     dispatch(fetchArt(id));
   },
   resetArt(){

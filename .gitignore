@@ -32,3 +32,4 @@ notes.md
 .env.default
 .env.development
 .env.production
+deploy

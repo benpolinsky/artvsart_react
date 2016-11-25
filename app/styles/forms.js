@@ -49,7 +49,14 @@ const forms = {
     float: 'none',
     [mediaQueries.browser]: {
       width: 256,
+      maxWidth: '100%',
       float: "left"
+    }
+  },
+  
+  fullField: {
+    [mediaQueries.browser]: {
+      width: "100%",
     }
   },
   

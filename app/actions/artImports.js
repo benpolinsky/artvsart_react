@@ -1,6 +1,6 @@
 import * as api from '../utils/ajaxHelpers.js'
 import * as storage from '../utils/localStorage.js'
-import {displayNotice} from './app.js';
+import {displayNotice, openModal} from './app.js';
 
 
 export const searchSource = (source, query) => (dispatch) => {
@@ -40,6 +40,7 @@ export const importArt = (id, source) => (dispatch) => {
       dispatch(displayNotice(response.errors))
     } else {
       dispatch(importArtResponse(response));
+      dispatch(openModal())
       dispatch(displayNotice("Imported!"))    
     }
   })
