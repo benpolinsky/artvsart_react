@@ -2,7 +2,7 @@ import React from 'react';
 import Helmet from 'react-helmet';
 import {metrics} from 'react-metrics';
 import GoogleAnalytics from './googleAnalytics.js';
-import Menu from './menu';
+import Menu from './header/menu.js';
 import Footer from './footer.js'
 import AuthForms from './forms/authForms.js'
 import {openSignUp} from '../actions/userAuth.js';

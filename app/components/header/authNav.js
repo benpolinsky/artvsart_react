@@ -1,7 +1,7 @@
 import React from 'react';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import ArtButton from './elements/button.js';
-import menuStyles from '../styles/navBar.js';
+import ArtButton from '../elements/button.js';
+import menuStyles from '../../styles/navBar.js';
 
 const AuthNav = ({showAuthForm}) => {
   return(

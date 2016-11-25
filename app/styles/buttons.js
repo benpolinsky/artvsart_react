@@ -1,3 +1,5 @@
+import mediaQueries from './mediaQueries';
+
 const baseButtonStyles = {
   color: 'black',
   borderRadius: 0,
@@ -58,6 +60,13 @@ const button = {
     background: 'none lightgrey',
     ':hover': {
       background: '#fc8181'
+    }
+  },
+  auth: {
+    ...baseButtonStyles,
+    width: 256,
+    [mediaQueries.browser]: {
+      width: '100%'
     }
   }
 }

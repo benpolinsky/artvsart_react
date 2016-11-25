@@ -69,7 +69,7 @@ export class AuthForm extends React.Component {
 
               <QuickField name="email" type='email' extraErrors={email_errors} label="E-Mail" /> 
               <QuickField name="password" type='password' /> 
-              <ArtButton label={this.props.formTitle} styles={{width: '100%'}} action={this.props.handleSubmit(this.submitForm)} />
+              <ArtButton label={this.props.formTitle} kind="auth" action={this.props.handleSubmit(this.submitForm)} />
             </div>
         </form>
       

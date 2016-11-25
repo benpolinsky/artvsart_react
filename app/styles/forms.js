@@ -42,11 +42,15 @@ const forms = {
   },
   
   basicField: {
-    float: "left",
     clear: 'both',
-    width: "100%",
-    marginTop: 4,
-    boxSizing: 'border-box'
+    width: 256,
+    margin: '4px auto 0 auto',
+    boxSizing: 'border-box',
+    float: 'none',
+    [mediaQueries.browser]: {
+      width: "100%",
+      float: "left"
+    }
   },
   
   bottomBorder: {
