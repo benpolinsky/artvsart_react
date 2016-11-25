@@ -14,7 +14,7 @@ import MainButton from '../elements/button.js'
 import Dialog from 'material-ui/Dialog';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import baseStyles from '../../styles/base.js';
-
+import fixedBody from '../../utils/fixedBody.js';
 
 
 const customStyles = {
@@ -117,22 +117,18 @@ class CompetitionContainer extends React.Component{
   
   modalKeyFunction(event){
     if (event.which != 13) {
-      console.log('returning false')
       return false
     } 
     
     if (this.props.competition.errors) {
-            console.log('errs')
       this.props.handleCompetitionModalState('')
     } else {
-            console.log('should setu')
       this.setupCompetition()
     }
   }
   
   setupCompetition(){
     if (this.props.competition.id == 0 || this.props.competition.isResult == true ) {      
-      
       this.props.getCompetition(); 
     }
 
@@ -213,9 +209,11 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(selectCompetitionWinner(artId));
   },
   openAppModal(){
+    fixedBody.fix();
     dispatch(openModal());
   },
   closeAppModal(){
+    fixedBody.unFix();
     dispatch(closeModal());
   }
 })

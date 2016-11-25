@@ -43,12 +43,12 @@ const forms = {
   
   basicField: {
     clear: 'both',
-    width: 256,
+    width: "100%",
     margin: '4px auto 0 auto',
     boxSizing: 'border-box',
     float: 'none',
     [mediaQueries.browser]: {
-      width: "100%",
+      width: 256,
       float: "left"
     }
   },

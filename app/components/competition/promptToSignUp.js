@@ -8,15 +8,14 @@ import EmailIcon from 'material-ui/svg-icons/communication/email'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 
-
 const PromptToSignUp = ({errors, open, handleClose, responseFacebook}) => {
   
   const actions = 
     (errors == "Please Sign Up to Continue Judging") ?
     [
       <FacebookButton />,
-      <MainButton label="Sign Up With Email" action={handleClose} />,
-      <MainButton label="No Thanks..." action={handleClose} />
+      <MainButton kind='responsive' label="Sign Up With Email" action={handleClose} />,
+      <MainButton kind='responsive' label="No Thanks..." action={handleClose} />
     ] :
     null
     

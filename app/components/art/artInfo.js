@@ -18,7 +18,7 @@ const ArtInfo = ({art}) => {
     
       <div style={CompetitionStyles.artInfo.body} >
         {art.description}
-        <a style={{position: 'absolute', right: 2, bottom: 2}} href={art.source_link} target='new'>{art.source}</a>
+        <a style={{display: 'block', clear: 'both'}} href={art.source_link} target='new'>{art.source}</a>
       </div>
         
 

@@ -1,8 +1,8 @@
-// Markdown could be useful
 import React from 'react';
 import baseStyles from '../../styles/base.js';
+import Radium, {StyleRoot} from 'radium';
 
-export default class AboutPage extends React.Component {
+class AboutPage extends React.Component {
   constructor(){
     super();
   }
@@ -11,8 +11,9 @@ export default class AboutPage extends React.Component {
     const pageStyles = baseStyles.paddedContainer(25);
     
     return (
-      <div style={{...baseStyles.centeredPage, width: 800, margin: '0 auto'}}>
-        <h2 style={baseStyles.mainTitle}>About Art Vs Art</h2>
+      <StyleRoot>
+      <div style={baseStyles.contentPage}>
+        <h2 style={{...baseStyles.mainTitle, textAlign: 'left', marginLeft: 30}}>About Art Vs Art</h2>
         <div style={pageStyles}>
           <h2 style={baseStyles.subheader}>One Art, Please!</h2>
           <p style={baseStyles.paragraph}>
@@ -26,7 +27,7 @@ export default class AboutPage extends React.Component {
             It's been battle tested for decades by Chess tournaments, League of Legends, 
             and supposedly popularized by the Facebook movie.
           </p>
-    
+          <br/>
           <h2 style={baseStyles.subheader}>Built By Me</h2>
     
           <p style={baseStyles.paragraph}>
@@ -67,7 +68,9 @@ export default class AboutPage extends React.Component {
             
         </div>
       </div>
+     </StyleRoot>
     )
   }
   
 }
+export default Radium(AboutPage)

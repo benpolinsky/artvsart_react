@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 
 export default function adminAuthWrapper(Component) {
   class adminAuthedComponent extends React.Component {
-    
     componentWillMount(){
       const router = this.context.router;
       this.props.user.type != 'admin' && this.props.redirectNonAdmin(router);
@@ -24,6 +23,7 @@ export default function adminAuthWrapper(Component) {
       router.push('/competition')
     }
   });
+  
   const mapStateToProps = (state) => ({
     user: state.userState.user
   });

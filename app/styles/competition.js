@@ -231,13 +231,17 @@ const compeititonStyles = {
     },
     
     shareButtons: {
-      clear: 'both',
-      margin: '20px auto 0 auto',
-      width: 256,
+      width: 'auto',
       display: 'flex',
-      flexDirection: 'row-reverse',
-      alignItems: 'center',
-      justifyContent: 'center'
+      flexDirection: 'row',
+      margin: '20px auto 0 auto',
+      [mediaQueries.browser]: {
+        clear: 'both',
+        width: 256,
+        flexDirection: 'row-reverse',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }
     }
   },
   

@@ -10,16 +10,7 @@ import MenuIcon from 'material-ui/svg-icons/navigation/menu';
 import Radium from 'radium';
 import {StyleRoot} from 'radium';
 import menuStyles from '../../styles/navBar.js';
-
-var body = document.getElementsByTagName("body")[0]; 
-const fixBody = () => {
-  body.style.position = 'fixed';
-}
-
-const unFixBody = () => {
-  body.style.position = 'relative';
-}
-
+import fixedBody from '../../utils/fixedBody.js';
 
 
 const RightElementIcon = ({user, showAuthForm, menu}) => {
@@ -53,7 +44,7 @@ class Menu extends React.Component{
   
   
   toggleNav(open){
-    open ? fixBody() : unFixBody();
+    open ? fixedBody.fix() : fixedBody.unFix();
     this.setState({
       navMenuOpen: open
     })
@@ -72,6 +63,7 @@ class Menu extends React.Component{
     return (
     <MuiThemeProvider>
       <header style={{height: 64}}>
+    
         <AppBar 
           style={menuStyles.appBar} 
           title="ART VS ART"

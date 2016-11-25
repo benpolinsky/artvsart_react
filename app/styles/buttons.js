@@ -62,11 +62,11 @@ const button = {
       background: '#fc8181'
     }
   },
-  auth: {
+  responsive: {
     ...baseButtonStyles,
-    width: 256,
+    width: '100%',
     [mediaQueries.browser]: {
-      width: '100%'
+      width: 256
     }
   }
 }

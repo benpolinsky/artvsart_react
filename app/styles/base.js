@@ -1,17 +1,25 @@
+import mediaQueries from './mediaQueries';
+
 const baseContainer = {
     padding: 0,
     boxSizing: "border-box",
     maxWidth: 1500,
+    width: '100%',
     margin: '0 auto'
 }
 
 const baseStyles = {
   container: baseContainer,
+
   mainTitle: {
+    fontSize: 28,
     textAlign: 'center',
-    fontSize: 40,
     fontWeight: '100',
-    padding: "20px 0"
+    padding: "0px 0 20px 0",
+    [mediaQueries.browser]: {
+      fontSize: 40,
+      padding: '20px 0'
+    }    
   },
   traditionalLink: {
     fontSize: 12,
@@ -34,6 +42,14 @@ const baseStyles = {
     flexDirection: "column",
     marginTop: 20
   },
+  contentPage: {
+    width: '100%',
+    [mediaQueries.browser]: {
+      width: 800, 
+      margin: '0 auto'
+    }
+    
+  },
   mainContainer: {
     minHeight: 'calc(100% - 90px)',
     paddingBottom: 90,
@@ -53,14 +69,19 @@ const baseStyles = {
   }),
   paragraph: {
     marginBottom: 10,
-    fontSize: 14
+    fontSize: 14,
+    lineHeight: '1.5'
   },
   homeParagraph: {
-    fontSize: 18,
+    fontSize: 14,
     margin: "10px auto",
-    maxWidth: 800,
+    maxWidth: '100%',
     textAlign: 'center',
-    lineHeight: 1.3
+    lineHeight: 1.3,
+    [mediaQueries.browser]: {
+      fontSize: 18
+    }
+    
   },
   center: {
     textAlign: 'center',

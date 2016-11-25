@@ -26,7 +26,7 @@ class HomePage extends React.Component{
           <p style={[baseStyles.homeParagraph, {fontWeight: 700}]}>Like this one: </p>
           <br/>
         </div>
-        <CompetitionContainer artStyles={artStyles} styles={{maxWidth: 600}} example={true} />
+        <CompetitionContainer artStyles={artStyles} example={true} />
       </div>
     )
   }
