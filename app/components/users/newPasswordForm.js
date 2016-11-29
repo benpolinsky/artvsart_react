@@ -55,7 +55,7 @@ export class NewPasswordForm extends React.Component {
           <form style={Styles.centered} onSubmit={this.props.handleSubmit(this.submitForm)}>
             <h2>Change Password</h2>
             <MuiThemeProvider>
-              <div style={Styles.centered.fields}>
+              <div>
                 {token_error && <p style={Styles.formError}>Sorry, this password token {token_error[0]}</p>}
                 <Field 
                   name="password" 

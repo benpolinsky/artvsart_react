@@ -9,10 +9,10 @@ const Footer = () => {
       <div style={FooterStyles.socialMedia}>
         <StyleRoot>
           <a style={[FooterStyles.link, FooterStyles.socialMediaLink]} href="https://twitter.com/artvsart_io" target="new">
-            <img width='32' src='/twitter.png' />
+            <img width='32' src='/public/twitter.png' />
           </a>
           <a style={[FooterStyles.link, FooterStyles.socialMediaLink]} href="https://github.com/benpolinsky/artvsart" target="new">
-            <img width='32' src='/github.png' />
+            <img width='32' src='/public/github.png' />
           </a>  
         </StyleRoot>
       </div>

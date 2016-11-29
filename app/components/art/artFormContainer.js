@@ -70,9 +70,12 @@ class ArtFormContainer extends React.Component {
   // I suppose let's start to point out the smells.
   
   // - 3 level nested conditional
-  // - WET (deal with first)
+  // - WET 
   // - Depends too much on knowledge of the router and paths (deal with second)
   // - Does two things: (sets form label and title and keeps the art current)
+  
+  // let's give most of these initial consts as arguments
+  // abstract out the parentId or paramsId
   
   setupForms(props){
     const location = props.location;

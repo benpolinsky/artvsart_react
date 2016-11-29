@@ -8,10 +8,6 @@ import QuickField from '../forms/quickField.js';
 import ArtButton from '../elements/button.js';
 import Styles from '../../styles/forms.js'
 
-
-
-
-
 const validate = (values) => {
   const errors = {};
   const fieldsToValidate = ['current_password', 'password', 'password_confirmation'];
@@ -47,8 +43,8 @@ export class PasswordForm extends React.Component {
         <div>
           <form style={Styles.centered} onSubmit={this.props.handleSubmit(this.submitForm)}>
             <h2>Change Password</h2>
-
-              <div style={Styles.centered.fields}>
+              <br/>
+              <div>
 
                 <QuickField 
                   name="current_password" 

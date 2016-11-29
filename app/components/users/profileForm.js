@@ -47,12 +47,10 @@ export class ProfileForm extends React.Component {
         <DefaultLoader showing={this.props.user.fetching}>
           <form onSubmit={this.props.handleSubmit(this.submitForm)} style={Styles.centered}>
             <h2>Update Profile: </h2>
-
-              <div style={Styles.centered.fields}>
+              <br/>
+              <div>
                 <QuickField name="email" label="Email" type="email" extraErrors={email_errors}/>
                 <QuickField name="username" extraErrors={username_errors}/>
-
-
                 <ArtButton label="Update" action={this.props.handleSubmit(this.submitForm)} />
               </div>
           </form>

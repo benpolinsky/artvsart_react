@@ -6,8 +6,7 @@
   "scripts": {
     "start": "webpack-dev-server",
     "test": "webpack-dev-server",
-    "buildForDeploy": "webpack -p --config webpack.config.deploy.js --progress",
-    "firebaseDeploy": "firebase deploy"
+    "buildForDeploy": "webpack -p --config webpack.config.deploy.js --progress"
   },
   "author": "Ben Polinsky",
   "license": "ISC",

@@ -4,7 +4,7 @@ import Radium from 'radium'
 const infoIcon = ({styles, onClick}) => {
   return(
     <icon onClick={onClick} style={styles}>
-      <img width={50} src='/info.svg' />
+      <img width={50} src='/public/info.svg' />
     </icon>
   )
 }

@@ -4,7 +4,7 @@ const DotenvPlugin = require('webpack-dotenv-plugin');
 module.exports = {
   entry: ['whatwg-fetch', './app/main.js'],
   output: {
-    path: './public/',
+    path: './src',
     filename: 'index.js',
     publicPath: './public'
     },
