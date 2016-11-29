@@ -3,7 +3,10 @@ import Radium from 'radium'
 import formStyles from '../styles/forms.js'
 
 const MyOverlay = ({show, close}) => {
-  return <div onClick={close} style={[{display: `${show != '' ? 'block' : 'none'}`}, formStyles.auth]}></div>
+  return <div 
+          onClick={close} 
+          style={[{display: `${show != '' ? 'block' : 'none'}`}, formStyles.auth]}>
+         </div>
 }
 
 MyOverlay.propTypes = {

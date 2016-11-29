@@ -18,7 +18,7 @@ import PrevNextNav from './prevNextNav.js';
 import ArtNav from './artNav.js';
 import DefaultLoader from '../defaultLoader.js'
 
-import {createNewArt, fetchArt, resetArt, updateArt} from '../../actions/art.js';
+import {createNewArt, fetchArt, resetArt, updateArt, searchWikipedia} from '../../actions/art.js';
 import {categoriesRequest} from '../../actions/categories.js'
 import {storeSignedUrl} from '../../actions/art.js';
 
@@ -42,7 +42,6 @@ class ArtFormContainer extends React.Component {
   }
   
   componentWillMount(){
-    console.log('sj')
     this.state = {
       loading: true,
       uploadProgress: 0,
@@ -62,11 +61,13 @@ class ArtFormContainer extends React.Component {
   }
   
   componentDidMount(){
-    console.log('mounted')
     this.toggleLoader(false);
     this.props.fetchCategories()
     this.setupForms(this.props);
   }
+
+  // so this is no good.
+  // You should reconsider the component design
   
   setupForms(props){
     if (props.location && props.location.pathname == '/art/new') {
@@ -82,12 +83,12 @@ class ArtFormContainer extends React.Component {
       });      
 
       if (!this.props.fetching && !props.fetching) {
-        console.log('not fetching');
+
         if (props.params && props.params.id) {
-          console.log('load from pararms');
+
           this.props.loadArt(props.params.id);
         } else if (props.artId) {
-          console.log('load form artid');
+
           this.props.loadArt(props.artId);
         }
       }
@@ -184,6 +185,7 @@ class ArtFormContainer extends React.Component {
     }
     
   }
+
   
   render(){    
     const progressIndicator = <MuiThemeProvider>
@@ -205,7 +207,6 @@ class ArtFormContainer extends React.Component {
         show={this.state.loading}
        >
         <ArtNav art={this.props.art} />
-        
         <ArtForm initialValues={this.props.art}
          categories={this.props.categories}
          art={this.props.art} 
@@ -217,6 +218,8 @@ class ArtFormContainer extends React.Component {
          submit={this.submitArtForm} 
          triggerLoader={this.toggleLoader} 
          onSubmitFail={this.scrollToErrors}
+         fetchFromWiki={this.props.searchWikipedia.bind(this, this.props.art.name)}
+         wikipediaDescription={this.props.wikipediaDescription}
          >
             
         <ReactS3Uploader
@@ -250,7 +253,8 @@ ArtFormContainer.contextTypes = {
 const mapStateToProps = (store) => ({
   art: store.artState.art,
   categories: store.categories.records,
-  fetching: store.artState.fetching
+  fetching: store.artState.fetching,
+  wikipediaDescription: store.artState.wikipediaDescription
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -268,6 +272,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   resetArt(){
     dispatch(resetArt())
+  },
+  searchWikipedia(name){
+    dispatch(searchWikipedia(name))
   }
 })
 

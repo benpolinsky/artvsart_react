@@ -50,7 +50,8 @@ const initialArtState = {
   categoryCounts: [],
   errors: {},
   fetching: false,
-  allChecked: false
+  allChecked: false,
+  wikipediaDescription: ''
 }
 
 const artReducer = (state=initialArtState, action) => {
@@ -88,6 +89,12 @@ const artReducer = (state=initialArtState, action) => {
     return {...state, errors: action.errors, fetching: false}
   case "UPDATE_ART_RESPONSE":
     return {...state, art: {...state.art, ...action.art, creation_date: state.art.creation_date}, fetching: false}
+  case "WIKIPEDIA_RESULT":
+    return {
+      ...state, 
+      fetching: false,
+      wikipediaDescription: action.description ? action.description : "Nothing Found"
+    }
   case "UPDATE_ART_REQUEST_FAILED":
     return {...state, errors: action.errors, fetching: false}
   case "UPDATE_ART_STATUS_RESPONSE":

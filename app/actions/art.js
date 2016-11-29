@@ -158,7 +158,7 @@ const allArtResponse = (response) => ({
 
 const allArtRequestFailed = (response) => ({
   type: "ALL_ART_REQUEST_FAILED",
-  errors: errors
+  errors
 });
 
 export const storeSignedUrl = (signedUrl) => (dispatch) => ({
@@ -191,11 +191,25 @@ export const updateToggledArt = (art_ids, status) => (dispatch) => {
 const updateToggledSuccess = (response, status) => ({
   type: "UPDATE_TOGGLED_SUCCESS",
   art: response.art,
-  status: status
+  status
 });
 
 const updateToggledFailed = (errors) => ({
   type: "UPDATE_TOGGLED_FAILED",
-  errors: errors
+  errors
 
+});
+
+
+export const searchWikipedia = (artName) => (dispatch) => {
+  api.searchWikipedia(artName).then(response => {
+    const description = Object.values(response.query.pages).map(page => page.extract).join(" - ");
+    console.log(description);
+    dispatch(wikipediaResult(description));
+  });
+};
+
+const wikipediaResult = (description) => ({
+  type: "WIKIPEDIA_RESULT",
+  description
 });

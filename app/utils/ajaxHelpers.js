@@ -57,6 +57,10 @@ export const searchSource = (data) => {
   }).then(response => response.json());
 }
 
+export const searchWikipedia = (name) => {
+  return fetch(`https://en.wikipedia.org/w/api.php?format=json&action=query&prop=extracts&exintro=&explaintext=&origin=*&titles=${name}`).then(response => response.json())
+}
+
 export const toParams = (data) => {
   return Object.keys(data).map((key) => {
     if (data[key]) {

@@ -7,7 +7,7 @@ import ImportArtForm from './ImportArtForm.js';
 import ArtFormContainer from './artFormContainer.js'
 import {searchSource, importArt} from '../../actions/artImports.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import Drawer from 'material-ui/Drawer';
+import SlideInView from '../elements/slideInView.js'
 import CircularProgress from 'material-ui/CircularProgress'
 import loaderStyles from '../../styles/loader.js'
 
@@ -104,19 +104,11 @@ class ImportArtFormContainer extends React.Component{
             errors={this.props.errors} 
             importArt={this.importArt} 
           />
-          <MuiThemeProvider>
-
-            <Drawer 
-              docked={false}
-              width={500}
-              openSecondary={true} 
-              open={this.props.importedArtId != null && this.props.appModalOpen }>
-              <StyleRoot>
-                <ArtFormContainer artId={this.props.importedArtId} fromImport={true}/>
-              </StyleRoot>
-            </Drawer>
-
-          </MuiThemeProvider>  
+        
+          <SlideInView show={this.props.importedArtId != null && this.props.appModalOpen}>
+            <ArtFormContainer artId={this.props.importedArtId} fromImport={true}/>
+          </SlideInView>
+            
         </Loader>
       </div>
     )

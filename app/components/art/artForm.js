@@ -44,11 +44,13 @@ class ArtForm extends React.Component{
   }
   
   render(){
-    const {submit, handleSubmit, errors, art, formTitle, submitLabel, categories} = this.props;
+    const {submit, handleSubmit, errors, art, formTitle, submitLabel, categories, wikipediaDescription} = this.props;
     const currentImage = (art && art.image && <div><p>Current Image: </p> <br/> <img style={{maxWidth: '300px'}} src={art.image} /></div>)
     
     return(
     <StyleRoot>
+
+      
       <form onSubmit={handleSubmit(this.onSubmit)} style={formStyles.centered}>
         <h1 style={baseStyles.mainTitle}>{formTitle}</h1>
 
@@ -57,8 +59,11 @@ class ArtForm extends React.Component{
           
           <QuickField styles={formStyles.fullField} name="creator" />
           
+          { art.name && <p style={baseStyles.traditionalLink} onClick={this.props.fetchFromWiki}>Import description from wikipedia</p> }
+          { wikipediaDescription && <p style={baseStyles.paragraph}>{wikipediaDescription}</p> }
           <QuickField styles={formStyles.fullField} name="description" field='textarea' />
-          
+
+    
           <QuickField styles={formStyles.fullField} name="creation_date" label="Creation Date" field='date' />
           
           <QuickField styles={formStyles.fullField} name="category_name" label="Category" field='select'>
