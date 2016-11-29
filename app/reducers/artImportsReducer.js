@@ -15,27 +15,31 @@ const artImportsReducer = (state=initialArtState, action) => {
       ...state, 
       loading: true,
       errors: [],
-      results: []
+      results: [],
+      importedArtId: null
     }
   case "DISPLAY_RESULTS_SUCCESS":
     return {
       ...state, 
       loading: false,
       results: action.results,
-      errors: []
+      errors: [],
+      importedArtId: null
     }
     
   case "DISPLAY_RESULTS_ERRORS":
     return {
       ...state,
       loading: false,
-      errors: action.errors
+      errors: action.errors,
+      importedArtId: null
     }
   case "IMPORT_ART_REQUEST":
     return {
       ...state, 
       loading: true,
-      errors: []
+      errors: [],
+      importedArtId: null
     }
   case "IMPORT_ART_RESPONSE":
     return {

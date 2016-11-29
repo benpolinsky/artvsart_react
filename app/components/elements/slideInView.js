@@ -14,6 +14,10 @@ class SlideInView extends React.Component{
     show: React.PropTypes.bool.isRequired,
   }
   
+  componentWillUnmount(){
+    this.props.close();
+  }
+  
   componentWillReceiveProps(nextProps){
     if (nextProps == this.props) {
       return false

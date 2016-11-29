@@ -6,6 +6,7 @@ import SearchResults from './searchResults.js'
 import ImportArtForm from './ImportArtForm.js';
 import ArtFormContainer from './artFormContainer.js'
 import {searchSource, importArt} from '../../actions/artImports.js';
+import {closeModal} from '../../actions/app.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import SlideInView from '../elements/slideInView.js'
 import CircularProgress from 'material-ui/CircularProgress'
@@ -105,7 +106,7 @@ class ImportArtFormContainer extends React.Component{
             importArt={this.importArt} 
           />
         
-          <SlideInView show={this.props.importedArtId != null && this.props.appModalOpen}>
+            <SlideInView show={this.props.importedArtId != null && this.props.appModalOpen} close={this.props.closeAppModal}>
             <ArtFormContainer artId={this.props.importedArtId} fromImport={true}/>
           </SlideInView>
             
@@ -140,6 +141,9 @@ const mapDispatchToProps = (dispatch) => ({
   },
   importArt(id, source){
     dispatch(importArt(id, source));
+  },
+  closeAppModal(){
+    dispatch(closeModal());
   }
 });
 
