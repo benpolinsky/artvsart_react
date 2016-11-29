@@ -65,11 +65,10 @@ export class AuthForm extends React.Component {
       <div className='registerForm' style={[Styles.authForm, formStyles]}>
         <form form={`${this.props.formType}Form`} onSubmit={this.props.handleSubmit(this.submitForm)} className="signUpForm">
           <FormHeader label={this.props.formTitle} />
-            <div>
-
+            <div style={Styles.centered.fields}>
               <QuickField name="email" type='email' extraErrors={email_errors} label="E-Mail" /> 
               <QuickField name="password" type='password' /> 
-              <ArtButton label={this.props.formTitle} kind="responsive" styles={{width: '100%'}} action={this.props.handleSubmit(this.submitForm)} />
+              <ArtButton label={this.props.formTitle} kind="responsive"  action={this.props.handleSubmit(this.submitForm)} />
             </div>
         </form>
       

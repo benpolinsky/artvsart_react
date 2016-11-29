@@ -66,30 +66,47 @@ class ArtFormContainer extends React.Component {
     this.setupForms(this.props);
   }
 
-  // so this is no good.
-  // You should reconsider the component design
+
+  // I suppose let's start to point out the smells.
+  
+  // - 3 level nested conditional
+  // - WET (deal with first)
+  // - Depends too much on knowledge of the router and paths (deal with second)
+  // - Does two things: (sets form label and title and keeps the art current)
   
   setupForms(props){
-    if (props.location && props.location.pathname == '/art/new') {
+    const location = props.location;
+    const notFetching = !this.props.fetching && !props.fetching;
+    const givenParams = props.params;
+    const currentArt = this.props.art;
+    const fromParentId = props.artId;
+    
+    
+    if (location && location.pathname == '/art/new') {
+      
       this.setState({
         formTitle: "Add Art",
         submitLabel: "Create"
       });
-      this.props.resetArt()
+      
+      this.props.resetArt();
+      
     } else {      
+      
       this.setState({
         formTitle: "Edit Art",
         submitLabel: "Update"
       });      
 
-      if (!this.props.fetching && !props.fetching) {
-
-        if (props.params && props.params.id) {
-
-          this.props.loadArt(props.params.id);
-        } else if (props.artId) {
-
-          this.props.loadArt(props.artId);
+      if (notFetching) {
+        
+        // if we've got a new art id
+        // and it's not the current art id
+        // then loadArt
+        if (givenParams && givenParams.id && (givenParams.id != currentArt.id)) {
+          this.props.loadArt(givenParams.id);
+        } else if (fromParentId && fromParentId != currentArt.id) {
+          this.props.loadArt(fromParentId);
         }
       }
     }

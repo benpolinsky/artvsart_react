@@ -13,7 +13,7 @@ class AboutPage extends React.Component {
     return (
       <StyleRoot>
       <div style={baseStyles.contentPage}>
-        <h2 style={{...baseStyles.mainTitle, textAlign: 'left', marginLeft: 30}}>About Art Vs Art</h2>
+        <h1 style={baseStyles.mainTitle}>About Art Vs Art</h1>
         <div style={pageStyles}>
           <h2 style={baseStyles.subheader}>One Art, Please!</h2>
           <p style={baseStyles.paragraph}>

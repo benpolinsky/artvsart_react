@@ -204,7 +204,6 @@ const updateToggledFailed = (errors) => ({
 export const searchWikipedia = (artName) => (dispatch) => {
   api.searchWikipedia(artName).then(response => {
     const description = Object.values(response.query.pages).map(page => page.extract).join(" - ");
-    console.log(description);
     dispatch(wikipediaResult(description));
   });
 };

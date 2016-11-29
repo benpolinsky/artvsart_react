@@ -77,8 +77,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   submitRestoreUserForm(data, router){
-
-    console.log(data, router)
     dispatch(restoreUser(data, router))
   }
 })

@@ -60,7 +60,7 @@ class ArtForm extends React.Component{
           <QuickField styles={formStyles.fullField} name="creator" />
           
           { art.name && <p style={baseStyles.traditionalLink} onClick={this.props.fetchFromWiki}>Import description from wikipedia</p> }
-          { wikipediaDescription && <p style={baseStyles.paragraph}>{wikipediaDescription}</p> }
+          { wikipediaDescription && <p style={{...baseStyles.paragraph, padding: 20}}>{wikipediaDescription}</p> }
           <QuickField styles={formStyles.fullField} name="description" field='textarea' />
 
     

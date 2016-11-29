@@ -64,7 +64,8 @@ const button = {
   },
   responsive: {
     ...baseButtonStyles,
-    width: '100%',
+    maxWidth: '100%',
+    width: 256,
     [mediaQueries.browser]: {
       width: 256,
       maxWidth: '100%'

@@ -19,7 +19,7 @@ const artStyles = {
 class HomePage extends React.Component{
   render(){
     return(
-      <div style={[baseStyles.centeredPage, {padding: "10px"}]}>
+      <div style={baseStyles.centeredPage}>
         <div>
           <h1 style={baseStyles.mainTitle}>Welcome to Art Vs Art</h1>
           <p style={baseStyles.homeParagraph}>Pit the world's most famous works of visual, musical, and printed art against each other in the ultimate battle royale.</p>

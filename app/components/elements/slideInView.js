@@ -36,7 +36,7 @@ class SlideInView extends React.Component{
     return (
       <StyleRoot>
         <div>
-          <MyOverlay show={this.props.show ? 'show' : ''} close={() => {console.log('close');}}/>
+          <MyOverlay show={this.props.show ? 'show' : ''} close={() => {return false}}/>
           <div style={{...Styles.container, ...this.showStyles()}}>
             {this.props.children}
           </div>

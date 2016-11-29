@@ -47,7 +47,7 @@ class ForgotPasswordForm extends React.Component{
         <form form="forgotPassword" onSubmit={this.props.handleSubmit(this.submitForm)} className="signUpForm">
           <FormHeader label='Reset Password' />
 
-            <div>
+            <div style={Styles.centered.fields}>
               <QuickField type="email" name="email" label="E-Mail" /> 
               <ArtButton styles={{width: '100%'}} kind='responsive' label="Reset Password" action={this.props.handleSubmit(this.submitForm)} />
               <Link style={BaseStyles.traditionalLink} onClick={() => this.props.showAuthForm('signIn')}>Sign In</Link> 

@@ -9,9 +9,14 @@ const forms = {
     width: '100%',
     boxSizing: 'border-box',
     fields: {
-      marginTop: 20,
-      maxWidth: 600,
-      width: '100%'
+      margin: '0 auto',
+      width: '100%',
+      maxWidth: 256,
+      [mediaQueries.browser]: {
+        marginTop: 20,
+        maxWidth: 600,
+        width: '100%'
+      }
     }
   },
   

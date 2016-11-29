@@ -22,7 +22,6 @@ class GoogleAnalytics {
      * @internal
      */
     pageView(...args) {
-      console.log('page view');
       return this.track(...args);
     }
     user(userId) {

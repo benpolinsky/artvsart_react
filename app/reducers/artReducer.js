@@ -62,7 +62,7 @@ const artReducer = (state=initialArtState, action) => {
   case "ALL_ART_REQUESTED":
   case "CREATE_NEW_ART_REQUEST":
   case "UPDATE_ART_REQUEST":
-    return {...state, fetching: true}
+    return {...state, fetching: true, wikipediaDescription: ''}
   case "ALL_ART_RESPONSE":
     return {
         ...state, 
@@ -70,12 +70,13 @@ const artReducer = (state=initialArtState, action) => {
         pages: action.pages, 
         categoryCounts: action.categoryCounts,
         search: (action.search ? action.search : ''), 
-        fetching: false
+        fetching: false,
+        wikipediaDescription: ''
     }
   case "ALL_ART_REQUEST_FAILED":
     return {...state, errors: action.errors, fetching: false}
   case "ART_RESPONSE":
-    return {...state, art: {...action.art, creation_date: action.art.creation_date}, fetching: false}
+    return {...state, art: {...action.art, creation_date: action.art.creation_date}, fetching: false, wikipediaDescription: ''}
   case "ART_DELETED_RESPONSE":
     return {...state, art: action.art, fetching: false}
   case "ART_DELETED_FAILED":

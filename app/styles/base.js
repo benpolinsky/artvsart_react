@@ -40,15 +40,18 @@ const baseStyles = {
     alignItems: "center",
     justifyContent: "center",
     flexDirection: "column",
-    marginTop: 20
+    marginTop: 20,
+    padding: 10
   },
   contentPage: {
     width: '100%',
+    marginTop: 20,
+    padding: 10,
     [mediaQueries.browser]: {
-      width: 800, 
-      margin: '0 auto'
+      width: '80%',
+      maxWidth: 1000, 
+      margin: '20px auto 0 auto'
     }
-    
   },
   mainContainer: {
     minHeight: 'calc(100% - 90px)',
