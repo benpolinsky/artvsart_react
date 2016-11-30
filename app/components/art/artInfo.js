@@ -14,7 +14,9 @@ const ArtInfo = ({art}) => {
       <hr style={{borderRadius: 0, borderLeftWidth: 0, borderRightWidth: 0}}/>
         
 
-      <div><img style={{maxWidth: '100%'}} src={art.image}/></div>
+      <div>
+        <img style={CompetitionStyles.infoImage} src={art.image} />
+      </div>
     
       <div style={CompetitionStyles.artInfo.body} >
         {art.description}

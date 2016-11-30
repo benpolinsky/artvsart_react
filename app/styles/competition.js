@@ -270,6 +270,13 @@ const compeititonStyles = {
   losingArt: {
     filter: 'grayscale(93%)',
     opacity: '0.4'
+  },
+  infoImage: {
+    maxWidth: 400,
+    maxHeight: 300,
+    textAlign: 'center',
+    margin: '0 auto',
+    display: 'block'
   }
 }
 
