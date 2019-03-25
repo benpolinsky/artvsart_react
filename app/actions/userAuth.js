@@ -11,6 +11,7 @@ export const loginToFacebook = (response, router, restoring='false') => (dispatc
   dispatch(facebookAuthRequest(response));
   dispatch(openAppLoader())
   api.get(`users/auth/facebook/callback?restoring=${restoring}`).then(response => {
+    console.log(response)
     if (response.errors != null) {
       dispatch(facebookAuthFailed());
       dispatch(registerUserFailed(response.errors))

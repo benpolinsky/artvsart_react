@@ -20,7 +20,7 @@ const Art = ({art, noVoting, styles, selectInfo}) => {
         <h3 style={styles.h3}>{`by ${art.creator}`}</h3>
       </div>
       
-      {!noVoting && 
+      {!noVoting && art.id && 
         <VoteButton styles={styles.voteButton} art_id={art.id} /> }
     </div>
   )

@@ -2,52 +2,54 @@ const initialCompetitionState = {
   competition: {
     id: 0,
     art: {
-      id: 1, 
-      name: "Paid in Full",
-      creator: "Rakim",
-      description: "The god Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.",
-      image: 'https://upload.wikimedia.org/wikipedia/en/7/7a/Eric_B._%26_Rakim_-_Paid_in_Full_single.jpg',
-      creation_date: Date.now(),
+      id: undefined, 
+      name: undefined,
+      creator: undefined,
+      description: undefined,
+      image: undefined,
+      creation_date: undefined,
       category: {
-        name: "",
-        color: ""
+        name: undefined,
+        color: undefined
       }
     },
     challenger: {
-      id: 2, 
-      name: "David",
-      creator: "Michelangelo",
-      description: "A Legendary Sculpture",
-      image: 'https://upload.wikimedia.org/wikipedia/commons/2/24/%27David%27_by_Michelangelo_JBU0001.JPG',
-      creation_date: Date.now(),
+      id: undefined, 
+      name: undefined,
+      creator: undefined,
+      description: undefined,
+      image: undefined,
+      creation_date: undefined,
       category: {
-        name: "",
-        color: ""
+        name: undefined,
+        color: undefined
       }
     },
     winning_art: {
-      id: 2, 
-      name: "Michaelangelo's David", 
-      description: "A Legendary Sculpture",
-      image: 'http://placehold.it/250x250',
-      creation_date: Date.now(),
+      id: undefined, 
+      name: undefined,
+      creator: undefined,
+      description: undefined,
+      image: undefined,
+      creation_date: undefined,
       category: {
-        name: "",
-        color: ""
+        name: undefined,
+        color: undefined
       }
     },
     losing_art: {
-      id: 2, 
-      name: "Michaelangelo's David", 
-      description: "A Legendary Sculpture",
-      image: 'http://placehold.it/250x250',
-      creation_date: Date.now(),
+      id: undefined, 
+      name: undefined,
+      creator: undefined,
+      description: undefined,
+      image: undefined,
+      creation_date: undefined,
       category: {
-        name: "",
-        color: ""
+        name: undefined,
+        color: undefined
       }
     },
-    winner_id: 2,
+    winner_id: null,
     shareTitle: "Visit Art Vs Art to Battle Any Art Vs Any Art",
     isFetching: true,
     winnerSelected: false,

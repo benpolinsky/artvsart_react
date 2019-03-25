@@ -21,7 +21,7 @@ class HomePage extends React.Component{
     return(
       <div style={baseStyles.centeredPage}>
         <div>
-          <h1 style={baseStyles.mainTitle}>Welcome to Art Vs Art</h1>
+          <h1 style={baseStyles.mainTitle}>Welcome to Art vs. Art</h1>
           <p style={baseStyles.homeParagraph}>Pit the world's most famous works of art against each other in the ultimate battle royale.</p>
           <p style={[baseStyles.homeParagraph, {fontWeight: 700}]}>Like this one: </p>
           <br/>
