@@ -3,11 +3,11 @@
 import * as api from '../utils/ajaxHelpers.js'
 import * as storage from '../utils/localStorage.js'
 import { SubmissionError } from 'redux-form'
-import {openModal, closeModal, closeAppLoader, openAppLoader, displayNotice} from './app.js'
+import { openModal, closeModal, closeAppLoader, openAppLoader, displayNotice } from './app.js'
 
 
 
-export const loginToFacebook = (response, router, restoring='false') => (dispatch) => {
+export const loginToFacebook = (response, router, restoring = 'false') => (dispatch) => {
   dispatch(facebookAuthRequest(response));
   dispatch(openAppLoader())
   api.get(`users/auth/facebook/callback?restoring=${restoring}`).then(response => {
@@ -18,7 +18,7 @@ export const loginToFacebook = (response, router, restoring='false') => (dispatc
     } else if (response.error != null) {
       dispatch(facebookAuthFailed());
       dispatch(displayNotice("Oh no, something went wrong..."));
-    } else if (response.deleted_user){
+    } else if (response.deleted_user) {
       dispatch(facebookAuthFailed());
       dispatch(closeSignUp())
       dispatch(displayNotice(response.message));
@@ -35,7 +35,7 @@ export const loginToFacebook = (response, router, restoring='false') => (dispatc
       }
       // the next three can be extracted...
       dispatch(storeUserCredentials(response.user));
-      dispatch(signInUserSuccessful(response.user));  
+      dispatch(signInUserSuccessful(response.user));
     }
     dispatch(closeAppLoader());
   });
@@ -71,8 +71,8 @@ export const signUserIn = (user, router) => (dispatch) => {
     if (response.errors != null) {
 
       dispatch(signInUserFailed(response.errors));
-      
-    } else if (response.deleted_user){
+
+    } else if (response.deleted_user) {
       dispatch(displayNotice(response.message));
       dispatch(closeSignUp())
       dispatch(redirectToRestore(response.user, router))
@@ -88,14 +88,14 @@ export const signUserIn = (user, router) => (dispatch) => {
   })
 }
 
-export const handleCompetitionModal = (result="") => (dispatch) => {
+export const handleCompetitionModal = (result = "") => (dispatch) => {
   switch (result) {
-  case "Sign Up With Email":
-    dispatch(openSignUp('register'));    
-    break;
-  default:
-    dispatch(closeModal())
-    break;
+    case "Sign Up With Email":
+      dispatch(openSignUp('register'));
+      break;
+    default:
+      dispatch(closeModal())
+      break;
   }
   dispatch(closeCompetitionModal());
 }
@@ -114,7 +114,7 @@ const triggerSignUp = (formType) => ({
   formType: formType
 })
 
-export const closeSignUp = () => (dispatch) =>{
+export const closeSignUp = () => (dispatch) => {
   dispatch(triggerClose())
   dispatch(closeModal())
 }
@@ -162,19 +162,19 @@ const userSignedOut = (user) => ({
 
 export const registerUser = (user, router) => (dispatch) => {
   dispatch(startRegisterUser(user));
-   api.post('users', {user: user}).then(response => {
+  api.post('users', { user: user }).then(response => {
     if (response.errors != null) {
       dispatch(registerUserFailed(response.errors));
-      
-    } else if (response.deleted_user){
+
+    } else if (response.deleted_user) {
       dispatch(displayNotice(response.message));
       dispatch(closeSignUp())
       dispatch(redirectToRestore(response.user, router))
-    } 
+    }
     else {
       dispatch(registerUserSuccessful(response.user));
       dispatch(pendingEmailConfirmation(response.user))
-      
+
       router.push(`/user/pending_confirmation`);
       dispatch(storeUserCredentials(response.user));
       dispatch(closeSignUp())
@@ -235,13 +235,13 @@ export const getUserInfo = () => (dispatch) => {
     dispatch(closeAppLoader())
     dispatch(storeUserCredentials(response.user));
   })
-  .catch((error) => {
-    if (error.message == "Failed to fetch"){
-      dispatch(apiDown(error))
-    } else {
-    }
-    
-  });
+    .catch((error) => {
+      if (error.message == "Failed to fetch") {
+        dispatch(apiDown(error))
+      } else {
+      }
+
+    });
 }
 
 export const apiDown = (error) => ({
@@ -257,7 +257,7 @@ const startReceiveUserInfo = () => ({
 export const confirmUserAccount = (token, router) => (dispatch) => {
   dispatch(startConfirmUserAccount());
   return api.get(`users/confirmation?confirmation_token=${token}`).then(response => {
-    if (response.errors == null){
+    if (response.errors == null) {
       dispatch(userAccountConfirmed(response));
       dispatch(storeUserCredentials(response.user));
       dispatch(signInUserSuccessful(response.user));
@@ -291,7 +291,7 @@ export const forgotPassword = (data) => (dispatch) => {
   const params = api.toParams(data);
   return api.get(`users/password/new?${params}`).then(response => {
     if (response.errors == null) {
-      dispatch(receiveResetPassword(response));      
+      dispatch(receiveResetPassword(response));
     } else {
       dispatch(receiveResetPasswordError(response.errors))
     }
@@ -315,7 +315,7 @@ const receiveResetPasswordError = (errors) => ({
 
 export const submitNewPassword = (data, router) => (dispatch) => {
   dispatch(startSubmitNewPassword());
-  return api.put('users/password', {user: data}).then(response => {
+  return api.put('users/password', { user: data }).then(response => {
     if (response.errors == null) {
       dispatch(submitNewPasswordAccepted(response.user));
       dispatch(storeUserCredentials(response.user));
@@ -348,7 +348,7 @@ const redirectToRestore = (user, router) => (dispatch) => {
 
 export const restoreUser = (data, router) => (dispatch) => {
   dispatch(startRestoreUser());
-  api.put('user/restore', {user: data}).then(response => {
+  api.put('user/restore', { user: data }).then(response => {
     if (response.errors == null) {
       dispatch(restoreUserSuccess(response))
       dispatch(storeUserCredentials(response.user));
