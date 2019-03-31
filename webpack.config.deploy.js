@@ -1,13 +1,16 @@
 var webpack = require('webpack');
+var HtmlWebpackPlugin = require('html-webpack-plugin')
 const DotenvPlugin = require('webpack-dotenv-plugin');
 
+
+
 module.exports = {
-  entry: ['whatwg-fetch', './app/main.js'],
+  entry: ['./app/main.js'],
   output: {
     path: './src',
     filename: 'index.js',
     publicPath: './public'
-    },
+  },
   devServer: {
     inline: true,
     port: 3333,
@@ -57,9 +60,15 @@ module.exports = {
       path: './.env.production'
     }),
     new webpack.optimize.UglifyJsPlugin({
-        compress: {
-            warnings: false
-        }
+      compress: {
+        warnings: false
+      }
     }),
+    new HtmlWebpackPlugin({
+      title: 'Art vs Art: The Battle Begins',
+      filename: 'index.html',
+      template: './index.html'
+    })
+
   ]
 }

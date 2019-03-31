@@ -6,7 +6,7 @@
             "use": "@now/static"
         },
         {
-            "src": "index.html",
+            "src": "public/*",
             "use": "@now/static"
         }
     ]
