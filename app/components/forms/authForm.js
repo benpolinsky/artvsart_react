@@ -72,7 +72,7 @@ export class AuthForm extends React.Component {
             </div>
           </form>
 
-          {/* <FacebookButton label={`${this.props.formTitle} With Facebook`}/> */}
+          <FacebookButton label={`${this.props.formTitle} With Facebook`} />
           <Link style={BaseStyles.traditionalLink} onClick={() => this.props.showAuthForm('forgotPassword')}>Forgot Password?</Link>
         </div>
       </StyleRoot>
