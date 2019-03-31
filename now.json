@@ -1,1 +1,13 @@
-{}
+{
+    "version": 2,
+    "builds": [
+        {
+            "src": "src/*",
+            "use": "@now/static"
+        },
+        {
+            "src": "index.html",
+            "use": "@now/static"
+        }
+    ]
+}
