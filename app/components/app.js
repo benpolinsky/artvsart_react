@@ -31,7 +31,7 @@ const reactMetricsConfig = {
     pageViewEvent: "pageLoad",
     pageDefaults: () => {
         return {
-            siteName: "Art Vs Art io"
+            siteName: "Art vs. Art io"
         };
     }
 }
