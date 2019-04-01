@@ -1,4 +1,4 @@
-## We're live @ [artvsart.io!](http://artvsart.io)
+## We're live @ [artvsart.io!](https://artvsart.io)
 
 ### This is the front end for Art vs Art.  
 

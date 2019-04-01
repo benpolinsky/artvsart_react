@@ -44,7 +44,7 @@ const CompetitionResult = ({competition, displayInfo}) => {
           <p style={CompetitionStyles.shareButtons.p}>Share It!</p>
           <ShareButtons 
             shareTitle={competition.shareTitle}
-            shareLink={`http://artvsart.io/competition_result/${competition.id}`}
+            shareLink={`https://artvsart.io/competition_result/${competition.id}`}
           />
         </div>
         </StyleRoot>
