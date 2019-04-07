@@ -12,8 +12,16 @@
     ],
     "routes": [
         {
-            "src": "/(?<url>.*)",
-            "dest": "/src/$url"
+            "src": "/",
+            "dest": "/src/index.html"
+        },
+        {
+            "src": "/index.js",
+            "dest": "/src/index.js"
+        },
+        {
+            "src": "/rw-widgets.(?<ext>)",
+            "dest": "/src/rw-widgets.$ext"
         },
         {
             "src": "/(.*)",
