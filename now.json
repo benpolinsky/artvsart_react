@@ -24,7 +24,7 @@
             "dest": "/src/rw-widgets.$ext"
         },
         {
-            "src": "/(.*)",
+            "src": "/(*.html)",
             "dest": "/src/index.html"
         }
     ]
