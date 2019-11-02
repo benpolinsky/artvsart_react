@@ -24,7 +24,11 @@
             "dest": "/src/rw-widgets.$ext"
         },
         {
-            "src": "/(*.html)",
+            "src": "/(.+png|.+ico|robots.txt)",
+            "dest": "/public/$1"
+        },
+        {
+            "src": "/(.html)",
             "dest": "/src/index.html"
         }
     ]
